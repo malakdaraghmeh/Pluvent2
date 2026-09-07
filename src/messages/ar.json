@@ -1,0 +1,19 @@
+{
+  "Home": {
+    "title": "مرحبًا بك في موقعي",
+    "description": "هذا هو الإصدار العربي"
+  },
+  "navbar": {
+    "Home": "الرئيسية",
+    "Services": "الخدمات",
+    "Categories": "الاقسام",
+    "About": "من نحن",
+    "Products": "المنتجات",
+    "projects": "المشاريع",
+    "AllProducts": "جميع المنتجات",
+    "contactUs": "تواصل معنا",
+    "Booking": "الحجز",
+    "Login": "تسجيل الدخول",
+    "blogs": "المدونة"
+  }
+}

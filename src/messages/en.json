@@ -1,0 +1,18 @@
+{
+  "Home": {
+    "title": "Welcome to my site",
+    "description": "This is the English version"
+  },
+  "navbar": {
+    "Home": "Home",
+    "Services": "Services",
+    "Categories": "Categories",
+    "About": "About Us",
+    "projects": "Projects",
+    "AllProducts": "All Products",
+    "contactUs": "Contact Us",
+    "Booking": "Booking",
+    "Login": "Login",
+    "blogs": "Blogs"
+  }
+}
