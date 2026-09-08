@@ -10,9 +10,7 @@ const DashboardPage = () => {
         min-h-screen
         bg-[#F8F9FB]
         p-4
-
         sm:p-5
-
         lg:p-6
       "
     >
