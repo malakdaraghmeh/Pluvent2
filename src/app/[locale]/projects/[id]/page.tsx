@@ -94,9 +94,9 @@ export default function Page() {
       {/* ========================= */}
 
       <div className="w-full">
-        {/* ========================= */}
+
         {/* Tabs & Content Wrapper */}
-        {/* ========================= */}
+        
         <div className="relative w-full">
           
           {/* Tabs Navigation */}
@@ -135,12 +135,13 @@ export default function Page() {
                           border-[#39E1D7]
                           bg-white
                           rounded-t-[14px]
-                          text-[#2F1ABD]
+                          text-[#12115C]
+                          text-[20px]
                         `
                         : `
                           bg-transparent
-                          text-[#8E939F]
-                          hover:text-[#2F1ABD]
+                          text-[#6B7280]
+                          hover:text-[#12115C]
                         `
                     }
                   `}
