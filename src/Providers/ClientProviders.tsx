@@ -10,6 +10,7 @@ import Footer from '@/components/footer/Footer';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import GlobalPixelsTracker from '@/components/helper/GlobalPixelsTracker';
 import GoogleAnalyticsTracker from '@/components/helper/GoogleAnalyticsTracker';
+import Sidebar from '@/components/sidebar/Sidebar';
 
 export default function ClientProviders({ children }: { children: React.ReactNode }) {
     return (
@@ -21,7 +22,8 @@ export default function ClientProviders({ children }: { children: React.ReactNod
                 <GoogleAnalyticsTracker />
             </React.Suspense>
             <ScrollToTop />
-            <Navbar />
+            <Sidebar/>
+            {/* <Navbar /> */}
             {children}
             <Toaster richColors position="top-right" />
             <Footer />
