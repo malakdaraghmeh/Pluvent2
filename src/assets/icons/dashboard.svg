@@ -1,0 +1,51 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="22"
+  height="22"
+  viewBox="0 0 22 22"
+  fill="none"
+>
+  <rect
+    x="3.66699"
+    y="3.66699"
+    width="5.5"
+    height="5.5"
+    rx="0.900937"
+    stroke="currentColor"
+    stroke-width="1.80187"
+    stroke-linejoin="round"
+  />
+
+  <rect
+    x="3.66699"
+    y="12.833"
+    width="5.5"
+    height="5.5"
+    rx="0.900937"
+    stroke="currentColor"
+    stroke-width="1.80187"
+    stroke-linejoin="round"
+  />
+
+  <rect
+    x="12.833"
+    y="12.833"
+    width="5.5"
+    height="5.5"
+    rx="0.900937"
+    stroke="currentColor"
+    stroke-width="1.80187"
+    stroke-linejoin="round"
+  />
+
+  <rect
+    x="12.833"
+    y="3.66699"
+    width="5.5"
+    height="5.5"
+    rx="0.900937"
+    stroke="currentColor"
+    stroke-width="1.80187"
+    stroke-linejoin="round"
+  />
+</svg>
