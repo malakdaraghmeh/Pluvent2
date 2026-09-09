@@ -9,7 +9,7 @@ import SidebarItem from './SidebarItem';
 import { mainNavigation, accountNavigation } from './sidebar.data';
 
 import Logo from '@icons/logo.svg';
-import Plogo from '@icons/p-logo.svg';
+import PLogo from '@icons/p-logo.svg';
 
 interface SidebarProps {
     onCollapseChange?: (collapsed: boolean) => void;
@@ -28,12 +28,11 @@ export default function Sidebar({ onCollapseChange }: SidebarProps) {
     return (
         <aside
             className={`
-        fixed
+        
         left-0
         top-0
-        z-40
-        h-screen
-        p-4
+        
+      
         transition-all
         duration-300
         ease-in-out
@@ -126,7 +125,7 @@ export default function Sidebar({ onCollapseChange }: SidebarProps) {
                             </span>
                         </div>
                     ) : (
-                        <Plogo />
+                        <PLogo />
                     )}
                 </div>
 

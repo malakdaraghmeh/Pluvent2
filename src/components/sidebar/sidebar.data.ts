@@ -11,17 +11,17 @@ import Settings from '@icons/settings.svg';
 export const mainNavigation = [
     {
         label: 'Dashboard',
-        href: '/en',
+        href: '/en/dashboard',
         icon: Dashboard,
     },
     {
         label: 'Project',
-        href: '/en/projects',
+        href: '/en/project',
         icon: Project,
     },
     {
         label: 'Files & Documents',
-        href: '/en/files',
+        href: '/en/file-and-document',
         icon: Files,
     },
     {

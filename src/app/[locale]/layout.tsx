@@ -29,7 +29,7 @@ export default async function LocaleLayout({ children, params: { locale } }: { c
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
-    <div lang={locale} dir={dir}>
+    <div lang={locale} dir={dir} className='p-4'>
       <NextIntlClientProvider locale={locale} messages={messages}>
         <ClientProviders>
           {children}
