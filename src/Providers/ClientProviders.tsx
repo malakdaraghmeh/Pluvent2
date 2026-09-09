@@ -4,12 +4,13 @@ import React from 'react';
 
 import { Provider } from 'react-redux';
 import { Toaster } from 'sonner';
-import Navbar from '@/components/navbar/Navbar';
+//import Navbar from '@/components/navbar/Navbar';
 import store from '@/store/store';
 import Footer from '@/components/footer/Footer';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import GlobalPixelsTracker from '@/components/helper/GlobalPixelsTracker';
 import GoogleAnalyticsTracker from '@/components/helper/GoogleAnalyticsTracker';
+import Tobar from '@/components/tobar/Tobar';
 import Sidebar from '@/components/sidebar/Sidebar';
 
 export default function ClientProviders({ children }: { children: React.ReactNode }) {
@@ -22,8 +23,9 @@ export default function ClientProviders({ children }: { children: React.ReactNod
                 <GoogleAnalyticsTracker />
             </React.Suspense>
             <ScrollToTop />
-            <Sidebar/>
-            {/* <Navbar /> */}
+            <Sidebar />
+            <Tobar />
+
             {children}
             <Toaster richColors position="top-right" />
             <Footer />
