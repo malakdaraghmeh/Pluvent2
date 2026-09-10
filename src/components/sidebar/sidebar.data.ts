@@ -16,7 +16,7 @@ export const mainNavigation = [
     },
     {
         label: 'Project',
-        href: '/en/project',
+        href: '/en/projects/id',
         icon: Project,
     },
     {
