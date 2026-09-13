@@ -15,7 +15,7 @@ export type SupportTicket = {
     {
       id: 2,
       ticketNumber: "TKT-0041",
-      title: "Login issue on stagi...",
+      title: "Login issue on stage...",
       status: "In Review",
     },
   ];

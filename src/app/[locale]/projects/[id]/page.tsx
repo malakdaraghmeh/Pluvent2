@@ -119,12 +119,12 @@ export default function Page() {
                     gap-1.5
                     px-3
                     
-                    text-[11px]
-                    font-medium
+                    text-[14px]
+                    font-SemiBold
                     transition-all
 
                     sm:h-[44px]
-                    sm:text-[12px]
+                   
 
                     ${
                       isActive

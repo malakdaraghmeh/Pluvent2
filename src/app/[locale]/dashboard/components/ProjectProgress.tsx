@@ -34,13 +34,10 @@ const ProjectProgress = () => {
         <h2
           className="
             min-w-0
-            text-[17px]
+            text-[20px]
             font-semibold
             text-[#12115C]
 
-            sm:text-[18px]
-
-            lg:text-[20px]
           "
         >
           Project Progress
@@ -49,16 +46,10 @@ const ProjectProgress = () => {
         <button
           type="button"
           className="
-            shrink-0
-            text-[13px]
-            font-normal
-            leading-[100%]
-            tracking-[0%]
+            
+            text-[16px]
+           
             text-[#3634C7]
-
-            sm:text-[14px]
-
-            lg:text-[16px]
           "
         >
           View All

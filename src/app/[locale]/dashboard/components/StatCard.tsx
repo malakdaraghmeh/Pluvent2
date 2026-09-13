@@ -75,21 +75,29 @@ descriptionHighlightColor,
       </h2>
 
       {/* Description */}
-      <p
-  className={`
-    mt-2
-    text-left
-    text-[13px]
-    ${descriptionColor}
-  `}
->
-  {descriptionHighlight && (
-    <span className={descriptionHighlightColor}>
-      {descriptionHighlight}{" "}
+ 
+<p className="mt-2 text-left">
+  {descriptionHighlight ? (
+    <>
+      <span
+        className={`text-[11px] font-normal ${descriptionHighlightColor}`}
+      >
+        {descriptionHighlight}{" "}
+      </span>
+
+      <span
+        className={`text-[10px] font-normal ${descriptionColor}`}
+      >
+        {description}
+      </span>
+    </>
+  ) : (
+    <span
+      className={`text-[13px] font-normal ${descriptionColor}`}
+    >
+      {description}
     </span>
   )}
-
-  {description}
 </p>
     </div>
   );
