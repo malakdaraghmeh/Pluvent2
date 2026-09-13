@@ -107,7 +107,7 @@ export default function ProjectDetails({
             <div className="relative text-center">
               <p
                 className="
-                  font-[Sora]
+                  
                   text-[16px]
                   font-bold
                   leading-none
@@ -120,7 +120,7 @@ export default function ProjectDetails({
               <p
                 className="
                   mt-0.5
-                  font-[Sora]
+                  
                   text-[6px]
                   font-medium
                   leading-[1.1]
@@ -158,7 +158,7 @@ export default function ProjectDetails({
                 className="
                 text-left
                   truncate
-                  font-[Sora]
+                  
                   text-[20px]
                   font-bold
                   text-[#0F172A]
@@ -175,7 +175,7 @@ export default function ProjectDetails({
                 text-left
                   mt-1
                   line-clamp-1
-                  font-[Sora]
+                  
                   text-[14px]
                   font-normal
                  
@@ -196,7 +196,7 @@ export default function ProjectDetails({
                 rounded-[4px]
                 px-2
                 py-1
-                font-[Sora]
+                
                 text-[12px]
                 text-[#007AFF]
 
@@ -236,7 +236,7 @@ export default function ProjectDetails({
 <div className="flex items-center gap-2">
   <p
     className="
-      font-[Sora]
+      
       text-[14px]
       text-[#6B7280]
     "
@@ -246,7 +246,7 @@ export default function ProjectDetails({
 
   <p
     className="
-      font-[Sora]
+      
       text-[14px]
       text-[#0F172A]
     "
@@ -259,7 +259,7 @@ export default function ProjectDetails({
   <div className="flex items-center gap-2">
  
 
-  <p className="font-[Sora] text-[14px] font-medium text-[#0F172A]">
+  <p className=" text-[14px] font-medium text-[#0F172A]">
     {project.paidAmount} / {project.totalAmount}
   </p>
 </div>
@@ -280,7 +280,7 @@ export default function ProjectDetails({
   {/* Project Status */}
   <p
     className="
-      font-[Sora]
+      
       text-[14px]
       text-[#475569]
     "
@@ -299,7 +299,7 @@ export default function ProjectDetails({
         inline-flex
         items-center
         gap-1
-        font-[Sora]
+        
         text-[9px]
         font-semibold
         text-[#FF5B4D]
@@ -318,7 +318,7 @@ export default function ProjectDetails({
         inline-flex
         items-center
         gap-1
-        font-[Sora]
+        
         text-[16px]
         font-semibold
         text-[#2F1ABD]

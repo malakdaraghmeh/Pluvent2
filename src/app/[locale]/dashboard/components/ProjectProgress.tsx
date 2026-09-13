@@ -34,7 +34,6 @@ const ProjectProgress = () => {
         <h2
           className="
             min-w-0
-            font-[Sora]
             text-[17px]
             font-semibold
             text-[#12115C]
@@ -51,7 +50,6 @@ const ProjectProgress = () => {
           type="button"
           className="
             shrink-0
-            font-[Sora]
             text-[13px]
             font-normal
             leading-[100%]

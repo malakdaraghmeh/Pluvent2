@@ -4,9 +4,7 @@ import React, { useState } from 'react';
 
 import { Provider } from 'react-redux';
 import { Toaster } from 'sonner';
-//import Navbar from '@/components/navbar/Navbar';
 import store from '@/store/store';
-import Footer from '@/components/footer/Footer';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import GlobalPixelsTracker from '@/components/helper/GlobalPixelsTracker';
 import GoogleAnalyticsTracker from '@/components/helper/GoogleAnalyticsTracker';
@@ -44,7 +42,6 @@ export default function ClientProviders({ children }: { children: React.ReactNod
                         {children}
                     </main>
 
-                    <Footer />
                 </div>
             </div>
 

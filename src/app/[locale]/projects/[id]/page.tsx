@@ -62,7 +62,7 @@ export default function Page() {
         <h1
           className="
             text-left
-            font-[Sora]
+            
             text-[20px]
             text-[#000000]
 
@@ -78,7 +78,7 @@ export default function Page() {
           className="
             mt-1
             text-left
-            font-[Sora]
+            
             text-[11px]
             text-[#7E8492]
 
@@ -118,7 +118,7 @@ export default function Page() {
                     justify-center
                     gap-1.5
                     px-3
-                    font-[Sora]
+                    
                     text-[11px]
                     font-medium
                     transition-all
@@ -239,7 +239,7 @@ export default function Page() {
                   <div className="text-center">
                     <p
                       className="
-                        font-[Sora]
+                        
                         text-[13px]
                         font-semibold
                         text-[#303542]
@@ -251,7 +251,7 @@ export default function Page() {
                     <p
                       className="
                         mt-1
-                        font-[Sora]
+                        
                         text-[10px]
                         text-[#9297A3]
                       "

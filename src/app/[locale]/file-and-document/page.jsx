@@ -70,7 +70,7 @@ export default function FileAndDocumentPage() {
     };
 
     return (
-        <div className="min-h-screen p-6 text-[#1A1A1A] font-sans text-left">
+        <div className="min-h-screen p-6 text-[#1A1A1A] text-left">
             <div className="mb-6">
                     <FileAndDoc />
                     <p className="text-sm text-[#7E8492] mt-1  text-[12px] font-normal pt-1 ">

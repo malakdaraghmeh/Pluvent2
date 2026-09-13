@@ -5,13 +5,13 @@ const SupportTickets = () => {
     <section className="w-full rounded-2xl bg-white p-4 shadow-sm sm:p-5">
       {/* Header */}
       <div className="mb-4 flex items-center justify-between gap-3">
-        <h2 className="font-[Sora] text-[17px] font-semibold text-[#12115C] sm:text-[20px]">
+        <h2 className="text-[17px] font-semibold text-[#12115C] sm:text-[20px]">
           Support Ticket
         </h2>
 
         <button
           type="button"
-          className="shrink-0 font-[Sora] text-[13px] font-medium text-[#3634C7] transition-opacity hover:opacity-70 sm:text-[16px]"
+          className="shrink-0 text-[13px] font-medium text-[#3634C7] transition-opacity hover:opacity-70 sm:text-[16px]"
         >
           View All
         </button>
@@ -42,8 +42,7 @@ const SupportTickets = () => {
             <span
               className="
                 shrink-0
-                font-[Sora]
-                text-[10px]
+                                text-[10px]
                 font-semibold
                 text-[#94A3B8]
 
@@ -59,8 +58,7 @@ const SupportTickets = () => {
                 w-full
                 min-w-0
                 truncate
-                font-[Sora]
-                text-[12px]
+                                text-[12px]
                 font-semibold
                 text-[#12115C]
 
@@ -92,8 +90,7 @@ const SupportTickets = () => {
                 rounded-[6px]
                 px-[10px]
                 py-[4px]
-                font-[Sora]
-                text-[11px]
+                                text-[11px]
                 font-medium
 
                 sm:ml-auto

@@ -20,7 +20,6 @@ const UpcomingPayments = () => {
         <h2
           className="
             min-w-0
-            font-[Inter]
             text-[18px]
             font-semibold
             text-[#12115C]
@@ -36,7 +35,7 @@ const UpcomingPayments = () => {
           type="button"
           className="
             shrink-0
-            font-[Sora]
+            
             text-[13px]
             font-medium
             text-[#3634C7]
@@ -74,7 +73,7 @@ const UpcomingPayments = () => {
             className="
             text-left
                 truncate
-                font-[Inter]
+                
                 text-[14px]
                 font-semibold
                 text-[#12115C]
@@ -91,7 +90,7 @@ const UpcomingPayments = () => {
                   className="
                   text-left
                     mt-1
-                    font-[Inter]
+                    
                     text-[11px]
                     text-[#9CA3AF]
 
@@ -107,7 +106,7 @@ const UpcomingPayments = () => {
                 className="
                   shrink-0
                   whitespace-nowrap
-                  font-[Inter]
+                  
                   text-[18px]
                   font-semibold
                   text-[#12115C]
@@ -143,7 +142,7 @@ const UpcomingPayments = () => {
                   rounded-[6px]
                   px-[10px]
                   py-[4px]
-                  font-[Inter]
+                  
                   text-[10px]
                   font-medium
 
@@ -166,7 +165,7 @@ const UpcomingPayments = () => {
                   shrink-0
                   items-center
                   gap-1
-                  font-[Sora]
+                  
                   text-[11px]
                   font-semibold
                   text-[#2F1ABD]

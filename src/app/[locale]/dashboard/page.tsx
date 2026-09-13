@@ -19,7 +19,6 @@ const DashboardPage = () => {
         <h1
           className="
             mb-4
-            font-[Sora]
             text-[20px]
             font-bold
             text-gray-900

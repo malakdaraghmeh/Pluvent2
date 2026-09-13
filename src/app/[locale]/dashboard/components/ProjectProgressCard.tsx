@@ -86,7 +86,6 @@ const ProjectProgressCard = ({
 
           <p
             className="
-              font-[Sora]
               text-[9px]
               font-semibold
               leading-tight
@@ -132,7 +131,6 @@ const ProjectProgressCard = ({
               min-w-0
               flex-1
               truncate
-              font-[Sora]
               text-[17px]
               font-bold
               text-[#0F172A]
@@ -154,7 +152,7 @@ const ProjectProgressCard = ({
               bg-[#007AFF0D]
               px-2.5
               py-1.5
-              font-[Sora]
+              
               text-[11px]
               font-normal
               text-[#007AFF]
@@ -174,7 +172,7 @@ const ProjectProgressCard = ({
             mt-2
             line-clamp-2
             w-full
-            font-[Sora]
+            
             text-[12px]
             font-normal
             leading-[150%]
@@ -216,7 +214,7 @@ const ProjectProgressCard = ({
             className="
               min-w-0
               truncate
-              font-[Sora]
+              
               text-[10px]
               font-normal
               text-[#64748B]
@@ -234,7 +232,7 @@ const ProjectProgressCard = ({
             className="
               shrink-0
               whitespace-nowrap
-              font-[Sora]
+              
               text-[10px]
               font-normal
               text-[#1E293B]
@@ -265,7 +263,7 @@ const ProjectProgressCard = ({
             className="
               min-w-0
               truncate
-              font-[Sora]
+              
               text-[11px]
               text-[#475569]
 
@@ -288,7 +286,7 @@ const ProjectProgressCard = ({
               shrink-0
               items-center
               gap-1
-              font-[Sora]
+              
               text-[12px]
               font-semibold
               text-[#2F1ABD]
