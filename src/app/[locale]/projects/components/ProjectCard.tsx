@@ -9,22 +9,30 @@ type ProjectCardProps = {
 const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <div
-      className="
+    className="
       flex
       w-full
       flex-col
       gap-5
       rounded-[24px]
       border
-      border-[#00E5C810]
       bg-white
       p-6
-  
+      shadow-[0px_4px_20px_0px_#0000000D]
       lg:h-[213px]
       lg:flex-row
       lg:items-center
     "
-    >
+    style={{
+      borderColor:
+        project.warranty === "On Hold" ||
+        project.warranty === "Suspended"
+          ? "#FF3B3033"
+          : project.warranty === "Valid"
+            ? "#34C75933"
+            : "#00E5C810",
+    }}
+  >
       {/* Progress Circle */}
       <div
         className="
@@ -108,7 +116,6 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           flex-1
           flex-col
           justify-center
-
           lg:h-[183px]
         "
       >
@@ -255,26 +262,26 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
           {/* Open / View Project */}
           <Link
-            href={`/projects/${project.id}`}
-            className="
-              inline-flex
-              shrink-0
-              items-center
-              justify-center
-              gap-1.5
-              text-[16px]
-              font-semibold
-              text-[#2F1ABD]
-            "
-          >
-            <span>
-              {project.status === "Completed"
-                ? "View Project"
-                : "Open Project"}
-            </span>
+  href={`/projects/${project.id}`}
+  className={`
+    inline-flex
+    shrink-0
+    items-center
+    justify-center
+    gap-1.5
+    text-[16px]
+    font-semibold
+    ${
+      project.action === "Pay Now"
+        ? "text-[#FF3B30]"
+        : "text-[#3634C7]"
+    }
+  `}
+>
+  <span>{project.action}</span>
 
-            <ArrowIcon />
-          </Link>
+  <ArrowIcon />
+</Link>
         </div>
       </div>
     </div>

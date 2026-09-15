@@ -2,6 +2,7 @@ export type Project = {
     id: number;
     title: string;
     status: "In Progress" | "Completed";
+    action: "Open Project" | "Pay Now" | "View Project";
     progress: number;
     description: string;
     dateLabel: "Due" | "Expired";
@@ -27,6 +28,7 @@ export type Project = {
       totalAmount: "$28,000",
        statusLabel: "Project Status",
       warranty: "Active",
+      action: "Open Project",
     },
     {
       id: 2,
@@ -41,6 +43,7 @@ export type Project = {
       totalAmount: "$28,000",
       statusLabel: "Project Status",
       warranty: "On Hold",
+      action: "Pay Now",
     },
     {
       id: 3,
@@ -55,6 +58,7 @@ export type Project = {
       totalAmount: "$28,000",
       statusLabel: "Warranty",
       warranty: "Valid",
+      action: "View Project",
     },
     {
         id: 4,
@@ -69,5 +73,6 @@ export type Project = {
         totalAmount: "$28,000",
         statusLabel: "Warranty",
         warranty: "Suspended",
+        action: "View Project",
       },
   ];
