@@ -90,8 +90,8 @@ export default function ProjectTimeline() {
               <div
                 className={`
                   flex
-                  h-[70px]
                   w-[70px]
+                  aspect-square
                   shrink-0
                   items-center
                   justify-center

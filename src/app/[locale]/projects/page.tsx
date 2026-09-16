@@ -2,8 +2,21 @@ import ProjectCard from "./components/ProjectCard";
 import { projectsData } from "./data/projects";
 import { Search } from "@/assets";
 import { Filter } from "@/assets";
+import { getTranslations } from "next-intl/server";
 
-export default function Page() {
+type PageProps = {
+  params: Promise<{
+    locale: string;
+  }>;
+};
+export default async function Page({ params }: PageProps) {
+  const { locale } = await params;
+
+  const t = await getTranslations({
+    locale,
+    namespace: "projectsPage",
+  });
+
   return (
     <main className="flex min-h-screen w-full flex-col gap-5">
       {/* Page Header */}
@@ -15,7 +28,7 @@ export default function Page() {
             text-[#000000]
           "
         >
-          Projects
+          {t("title")}
         </h1>
 
         <p
@@ -24,7 +37,7 @@ export default function Page() {
             text-[#7E8492]
           "
         >
-          All your projects with Pulvent in one place.
+           {t("description")}
         </p>
       </div>
 
@@ -54,7 +67,7 @@ export default function Page() {
 
             <input
               type="text"
-              placeholder="Find your work"
+              placeholder={t("searchPlaceholder")}
               className="
                 w-full
                 min-w-0
