@@ -1,6 +1,7 @@
 import ProjectDetails from "../components/ProjectDetails";
 import ProjectTimeline from "../components/ProjectTimeline";
 import { projectDetailsData } from "../data/projectDetails";
+import ChangeRequestsTable from "../components/ChangeRequestsTable";
 
 type Props = {
   params: Promise<{
@@ -30,6 +31,9 @@ export default async function Page({ params }: Props) {
 
       {/* Project Timeline */}
       <ProjectTimeline />
+      
+     {/* Change Requests */}
+    <ChangeRequestsTable />
     </main>
   );
 }
