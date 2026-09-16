@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { changeRequestsData } from "../data/changeRequests";
+import {Arrow , Add } from "@/assets";
 
 const ChangeRequestsTable = () => {
   return (
     <div
       className="
         flex
-        h-[628px]
+        
         w-full
         max-w-[1086px]
         flex-col
@@ -19,21 +20,58 @@ const ChangeRequestsTable = () => {
       "
     >
       {/* Title */}
-      <h2
-        className="
-         text-left
-          text-[22px]
-          font-semibold
-          text-[#12115C]
-        "
-      >
-        Change Requests
-      </h2>
+     {/* Header */}
+<div className="flex w-full items-center justify-between">
+    
+  {/* Title */}
+  <h2
+    className="
+      text-left
+      text-[22px]
+      font-semibold
+      text-[#12115C]
+    "
+  >
+    Change Requests
+  </h2>
+
+  {/* Add Change Request */}
+  
+  <button
+  type="button"
+  className="
+    flex
+    h-[44px]
+    w-[283px]
+    items-center
+    justify-between
+    rounded-[16px]
+    bg-[#12115C]
+    px-5
+    py-4
+    text-[14px]
+    font-medium
+    text-white
+  "
+>
+  <span className="flex shrink-0 items-center">
+    <Add />
+  </span>
+
+  <span className="flex items-center whitespace-nowrap">
+    Add Change Request
+  </span>
+
+  <span className="flex shrink-0 items-center">
+    <Arrow />
+  </span>
+</button>
+</div>
 
       {/* Table */}
       <div
         className="
-          h-[512px]
+         
           w-full
           overflow-hidden
           rounded-[8px]

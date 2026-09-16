@@ -12,7 +12,7 @@ export default function ProjectDetails({
   project,
 }: ProjectDetailsProps) {
   return (
-    <div className="flex w-full flex-col gap-6 lg:flex-row">
+    <div className="flex w-full flex-col items-stretch gap-6 lg:flex-row">
       {/* Project Information */}
       <div
         className="
@@ -78,17 +78,16 @@ export default function ProjectDetails({
           {/* Start Date */}
           <div
             className="
-              flex
-              h-[50px]
-              min-w-0
-              flex-1
-              items-center
-              gap-2
-              rounded-[16px]
-              border
-              border-[#00E5C810]
-              px-2
-              py-2
+            flex
+            min-w-0
+            flex-1
+            items-center
+            gap-2
+            rounded-[16px]
+            border
+            border-[#00E5C810]
+            px-2
+            py-2
             "
             style={{
               background:
@@ -117,17 +116,16 @@ export default function ProjectDetails({
           {/* Delivery */}
           <div
             className="
-              flex
-              h-[50px]
-              min-w-0
-              flex-1
-              items-center
-              gap-2
-              rounded-[16px]
-              border
-              border-[#00E5C810]
-              px-2
-              py-2
+            flex
+            min-w-0
+            flex-1
+            items-center
+            gap-2
+            rounded-[16px]
+            border
+            border-[#00E5C810]
+            px-2
+            py-2
             "
             style={{
               background:
@@ -160,7 +158,7 @@ export default function ProjectDetails({
         className="
           relative
           flex
-          h-[258px]
+        
           w-full
           flex-col
           items-center

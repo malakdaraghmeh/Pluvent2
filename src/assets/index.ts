@@ -22,6 +22,13 @@ export { default as TimelineItem3  } from "./icons/timeline3.svg";
 export { default as TimelineItem4  } from "./icons/timeline4.svg";
 export { default as TimelineItem5  } from "./icons/timeline5.svg";
 export { default as TimelineItem6  } from "./icons/timeline6.svg";
+export { default as LogoPulvent  } from "./icons/logo-pulvent.svg";
+export { default as File  } from "./icons/file.svg";
+export { default as Upload  } from "./icons/upload.svg";
+export { default as Arrow } from "./icons/arrow2.svg";
+export { default as Add } from "./icons/add.svg";
+
+
 
 
 
