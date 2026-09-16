@@ -16,6 +16,14 @@ export { default as Filter } from "./icons/filter.svg";
 export { default as ArrowFilter  } from "./icons/arrow-filter.svg";
 export { default as StartDate  } from "./icons/start-date.svg";
 export { default as Delivery  } from "./icons/delivery.svg";
+export { default as TimelineItem1  } from "./icons/timeline1.svg";
+export { default as TimelineItem2 } from "./icons/timeline2.svg";
+export { default as TimelineItem3  } from "./icons/timeline3.svg";
+export { default as TimelineItem4  } from "./icons/timeline4.svg";
+export { default as TimelineItem5  } from "./icons/timeline5.svg";
+export { default as TimelineItem6  } from "./icons/timeline6.svg";
+
+
 
 
 
