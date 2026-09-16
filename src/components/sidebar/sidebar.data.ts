@@ -9,48 +9,48 @@ import Users from '@icons/users.svg';
 import Settings from '@icons/settings.svg';
 
 export const mainNavigation = [
-    {
-        label: 'Dashboard',
-        href: '/en/dashboard',
-        icon: Dashboard,
-    },
-    {
-        label: 'Project',
-        href: '/en/projects/id',
-        icon: Project,
-    },
-    {
-        label: 'Files & Documents',
-        href: '/en/file-and-document',
-        icon: Files,
-    },
-    {
-        label: 'Billing & Payments',
-        href: '/en/billing',
-        icon: Billing,
-    },
-    {
-        label: 'Support / Tickets',
-        href: '/en/support',
-        icon: Support,
-    },
+  {
+    label: 'Dashboard',
+    href: '/dashboard',
+    icon: Dashboard,
+  },
+  {
+    label: 'Project',
+    href: '/projects',
+    icon: Project,
+  },
+  {
+    label: 'FilesAndDocuments',
+    href: '/file-and-document',
+    icon: Files,
+  },
+  {
+    label: 'BillingAndPayments',
+    href: '/billing',
+    icon: Billing,
+  },
+  {
+    label: 'SupportAndTickets',
+    href: '/support',
+    icon: Support,
+  },
 ];
 
 export const accountNavigation = [
-    {
-        label: 'Messages',
-        href: '/en/messages',
-        icon: Messages,
-        badge: 4,
-    },
-    {
-        label: 'User Management',
-        href: '/en/users',
-        icon: Users,
-    },
-    {
-        label: 'Setting',
-        href: '/en/settings',
-        icon: Settings,
-    },
+  {
+    label: 'Messages',
+    href: '/messages',
+    icon: Messages,
+    badge: 4,
+  },
+  {
+    label: 'UserManagement',
+    href: '/users',
+    icon: Users,
+  },
+  {
+    label: 'Settings',
+    href: '/settings',
+    icon: Settings,
+  },
 ];

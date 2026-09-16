@@ -1,18 +1,43 @@
 {
-  "Home": {
-    "title": "Welcome to my site",
-    "description": "This is the English version"
-  },
-  "navbar": {
-    "Home": "Home",
-    "Services": "Services",
-    "Categories": "Categories",
-    "About": "About Us",
-    "projects": "Projects",
-    "AllProducts": "All Products",
-    "contactUs": "Contact Us",
-    "Booking": "Booking",
-    "Login": "Login",
-    "blogs": "Blogs"
-  }
+    "Home": {
+        "title": "Welcome to my site",
+        "description": "This is the English version"
+    },
+    "navbar": {
+        "Home": "Home",
+        "Services": "Services",
+        "Categories": "Categories",
+        "About": "About Us",
+        "projects": "Projects",
+        "AllProducts": "All Products",
+        "contactUs": "Contact Us",
+        "Booking": "Booking",
+        "Login": "Login",
+        "blogs": "Blogs"
+    },
+    "sidebar": {
+        "portal": "Portal",
+        "account": "Account",
+        "expandSidebar": "Expand sidebar",
+        "collapseSidebar": "Collapse sidebar",
+        "toggleTheme": "Toggle theme",
+        "Dashboard": "Dashboard",
+        "Project": "Project",
+        "FilesAndDocuments": "Files & Documents",
+        "BillingAndPayments": "Billing & Payments",
+        "SupportAndTickets": "Support / Tickets",
+        "Messages": "Messages",
+        "UserManagement": "User Management",
+        "Settings": "Setting"
+    },
+    "files": {
+        "title": "File And Document",
+        "subtitle": "Project files and documents in one place.",
+        "searchPlaceholder": "Find your work",
+        "dropzoneTitle": "Drop files here or click to upload",
+        "dropzoneHint": "PDF, DOCX, XLSX, PNG, JPG, ZIP — up to 50 MB each",
+        "uploadedBy": "Upload By",
+        "download": "Download",
+        "downloading": "Downloading"
+    }
 }

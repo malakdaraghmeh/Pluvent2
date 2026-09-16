@@ -1,19 +1,44 @@
 {
-  "Home": {
-    "title": "مرحبًا بك في موقعي",
-    "description": "هذا هو الإصدار العربي"
-  },
-  "navbar": {
-    "Home": "الرئيسية",
-    "Services": "الخدمات",
-    "Categories": "الاقسام",
-    "About": "من نحن",
-    "Products": "المنتجات",
-    "projects": "المشاريع",
-    "AllProducts": "جميع المنتجات",
-    "contactUs": "تواصل معنا",
-    "Booking": "الحجز",
-    "Login": "تسجيل الدخول",
-    "blogs": "المدونة"
-  }
+    "Home": {
+        "title": "مرحبًا بك في موقعي",
+        "description": "هذا هو الإصدار العربي"
+    },
+    "navbar": {
+        "Home": "الرئيسية",
+        "Services": "الخدمات",
+        "Categories": "الاقسام",
+        "About": "من نحن",
+        "Products": "المنتجات",
+        "projects": "المشاريع",
+        "AllProducts": "جميع المنتجات",
+        "contactUs": "تواصل معنا",
+        "Booking": "الحجز",
+        "Login": "تسجيل الدخول",
+        "blogs": "المدونة"
+    },
+    "sidebar": {
+        "portal": "البوابة",
+        "account": "الحساب",
+        "expandSidebar": "توسيع الشريط الجانبي",
+        "collapseSidebar": "طي الشريط الجانبي",
+        "toggleTheme": "تغيير المظهر",
+        "Dashboard": "لوحة التحكم",
+        "Project": "المشروع",
+        "FilesAndDocuments": "الملفات والمستندات",
+        "BillingAndPayments": "الفواتير والمدفوعات",
+        "SupportAndTickets": "الدعم والتذاكر",
+        "Messages": "الرسائل",
+        "UserManagement": "إدارة المستخدمين",
+        "Settings": "الإعدادات"
+    },
+    "files": {
+        "title": "الملفات والمستندات",
+        "subtitle": "ملفات ومستندات المشروع في مكان واحد.",
+        "searchPlaceholder": "ابحث عن عملك",
+        "dropzoneTitle": "أسقط الملفات هنا أو انقر للرفع",
+        "dropzoneHint": "PDF, DOCX, XLSX, PNG, JPG, ZIP — حتى 50 ميجابايت لكل ملف",
+        "uploadedBy": "تم الرفع بواسطة",
+        "download": "تحميل",
+        "downloading": "جاري تحميل"
+    }
 }
