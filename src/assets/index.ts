@@ -14,6 +14,10 @@ export { default as Icon } from "./icons/arrow.svg";
 export { default as Search } from "./icons/Vector.svg";
 export { default as Filter } from "./icons/filter.svg";
 export { default as ArrowFilter  } from "./icons/arrow-filter.svg";
+export { default as StartDate  } from "./icons/start-date.svg";
+export { default as Delivery  } from "./icons/delivery.svg";
+
+
 
 
 

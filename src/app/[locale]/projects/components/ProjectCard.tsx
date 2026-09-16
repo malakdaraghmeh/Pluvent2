@@ -1,4 +1,6 @@
+"use client";
 import Link from "next/link";
+import { useLocale } from "next-intl";
 import { ArrowIcon } from "@/assets";
 import type { Project } from "../data/projects";
 
@@ -7,6 +9,7 @@ type ProjectCardProps = {
 };
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
+    const locale = useLocale();
   return (
     <div
     className="
@@ -262,7 +265,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
           {/* Open / View Project */}
           <Link
-  href={`/projects/${project.id}`}
+href={`/${locale}/projects/${project.id}`}
   className={`
     inline-flex
     shrink-0
