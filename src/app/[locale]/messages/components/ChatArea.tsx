@@ -1,9 +1,10 @@
 'use client';
 
 import React from 'react';
-import { Plus, Send } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Message } from '../chat';
+import Send from "@icons/send.svg";
 
 interface ChatAreaProps {
     messages: Message[];
@@ -60,8 +61,7 @@ export const ChatArea: React.FC<ChatAreaProps> = ({
             </div>
 
             {/* Message Input Box */}
-            <form onSubmit={onSendMessage} className="mt-4">
-                <div className="flex items-center gap-3 w-full">
+<form onSubmit={onSendMessage} className="mt-4 shadow-[0px_2px_15px_0px_#0000000D] p-2 rounded-full">                <div className="flex items-center gap-3 w-full">
                     <button
                         type="button"
                         className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#EBF2FF] text-[#3B38D8] hover:bg-indigo-100 transition shadow-sm"
@@ -82,7 +82,8 @@ export const ChatArea: React.FC<ChatAreaProps> = ({
                             type="submit"
                             className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#3B38D8] text-white hover:bg-indigo-700 transition shadow-md rtl:rotate-180"
                         >
-                            <Send className="h-4 w-4" />
+                            <Send/>
+                           
                         </button>
                     </div>
                 </div>
