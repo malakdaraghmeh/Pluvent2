@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 interface BreadcrumbItem {
     label: string;
@@ -17,13 +17,25 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
     const lang = useLocale();
     const pathname = usePathname();
     const isRTL = lang === 'ar';
+    const t = useTranslations('sidebar'); // Or 'breadcrumb' depending on your JSON structure
 
-    // Helper to format path slugs into clean text (e.g. "billing-and-payments" -> "Billing And Payments")
-    const formatLabel = (segment: string) => {
-        return segment
-            .replace(/-/g, ' ')
-            .replace(/_/g, ' ')
-            .replace(/\b\w/g, (char) => char.toUpperCase());
+    // Dynamic translation lookup helper
+    const getDynamicLabel = (segment: string) => {
+        // Standardize path segment to match translation keys (e.g., "billing-and-payments" -> "BillingAndPayments")
+        const translationKey = segment
+            .replace(/[-_](.)/g, (_, c) => c.toUpperCase())
+            .replace(/^(.)/, (c) => c.toUpperCase());
+
+        try {
+            // Check if key exists in translation file
+            return t(translationKey);
+        } catch {
+            // Fallback: Format slug into capitalized words if translation key doesn't exist
+            return segment
+                .replace(/-/g, ' ')
+                .replace(/_/g, ' ')
+                .replace(/\b\w/g, (char) => char.toUpperCase());
+        }
     };
 
     // Auto-generate items from current URL path if none are passed
@@ -40,7 +52,7 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
             const isLast = index === pathSegments.length - 1;
 
             return {
-                label: formatLabel(segment),
+                label: getDynamicLabel(segment),
                 href: isLast ? undefined : href,
             };
         });
@@ -50,12 +62,12 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
         <nav dir={isRTL ? 'rtl' : 'ltr'} className="flex flex-wrap items-center gap-2 text-sm text-[#868B89]">
             {/* Home / Portal */}
             <Link href={`/${lang}`} className="hover:underline font-medium text-[#17145F]">
-                {lang === 'en' ? 'Portal' : 'الرئيسية'}
+                {t('portal')}
             </Link>
 
             {/* Separator */}
             {breadcrumbItems.length > 0 && (
-                <span className="mx-1 text-gray-400">{isRTL ? '‹' : '›'}</span>
+                <span className="mx-1 text-gray-400 rtl:rotate-180">{isRTL ? '‹' : '›'}</span>
             )}
 
             {breadcrumbItems.map((item, index) => (
@@ -69,7 +81,7 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
                     )}
 
                     {index !== breadcrumbItems.length - 1 && (
-                        <span className="mx-1 text-gray-400">{isRTL ? '‹' : '›'}</span>
+                        <span className="mx-1 text-gray-400 rtl:rotate-180">{isRTL ? '‹' : '›'}</span>
                     )}
                 </div>
             ))}

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1235 650" width="24" height="24">
+  <defs>
+    <!-- Single 5-pointed star -->
+    <g id="star">
+      <path d="M 0,-30 L 8.8167, -2.8631 L 30, -2.8631 L 12.8916, 9.5701 L 19.4164, 30 L 0, 15.9098 L -19.4164, 30 L -12.8916, 9.5701 L -30, -2.8631 L -8.8167, -2.8631 Z" fill="#ffffff"/>
+    </g>
+    
+    <!-- Row of 6 stars -->
+    <g id="row6">
+      <use xlink:href="#star" x="0"/>
+      <use xlink:href="#star" x="82"/>
+      <use xlink:href="#star" x="164"/>
+      <use xlink:href="#star" x="246"/>
+      <use xlink:href="#star" x="328"/>
+      <use xlink:href="#star" x="410"/>
+    </g>
+    
+    <!-- Row of 5 stars -->
+    <g id="row5">
+      <use xlink:href="#star" x="41"/>
+      <use xlink:href="#star" x="123"/>
+      <use xlink:href="#star" x="205"/>
+      <use xlink:href="#star" x="287"/>
+      <use xlink:href="#star" x="369"/>
+    </g>
+  </defs>
+
+  <!-- Red Background (Old Glory Red) -->
+  <rect width="1235" height="650" fill="#B31942"/>
+
+  <!-- 6 White Stripes -->
+  <g fill="#FFFFFF">
+    <rect y="50" width="1235" height="50"/>
+    <rect y="150" width="1235" height="50"/>
+    <rect y="250" width="1235" height="50"/>
+    <rect y="350" width="1235" height="50"/>
+    <rect y="450" width="1235" height="50"/>
+    <rect y="550" width="1235" height="50"/>
+  </g>
+
+  <!-- Blue Canton (Old Glory Blue) -->
+  <rect width="494" height="350" fill="#0A3161"/>
+
+  <!-- 50 White Stars Pattern -->
+  <g transform="translate(41.16, 35)">
+    <use xlink:href="#row6" y="0"/>
+    <use xlink:href="#row5" y="35"/>
+    <use xlink:href="#row6" y="70"/>
+    <use xlink:href="#row5" y="105"/>
+    <use xlink:href="#row6" y="140"/>
+    <use xlink:href="#row5" y="175"/>
+    <use xlink:href="#row6" y="210"/>
+    <use xlink:href="#row5" y="245"/>
+    <use xlink:href="#row6" y="280"/>
+  </g>
+</svg>

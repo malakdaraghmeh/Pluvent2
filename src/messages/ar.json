@@ -16,9 +16,34 @@
     "Login": "تسجيل الدخول",
     "blogs": "المدونة"
   },
+  "sidebar": {
+    "portal": "البوابة",
+    "account": "الحساب",
+    "expandSidebar": "توسيع الشريط الجانبي",
+    "collapseSidebar": "طي الشريط الجانبي",
+    "toggleTheme": "تغيير المظهر",
+    "Dashboard": "لوحة التحكم",
+    "Projects": "المشروع",
+    "FileAndDocument": "الملفات والمستندات",
+    "BillingAndPayments": "الفواتير والمدفوعات",
+    "SupportAndTickets": "الدعم والتذاكر",
+    "Messages": "الرسائل",
+    "UserManagement": "إدارة المستخدمين",
+    "Settings": "الإعدادات"
+  },
+  "files": {
+    "title": "الملفات والمستندات",
+    "subtitle": "ملفات ومستندات المشروع في مكان واحد.",
+    "searchPlaceholder": "ابحث عن عملك",
+    "dropzoneTitle": "أسقط الملفات هنا أو انقر للرفع",
+    "dropzoneHint": "PDF, DOCX, XLSX, PNG, JPG, ZIP — حتى 50 ميجابايت لكل ملف",
+    "uploadedBy": "تم الرفع بواسطة",
+    "download": "تحميل",
+    "downloading": "جاري تحميل"
+  },
   "projectsPage": {
     "title": "المشاريع",
     "description": "جميع مشاريعك مع Pulvent في مكان واحد.",
-      "searchPlaceholder": "ابحث عن مشروعك"
+    "searchPlaceholder": "ابحث عن مشروعك"
   }
 }

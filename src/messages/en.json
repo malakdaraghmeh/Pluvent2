@@ -15,9 +15,34 @@
     "Login": "Login",
     "blogs": "Blogs"
   },
+  "sidebar": {
+    "portal": "Portal",
+    "account": "Account",
+    "expandSidebar": "Expand sidebar",
+    "collapseSidebar": "Collapse sidebar",
+    "toggleTheme": "Toggle theme",
+    "Dashboard": "Dashboard",
+    "Projects": "Project",
+    "FileAndDocument": "Files & Documents",
+    "BillingAndPayments": "Billing & Payments",
+    "SupportAndTickets": "Support / Tickets",
+    "Messages": "Messages",
+    "UserManagement": "User Management",
+    "Settings": "Setting"
+  },
+  "files": {
+    "title": "File And Document",
+    "subtitle": "Project files and documents in one place.",
+    "searchPlaceholder": "Find your work",
+    "dropzoneTitle": "Drop files here or click to upload",
+    "dropzoneHint": "PDF, DOCX, XLSX, PNG, JPG, ZIP — up to 50 MB each",
+    "uploadedBy": "Upload By",
+    "download": "Download",
+    "downloading": "Downloading"
+  },
   "projectsPage": {
-  "title": "Projects",
-  "description": "All your projects with Pulvent in one place.",
+    "title": "Projects",
+    "description": "All your projects with Pulvent in one place.",
     "searchPlaceholder": "Find your work"
-}
+  }
 }
