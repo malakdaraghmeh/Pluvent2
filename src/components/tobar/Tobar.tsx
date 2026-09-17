@@ -2,120 +2,343 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Menu } from 'lucide-react';
+
 import Bell from '@icons/bell.svg';
 import FlagAr from '@icons/egypt-flag.svg';
-import FlagEn from '@icons/usa-flag.svg'; // Replace with FlagEn when available
+import FlagEn from '@icons/usa-flag.svg';
+
 import Breadcrumb from '../ui/BreadCrumb';
 import { useTranslations } from 'next-intl';
 
-export default function Tobar() {
-  const t = useTranslations('topbar');
-  const pathname = usePathname();
-  const router = useRouter();
-  
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef(null);
+interface TobarProps {
+    onMobileMenu?: () => void;
+}
 
-  // Extract current language locale from pathname
-  const currentLocale = pathname.split('/')[1] || 'en';
+export default function Tobar({ onMobileMenu }: TobarProps) {
+    const t = useTranslations('topbar');
 
-  // Close dropdown on outside click
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
+    const pathname = usePathname();
+    const router = useRouter();
+
+    const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    const currentLocale = pathname.split('/')[1] || 'en';
+
+    /* ---------------------------------------------
+       CLOSE LANGUAGE DROPDOWN ON OUTSIDE CLICK
+    --------------------------------------------- */
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(
+                    event.target as Node
+                )
+            ) {
+                setIsLanguageOpen(false);
+            }
+        };
+
+        document.addEventListener(
+            'mousedown',
+            handleClickOutside
+        );
+
+        return () => {
+            document.removeEventListener(
+                'mousedown',
+                handleClickOutside
+            );
+        };
+    }, []);
+
+    /* ---------------------------------------------
+       CHANGE LANGUAGE
+    --------------------------------------------- */
+
+    const changeLanguage = (nextLocale: string) => {
+        if (nextLocale === currentLocale) {
+            setIsLanguageOpen(false);
+            return;
+        }
+
+        const segments = pathname.split('/');
+
+        segments[1] = nextLocale;
+
+        router.push(segments.join('/'));
+
+        setIsLanguageOpen(false);
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
 
-  const changeLanguage = (nextLocale) => {
-    if (nextLocale === currentLocale) {
-      setIsOpen(false);
-      return;
-    }
-    const segments = pathname.split('/');
-    segments[1] = nextLocale;
-    router.push(segments.join('/'));
-    setIsOpen(false);
-  };
+    return (
+        <header
+            className="
+                flex
+                min-h-[64px]
+                w-full
+                items-center
+                justify-between
+                gap-3
+                rounded-[28px]
+                border
+                border-[#E5E7EB]
+                bg-white
+                px-4
+                py-3
 
-  return (
-    <header
-      className="
-        flex
-        h-[76px]
-        w-full
-        items-center
-        justify-between
-        rounded-[100px]
-        border
-        border-[#E5E7EB]
-        bg-white
-        px-8
-        py-4
-      "
-    >
-      {/* Dynamic Breadcrumbs on the left */}
-      <div className="flex items-center">
-        <Breadcrumb />
-      </div>
+                sm:min-h-[70px]
+                sm:rounded-[40px]
+                sm:px-5
+                sm:py-4
 
-      {/* Action Buttons on the right */}
-      <div className="flex items-center gap-5">
-        <button
-          type="button"
-          className="relative flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-gray-100"
-          aria-label={t('notifications')}
+                lg:h-[76px]
+                lg:rounded-[100px]
+                lg:px-8
+            "
         >
-          <Bell width={21} height={28} />
-          <span className="absolute left-1 top-1 h-2 w-2 rounded-full bg-red-500" />
-        </button>
+            {/* =====================================================
+                LEFT SIDE
+            ====================================================== */}
 
-        {/* Language Dropdown Container */}
-        <div className="relative" ref={dropdownRef}>
-          <button
-            type="button"
-            onClick={() => setIsOpen((prev) => !prev)}
-            className="flex h-11 items-center gap-3 rounded-full border border-[#5C716F] px-5 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
-          >
-            <ChevronDown size={18} className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
-            <span className="flex text-[18px] font-medium text-[#24453E]">
-              {currentLocale === 'ar' ? 'AR' : 'EN'}
-            </span>
-            {currentLocale === 'ar' ? <FlagAr /> : <FlagEn />}
-          </button>
+            <div className="flex min-w-0 items-center gap-3">
 
-          {/* Dropdown Menu */}
-          {isOpen && (
-            <div className="absolute right-0 mt-2 w-36 rounded-2xl border border-gray-100 bg-white py-2 shadow-lg z-50">
-              <button
-                type="button"
-                onClick={() => changeLanguage('ar')}
-                className={`flex w-full items-center justify-between px-4 py-2.5 text-sm font-medium transition-colors hover:bg-gray-50 ${
-                  currentLocale === 'ar' ? 'bg-gray-50 text-[#24453E] font-bold' : 'text-gray-600'
-                }`}
-              >
-                <span>العربية</span>
-                <FlagAr />
-              </button>
+                {/* MOBILE MENU */}
+                <button
+                    type="button"
+                    onClick={onMobileMenu}
+                    aria-label="Open sidebar"
+                    className="
+                        flex
+                        h-10
+                        w-10
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        text-[#17145F]
+                        transition-colors
+                        hover:bg-gray-100
 
-              <button
-                type="button"
-                onClick={() => changeLanguage('en')}
-                className={`flex w-full items-center justify-between px-4 py-2.5 text-sm font-medium transition-colors hover:bg-gray-50 ${
-                  currentLocale === 'en' ? 'bg-gray-50 text-[#24453E] font-bold' : 'text-gray-600'
-                }`}
-              >
-                <span>English</span>
-                <FlagEn />
-              </button>
+                        lg:hidden
+                    "
+                >
+                    <Menu size={21} />
+                </button>
+
+                {/* BREADCRUMB */}
+                <div className="min-w-0 overflow-hidden">
+                    <Breadcrumb />
+                </div>
             </div>
-          )}
-        </div>
-      </div>
-    </header>
-  );
+
+            {/* =====================================================
+                RIGHT SIDE
+            ====================================================== */}
+
+            <div className="flex shrink-0 items-center gap-2 sm:gap-4 lg:gap-5">
+
+                {/* =================================================
+                    NOTIFICATIONS
+                ================================================== */}
+
+                <button
+                    type="button"
+                    className="
+                        relative
+                        flex
+                        h-9
+                        w-9
+                        items-center
+                        justify-center
+                        rounded-full
+                        transition-colors
+                        hover:bg-gray-100
+
+                        sm:h-10
+                        sm:w-10
+                    "
+                    aria-label={t('notifications')}
+                >
+                    <Bell
+                        width={21}
+                        height={28}
+                    />
+
+                    <span
+                        className="
+                            absolute
+                            right-[7px]
+                            top-[7px]
+                            h-2
+                            w-2
+                            rounded-full
+                            bg-red-500
+                        "
+                    />
+                </button>
+
+                {/* =================================================
+                    LANGUAGE
+                    ONLY VISIBLE ON WIDE SCREENS
+                ================================================== */}
+
+                <div
+                    ref={dropdownRef}
+                    className="
+                        relative
+                        hidden
+                        lg:block
+                    "
+                >
+                    <button
+                        type="button"
+                        onClick={() =>
+                            setIsLanguageOpen(
+                                (prev) => !prev
+                            )
+                        }
+                        className="
+                            flex
+                            flex-row
+                            h-11
+                            items-center
+                            gap-3
+                            rounded-full
+                            border
+                            border-[#5C716F]
+                            px-5
+                            text-sm
+                            font-semibold
+                            text-gray-700
+                            transition-colors
+                            hover:bg-gray-50
+                        "
+                    >
+                        {/* ARROW */}
+                        <ChevronDown
+                            size={18}
+                            className={`
+                                transition-transform
+                                duration-200
+
+                                ${
+                                    isLanguageOpen
+                                        ? 'rotate-180'
+                                        : ''
+                                }
+                            `}
+              />
+              
+
+                        {/* LANGUAGE */}
+                        <span
+                            className="
+                                flex
+                                text-[18px]
+                                font-medium
+                                text-[#24453E]
+                            "
+                        >
+                            {currentLocale === 'ar'
+                                ? 'AR'
+                                : 'EN'}
+                        </span>
+
+                        {/* FLAG */}
+                        {currentLocale === 'ar' ? (
+                            <FlagAr />
+                        ) : (
+                            <FlagEn />
+                        )}
+                    </button>
+
+                    {/* LANGUAGE DROPDOWN */}
+                    {isLanguageOpen && (
+                        <div
+                            className="
+                                absolute
+                                right-0
+                                z-50
+                                mt-2
+                                w-36
+                                rounded-2xl
+                                border
+                                border-gray-100
+                                bg-white
+                                py-2
+                                shadow-lg
+                            "
+                        >
+                            {/* ARABIC */}
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    changeLanguage('ar')
+                                }
+                                className={`
+                                    flex
+                                    w-full
+                                    items-center
+                                    justify-between
+                                    px-4
+                                    py-2.5
+                                    text-sm
+                                    transition-colors
+                                    hover:bg-gray-50
+
+                                    ${
+                                        currentLocale === 'ar'
+                                            ? 'bg-gray-50 font-bold text-[#24453E]'
+                                            : 'text-gray-600'
+                                    }
+                                `}
+                            >
+                                <span>
+                                    العربية
+                                </span>
+
+                                <FlagAr />
+                            </button>
+
+                            {/* ENGLISH */}
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    changeLanguage('en')
+                                }
+                                className={`
+                                    flex
+                                    w-full
+                                    items-center
+                                    justify-between
+                                    px-4
+                                    py-2.5
+                                    text-sm
+                                    transition-colors
+                                    hover:bg-gray-50
+
+                                    ${
+                                        currentLocale === 'en'
+                                            ? 'bg-gray-50 font-bold text-[#24453E]'
+                                            : 'text-gray-600'
+                                    }
+                                `}
+                            >
+                                <span>
+                                    English
+                                </span>
+
+                                <FlagEn />
+                            </button>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </header>
+    );
 }
