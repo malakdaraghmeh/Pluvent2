@@ -22,8 +22,8 @@
     "collapseSidebar": "Collapse sidebar",
     "toggleTheme": "Toggle theme",
     "Dashboard": "Dashboard",
-    "Projects": "Project",
-    "FileAndDocument": "Files & Documents",
+    "Project": "Project",
+    "FilesAndDocuments": "Files & Documents",
     "BillingAndPayments": "Billing & Payments",
     "SupportAndTickets": "Support / Tickets",
     "Messages": "Messages",
@@ -39,6 +39,25 @@
     "uploadedBy": "Upload By",
     "download": "Download",
     "downloading": "Downloading"
+  },
+  "chat": {
+    "title": "Messages",
+    "searchPlaceholder": "Search Conversation...",
+    "pinned": "Pinned",
+    "groupConversations": "Group Conversations",
+    "createNewGroup": "Create New Group",
+    "online": "Online",
+    "justNow": "Just now",
+    "typeMessagePlaceholder": "Type Message...",
+    "createGroupModal": {
+      "title": "Create New Group",
+      "subtitle": "Fill in the details below to add a new change request.",
+      "groupNameLabel": "Name of Group",
+      "groupNamePlaceholder": "Enter change request title",
+      "chooseMembersLabel": "Choose Member",
+      "membersCount": "{count} Members",
+      "submitButton": "Create Group"
+    }
   },
   "projectsPage": {
     "title": "Projects",

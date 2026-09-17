@@ -23,8 +23,8 @@
     "collapseSidebar": "طي الشريط الجانبي",
     "toggleTheme": "تغيير المظهر",
     "Dashboard": "لوحة التحكم",
-    "Projects": "المشروع",
-    "FileAndDocument": "الملفات والمستندات",
+    "Project": "المشروع",
+    "FilesAndDocuments": "الملفات والمستندات",
     "BillingAndPayments": "الفواتير والمدفوعات",
     "SupportAndTickets": "الدعم والتذاكر",
     "Messages": "الرسائل",
@@ -40,6 +40,25 @@
     "uploadedBy": "تم الرفع بواسطة",
     "download": "تحميل",
     "downloading": "جاري تحميل"
+  },
+  "chat": {
+    "title": "الرسائل",
+    "searchPlaceholder": "ابحث في المحادثات...",
+    "pinned": "المثبتة",
+    "groupConversations": "محادثات المجموعة",
+    "createNewGroup": "إنشاء مجموعة جديدة",
+    "online": "متصل",
+    "justNow": "الآن",
+    "typeMessagePlaceholder": "اكتب رسالة...",
+    "createGroupModal": {
+      "title": "إنشاء مجموعة جديدة",
+      "subtitle": "قم بملء التفاصيل أدناه لإضافة طلب جديد.",
+      "groupNameLabel": "اسم المجموعة",
+      "groupNamePlaceholder": "أدخل عنوان طلب التغيير",
+      "chooseMembersLabel": "اختر الأعضاء",
+      "membersCount": "{count} أعضاء",
+      "submitButton": "إنشاء المجموعة"
+    }
   },
   "projectsPage": {
     "title": "المشاريع",
