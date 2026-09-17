@@ -62,6 +62,29 @@
   "projectsPage": {
     "title": "Projects",
     "description": "All your projects with Pulvent in one place.",
-    "searchPlaceholder": "Find your work"
+    "searchPlaceholder": "Find your work",
+    "status": {
+      "inProgress": "In Progress",
+      "completed": "Completed"
+    },
+    "action": {
+      "openProject": "Open Project",
+      "payNow": "Pay Now",
+      "viewProject": "View Project"
+    },
+      "statusLabel": {
+    "projectStatus": "Project Status",
+    "warranty": "Warranty"
+  },
+     "warranty": {
+    "active": "Active",
+    "valid": "Valid",
+    "onHold": "On Hold",
+    "suspended": "Suspended"
+  },
+  "overallProject": {
+  "overall": "Overall",
+  "project": "Project"
+}
   }
 }

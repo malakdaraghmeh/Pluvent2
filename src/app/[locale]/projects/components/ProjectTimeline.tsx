@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   projectTimelineData,
   type TimelineItem,
@@ -13,6 +12,7 @@ import {
   TimelineItem4,
   TimelineItem5,
   TimelineItem6,
+  True
 } from "@/assets";
 
 const timelineIcons = {
@@ -25,8 +25,6 @@ const timelineIcons = {
 };
 
 export default function ProjectTimeline() {
-  const [activeId, setActiveId] = useState<number>(1);
-
   return (
     <div
       className="
@@ -65,16 +63,14 @@ export default function ProjectTimeline() {
         "
       >
         {projectTimelineData.map((item: TimelineItem) => {
-          const isActive = activeId === item.id;
+          const isActive = item.id === 1;
 
           const Icon =
             timelineIcons[item.id as keyof typeof timelineIcons];
 
           return (
-            <button
+            <div
               key={item.id}
-              type="button"
-              onClick={() => setActiveId(item.id)}
               className="
                 relative
                 flex
@@ -82,16 +78,15 @@ export default function ProjectTimeline() {
                 flex-1
                 flex-col
                 items-center
-                gap-3
-                outline-none
               "
             >
               {/* Icon */}
               <div
                 className={`
+                  relative
                   flex
-                  w-[70px]
                   aspect-square
+                  w-[70px]
                   shrink-0
                   items-center
                   justify-center
@@ -109,6 +104,35 @@ export default function ProjectTimeline() {
                     "0px 0px 0px 10px #FFFFFF, 0px 4px 10px 0px #EAF7FF",
                 }}
               >
+                {/* Check */}
+              
+                {isActive && (
+                <span
+                    className="
+                    absolute
+                    -right-[9px]
+                    -top-[9px]
+                    box-border
+                    flex
+                    h-[24px]
+                    w-[24px]
+                    items-center
+                    justify-center
+                    rounded-[40px]
+                    border
+                    border-[#3634C7]
+                    bg-[#39E1D7]
+                    p-[4px]
+                    text-[13px]
+                    font-bold
+                    leading-none
+                    text-white
+                    "
+                >
+                   <True/>
+                </span>
+                )}
+                {/* Icon */}
                 <span
                   className="block"
                   style={
@@ -127,22 +151,32 @@ export default function ProjectTimeline() {
               </div>
 
               {/* Active Line */}
-              {isActive && (
-                <span
-                  className="
-                    h-[4px]
-                    w-[70px]
-                    shrink-0
-                    rounded-[4px]
-                    bg-[#3634C7]
-                  "
-                />
-              )}
+              <div
+                className={`
+                  relative
+                  z-10
+                  mt-2
+                  h-[4px]
+                  w-[70px]
+                  shrink-0
+                  rounded-[4px]
+                  ${
+                    isActive
+                      ? "bg-[#3634C7]"
+                      : "bg-transparent"
+                  }
+                `}
+              />
 
               {/* Text */}
               <span
                 className={`
+                  mt-3
+                  flex
+                  min-h-[42px]
                   w-full
+                  items-start
+                  justify-center
                   text-center
                   text-[14px]
                   font-semibold
@@ -156,7 +190,7 @@ export default function ProjectTimeline() {
               >
                 {item.title}
               </span>
-            </button>
+            </div>
           );
         })}
       </div>

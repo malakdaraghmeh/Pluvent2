@@ -63,6 +63,30 @@
   "projectsPage": {
     "title": "المشاريع",
     "description": "جميع مشاريعك مع Pulvent في مكان واحد.",
-    "searchPlaceholder": "ابحث عن مشروعك"
+    "searchPlaceholder": "ابحث عن مشروعك",
+     "status": {
+    "inProgress": "قيد التنفيذ",
+    "completed": "مكتمل"
+  },
+  "action": {
+    "openProject": "فتح المشروع",
+    "payNow": "ادفع الآن",
+    "viewProject": "عرض المشروع"
+  },
+  "statusLabel": {
+    "projectStatus": "حالة المشروع",
+    "warranty": "الضمان"
+  },
+    "warranty": {
+    "active": "نشط",
+    "valid": "ساري",
+    "onHold": "معلّق",
+    "suspended": "موقوف"
+  },
+  "overallProject": {
+    "overall": "الإجمالي",
+    "project": "المشروع"
+  }
+
   }
 }

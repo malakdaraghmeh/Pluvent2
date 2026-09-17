@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { ArrowIcon } from "@/assets";
 import type { Project } from "../data/projects";
 
@@ -10,6 +10,7 @@ type ProjectCardProps = {
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
     const locale = useLocale();
+    const t = useTranslations("projectsPage");
   return (
     <div
     className="
@@ -47,7 +48,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           items-center
           justify-center
           self-center
-
+            
           sm:h-24
           sm:w-24
 
@@ -94,19 +95,19 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           </p>
 
           <p
-            className="
-              text-[9px]
-              font-semibold
-              leading-tight
-              text-[#64748B]
+        className="
+            text-[9px]
+            font-semibold
+            leading-tight
+            text-[#64748B]
 
-              sm:text-[10px]
-            "
-          >
-            Overall
-            <br />
-            Project
-          </p>
+            sm:text-[10px]
+        "
+        >
+        {t("overallProject.overall")}
+        <br />
+        {t("overallProject.project")}
+        </p>
         </div>
       </div>
 
@@ -137,9 +138,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               min-w-0
               flex-1
               truncate
-              text-left
               text-[20px]
               font-bold
+             text-start
               text-[#0F172A]
             "
             title={project.title}
@@ -165,7 +166,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               }
             `}
           >
-            {project.status}
+              {project.status === "Completed"
+    ? t("status.completed")
+    : t("status.inProgress")}
           </span>
         </div>
 
@@ -175,11 +178,11 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             mt-2
             line-clamp-2
             w-full
-            text-left
+            
             text-[14px]
             tracking-[0%]
             text-[#7E8492]
-
+            text-start
             sm:mt-3
           "
         >
@@ -246,21 +249,32 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           <p
   className="
     min-w-0
+    text-start
     text-[14px]
     text-[#475569]
   "
 >
-  {project.statusLabel}:{" "}
+  {project.statusLabel === "Project Status"
+    ? t("statusLabel.projectStatus")
+    : t("statusLabel.warranty")}
+  :{" "}
+
   <span
-  className={
-    project.warranty === "On Hold" ||
-    project.warranty === "Suspended"
-      ? "text-[#FF3B30]"
-      : "text-[#10B981]"
-  }
->
-  {project.warranty}
-</span>
+    className={
+      project.warranty === "On Hold" ||
+      project.warranty === "Suspended"
+        ? "text-[#FF3B30]"
+        : "text-[#10B981]"
+    }
+  >
+    {project.warranty === "Active"
+      ? t("warranty.active")
+      : project.warranty === "Valid"
+        ? t("warranty.valid")
+        : project.warranty === "On Hold"
+          ? t("warranty.onHold")
+          : t("warranty.suspended")}
+  </span>
 </p>
 
           {/* Open / View Project */}
@@ -281,9 +295,17 @@ href={`/${locale}/projects/${project.id}`}
     }
   `}
 >
-  <span>{project.action}</span>
+<span>
+  {project.action === "Open Project"
+    ? t("action.openProject")
+    : project.action === "Pay Now"
+      ? t("action.payNow")
+      : t("action.viewProject")}
+</span>
 
-  <ArrowIcon />
+<span className={locale === "ar" ? "rotate-180" : ""}>
+      <ArrowIcon />
+    </span>
 </Link>
         </div>
       </div>
