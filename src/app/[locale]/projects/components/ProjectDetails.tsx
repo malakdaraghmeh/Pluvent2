@@ -1,6 +1,9 @@
+"use client";
+
 import type { ProjectDetails as ProjectDetailsType } from "../data/projectDetails";
 import clockBg from "@/assets/images/clock-bg.png";
 import cover from "@/assets/images/cover.png";
+import { useTranslations } from "next-intl";
 
 import { StartDate, Delivery } from "@/assets";
 
@@ -11,6 +14,8 @@ type ProjectDetailsProps = {
 export default function ProjectDetails({
   project,
 }: ProjectDetailsProps) {
+  const t = useTranslations("projectDetails");
+
   return (
     <div className="flex w-full flex-col items-stretch gap-6 lg:flex-row">
       {/* Project Information */}
@@ -34,20 +39,18 @@ export default function ProjectDetails({
           <div className="min-w-0 flex-1">
             <h1
               className="
-                text-left
                 text-[28px]
                 font-semibold
                 text-[#3634C7]
               "
             >
-              {project.projectName}
+              {t("projectName")} 
             </h1>
 
             <p
               className="
                 mt-1
                 w-full
-                text-left
                 text-[14px]
                 leading-[22px]
                 text-[#12115C]
@@ -69,7 +72,11 @@ export default function ProjectDetails({
               text-[#007AFF]
             "
           >
-            {project.status}
+            {t(
+              project.status === "In Progress"
+                ? "status.inProgress"
+                : "status.completed"
+            )}
           </span>
         </div>
 
@@ -78,16 +85,16 @@ export default function ProjectDetails({
           {/* Start Date */}
           <div
             className="
-            flex
-            min-w-0
-            flex-1
-            items-center
-            gap-2
-            rounded-[16px]
-            border
-            border-[#00E5C810]
-            px-2
-            py-2
+              flex
+              min-w-0
+              flex-1
+              items-center
+              gap-2
+              rounded-[16px]
+              border
+              border-[#00E5C810]
+              px-2
+              py-2
             "
             style={{
               background:
@@ -107,7 +114,7 @@ export default function ProjectDetails({
               "
             >
               <span className="text-[16px] text-[#12115C]">
-                Start Date:
+                {t("startDate")}:
               </span>{" "}
               {project.startDate}
             </p>
@@ -116,16 +123,16 @@ export default function ProjectDetails({
           {/* Delivery */}
           <div
             className="
-            flex
-            min-w-0
-            flex-1
-            items-center
-            gap-2
-            rounded-[16px]
-            border
-            border-[#00E5C810]
-            px-2
-            py-2
+              flex
+              min-w-0
+              flex-1
+              items-center
+              gap-2
+              rounded-[16px]
+              border
+              border-[#00E5C810]
+              px-2
+              py-2
             "
             style={{
               background:
@@ -145,7 +152,7 @@ export default function ProjectDetails({
               "
             >
               <span className="text-[16px] text-[#12115C]">
-                Delivery:
+                {t("delivery")}:
               </span>{" "}
               {project.deliveryDate}
             </p>
@@ -158,7 +165,6 @@ export default function ProjectDetails({
         className="
           relative
           flex
-        
           w-full
           flex-col
           items-center
@@ -221,11 +227,13 @@ export default function ProjectDetails({
             <p
               className="
                 text-[16px]
-               font-bold
+                font-bold
                 text-white
               "
             >
-              {project.daysLabel}
+              {project.daysLeft > 0
+                ? t("daysLeft")
+                : t("completed")}
             </p>
 
             <p
@@ -235,7 +243,9 @@ export default function ProjectDetails({
                 text-[#39E1D7]
               "
             >
-              {project.deliveryText}
+              {project.daysLeft > 0
+                ? t("toDeliver")
+                : t("projectDelivered")}
             </p>
           </div>
 
@@ -288,7 +298,7 @@ export default function ProjectDetails({
                   text-[#12115C]
                 "
               >
-                {project.lastUpdatedLabel}
+                {t("lastUpdated")}
               </p>
             </div>
 

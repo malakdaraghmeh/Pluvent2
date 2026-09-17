@@ -86,5 +86,54 @@
   "overall": "Overall",
   "project": "Project"
 }
+  },
+  "projectDetails": {
+    "projectName": "Project Name",
+    "status": {
+      "inProgress": "In Progress",
+      "completed": "Completed"
+    },
+    "startDate": "Start Date",
+    "delivery": "Delivery",
+    "daysLeft": "Days Left",
+    "toDeliver": "to deliver your project",
+    "completed": "Completed",
+    "projectDelivered": "project delivered",
+    "lastUpdated": "Last Updated",
+    "projectTimeline": "Project Timeline",
+     "timeline": {
+    "discoveryStrategy": "Discovery & Strategy",
+    "designPrototyping": "Design & Prototyping",
+    "developmentIntegration": "Development & Integration",
+    "testingQuality": "Testing & Quality Assurance",
+    "launchDeployment": "Launch & Deployment",
+    "supportWarranty": "Support & Warranty"
   }
+  },
+  "changeRequests": {
+  "title": "Change Requests",
+  "addChangeRequest": "Add Change Request",
+  "id": "ID",
+  "requestTitle": "Title",
+  "addBy": "Add By",
+  "status": "Status",
+  "startDate": "Start Date",
+  "dueDate": "Due Date",
+  "details": "Details"
+},
+"fileDocuments": {
+  "title": "File & Document",
+  "viewAll": "View All",
+  "download": "Download",
+  "dropFiles": "Drop files here or click to upload",
+  "fileTypes": "PDF, DOCX, XLSX, PNG, JPG, ZIP — up to 50 MB each"
+},
+"payments": {
+  "title": "Payments",
+  "totalPaid": "Paid of $6,000",
+  "finalPayment": "Final Payment",
+  "payNow": "Pay Now",
+  "dueIn": "Due in {days} days",
+  "after": "After {days} days"
+}
 }

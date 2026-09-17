@@ -1,246 +1,314 @@
 "use client";
-
 import Link from "next/link";
 import { changeRequestsData } from "../data/changeRequests";
-import {Arrow , Add } from "@/assets";
+import { Arrow, Add } from "@/assets";
+import { useTranslations } from "next-intl";
 
 const ChangeRequestsTable = () => {
+  const t = useTranslations("changeRequests");
+
   return (
     <div
       className="
         flex
-        
         w-full
         max-w-[1086px]
         flex-col
-        gap-6
+        gap-4
         rounded-[8px]
         bg-white
-        p-6
+        p-4
+        sm:gap-5
+        sm:p-5
+        md:gap-6
+        md:p-6
       "
     >
-      {/* Title */}
-     {/* Header */}
-<div className="flex w-full items-center justify-between">
-    
-  {/* Title */}
-  <h2
-    className="
-      text-left
-      text-[22px]
-      font-semibold
-      text-[#12115C]
-    "
-  >
-    Change Requests
-  </h2>
-
-  {/* Add Change Request */}
-  
-  <button
-  type="button"
-  className="
-    flex
-    h-[44px]
-    w-[283px]
-    items-center
-    justify-between
-    rounded-[16px]
-    bg-[#12115C]
-    px-5
-    py-4
-    text-[14px]
-    font-medium
-    text-white
-  "
->
-  <span className="flex shrink-0 items-center">
-    <Add />
-  </span>
-
-  <span className="flex items-center whitespace-nowrap">
-    Add Change Request
-  </span>
-
-  <span className="flex shrink-0 items-center">
-    <Arrow />
-  </span>
-</button>
-</div>
-
-      {/* Table */}
+      {/* Header */}
       <div
         className="
-         
+          flex
           w-full
-          overflow-hidden
-          rounded-[8px]
-          border
-          border-[#00E5C810]
-          bg-white
+          flex-col
+          gap-4
+          sm:flex-row
+          sm:items-center
+          sm:justify-between
         "
       >
-        {/* Header */}
-<div
-  className="
-    grid
-    h-16
-    grid-cols-[70px_183px_130px_130px_110px_110px_70px]
-    items-center
-    gap-4
-    rounded-t-[16px]
-    bg-white
-    px-4
-    font-semibold
-  "
->
-  <p className="justify-self-start text-left text-[14px] text-[#12115C]">
-    ID
-  </p>
-
-  <p className="justify-self-start text-left text-[14px] text-[#12115C]">
-    Title
-  </p>
-
-  <p className="justify-self-start text-left text-[14px] text-[#12115C]">
-    Add By
-  </p>
-
-  <p className="justify-self-start text-left text-[14px] text-[#12115C]">
-    Status
-  </p>
-
-  <p className="justify-self-start text-left text-[14px] text-[#12115C]">
-    Start Date
-  </p>
-
-  <p className="justify-self-start text-left text-[14px] text-[#12115C]">
-    Due Date
-  </p>
-
-  <p className="justify-self-start text-left text-[14px] text-[#12115C]">
-    Details
-  </p>
-</div>
-
-        {/* Rows */}
-        {changeRequestsData.map((request, index) => (
-        <div
-            key={`${request.id}-${index}`}
-            className={`
-            grid
-            h-16
-            grid-cols-[70px_183px_130px_130px_110px_110px_70px]
-            items-center
-            gap-4
-            border
-            px-4
-            
-            ${
-                index % 2 === 0
-                ? "border-[#00E5C810] bg-[#00E5C805]"
-                : "border-[#2F1ABD10] bg-white"
-            }
-            `}
-        >
-            {/* ID */}
-        <p
-          className="
-            justify-self-start
-            text-left
-            text-[14px]
-            font-semibold
-            text-[#12125C]
-          "
-        >
-          {request.id}
-        </p>
-        
         {/* Title */}
-        <p
+        <h2
           className="
-            min-w-0
-            justify-self-start
-            truncate
             text-left
-            text-[14px]
             font-semibold
-            text-[#1F2937]
+            text-[#12115C]
+            text-[22px]
           "
         >
-          {request.title}
-        </p>
-        
-        {/* Add By */}
-        <p
+          {t("title")}
+        </h2>
+
+        {/* Add Change Request */}
+        <button
+          type="button"
           className="
-            min-w-0
-            justify-self-start
-            truncate
-            text-left
-            text-[14px]
-            font-semibold
-            text-[#12125C]
-          "
-        >
-          {request.addBy}
-        </p>
-        
-        {/* Status */}
-        <p
-          className={`
-            min-w-0
-            justify-self-start
-            truncate
-            text-left
-            text-[14px]
-            ${getStatusColor(request.status)}
-          `}
-        >
-          {request.status}
-        </p>
-        
-        {/* Start Date */}
-        <p
-          className="
-            justify-self-start
-            text-left
-            text-[14px]
-            text-[#596173]
-          "
-        >
-          {request.startDate}
-        </p>
-        
-        {/* Due Date */}
-        <p
-          className="
-            justify-self-start
-            text-left
-            text-[14px]
-            text-[#5F6573]
-          "
-        >
-          {request.dueDate}
-        </p>
-        
-        {/* Details */}
-        <Link
-          href="#"
-          className="
-            justify-self-start
-            text-left
-            text-[16px]
-            font-semibold
-            text-[#3634C7]
+            flex
+            h-[44px]
+            w-full
+            items-center
+            justify-between
+            rounded-[16px]
+            bg-[#12115C]
+            px-4
+            py-3
+           
+            font-medium
+            text-white
             transition-opacity
-            hover:opacity-70
+            hover:opacity-90
+            sm:w-[283px]
+            sm:px-5
+            sm:py-4
+            text-[14px]
           "
         >
-          Details
-        </Link>
+          <span className="flex shrink-0 items-center">
+            <Add />
+          </span>
+
+          <span className="flex items-center whitespace-nowrap">
+            {t("addChangeRequest")}
+          </span>
+
+          <span className="flex shrink-0 items-center rtl:rotate-180">
+            <Arrow />
+          </span>
+        </button>
+      </div>
+
+      {/* Table Wrapper */}
+      <div className="w-full overflow-x-auto">
+        {/* Table */}
+        <div
+          className="
+            min-w-[900px]
+            overflow-hidden
+            rounded-[8px]
+            border
+            border-[#00E5C810]
+            bg-white
+          "
+        >
+          {/* Table Header */}
+          <div
+            className="
+              grid
+              h-16
+              grid-cols-[70px_183px_130px_130px_110px_110px_70px]
+              items-center
+              gap-4
+              rounded-t-[16px]
+              bg-white
+              px-4
+              font-semibold
+            "
+          >
+            <p
+              className="
+                justify-self-start
+                
+                text-[14px]
+                text-[#12115C]
+              "
+            >
+              {t("id")}
+            </p>
+
+            <p
+              className="
+                justify-self-start
+               
+                text-[14px]
+                text-[#12115C]
+              "
+            >
+              {t("requestTitle")}
+            </p>
+
+            <p
+              className="
+                justify-self-start
+                
+                text-[14px]
+                text-[#12115C]
+              "
+            >
+              {t("addBy")}
+            </p>
+
+            <p
+              className="
+                justify-self-start
+                
+                text-[14px]
+                text-[#12115C]
+              "
+            >
+              {t("status")}
+            </p>
+
+            <p
+              className="
+                justify-self-start
+               
+                text-[14px]
+                text-[#12115C]
+              "
+            >
+              {t("startDate")}
+            </p>
+
+            <p
+              className="
+                justify-self-start
+               
+                text-[14px]
+                text-[#12115C]
+              "
+            >
+              {t("dueDate")}
+            </p>
+
+            <p
+              className="
+                justify-self-start
+                
+                text-[14px]
+                text-[#12115C]
+              "
+            >
+              {t("details")}
+            </p>
           </div>
-        ))}
+
+          {/* Rows */}
+          {changeRequestsData.map((request, index) => (
+            <div
+              key={`${request.id}-${index}`}
+              className={`
+                grid
+                h-16
+                grid-cols-[70px_183px_130px_130px_110px_110px_70px]
+                items-center
+                gap-4
+                border
+                px-4
+                ${
+                  index % 2 === 0
+                    ? "border-[#00E5C810] bg-[#00E5C805]"
+                    : "border-[#2F1ABD10] bg-white"
+                }
+              `}
+            >
+              {/* ID */}
+              <p
+                className="
+                  justify-self-start
+                  
+                  text-[14px]
+                  font-semibold
+                  text-[#12125C]
+                "
+              >
+                {request.id}
+              </p>
+
+              {/* Title */}
+              <p
+                className="
+                  min-w-0
+                  justify-self-start
+                  truncate
+                 
+                  text-[14px]
+                  font-semibold
+                  text-[#1F2937]
+                "
+              >
+                {request.title}
+              </p>
+
+              {/* Add By */}
+              <p
+                className="
+                  min-w-0
+                  justify-self-start
+                  truncate
+                  
+                  text-[14px]
+                  font-semibold
+                  text-[#12115C]
+                "
+              >
+                {request.addBy}
+              </p>
+
+              {/* Status */}
+              <p
+                className={`
+                  min-w-0
+                  justify-self-start
+                  truncate
+                
+                  text-[14px]
+                  ${getStatusColor(request.status)}
+                `}
+              >
+                {request.status}
+              </p>
+
+              {/* Start Date */}
+              <p
+                className="
+                  justify-self-start
+                 
+                  text-[14px]
+                  text-[#596173]
+                "
+              >
+                {request.startDate}
+              </p>
+
+              {/* Due Date */}
+              <p
+                className="
+                  justify-self-start
+             
+                  text-[14px]
+                  text-[#5F6573]
+                "
+              >
+                {request.dueDate}
+              </p>
+
+              {/* Details */}
+              <Link
+                href="#"
+                className="
+                  justify-self-start
+               
+                  text-[16px]
+                  font-semibold
+                  text-[#3634C7]
+                  transition-opacity
+                  hover:opacity-70
+                "
+              >
+                {t("details")}
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
