@@ -15,12 +15,12 @@ export const mainNavigation = [
     icon: Dashboard,
   },
   {
-    label: 'Project',
+    label: 'Projects',
     href: '/projects',
     icon: Project,
   },
   {
-    label: 'FilesAndDocuments',
+    label: 'FileAndDocument',
     href: '/file-and-document',
     icon: Files,
   },
