@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Plus, Send } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { Message } from '../chat';
 
 interface ChatAreaProps {
@@ -17,6 +18,8 @@ export const ChatArea: React.FC<ChatAreaProps> = ({
     onInputChange,
     onSendMessage,
 }) => {
+    const t = useTranslations('chat');
+
     return (
         <div className="flex-1 flex flex-col rounded-3xl bg-white p-6 shadow-sm border border-slate-100 justify-between">
             {/* Messages List Area */}
@@ -69,7 +72,7 @@ export const ChatArea: React.FC<ChatAreaProps> = ({
                     <div className="flex flex-1 items-center justify-between rounded-full bg-[#EBFDFB] px-4 py-1.5 shadow-sm border border-emerald-50/50">
                         <input
                             type="text"
-                            placeholder="Type Message..."
+                            placeholder={t('typeMessagePlaceholder')}
                             value={inputText}
                             onChange={e => onInputChange(e.target.value)}
                             className="w-full bg-transparent text-sm text-gray-700 placeholder-gray-400 focus:outline-none pl-2 pr-3"
@@ -77,7 +80,7 @@ export const ChatArea: React.FC<ChatAreaProps> = ({
 
                         <button
                             type="submit"
-                            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#3B38D8] text-white hover:bg-indigo-700 transition shadow-md"
+                            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#3B38D8] text-white hover:bg-indigo-700 transition shadow-md rtl:rotate-180"
                         >
                             <Send className="h-4 w-4" />
                         </button>

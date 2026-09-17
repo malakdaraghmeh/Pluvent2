@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { X, Plus } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { INITIAL_MEMBERS } from '../mockData';
 
 interface CreateGroupModalProps {
@@ -11,6 +12,7 @@ interface CreateGroupModalProps {
 }
 
 export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({ isOpen, onClose, onCreateGroup }) => {
+    const t = useTranslations('chat.createGroupModal');
     const [groupName, setGroupName] = useState('');
     const [selectedMemberIds, setSelectedMemberIds] = useState<string[]>(['1', '2', '3']);
 
@@ -37,9 +39,9 @@ export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({ isOpen, onCl
             <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl transition-all">
                 <div className="flex items-start justify-between">
                     <div>
-                        <h2 className="text-xl font-bold text-[#0F172A]">Create New Group</h2>
+                        <h2 className="text-xl font-bold text-[#0F172A]">{t('title')}</h2>
                         <p className="mt-1 text-sm text-gray-500">
-                            Fill in the details below to add a new change request.
+                            {t('subtitle')}
                         </p>
                     </div>
                     <button
@@ -53,11 +55,11 @@ export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({ isOpen, onCl
                 <form onSubmit={handleSubmit} className="mt-6 space-y-6">
                     <div>
                         <label className="block text-sm font-bold text-[#0F172A]">
-                            Name of Group <span className="text-red-500">*</span>
+                            {t('groupNameLabel')} <span className="text-red-500">*</span>
                         </label>
                         <input
                             type="text"
-                            placeholder="Enter change request title"
+                            placeholder={t('groupNamePlaceholder')}
                             value={groupName}
                             onChange={e => setGroupName(e.target.value)}
                             className="mt-2 w-full rounded-xl bg-[#F4F6FA] px-4 py-4 text-sm text-[#615E8B] placeholder-gray-400 focus:bg-white focus:border-indigo-500 focus:outline-none transition"
@@ -68,10 +70,10 @@ export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({ isOpen, onCl
                     <div>
                         <div className="flex items-center justify-between mb-3">
                             <label className="text-sm font-bold text-[#0F172A]">
-                                Choose Member <span className="text-red-500">*</span>
+                                {t('chooseMembersLabel')} <span className="text-red-500">*</span>
                             </label>
                             <span className="text-xs font-semibold text-gray-500">
-                                {selectedMemberIds.length} Members
+                                {t('membersCount', { count: selectedMemberIds.length })}
                             </span>
                         </div>
 
@@ -132,8 +134,8 @@ export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({ isOpen, onCl
                         className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#0B0C39] py-3.5 text-sm font-semibold text-white transition hover:bg-opacity-95 shadow-md"
                     >
                         <Plus className="h-4 w-4" />
-                        <span>Create Group</span>
-                        <span className="text-xs ml-0.5">›</span>
+                        <span>{t('submitButton')}</span>
+                        <span className="text-xs ml-0.5 rtl:mr-0.5 rtl:ml-0 rtl:rotate-180">›</span>
                     </button>
                 </form>
             </div>

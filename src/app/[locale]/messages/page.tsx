@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { Chat, Message } from './chat';
 import { INITIAL_CHATS, INITIAL_MESSAGES } from './mockData';
 import { CreateGroupModal } from './components/CreateGroupModal';
@@ -8,6 +10,10 @@ import { ChatSidebar } from './components/ChatSidebar';
 import { ChatArea } from './components/ChatArea';
 
 export default function MessagesPage() {
+    const t = useTranslations('chat');
+    const pathname = usePathname();
+    const currentLocale = pathname.split('/')[1] || 'en';
+
     const [chats, setChats] = useState<Chat[]>(INITIAL_CHATS);
     const [selectedChatId, setSelectedChatId] = useState<string>('pinned-1');
     const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES);
@@ -25,7 +31,10 @@ export default function MessagesPage() {
             senderAvatar:
                 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop',
             text: inputText,
-            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            time: new Date().toLocaleTimeString(currentLocale === 'ar' ? 'ar-EG' : 'en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+            }),
             isMe: true,
         };
 
@@ -40,7 +49,7 @@ export default function MessagesPage() {
             subtitle: `${memberIds.length} members`,
             avatar: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=100&h=100&fit=crop',
             isPinned: false,
-            time: 'Just now',
+            time: t('justNow'),
             membersCount: memberIds.length,
         };
 
