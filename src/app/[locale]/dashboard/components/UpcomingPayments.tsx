@@ -1,5 +1,5 @@
 import { upcomingPayments } from "../data/upcomingPayments";
-import { ArrowIcon } from "@/assets";
+import { Icon } from "@/assets";
 
 const UpcomingPayments = () => {
   return (
@@ -20,12 +20,11 @@ const UpcomingPayments = () => {
         <h2
           className="
             min-w-0
-            text-[18px]
+            text-[22px]
             font-semibold
             text-[#12115C]
 
-            sm:text-[20px]
-            lg:text-[22px]
+            
           "
         >
           Upcoming Payments
@@ -34,14 +33,9 @@ const UpcomingPayments = () => {
         <button
           type="button"
           className="
-            shrink-0
-            
-            text-[13px]
-            font-medium
+            text-[16px]
+           
             text-[#3634C7]
-
-            sm:text-[14px]
-            lg:text-[16px]
           "
         >
           View All
@@ -74,12 +68,11 @@ const UpcomingPayments = () => {
             text-left
                 truncate
                 
-                text-[14px]
+                text-[16px]
                 font-semibold
                 text-[#12115C]
 
-                sm:text-[15px]
-                lg:text-[16px]
+               
             "
             title={payment.projectName}
             >
@@ -91,10 +84,10 @@ const UpcomingPayments = () => {
                   text-left
                     mt-1
                     
-                    text-[11px]
+                    text-[13px]
                     text-[#9CA3AF]
 
-                    sm:text-[12px]
+               
                   "
                 >
                   Final Payment
@@ -107,12 +100,10 @@ const UpcomingPayments = () => {
                   shrink-0
                   whitespace-nowrap
                   
-                  text-[18px]
+                  text-[22px]
                   font-semibold
                   text-[#12115C]
 
-                  sm:text-[20px]
-                  lg:text-[22px]
                 "
               >
                 {payment.amount}
@@ -131,33 +122,29 @@ const UpcomingPayments = () => {
             >
               {/* Due Status */}
               <span
-                className={`
-                  flex
-                  h-[22px]
-                  w-fit
-                  min-w-[92px]
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-[6px]
-                  px-[10px]
-                  py-[4px]
-                  
-                  text-[10px]
-                  font-medium
-
-                  ${
-                    payment.dueType === "danger"
-                      ? "bg-[#FF3B300D] text-[#FF3B30]"
-                      : "bg-[#FFF7E8] text-[#F59E0B]"
-                  }
-                `}
-              >
-                {payment.dueText}
-              </span>
+  className={`
+    inline-flex
+    shrink-0
+    items-center
+    justify-center
+    rounded-[6px]
+    px-[10px]
+    py-[4px]
+    text-[11px]
+    font-semibold
+    leading-none
+    ${
+      payment.dueType === "danger"
+        ? "bg-[#FF3B300D] text-[#FF3B30]"
+        : "bg-[#FFF7E8] text-[#F59E0B]"
+    }
+  `}
+>
+  {payment.dueText}
+</span>
 
               {/* Open Project */}
-              <button
+            {/*   <button
                 type="button"
                 className="
                   inline-flex
@@ -166,7 +153,7 @@ const UpcomingPayments = () => {
                   items-center
                   gap-1
                   
-                  text-[11px]
+                  text-[12px]
                   font-semibold
                   text-[#2F1ABD]
 
@@ -175,8 +162,29 @@ const UpcomingPayments = () => {
               >
                 <span className="truncate">Open Project</span>
 
-                <ArrowIcon className="h-3.5 w-3.5 shrink-0" />
-              </button>
+                <ArrowIcon  />
+              </button> */}
+
+<button 
+  type="button" 
+  className="
+    inline-flex 
+    shrink-0 
+    items-center 
+    justify-center
+    gap-1.5 
+    text-[12px] 
+    font-semibold 
+    text-[#2F1ABD] 
+   
+  " 
+> 
+  <span>Open Project</span> 
+
+  <Icon
+  
+  />
+</button>
             </div>
           </div>
         ))}

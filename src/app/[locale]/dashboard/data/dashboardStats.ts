@@ -47,10 +47,8 @@ export type DashboardStat = {
       title: "Upcoming Payment",
       value: "EGP 50,000",
   
-      // الجزء العادي
-      description: "For Pulver Project",
+      description: "For Puller Project",
   
-      // الجزء الذي نريد تغيير لونه
       descriptionHighlight: "Due in 15 days",
       descriptionHighlightColor: "text-[#3634C7]",
   

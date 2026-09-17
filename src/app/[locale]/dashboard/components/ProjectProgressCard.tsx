@@ -130,14 +130,9 @@ const ProjectProgressCard = ({
             text-left
               min-w-0
               flex-1
-              truncate
-              text-[17px]
+              text-[20px]
               font-bold
               text-[#0F172A]
-
-              sm:text-[18px]
-
-              lg:text-[20px]
             "
             title={title}
           >
@@ -153,11 +148,10 @@ const ProjectProgressCard = ({
               px-2.5
               py-1.5
               
-              text-[11px]
+              text-[12px]
               font-normal
               text-[#007AFF]
 
-              sm:text-[12px]
               sm:px-3
             "
           >
@@ -172,18 +166,14 @@ const ProjectProgressCard = ({
             mt-2
             line-clamp-2
             w-full
-            
-            text-[12px]
+            text-[14px]
             font-normal
             leading-[150%]
             tracking-[0%]
             text-[#7E8492]
-
             sm:mt-3
-            sm:text-[13px]
-
             lg:max-w-[400px]
-            lg:text-[14px]
+         
           "
         >
           {description}
@@ -191,60 +181,49 @@ const ProjectProgressCard = ({
 
         {/* Date + Payment */}
         <div
-          className="
-            mt-3
-            flex
-            min-h-[40px]
-            w-full
-            items-center
-            justify-between
-            gap-3
-            rounded-[8px]
-            border-[0.5px]
-            border-[#E5E7EB]
-            p-2
+  className="
+    mt-3
+    flex
+    min-h-[40px]
+    w-full
+    items-center
+    justify-between
+    rounded-[8px]
+    border-[0.5px]
+    border-[#B1B4B6]/50
+    bg-[#E2E8F0]/10
+    p-2
 
-            sm:mt-4
+    sm:mt-4
+    lg:w-[400px]
+  "
+>
+  {/* Due Date */}
+  <span
+    className="
+      min-w-0
+      truncate
+      text-[14px]
+      font-normal
+      text-[#64748B]
+    "
+  >
+    Due {dueDate}
+  </span>
 
-            lg:w-[400px]
-          "
-        >
-          {/* Due Date */}
-          <span
-            className="
-              min-w-0
-              truncate
-              
-              text-[10px]
-              font-normal
-              text-[#64748B]
-
-              sm:text-[11px]
-
-              lg:text-[12px]
-            "
-          >
-            Due {dueDate}
-          </span>
-
-          {/* Payment */}
-          <span
-            className="
-              shrink-0
-              whitespace-nowrap
-              
-              text-[10px]
-              font-normal
-              text-[#1E293B]
-
-              sm:text-[11px]
-
-              lg:text-[12px]
-            "
-          >
-            {paidAmount} / {totalAmount}
-          </span>
-        </div>
+  {/* Payment */}
+  <span
+    className="
+      shrink-0
+      whitespace-nowrap
+      text-[14px]
+      font-normal
+      text-[#1E293B]
+    "
+  >
+    {paidAmount} / {totalAmount}
+  </span>
+</div>
 
         {/* Warranty + Open Project */}
         <div
@@ -262,14 +241,11 @@ const ProjectProgressCard = ({
           <p
             className="
               min-w-0
-              truncate
+           
               
-              text-[11px]
+              text-[14px]
               text-[#475569]
 
-              sm:text-[12px]
-
-              lg:text-[14px]
             "
           >
             Warranty:{" "}
@@ -279,7 +255,7 @@ const ProjectProgressCard = ({
           </p>
 
           {/* Open Project */}
-          <button
+          {/* <button
             type="button"
             className="
               inline-flex
@@ -287,13 +263,11 @@ const ProjectProgressCard = ({
               items-center
               gap-1
               
-              text-[12px]
+              text-[16px]
               font-semibold
               text-[#2F1ABD]
 
-              sm:text-[13px]
-
-              lg:text-[16px]
+             
             "
           >
             <span>Open Project</span>
@@ -308,7 +282,27 @@ const ProjectProgressCard = ({
                 lg:w-4
               "
             />
-          </button>
+          </button> */}
+          <button 
+  type="button" 
+  className="
+    inline-flex 
+    shrink-0 
+    items-center 
+    justify-center
+    gap-1.5 
+    text-[16px] 
+    font-semibold 
+    text-[#2F1ABD] 
+   
+  " 
+> 
+  <span>Open Project</span> 
+
+  <ArrowIcon 
+  
+  /> 
+</button>
         </div>
       </div>
     </div>

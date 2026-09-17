@@ -15,5 +15,10 @@
     "Booking": "الحجز",
     "Login": "تسجيل الدخول",
     "blogs": "المدونة"
+  },
+  "projectsPage": {
+    "title": "المشاريع",
+    "description": "جميع مشاريعك مع Pulvent في مكان واحد.",
+      "searchPlaceholder": "ابحث عن مشروعك"
   }
 }

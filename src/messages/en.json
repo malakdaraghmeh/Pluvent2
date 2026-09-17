@@ -14,5 +14,10 @@
     "Booking": "Booking",
     "Login": "Login",
     "blogs": "Blogs"
-  }
+  },
+  "projectsPage": {
+  "title": "Projects",
+  "description": "All your projects with Pulvent in one place.",
+    "searchPlaceholder": "Find your work"
+}
 }

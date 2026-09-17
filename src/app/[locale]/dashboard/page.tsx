@@ -15,23 +15,7 @@ const DashboardPage = () => {
       "
     >
       <div className="mx-auto w-full max-w-[1400px]">
-        {/* Page Title */}
-        <h1
-          className="
-            mb-4
-            text-[20px]
-            font-bold
-            text-gray-900
-
-            sm:mb-5
-            sm:text-[22px]
-
-            lg:mb-6
-            lg:text-2xl
-          "
-        >
-          Dashboard
-        </h1>
+     
 
         {/* Stats */}
         <StatsSection />
