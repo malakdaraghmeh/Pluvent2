@@ -1,5 +1,8 @@
+"use client";
+
 import type { ProjectProgress } from "../data/projectProgress";
 import { ArrowIcon } from "@/assets";
+import { useTranslations, useLocale } from "next-intl";
 
 type ProjectProgressCardProps = ProjectProgress;
 
@@ -13,6 +16,9 @@ const ProjectProgressCard = ({
   totalAmount,
   warranty,
 }: ProjectProgressCardProps) => {
+  const locale = useLocale();
+  const t = useTranslations("projectsPage");
+
   return (
     <div
       className="
@@ -94,9 +100,9 @@ const ProjectProgressCard = ({
               sm:text-[10px]
             "
           >
-            Overall
+            {t("overallProject.overall")}
             <br />
-            Project
+            {t("overallProject.project")}
           </p>
         </div>
       </div>
@@ -119,17 +125,20 @@ const ProjectProgressCard = ({
         <div
           className="
             flex
+            min-w-0
             items-start
             justify-between
-            gap-3
+            gap-2
+
+            sm:gap-3
           "
         >
           {/* Title */}
           <h3
             className="
-            text-left
               min-w-0
               flex-1
+              break-words
               text-[20px]
               font-bold
               text-[#0F172A]
@@ -143,11 +152,12 @@ const ProjectProgressCard = ({
           <span
             className="
               shrink-0
+              whitespace-nowrap
               rounded-md
               bg-[#007AFF0D]
               px-2.5
               py-1.5
-              
+
               text-[12px]
               font-normal
               text-[#007AFF]
@@ -155,25 +165,29 @@ const ProjectProgressCard = ({
               sm:px-3
             "
           >
-            {status}
+            {status === "In Progress"
+              ? t("status.inProgress")
+              : status === "Completed"
+                ? t("status.completed")
+                : status}
           </span>
         </div>
 
         {/* Description */}
         <p
           className="
-          text-left
             mt-2
             line-clamp-2
             w-full
+            break-words
             text-[14px]
-            font-normal
             leading-[150%]
             tracking-[0%]
             text-[#7E8492]
+
             sm:mt-3
+
             lg:max-w-[400px]
-         
           "
         >
           {description}
@@ -181,128 +195,103 @@ const ProjectProgressCard = ({
 
         {/* Date + Payment */}
         <div
-  className="
-    mt-3
-    flex
-    min-h-[40px]
-    w-full
-    items-center
-    justify-between
-    rounded-[8px]
-    border-[0.5px]
-    border-[#B1B4B6]/50
-    bg-[#E2E8F0]/10
-    p-2
+          className="
+            mt-3
+            flex
+            min-h-[40px]
+            w-full
+            min-w-0
+            items-center
+            justify-between
+            gap-2
+            rounded-[8px]
+            border-[0.5px]
+            border-[#B1B4B6]/50
+            bg-[#E2E8F0]/10
+            p-2
 
-    sm:mt-4
-    lg:w-[400px]
-  "
->
-  {/* Due Date */}
-  <span
-    className="
-      min-w-0
-      truncate
-      text-[14px]
-      font-normal
-      text-[#64748B]
-    "
-  >
-    Due {dueDate}
-  </span>
+            sm:mt-4
 
-  {/* Payment */}
-  <span
-    className="
-      shrink-0
-      whitespace-nowrap
-      text-[14px]
-      font-normal
-      text-[#1E293B]
-    "
-  >
-    {paidAmount} / {totalAmount}
-  </span>
-</div>
+            lg:w-[400px]
+          "
+        >
+          {/* Due Date */}
+          <span
+            className="
+              min-w-0
+              truncate
+              text-[14px]
+              font-normal
+              text-[#64748B]
+            "
+          >
+            {`Due ${dueDate}`}
+          </span>
+
+          {/* Payment */}
+          <span
+            className="
+              shrink-0
+              whitespace-nowrap
+              text-[14px]
+              font-normal
+              text-[#1E293B]
+            "
+          >
+            {paidAmount} / {totalAmount}
+          </span>
+        </div>
 
         {/* Warranty + Open Project */}
         <div
           className="
             mt-3
             flex
+            min-w-0
             items-center
             justify-between
-            gap-3
+            gap-2
 
             sm:mt-4
+            sm:gap-3
           "
         >
           {/* Warranty */}
           <p
             className="
               min-w-0
-           
-              
+              truncate
               text-[14px]
               text-[#475569]
-
             "
           >
-            Warranty:{" "}
+            {t("statusLabel.warranty")}:{" "}
             <span className="text-[#10B981]">
               {warranty}
             </span>
           </p>
 
           {/* Open Project */}
-          {/* <button
+          <button
             type="button"
             className="
               inline-flex
               shrink-0
               items-center
-              gap-1
-              
+              justify-center
+              gap-1.5
+              whitespace-nowrap
               text-[16px]
               font-semibold
               text-[#2F1ABD]
-
-             
             "
           >
-            <span>Open Project</span>
+            <span>{t("action.openProject")}</span>
 
-            <ArrowIcon
-              className="
-                h-3.5
-                w-3.5
-                shrink-0
-
-                lg:h-4
-                lg:w-4
-              "
-            />
-          </button> */}
-          <button 
-  type="button" 
-  className="
-    inline-flex 
-    shrink-0 
-    items-center 
-    justify-center
-    gap-1.5 
-    text-[16px] 
-    font-semibold 
-    text-[#2F1ABD] 
-   
-  " 
-> 
-  <span>Open Project</span> 
-
-  <ArrowIcon 
-  
-  /> 
-</button>
+            <span className={locale === "ar" ? "rotate-180" : ""}>
+              <ArrowIcon />
+            </span>
+          </button>
         </div>
       </div>
     </div>

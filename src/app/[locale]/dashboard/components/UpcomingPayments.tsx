@@ -1,7 +1,13 @@
+"use client";
+
 import { upcomingPayments } from "../data/upcomingPayments";
 import { Icon } from "@/assets";
+import { useTranslations,useLocale } from "next-intl";
 
 const UpcomingPayments = () => {
+    const locale = useLocale();
+  const t = useTranslations("upcomingPayments");
+
   return (
     <section
       className="
@@ -23,22 +29,19 @@ const UpcomingPayments = () => {
             text-[22px]
             font-semibold
             text-[#12115C]
-
-            
           "
         >
-          Upcoming Payments
+          {t("title")}
         </h2>
 
         <button
           type="button"
           className="
             text-[16px]
-           
             text-[#3634C7]
           "
         >
-          View All
+          {t("viewAll")}
         </button>
       </div>
 
@@ -63,34 +66,28 @@ const UpcomingPayments = () => {
             <div className="flex items-start justify-between gap-3">
               {/* Project Info */}
               <div className="min-w-0 flex-1">
-              <h3
-            className="
-            text-left
-                truncate
-                
-                text-[16px]
-                font-semibold
-                text-[#12115C]
-
-               
-            "
-            title={payment.projectName}
-            >
-            {payment.projectName}
-            </h3>
+                <h3
+                  className="
+                    truncate
+                   
+                    text-[16px]
+                    font-semibold
+                    text-[#12115C]
+                  "
+                  title={payment.projectName}
+                >
+                  {payment.projectName}
+                </h3>
 
                 <p
                   className="
-                  text-left
                     mt-1
-                    
+                   
                     text-[13px]
                     text-[#9CA3AF]
-
-               
                   "
                 >
-                  Final Payment
+                  {t("finalPayment")}
                 </p>
               </div>
 
@@ -99,11 +96,9 @@ const UpcomingPayments = () => {
                 className="
                   shrink-0
                   whitespace-nowrap
-                  
                   text-[22px]
                   font-semibold
                   text-[#12115C]
-
                 "
               >
                 {payment.amount}
@@ -122,69 +117,47 @@ const UpcomingPayments = () => {
             >
               {/* Due Status */}
               <span
-  className={`
-    inline-flex
-    shrink-0
-    items-center
-    justify-center
-    rounded-[6px]
-    px-[10px]
-    py-[4px]
-    text-[11px]
-    font-semibold
-    leading-none
-    ${
-      payment.dueType === "danger"
-        ? "bg-[#FF3B300D] text-[#FF3B30]"
-        : "bg-[#FFF7E8] text-[#F59E0B]"
-    }
-  `}
->
-  {payment.dueText}
-</span>
+                className={`
+                  inline-flex
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-[6px]
+                  px-[10px]
+                  py-[4px]
+                  text-[11px]
+                  font-semibold
+                  leading-none
+                  ${
+                    payment.dueType === "danger"
+                      ? "bg-[#FF3B300D] text-[#FF3B30]"
+                      : "bg-[#FFF7E8] text-[#F59E0B]"
+                  }
+                `}
+              >
+                {t("dueIn", { days: payment.dueDays })}
+              </span>
 
               {/* Open Project */}
-            {/*   <button
+              <button
                 type="button"
                 className="
                   inline-flex
-                  min-w-0
                   shrink-0
                   items-center
-                  gap-1
-                  
+                  justify-center
+                  gap-1.5
+                  whitespace-nowrap
                   text-[12px]
                   font-semibold
                   text-[#2F1ABD]
-
-                  sm:text-[12px]
                 "
               >
-                <span className="truncate">Open Project</span>
-
-                <ArrowIcon  />
-              </button> */}
-
-<button 
-  type="button" 
-  className="
-    inline-flex 
-    shrink-0 
-    items-center 
-    justify-center
-    gap-1.5 
-    text-[12px] 
-    font-semibold 
-    text-[#2F1ABD] 
-   
-  " 
-> 
-  <span>Open Project</span> 
-
-  <Icon
-  
-  />
-</button>
+                <span>{t("openProject")}</span>
+                <span className={locale === "ar" ? "rotate-180" : ""}>
+                <Icon />
+                  </span>
+              </button>
             </div>
           </div>
         ))}

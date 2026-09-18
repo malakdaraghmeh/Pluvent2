@@ -63,6 +63,8 @@
     "title": "Projects",
     "description": "All your projects with Pulvent in one place.",
     "searchPlaceholder": "Find your work",
+    "projectProgress": "Project Progress",
+    "viewAll": "View All",
     "status": {
       "inProgress": "In Progress",
       "completed": "Completed"
@@ -135,5 +137,37 @@
   "payNow": "Pay Now",
   "dueIn": "Due in {days} days",
   "after": "After {days} days"
-}
+},
+  "dashboardStats": {
+    "projects": {
+      "title": "Total Projects",
+      "description": "2 Active · 2 Complete"
+    },
+    "paid": {
+      "title": "Total Paid",
+      "description": "of $150,000"
+    },
+    "upcoming": {
+      "title": "Upcoming Payment",
+      "descriptionHighlight": "Due in 15 days",
+      "description": "For Puller Project"
+    },
+    "absent": {
+      "title": "Absent Payment",
+      "description": "1 payment · 1 review"
+    }
+  },
+  "upcomingPayments": {
+    "title": "Upcoming Payments",
+    "viewAll": "View All",
+    "finalPayment": "Final Payment",
+    "openProject": "Open Project",
+    "dueIn": "Due in {days} days"
+  },
+  "supportTickets": {
+    "title": "Support Ticket",
+    "viewAll": "View All",
+    "inProgress": "In Progress",
+    "inReview": "In Review"
+  }
 }

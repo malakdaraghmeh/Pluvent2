@@ -1,7 +1,12 @@
+"use client";
+
 import { projectProgressData } from "../data/projectProgress";
 import ProjectProgressCard from "./ProjectProgressCard";
+import { useTranslations } from "next-intl";
 
 const ProjectProgress = () => {
+  const t = useTranslations("projectsPage");
+
   return (
     <section
       className="
@@ -37,22 +42,19 @@ const ProjectProgress = () => {
             text-[20px]
             font-semibold
             text-[#12115C]
-
           "
         >
-          Project Progress
+          {t("projectProgress")}
         </h2>
 
         <button
           type="button"
           className="
-            
             text-[16px]
-           
             text-[#3634C7]
           "
         >
-          View All
+          {t("viewAll")}
         </button>
       </div>
 

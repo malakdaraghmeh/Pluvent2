@@ -64,6 +64,8 @@
     "title": "المشاريع",
     "description": "جميع مشاريعك مع Pulvent في مكان واحد.",
     "searchPlaceholder": "ابحث عن مشروعك",
+     "projectProgress": "تقدم المشاريع",
+  "viewAll": "عرض الكل",
      "status": {
     "inProgress": "قيد التنفيذ",
     "completed": "مكتمل"
@@ -87,6 +89,7 @@
     "overall": "الإجمالي",
     "project": "المشروع"
   }
+  
 
   },
   "projectDetails": {
@@ -137,5 +140,37 @@
   "payNow": "ادفع الآن",
   "dueIn": "مستحق خلال {days} يوم",
   "after": "بعد {days} يوم"
+},
+"dashboardStats": {
+  "projects": {
+    "title": "إجمالي المشاريع",
+    "description": "مشروعان نشطان · مشروعان مكتملان"
+  },
+  "paid": {
+    "title": "إجمالي المدفوع",
+    "description": "من أصل $150,000"
+  },
+  "upcoming": {
+    "title": "الدفعة القادمة",
+    "descriptionHighlight": "مستحقة خلال 15 يومًا",
+    "description": "لمشروع Puller"
+  },
+  "absent": {
+    "title": "الدفعات المستحقة",
+    "description": "دفعة واحدة · مراجعة واحدة"
+  }
+},
+"upcomingPayments": {
+  "title": "الدفعات القادمة",
+  "viewAll": "عرض الكل",
+  "finalPayment": "الدفعة النهائية",
+  "openProject": "فتح المشروع",
+  "dueIn": "مستحقة خلال {days} يوم"
+},
+"supportTickets": {
+  "title": "تذكرة دعم",
+  "viewAll": "عرض الكل",
+  "inProgress": "قيد التنفيذ",
+  "inReview": "قيد المراجعة"
 }
 }
