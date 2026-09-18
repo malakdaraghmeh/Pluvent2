@@ -24,8 +24,11 @@ const ProjectProgressCard = ({
       className="
         flex
         w-full
+        max-w-full
+        min-w-0
         flex-col
         gap-4
+        overflow-hidden
         rounded-[24px]
         border
         border-[#EEF0F4]
@@ -112,6 +115,7 @@ const ProjectProgressCard = ({
         className="
           flex
           w-full
+          max-w-full
           min-w-0
           flex-1
           flex-col
@@ -125,6 +129,7 @@ const ProjectProgressCard = ({
         <div
           className="
             flex
+            w-full
             min-w-0
             items-start
             justify-between
@@ -151,8 +156,11 @@ const ProjectProgressCard = ({
           {/* Status */}
           <span
             className="
+              max-w-[45%]
               shrink-0
               whitespace-nowrap
+              overflow-hidden
+              text-ellipsis
               rounded-md
               bg-[#007AFF0D]
               px-2.5
@@ -162,6 +170,7 @@ const ProjectProgressCard = ({
               font-normal
               text-[#007AFF]
 
+              sm:max-w-none
               sm:px-3
             "
           >
@@ -179,6 +188,7 @@ const ProjectProgressCard = ({
             mt-2
             line-clamp-2
             w-full
+            min-w-0
             break-words
             text-[14px]
             leading-[150%]
@@ -204,6 +214,7 @@ const ProjectProgressCard = ({
             items-center
             justify-between
             gap-2
+            overflow-hidden
             rounded-[8px]
             border-[0.5px]
             border-[#B1B4B6]/50
@@ -247,6 +258,7 @@ const ProjectProgressCard = ({
           className="
             mt-3
             flex
+            w-full
             min-w-0
             items-center
             justify-between
@@ -260,6 +272,7 @@ const ProjectProgressCard = ({
           <p
             className="
               min-w-0
+              flex-1
               truncate
               text-[14px]
               text-[#475569]

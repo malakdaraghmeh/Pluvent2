@@ -7,32 +7,68 @@ const SupportTickets = () => {
   const t = useTranslations("supportTickets");
 
   return (
-    <section className="w-full rounded-2xl bg-white p-4 shadow-sm sm:p-5">
+    <section
+      className="
+        w-full
+        max-w-full
+        min-w-0
+        overflow-hidden
+        rounded-2xl
+        bg-white
+        p-4
+        shadow-sm
+
+        sm:p-5
+      "
+    >
       {/* Header */}
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <h2 className="text-[20px] font-semibold text-[#12115C]">
+      <div
+        className="
+          mb-4
+          flex
+          min-w-0
+          items-center
+          justify-between
+          gap-3
+        "
+      >
+        <h2
+          className="
+            min-w-0
+            truncate
+            text-[20px]
+            font-semibold
+            text-[#12115C]
+          "
+        >
           {t("title")}
         </h2>
 
         <button
           type="button"
-          className="text-[16px] text-[#3634C7]"
+          className="
+            shrink-0
+            whitespace-nowrap
+            text-[16px]
+            text-[#3634C7]
+          "
         >
           {t("viewAll")}
         </button>
       </div>
 
       {/* Tickets */}
-      <div className="space-y-3">
+      <div className="flex w-full min-w-0 flex-col gap-3">
         {supportTickets.map((ticket) => (
           <div
             key={ticket.id}
             className="
               flex
               w-full
+              min-w-0
               items-center
               justify-between
-              gap-[12px]
+              gap-2
               rounded-[12px]
               bg-[#F8FAFC]
               p-[12px]
@@ -41,7 +77,8 @@ const SupportTickets = () => {
             {/* Ticket Number */}
             <span
               className="
-                shrink-0
+                min-w-0
+                shrink
                 text-[11px]
                 font-semibold
                 text-[#94A3B8]
@@ -71,8 +108,8 @@ const SupportTickets = () => {
               className={`
                 inline-flex
                 h-[23px]
-                w-[89px]
-                shrink-0
+                min-w-0
+                shrink
                 items-center
                 justify-center
                 rounded-[6px]
@@ -90,10 +127,10 @@ const SupportTickets = () => {
               `}
             >
               {ticket.status === "In Progress"
-  ? t("inProgress")
-  : ticket.status === "In Review"
-    ? t("inReview")
-    : ticket.status}
+                ? t("inProgress")
+                : ticket.status === "In Review"
+                  ? t("inReview")
+                  : ticket.status}
             </span>
           </div>
         ))}
