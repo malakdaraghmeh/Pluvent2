@@ -1,68 +1,105 @@
 {
-  "Home": {
-    "title": "مرحبًا بك في موقعي",
-    "description": "هذا هو الإصدار العربي"
-  },
-  "navbar": {
-    "Home": "الرئيسية",
-    "Services": "الخدمات",
-    "Categories": "الاقسام",
-    "About": "من نحن",
-    "Products": "المنتجات",
-    "projects": "المشاريع",
-    "AllProducts": "جميع المنتجات",
-    "contactUs": "تواصل معنا",
-    "Booking": "الحجز",
-    "Login": "تسجيل الدخول",
-    "blogs": "المدونة"
-  },
-  "sidebar": {
-    "portal": "البوابة",
-    "account": "الحساب",
-    "expandSidebar": "توسيع الشريط الجانبي",
-    "collapseSidebar": "طي الشريط الجانبي",
-    "toggleTheme": "تغيير المظهر",
-    "Dashboard": "لوحة التحكم",
-    "Projects": "المشروع",
-    "FileAndDocument": "الملفات والمستندات",
-    "BillingAndPayments": "الفواتير والمدفوعات",
-    "SupportAndTickets": "الدعم والتذاكر",
-    "Messages": "الرسائل",
-    "UserManagement": "إدارة المستخدمين",
-    "Settings": "الإعدادات"
-  },
-  "files": {
-    "title": "الملفات والمستندات",
-    "subtitle": "ملفات ومستندات المشروع في مكان واحد.",
-    "searchPlaceholder": "ابحث عن عملك",
-    "dropzoneTitle": "أسقط الملفات هنا أو انقر للرفع",
-    "dropzoneHint": "PDF, DOCX, XLSX, PNG, JPG, ZIP — حتى 50 ميجابايت لكل ملف",
-    "uploadedBy": "تم الرفع بواسطة",
-    "download": "تحميل",
-    "downloading": "جاري تحميل"
-  },
-  "chat": {
-    "title": "الرسائل",
-    "searchPlaceholder": "ابحث في المحادثات...",
-    "pinned": "المثبتة",
-    "groupConversations": "محادثات المجموعة",
-    "createNewGroup": "إنشاء مجموعة جديدة",
-    "online": "متصل",
-    "justNow": "الآن",
-    "typeMessagePlaceholder": "اكتب رسالة...",
-    "createGroupModal": {
-      "title": "إنشاء مجموعة جديدة",
-      "subtitle": "قم بملء التفاصيل أدناه لإضافة طلب جديد.",
-      "groupNameLabel": "اسم المجموعة",
-      "groupNamePlaceholder": "أدخل عنوان طلب التغيير",
-      "chooseMembersLabel": "اختر الأعضاء",
-      "membersCount": "{count} أعضاء",
-      "submitButton": "إنشاء المجموعة"
+    "Home": {
+        "title": "مرحبًا بك في موقعي",
+        "description": "هذا هو الإصدار العربي"
+    },
+    "navbar": {
+        "Home": "الرئيسية",
+        "Services": "الخدمات",
+        "Categories": "الاقسام",
+        "About": "من نحن",
+        "Products": "المنتجات",
+        "projects": "المشاريع",
+        "AllProducts": "جميع المنتجات",
+        "contactUs": "تواصل معنا",
+        "Booking": "الحجز",
+        "Login": "تسجيل الدخول",
+        "blogs": "المدونة"
+    },
+    "sidebar": {
+        "portal": "البوابة",
+        "account": "الحساب",
+        "expandSidebar": "توسيع الشريط الجانبي",
+        "collapseSidebar": "طي الشريط الجانبي",
+        "toggleTheme": "تغيير المظهر",
+        "Dashboard": "لوحة التحكم",
+        "Projects": "المشروع",
+        "FileAndDocument": "الملفات والمستندات",
+        "BillingAndPayments": "الفواتير والمدفوعات",
+        "SupportAndTickets": "الدعم والتذاكر",
+        "Messages": "الرسائل",
+        "UserManagement": "إدارة المستخدمين",
+        "Settings": "الإعدادات",
+        "ChangeRequestDetails": "تفاصيل طلب التغيير"
+    },
+    "files": {
+        "title": "الملفات والمستندات",
+        "subtitle": "ملفات ومستندات المشروع في مكان واحد.",
+        "searchPlaceholder": "ابحث عن عملك",
+        "dropzoneTitle": "أسقط الملفات هنا أو انقر للرفع",
+        "dropzoneHint": "PDF, DOCX, XLSX, PNG, JPG, ZIP — حتى 50 ميجابايت لكل ملف",
+        "uploadedBy": "تم الرفع بواسطة",
+        "download": "تحميل",
+        "downloading": "جاري تحميل"
+    },
+    "chat": {
+        "title": "الرسائل",
+        "searchPlaceholder": "ابحث في المحادثات...",
+        "pinned": "المثبتة",
+        "groupConversations": "محادثات المجموعة",
+        "createNewGroup": "إنشاء مجموعة جديدة",
+        "online": "متصل",
+        "justNow": "الآن",
+        "typeMessagePlaceholder": "اكتب رسالة...",
+        "createGroupModal": {
+            "title": "إنشاء مجموعة جديدة",
+            "subtitle": "قم بملء التفاصيل أدناه لإضافة طلب جديد.",
+            "groupNameLabel": "اسم المجموعة",
+            "groupNamePlaceholder": "أدخل عنوان طلب التغيير",
+            "chooseMembersLabel": "اختر الأعضاء",
+            "membersCount": "{count} أعضاء",
+            "submitButton": "إنشاء المجموعة"
+        }
+    },
+    "projectsPage": {
+        "title": "المشاريع",
+        "description": "جميع مشاريعك مع Pulvent في مكان واحد.",
+        "searchPlaceholder": "ابحث عن مشروعك"
+    },
+    "changeRequestDetails": {
+        "crId": "CR-007",
+        "projectLabel": "المشروع",
+        "projectName": "إعادة تصميم موقع الشركة",
+        "typeLabel": "النوع",
+        "typeName": "صفحة إضافية",
+        "title": "إضافة صفحة قائمة المدونة",
+        "currentStatus": "الحالة الحالية",
+        "statusInReview": "قيد المراجعة",
+        "sectionTitle": "تفاصيل طلب التغيير",
+        "requestedBy": "تم الطلب بواسطة",
+        "requesterName": "مريم حسام",
+        "requesterRole": "مصممة واجهات وتجربة المستخدم - شركة ABC",
+        "requestedOn": "تاريخ الطلب",
+        "requestDate": "30 مايو 2026",
+        "requestTime": "12:45 مساءً",
+        "descriptionLabel": "الوصف",
+        "descriptionText": "نرغب في إضافة صفحة قائمة المدونة لعرض جميع المقالات مع خيارات التصفية حسب الفئة، والتاريخ، وخاصية البحث. يجب أن تتبع هذه الصفحة قواعد التصميم والرموز الخاصة بنظام الهوية البصرية الأساسي.",
+        "attachmentsLabel": "المرفقات ({count})",
+        "downloadFile": "تحميل {fileName}",
+        "overviewTitle": "نظرة عامة على الطلب",
+        "requestIdLabel": "رقم الطلب",
+        "lastUpdatedLabel": "آخر تحديث",
+        "nextTitle": "ماذا يحدث بعد ذلك؟",
+        "nextDescription": "يقوم فريق التطوير والتصميم لدينا حاليًا بمراجعة طلبك. سنتحقق من المكونات المعتمدة ونعود إليك بخطة التنفيذ.",
+        "timelineTitle": "سجل النشاط",
+        "step1Title": "تم تقديم الطلب وتسجيله",
+        "step1Desc": "تم التقديم بواسطة <strong class=\"text-slate-700\">مريم حسام</strong>. تم توجيهه إلى قائمة الدعم للفرز الفني.",
+        "step1Time": "30 مايو 2026 - 12:45 مساءً",
+        "step2Title": "المراجعة قيد التنفيذ",
+        "step2Desc": "في انتظار تحديد الأولويات من مالك المنتج وتقدير المطور.",
+        "step2Status": "قيد التنفيذ",
+        "step3Title": "المقترح قيد الانتظار",
+        "step3Desc": "سنشارك معك مقترحًا يتضمن النطاق، والتكلفة، والجدول الزمني المتوقع للتسليم.",
+        "step3Status": "معلق في النظام"
     }
-  },
-  "projectsPage": {
-    "title": "المشاريع",
-    "description": "جميع مشاريعك مع Pulvent في مكان واحد.",
-    "searchPlaceholder": "ابحث عن مشروعك"
-  }
 }
