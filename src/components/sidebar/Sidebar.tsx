@@ -158,7 +158,7 @@ export default function Sidebar({
             )}
 
             {/* =====================================================
-                SIDEBAR
+                SIDEBAR CONTAINER
             ====================================================== */}
 
             <aside
@@ -202,8 +202,10 @@ export default function Sidebar({
                         relative
                         flex
                         h-full
-                        min-h-0
+                        w-full
                         flex-col
+                        overflow-y-auto
+                        overflow-x-hidden
                         rounded-[28px]
                         bg-[#17145F]
                         px-4
@@ -212,6 +214,13 @@ export default function Sidebar({
 
                         transition-all
                         duration-300
+
+                        [::-webkit-scrollbar]:w-1.5
+                        [::-webkit-scrollbar-button]:hidden
+                        [::-webkit-scrollbar-track]:bg-transparent
+                        [::-webkit-scrollbar-thumb]:rounded-full
+                        [::-webkit-scrollbar-thumb]:bg-white/20
+                        hover:[::-webkit-scrollbar-thumb]:bg-white/40
 
                         ${
                             collapsed
@@ -252,7 +261,7 @@ export default function Sidebar({
                     </button>
 
                     {/* =================================================
-                        COLLAPSE
+                        COLLAPSE BUTTON
                     ================================================== */}
 
                     <button
@@ -264,9 +273,7 @@ export default function Sidebar({
                                 : t('collapseSidebar')
                         }
                         className="
-                            absolute
-                            -right-[12px]
-                            top-[58px]
+                            fixed
                             z-50
                             hidden
                             h-8
@@ -286,6 +293,10 @@ export default function Sidebar({
 
                             lg:flex
                         "
+                        style={{
+                            top: '58px',
+                            left: collapsed ? '92px' : '268px',
+                        }}
                     >
                         {collapsed ? (
                             <ChevronRight
@@ -308,13 +319,14 @@ export default function Sidebar({
                         className={`
                             mb-8
                             mt-1
+                            w-full
                             shrink-0
                             transition-all
                             duration-300
 
                             ${
                                 collapsed
-                                    ? 'lg:px-0'
+                                    ? 'lg:flex lg:justify-center lg:px-0'
                                     : 'px-3'
                             }
                         `}
@@ -347,24 +359,11 @@ export default function Sidebar({
                     </div>
 
                     {/* =================================================
-                        NAVIGATION
+                        NAVIGATION & CONTENT
                     ================================================== */}
 
-                    <div
-                        className="
-                            min-h-0
-                            w-full
-                            flex-1
-                            overflow-x-hidden
-                            overflow-y-auto
-                            pr-1
-
-                            scrollbar-thin
-                            scrollbar-track-transparent
-                            scrollbar-thumb-white/20
-                        "
-                    >
-                        {/* MAIN */}
+                    <div className="flex w-full flex-1 flex-col">
+                        {/* MAIN NAVIGATION */}
                         <nav
                             className={`
                                 w-full
@@ -408,6 +407,7 @@ export default function Sidebar({
                             className={`
                                 my-7
                                 h-0
+                                shrink-0
                                 transition-all
                                 duration-300
 
@@ -425,9 +425,8 @@ export default function Sidebar({
                             }}
                         />
 
-                        {/* ACCOUNT */}
+                        {/* ACCOUNT NAVIGATION */}
                         <div className="w-full">
-
                             {!collapsed && (
                                 <p
                                     className="
@@ -501,13 +500,8 @@ export default function Sidebar({
                         BOTTOM SECTION
                     ====================================================== */}
 
-                    <div className="mt-4 w-full shrink-0">
-
-                        {/* =================================================
-                            LANGUAGE
-                            ONLY ON SMALL SCREENS
-                        ================================================== */}
-
+                    <div className="mt-8 w-full shrink-0">
+                        {/* LANGUAGE (SMALL SCREENS) */}
                         <div
                             className="
                                 relative
@@ -540,17 +534,14 @@ export default function Sidebar({
                                 "
                             >
                                 <div className="flex items-center gap-3">
-
-                                    {currentLocale ===
-                                    'ar' ? (
+                                    {currentLocale === 'ar' ? (
                                         <FlagAr />
                                     ) : (
                                         <FlagEn />
                                     )}
 
                                     <span className="text-[14px] font-medium">
-                                        {currentLocale ===
-                                        'ar'
+                                        {currentLocale === 'ar'
                                             ? 'العربية'
                                             : 'English'}
                                     </span>
@@ -590,13 +581,10 @@ export default function Sidebar({
                                         shadow-xl
                                     "
                                 >
-                                    {/* ARABIC */}
                                     <button
                                         type="button"
                                         onClick={() =>
-                                            changeLanguage(
-                                                'ar'
-                                            )
+                                            changeLanguage('ar')
                                         }
                                         className={`
                                             flex
@@ -610,27 +598,20 @@ export default function Sidebar({
                                             hover:bg-gray-50
 
                                             ${
-                                                currentLocale ===
-                                                'ar'
+                                                currentLocale === 'ar'
                                                     ? 'bg-gray-50 font-bold text-[#24453E]'
                                                     : 'text-gray-600'
                                             }
                                         `}
                                     >
-                                        <span>
-                                            العربية
-                                        </span>
-
+                                        <span>العربية</span>
                                         <FlagAr />
                                     </button>
 
-                                    {/* ENGLISH */}
                                     <button
                                         type="button"
                                         onClick={() =>
-                                            changeLanguage(
-                                                'en'
-                                            )
+                                            changeLanguage('en')
                                         }
                                         className={`
                                             flex
@@ -644,27 +625,20 @@ export default function Sidebar({
                                             hover:bg-gray-50
 
                                             ${
-                                                currentLocale ===
-                                                'en'
+                                                currentLocale === 'en'
                                                     ? 'bg-gray-50 font-bold text-[#24453E]'
                                                     : 'text-gray-600'
                                             }
                                         `}
                                     >
-                                        <span>
-                                            English
-                                        </span>
-
+                                        <span>English</span>
                                         <FlagEn />
                                     </button>
                                 </div>
                             )}
                         </div>
 
-                        {/* =================================================
-                            THEME SWITCHER
-                        ================================================== */}
-
+                        {/* THEME SWITCHER */}
                         <div
                             className="
                                 mb-6
@@ -685,12 +659,8 @@ export default function Sidebar({
 
                             <button
                                 type="button"
-                                onClick={
-                                    handleToggleTheme
-                                }
-                                aria-label={t(
-                                    'toggleTheme'
-                                )}
+                                onClick={handleToggleTheme}
+                                aria-label={t('toggleTheme')}
                                 className={`
                                     relative
                                     h-6
@@ -737,10 +707,7 @@ export default function Sidebar({
                             />
                         </div>
 
-                        {/* =================================================
-                            DIVIDER
-                        ================================================== */}
-
+                        {/* DIVIDER */}
                         <div
                             className="
                                 mb-5
@@ -755,10 +722,7 @@ export default function Sidebar({
                             }}
                         />
 
-                        {/* =================================================
-                            USER PROFILE
-                        ================================================== */}
-
+                        {/* USER PROFILE */}
                         <div
                             className={`
                                 flex

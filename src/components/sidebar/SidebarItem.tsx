@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import Arrow from '@icons/arrow.svg';
+import Arrow from '@icons/sidebar-arrow.svg';
 import { ComponentType, SVGProps } from 'react';
 
 interface SidebarItemProps {
@@ -55,20 +55,22 @@ export default function SidebarItem({
       `}
     >
       {/* Arrow - hidden when collapsed */}
-      {!collapsed && (
-        <Arrow
-          className={`
-            shrink-0
-            transition-colors
-            duration-200
-            ${
-              isActive
-                ? 'text-[#29D6D5]'
-                : 'text-white/90 group-hover:text-[#29D6D5]'
-            }
-          `}
-        />
-      )}
+      {/* Arrow - hidden when collapsed */}
+{!collapsed && (
+  <Arrow
+    className={`
+      shrink-0
+      transition-all
+      duration-200
+      rtl:rotate-180
+      ${
+        isActive
+          ? 'text-[#29D6D5]'
+          : 'text-white/90 group-hover:text-[#29D6D5]'
+      }
+    `}
+  />
+)}
 
       {/* Icon */}
       <Icon
