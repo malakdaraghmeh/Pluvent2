@@ -12,6 +12,7 @@ interface ChatSidebarProps {
     onSearchChange: (query: string) => void;
     onSelectChat: (id: string) => void;
     onOpenCreateModal: () => void;
+    className?: string;
 }
 
 export const ChatSidebar: React.FC<ChatSidebarProps> = ({
@@ -21,6 +22,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
     onSearchChange,
     onSelectChat,
     onOpenCreateModal,
+    className = '',
 }) => {
     const t = useTranslations('chat');
 
@@ -32,7 +34,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
     );
 
     return (
-        <div className="w-full max-w-sm flex flex-col rounded-3xl bg-white p-5 shadow-sm border border-slate-100">
+        <div className={`w-full md:max-w-sm flex-col rounded-none md:rounded-3xl bg-white p-4 md:p-5 shadow-sm border-0 md:border border-slate-100 ${className}`}>
             <h1 className="text-2xl font-bold text-[#0F172A] tracking-tight">{t('title')}</h1>
 
             {/* Search Bar */}

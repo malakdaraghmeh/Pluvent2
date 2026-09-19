@@ -20,6 +20,14 @@ export default function MessagesPage() {
     const [inputText, setInputText] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
+    
+    // Track mobile view: 'sidebar' or 'chat'
+    const [mobileView, setMobileView] = useState<'sidebar' | 'chat'>('sidebar');
+
+    const handleSelectChat = (id: string) => {
+        setSelectedChatId(id);
+        setMobileView('chat'); // Switch view to chat on mobile upon selection
+    };
 
     const handleSendMessage = (e: React.FormEvent) => {
         e.preventDefault();
@@ -55,24 +63,31 @@ export default function MessagesPage() {
 
         setChats([chats[0], newGroup, ...chats.slice(1)]);
         setSelectedChatId(newGroup.id);
+        setMobileView('chat');
     };
 
+    const activeChat = chats.find(c => c.id === selectedChatId) || chats[0];
+
     return (
-        <div className="flex h-screen gap-6 font-sans antialiased">
+        <div className="flex h-screen gap-0 md:gap-6 font-sans antialiased p-0 md:p-4">
             <ChatSidebar
                 chats={chats}
                 selectedChatId={selectedChatId}
                 searchQuery={searchQuery}
                 onSearchChange={setSearchQuery}
-                onSelectChat={setSelectedChatId}
+                onSelectChat={handleSelectChat}
                 onOpenCreateModal={() => setIsModalOpen(true)}
+                className={mobileView === 'sidebar' ? 'flex' : 'hidden md:flex'}
             />
 
             <ChatArea
+                activeChat={activeChat}
                 messages={messages}
                 inputText={inputText}
                 onInputChange={setInputText}
                 onSendMessage={handleSendMessage}
+                onBack={() => setMobileView('sidebar')}
+                className={mobileView === 'chat' ? 'flex' : 'hidden md:flex'}
             />
 
             <CreateGroupModal
