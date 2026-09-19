@@ -54,36 +54,64 @@ export const ChatArea: React.FC<ChatAreaProps> = ({
             </div>
 
             {/* Messages List Area */}
-            <div className="flex-1 overflow-y-auto space-y-4 md:space-y-6 pr-1 md:pr-2 custom-scrollbar">
+            <div className="flex-1 overflow-y-auto space-y-6 md:space-y-8 pr-1 md:pr-2 custom-scrollbar">
                 {messages.map(msg => (
                     <div
                         key={msg.id}
-                        className={`flex items-end gap-2 md:gap-3 ${msg.isMe ? 'flex-row-reverse' : 'flex-row'}`}
+                        className={`flex gap-3 md:gap-4 items-start ${msg.isMe ? 'flex-row-reverse' : 'flex-row'}`}
                     >
+                        {/* Avatar */}
                         <img
                             src={msg.senderAvatar}
                             alt={msg.senderName}
-                            className="h-7 w-7 md:h-8 md:w-8 rounded-full object-cover mb-1"
+                            className="h-10 w-10 md:h-11 md:w-11 rounded-full object-cover shrink-0"
                         />
 
+                        {/* Content Container */}
                         <div
-                            className={`flex flex-col max-w-[78%] md:max-w-lg ${msg.isMe ? 'items-end' : 'items-start'}`}
+                            className={`flex flex-col max-w-[78%] md:max-w-xl ${msg.isMe ? 'items-end' : 'items-start'}`}
                         >
-                            <div className="flex items-center gap-2 mb-1">
-                                <span className="text-xs font-bold text-[#0F172A]">
-                                    {msg.senderName}
-                                </span>
-                                <span className="text-[11px] text-gray-400">{msg.time}</span>
+                            {/* Header: Name and Time */}
+                            <div className="flex items-center gap-2 mb-2">
+                                {msg.isMe ? (
+                                    <>
+                                        <span className="text-xs text-slate-400 font-normal">{msg.time}</span>
+                                        <span className="text-sm font-bold text-[#06043A]">{msg.senderName}</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className="text-sm font-bold text-[#06043A]">{msg.senderName}</span>
+                                        <span className="text-xs text-slate-400 font-normal">{msg.time}</span>
+                                    </>
+                                )}
                             </div>
 
+                            {/* Message Bubble */}
                             <div
-                                className={`p-3 md:p-4 text-xs md:text-sm leading-relaxed ${
+                                className={`relative px-5 py-3.5 text-xs md:text-sm leading-relaxed rounded-[26px] ${
                                     msg.isMe
-                                        ? 'bg-[#0B0C39] text-white rounded-2xl rounded-tr-none'
-                                        : 'bg-[#F1F5F9] text-[#0F172A] rounded-2xl rounded-tl-none'
+                                        ? 'bg-[#0B0A42] text-white rounded-br-[4px] rtl:rounded-br-[26px] rtl:rounded-bl-[4px]'
+                                        : 'bg-[#F3F2FA] text-[#06043A] rounded-bl-[4px] rtl:rounded-bl-[26px] rtl:rounded-br-[4px]'
                                 }`}
                             >
                                 {msg.text}
+
+                                {/* Tail SVG shape mirroring the exact curve */}
+                                {msg.isMe ? (
+                                    <svg
+                                        className="absolute bottom-0 -right-2 rtl:right-auto rtl:-left-2 rtl:scale-x-[-1] h-4 w-3 text-[#0B0A42] fill-current"
+                                        viewBox="0 0 12 16"
+                                    >
+                                        <path d="M0 0C0 8 4 16 12 16H0V0Z" />
+                                    </svg>
+                                ) : (
+                                    <svg
+                                        className="absolute bottom-0 -left-2 rtl:left-auto rtl:-right-2 rtl:scale-x-[-1] h-4 w-3 text-[#F3F2FA] fill-current"
+                                        viewBox="0 0 12 16"
+                                    >
+                                        <path d="M12 0C12 8 8 16 0 16H12V0Z" />
+                                    </svg>
+                                )}
                             </div>
                         </div>
                     </div>
