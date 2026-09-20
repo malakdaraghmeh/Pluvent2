@@ -94,26 +94,34 @@
   },
   "projectDetails": {
     "projectName": "اسم المشروع",
+  
     "status": {
       "inProgress": "قيد التنفيذ",
       "completed": "مكتمل"
     },
+  
     "startDate": "تاريخ البدء",
-    "delivery": "التسليم",
+    "delivery": "تاريخ التسليم",
     "daysLeft": "الأيام المتبقية",
     "toDeliver": "لتسليم مشروعك",
     "completed": "مكتمل",
     "projectDelivered": "تم تسليم المشروع",
     "lastUpdated": "آخر تحديث",
-    "projectTimeline": "الخط الزمني للمشروع",
-     "timeline": {
-    "discoveryStrategy": "الاكتشاف والاستراتيجية",
-    "designPrototyping": "التصميم والنمذجة الأولية",
-    "developmentIntegration": "التطوير والتكامل",
-    "testingQuality": "الاختبار وضمان الجودة",
-    "launchDeployment": "الإطلاق والنشر",
-    "supportWarranty": "الدعم والضمان"
-  }
+  
+    "inWarrantyPeriod": "ضمن فترة الضمان",
+    "afterWarrantyEnds": "بعد انتهاء الضمان",
+    "noNewTicketsAfterWarranty": "لن تتمكن من تقديم تذاكر دعم جديدة.",
+  
+    "projectTimeline": "الجدول الزمني للمشروع",
+  
+    "timeline": {
+      "discoveryStrategy": "الاكتشاف والاستراتيجية",
+      "designPrototyping": "التصميم والنماذج الأولية",
+      "developmentIntegration": "التطوير والتكامل",
+      "testingQuality": "الاختبار وضمان الجودة",
+      "launchDeployment": "الإطلاق والنشر",
+      "supportWarranty": "الدعم والضمان"
+    }
   },
   "changeRequests": {
   "title": "طلبات التغيير",
@@ -171,6 +179,26 @@
   "title": "تذكرة دعم",
   "viewAll": "عرض الكل",
   "inProgress": "قيد التنفيذ",
-  "inReview": "قيد المراجعة"
+  "inReview": "قيد المراجعة",
+  "warrantySupport": "دعم الضمان",
+  "description": "مشروعك مشمول بالضمان. يمكنك تقديم تذكرة دعم للمشكلات المتعلقة بالمشروع الذي تم تسليمه.",
+  "features": [
+    "إصلاح الأخطاء",
+    "المشكلات التقنية",
+    "الطلبات المتعلقة بالضمان"
+  ],
+  "status": {
+    "title": "الضمان ساري",
+    "description": "يمكنك تقديم تذكرة للحصول على دعم الضمان أو المساعدة المتعلقة بالمشروع.",
+    "buttonText": "تقديم تذكرة ضمان"
+  },
+  "changeRequestPayments": {
+  "title": "الدفعات",
+  "firstPayment": "الدفعة الأولى",
+  "secondPayment": "الدفعة الثانية",
+  "thirdPayment": "الدفعة الثالثة",
+  "crPayment": "دفعة طلب التغيير",
+  "finalPayment": "الدفعة النهائية"
+}
 }
 }

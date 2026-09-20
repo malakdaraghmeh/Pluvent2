@@ -1,20 +1,67 @@
+
 "use client";
 
 import type { ProjectDetails as ProjectDetailsType } from "../data/projectDetails";
+
 import clockBg from "@/assets/images/clock-bg.png";
 import cover from "@/assets/images/cover.png";
-import { useTranslations } from "next-intl";
 
+import { useTranslations } from "next-intl";
 import { StartDate, Delivery } from "@/assets";
 
 type ProjectDetailsProps = {
   project: ProjectDetailsType;
+
+  // Optional values for Change Request Details page
+  daysLeft?: number;
+  lastUpdated?: string;
+  progressPercent?: number;
+
+  // Optional custom subtitle
+  daysSubtitle?: string;
+
+  // Optional custom progress bar color
+  progressColor?: string;
+
+  statusLabel?: string;
+  statusBackgroundColor?: string;
+  statusTextColor?: string;
+
+  // Optional custom notice
+  noticeTitle?: string;
+  noticeMessage?: string;
 };
 
 export default function ProjectDetails({
   project,
+  daysLeft,
+  lastUpdated,
+  progressPercent,
+  daysSubtitle,
+  noticeTitle,
+  noticeMessage,
+  progressColor = "#12115C",
+ statusLabel,
+  statusBackgroundColor,
+  statusTextColor,
 }: ProjectDetailsProps) {
   const t = useTranslations("projectDetails");
+
+  // Use custom values if provided,
+  // otherwise keep the original project values
+  const displayedDaysLeft = daysLeft ?? project.daysLeft;
+
+  const displayedLastUpdated =
+    lastUpdated ?? project.lastUpdated;
+
+  // Calculate filled progress bars (0 - 46)
+  const filledBars =
+    progressPercent === undefined
+      ? 0
+      : Math.round(
+          (Math.min(100, Math.max(0, progressPercent)) / 100) *
+            46
+        );
 
   return (
     <div className="flex w-full flex-col items-stretch gap-6 lg:flex-row">
@@ -44,7 +91,7 @@ export default function ProjectDetails({
                 text-[#3634C7]
               "
             >
-              {t("projectName")} 
+              {t("projectName")}
             </h1>
 
             <p
@@ -60,24 +107,38 @@ export default function ProjectDetails({
             </p>
           </div>
 
-          {/* Status */}
-          <span
+          {/* Status */}  
+            <span
             className="
-              shrink-0
-              rounded-[6px]
-              bg-[#007AFF0D]
-              px-2
-              py-1
-              text-[12px]
-              text-[#007AFF]
+                flex
+                h-[26px]
+                w-[101px]
+                shrink-0
+                items-center
+                justify-center
+                rounded-[6px]
+                px-[10px]
+                py-1
+                text-[12px]
+                font-medium
             "
-          >
-            {t(
-              project.status === "In Progress"
-                ? "status.inProgress"
-                : "status.completed"
-            )}
-          </span>
+            style={{
+                backgroundColor:
+                statusBackgroundColor ??
+                (project.status === "In Progress"
+                    ? "#007AFF0D"
+                    : "#007AFF0D"),
+
+                color: statusTextColor ?? "#007AFF",
+            }}
+            >
+            {statusLabel ??
+                t(
+                project.status === "In Progress"
+                    ? "status.inProgress"
+                    : "status.completed"
+                )}
+            </span>
         </div>
 
         {/* Dates */}
@@ -160,7 +221,7 @@ export default function ProjectDetails({
         </div>
       </div>
 
-      {/* Days Left */}
+      {/* Days Left / Warranty Period */}
       <div
         className="
           relative
@@ -213,25 +274,26 @@ export default function ProjectDetails({
           "
         >
           {/* Days */}
-          <div className="flex flex-col items-center">
+          <div className="mt-2 flex flex-col items-center">
             <p
               className="
-                text-[28px]
+                text-[40px]
                 font-semibold
                 text-[#39E1D7]
               "
             >
-              {project.daysLeft}
+              {displayedDaysLeft}
             </p>
 
             <p
               className="
+                text-center
                 text-[16px]
                 font-bold
                 text-white
               "
             >
-              {project.daysLeft > 0
+              {displayedDaysLeft > 0
                 ? t("daysLeft")
                 : t("completed")}
             </p>
@@ -239,90 +301,160 @@ export default function ProjectDetails({
             <p
               className="
                 mt-1
+                text-center
                 text-[16px]
                 text-[#39E1D7]
               "
             >
-              {project.daysLeft > 0
-                ? t("toDeliver")
-                : t("projectDelivered")}
+              {daysSubtitle ??
+                (displayedDaysLeft > 0
+                  ? t("toDeliver")
+                  : t("projectDelivered"))}
             </p>
           </div>
 
-          {/* Progress */}
+          {/* Progress Bars */}
           <div className="mt-auto flex w-full items-center gap-[2px]">
             {Array.from({ length: 46 }).map((_, index) => (
               <span
                 key={index}
-                className="
-                  h-[7px]
-                  flex-1
-                  rounded-[1px]
-                  bg-white
-                "
+                className="h-[7px] flex-1 rounded-[1px]"
+                style={{
+                  backgroundColor:
+                    index < filledBars
+                      ? progressColor
+                      : "rgba(255, 255, 255, 0.8)",
+                }}
               />
             ))}
           </div>
 
-          {/* Last Updated */}
-          <div
-            className="
-              mt-6
-              flex
-              w-full
-              flex-col
-              items-center
-              overflow-hidden
-              rounded-[16px]
-              border
-              border-[#39E1D7]
-              bg-[#39E1D71A]
-            "
-          >
+          {/* Bottom Section */}
+          {noticeTitle && noticeMessage ? (
+            /* After Warranty Ends Notice */
             <div
               className="
+                mt-6
                 flex
                 w-full
+                flex-col
                 items-center
-                justify-center
-                rounded-t-[16px]
-                bg-[#39E1D7]
-                px-4
-                py-1
+                overflow-hidden
+                rounded-[16px]
+                border
+                border-[#39E1D7]
+                bg-[#39E1D71A]
               "
             >
-              <p
+              {/* Notice Title */}
+              <div
                 className="
-                  text-[12px]
-                  font-semibold
-                  text-[#12115C]
+                  flex
+                  w-full
+                  items-center
+                  justify-center
+                  rounded-t-[16px]
+                  bg-[#39E1D7]
+                  px-4
+                  py-1
                 "
               >
-                {t("lastUpdated")}
-              </p>
-            </div>
+                <p
+                  className="
+                    text-center
+                    text-[16px]
+                    font-semibold
+                    text-[#12115C]
+                  "
+                >
+                  {noticeTitle}
+                </p>
+              </div>
 
-            <div
-              className="
-                flex
-                w-full
-                items-center
-                justify-center
-                px-4
-                py-2
-              "
-            >
-              <p
+              {/* Notice Message */}
+              <div
                 className="
-                  text-[16px]
-                  font-bold
-                  text-white
+                  flex
+                  w-full
+                  items-center
+                  justify-center
+                  px-4
+                  py-2
                 "
               >
-                {project.lastUpdated}
-              </p>
+                <p
+                  className="
+                    text-center
+                    text-[14px]
+                    leading-[20px]
+                    text-white
+                  "
+                >
+                  {noticeMessage}
+                </p>
+              </div>
             </div>
-          </div>
+          ) : (
+            /* Original Last Updated */
+            <div
+              className="
+                mt-6
+                flex
+                w-full
+                flex-col
+                items-center
+                overflow-hidden
+                rounded-[16px]
+                border
+                border-[#39E1D7]
+                bg-[#39E1D71A]
+              "
+            >
+              <div
+                className="
+                  flex
+                  w-full
+                  items-center
+                  justify-center
+                  rounded-t-[16px]
+                  bg-[#39E1D7]
+                  px-4
+                  py-1
+                "
+              >
+                <p
+                  className="
+                    text-[12px]
+                    font-semibold
+                    text-[#12115C]
+                  "
+                >
+                  {t("lastUpdated")}
+                </p>
+              </div>
+
+              <div
+                className="
+                  flex
+                  w-full
+                  items-center
+                  justify-center
+                  px-4
+                  py-2
+                "
+              >
+                <p
+                  className="
+                    text-[16px]
+                    font-bold
+                    text-white
+                  "
+                >
+                  {displayedLastUpdated}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

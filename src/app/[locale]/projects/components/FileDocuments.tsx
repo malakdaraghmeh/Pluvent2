@@ -1,3 +1,4 @@
+
 "use client";
 
 import { LogoPulvent, File, Upload } from "@/assets";
@@ -5,7 +6,15 @@ import { useRef } from "react";
 import { useTranslations } from "next-intl";
 import { fileDocumentsData } from "../data/fileDocuments";
 
-const FileDocuments = () => {
+type FileDocumentsProps = {
+  showViewAll?: boolean;
+    showUpload?: boolean;
+};
+
+const FileDocuments = ({
+  showViewAll = true,
+  showUpload = true,
+}: FileDocumentsProps) => {
   const t = useTranslations("fileDocuments");
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -44,7 +53,6 @@ const FileDocuments = () => {
       >
         <h2
           className="
-          
             font-semibold
             text-[#12115C]
             text-[22px]
@@ -53,20 +61,22 @@ const FileDocuments = () => {
           {t("title")}
         </h2>
 
-        <button
-          type="button"
-          className="
-            self-start
-           
-            text-[#3634C7]
-            transition-opacity
-            hover:opacity-70
-            sm:self-auto
-            text-[16px]
-          "
-        >
-          {t("viewAll")}
-        </button>
+        {/* View All - Optional */}
+        {showViewAll && (
+          <button
+            type="button"
+            className="
+              self-start
+              text-[#3634C7]
+              transition-opacity
+              hover:opacity-70
+              sm:self-auto
+              text-[16px]
+            "
+          >
+            {t("viewAll")}
+          </button>
+        )}
       </div>
 
       {/* Files */}
@@ -131,7 +141,6 @@ const FileDocuments = () => {
                 <p
                   className="
                     truncate
-                    
                     font-semibold
                     text-[#12115C]
                     text-[15px]
@@ -144,12 +153,12 @@ const FileDocuments = () => {
                   className="
                     mt-1
                     truncate
-                   
                     text-[#6B7280]
                     text-[12px]
                   "
                 >
-                  Upload By : {file.uploadedBy} | {file.size} · {file.date}
+                  Upload By : {file.uploadedBy} | {file.size} ·{" "}
+                  {file.date}
                 </p>
               </div>
             </div>
@@ -160,7 +169,6 @@ const FileDocuments = () => {
               className="
                 shrink-0
                 self-end
-             
                 font-semibold
                 text-[#3634C7]
                 transition-opacity
@@ -176,71 +184,72 @@ const FileDocuments = () => {
       </div>
 
       {/* Upload */}
-      <button
-        type="button"
-        onClick={handleUploadClick}
-        className="
-          flex
-          w-full
-          flex-col
-          items-center
-          justify-center
-          gap-3
-          rounded-[20px]
-          border-[1.5px]
-          border-dashed
-          border-[#E2E8F0]
-          bg-white
-          p-4
-          text-center
-          transition-colors
-          hover:bg-[#F8FAFC]
-          sm:flex-row
-          sm:gap-4
-          sm:p-5
-          md:p-6
-        "
-      >
-        {/* Upload Icon */}
-        <div className="flex shrink-0 items-center justify-center">
-          <Upload />
-        </div>
+    {/* Upload - Optional */}
+{showUpload && (
+  <>
+    <button
+      type="button"
+      onClick={handleUploadClick}
+      className="
+        flex
+        w-full
+        flex-col
+        items-center
+        justify-center
+        gap-3
+        rounded-[20px]
+        border-[1.5px]
+        border-dashed
+        border-[#E2E8F0]
+        bg-white
+        p-4
+        text-center
+        transition-colors
+        hover:bg-[#F8FAFC]
+        sm:flex-row
+        sm:gap-4
+        sm:p-5
+        md:p-6
+      "
+    >
+      <div className="flex shrink-0 items-center justify-center">
+        <Upload />
+      </div>
 
-        {/* Text */}
-        <div className="min-w-0">
-          <p
-            className="
-             
-              font-semibold
-              leading-snug
-              text-[#12115C]
-              text-[16px]
-            "
-          >
-            {t("dropFiles")}
-          </p>
+      <div className="min-w-0">
+        <p
+          className="
+            font-semibold
+            leading-snug
+            text-[#12115C]
+            text-[16px]
+          "
+        >
+          {t("dropFiles")}
+        </p>
 
-          <p
-            className="
-              mt-1
-            
-              leading-relaxed
-              text-[#6B7280]
-              text-[13px]
-            "
-          >
-            {t("fileTypes")}
-          </p>
-        </div>
-      </button>
+        <p
+          className="
+            mt-1
+            leading-relaxed
+            text-[#6B7280]
+            text-[13px]
+          "
+        >
+          {t("fileTypes")}
+        </p>
+      </div>
+    </button>
 
-      <input
-        ref={fileInputRef}
-        type="file"
-        className="hidden"
-        accept=".pdf,.docx,.xlsx,.png,.jpg,.jpeg,.zip"
-        multiple
-      />
+    <input
+      ref={fileInputRef}
+      type="file"
+      className="hidden"
+      accept=".pdf,.docx,.xlsx,.png,.jpg,.jpeg,.zip"
+      multiple
+    />
+  </>
+)}
     </section>
   );
 };
