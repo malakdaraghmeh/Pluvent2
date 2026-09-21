@@ -30,7 +30,7 @@ export const mainNavigation = [
     icon: Billing,
   },
   {
-    label: 'SupportAndTickets',
+    label: 'Support',
     href: '/support',
     icon: Support,
   },
