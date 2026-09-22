@@ -10,54 +10,50 @@ import {
   type PaymentHistoryItem,
 } from "../data/paymentHistory";
 
-import { SearchBilling, DownloadBilling } from "@/assets";
+import { SearchBilling, DownloadBilling, Visa, Paypal, Apple, Instapay } from "@/assets";
 
 const PaymentMethodBadge = ({ item }: { item: PaymentHistoryItem }) => {
-  switch (item.methodType) {
-    case "visa":
-      return (
-        <div className="flex items-center gap-2 text-[#12115C] font-medium text-[13px]">
-          <span className="font-black text-[#1A1F71] italic tracking-tighter text-[13px]">
-            VISA
+    switch (item.methodType) {
+      case "visa":
+        return (
+          <div className="flex items-center gap-2 text-[#12115C] font-medium text-[13px]">
+            <Visa className=" h-auto shrink-0" />
+            <span>{item.methodText}</span>
+          </div>
+        );
+  
+      case "paypal":
+        return (
+          <div className="flex items-center gap-1.5 text-[#0088FF] font-medium text-[13px]">
+            <Paypal className=" h-auto shrink-0" />
+            <span>{item.methodText}</span>
+          </div>
+        );
+  
+      case "applepay":
+        return (
+          <div className="flex items-center gap-1.5 text-[#111827] font-medium text-[13px]">
+            <Apple className=" h-auto shrink-0" />
+            <span>{item.methodText}</span>
+          </div>
+        );
+  
+      case "instapay":
+        return (
+          <div className="flex items-center gap-2 font-medium text-[13px]">
+            <Instapay className=" h-auto shrink-0" />
+            <span className="text-[#4B5563]">{item.methodText}</span>
+          </div>
+        );
+  
+      default:
+        return (
+          <span className="text-[#4B5563] text-[13px]">
+            {item.methodText}
           </span>
-          <span>{item.methodText}</span>
-        </div>
-      );
-
-    case "paypal":
-      return (
-        <div className="flex items-center gap-1.5 text-[#0079C1] font-medium text-[13px]">
-          <span className="font-extrabold italic text-[14px]">P</span>
-          <span>{item.methodText}</span>
-        </div>
-      );
-
-    case "applepay":
-      return (
-        <div className="flex items-center gap-1.5 text-[#111827] font-medium text-[13px]">
-          <span className="text-[15px] pb-0.5"></span>
-          <span>{item.methodText}</span>
-        </div>
-      );
-
-    case "instapay":
-      return (
-        <div className="flex items-center gap-2 text-[#4C4DDC] font-medium text-[13px]">
-          <span className="bg-[#4C4DDC] text-white text-[9px] font-bold px-1 rounded">
-            iP
-          </span>
-          <span className="text-[#4B5563]">{item.methodText}</span>
-        </div>
-      );
-
-    default:
-      return (
-        <span className="text-[#4B5563] text-[13px]">
-          {item.methodText}
-        </span>
-      );
-  }
-};
+        );
+    }
+  };
 
 export default function PaymentHistoryTable() {
   const t = useTranslations("paymentHistory");

@@ -35,6 +35,14 @@ export { default as Billing1  } from "./icons/billing1.svg";
 export { default as Billing2 } from "./icons/billing2.svg";
 export { default as Billing3 } from "./icons/billing3.svg";
 export { default as Billing4 } from "./icons/billing4.svg";
+export { default as Visa } from "./icons/Visa.svg";
+export { default as Paypal } from "./icons/Paypal.svg";
+export { default as Apple } from "./icons/apple.svg";
+export { default as Instapay } from "./icons/instapay.svg";
+
+
+
+
 
 
 
