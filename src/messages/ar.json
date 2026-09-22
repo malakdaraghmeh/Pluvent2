@@ -173,7 +173,19 @@
   "viewAll": "عرض الكل",
   "finalPayment": "الدفعة النهائية",
   "openProject": "فتح المشروع",
-  "dueIn": "مستحقة خلال {days} يوم"
+  "dueIn": "مستحق خلال {days} أيام",
+
+  "searchPlaceholder": "ابحث حسب المشروع أو الفاتورة...",
+  "allProjects": "جميع المشاريع",
+  "project": "المشروع",
+  "installment": "القسط",
+  "amount": "المبلغ",
+  "dueDate": "تاريخ الاستحقاق",
+  "daysLeftLabel": "الأيام المتبقية",
+  "pay": "الدفع",
+  "payNow": "ادفع الآن",
+  "noResults": "لا توجد دفعات",
+  "daysLeft": "{count, plural, zero {# يوم} one {يوم واحد} two {يومان} few {# أيام} many {# يومًا} other {# يوم}}"
 },
 "supportTickets": {
   "title": "تذكرة دعم",
@@ -200,5 +212,43 @@
   "crPayment": "دفعة طلب التغيير",
   "finalPayment": "الدفعة النهائية"
 }
+}, 
+"billingPage": {
+  "title": "الفواتير والمدفوعات",
+  "description": "إدارة جميع مدفوعاتك وفواتيرك وأقساطك وسجل مدفوعاتك في مكان واحد.",
+  "summary": {
+    "totalOutstanding": {
+      "title": "إجمالي المبلغ المستحق",
+      "value": "60,000 جنيه مصري",
+      "description": "عبر 3 مشاريع"
+    },
+    "paidThisYear": {
+      "title": "المدفوع هذا العام",
+      "value": "100,000 جنيه مصري",
+      "description": "تم إكمال 6 مدفوعات"
+    },
+    "upcomingPayments": {
+      "title": "المدفوعات القادمة",
+      "value": "2",
+      "description": "القادمة خلال 5 أيام"
+    },
+    "overduePayments": {
+      "title": "المدفوعات المتأخرة",
+      "value": "1",
+      "description": "إجمالي المتأخرات"
+    }
+  }
+},
+"paymentHistory": {
+  "title": "سجل المدفوعات",
+  "searchPlaceholder": "ابحث حسب المشروع أو الفاتورة...",
+  "allProjects": "جميع المشاريع",
+  "invoice": "الفاتورة / المرجع",
+  "project": "المشروع",
+  "amount": "المبلغ",
+  "method": "طريقة الدفع",
+  "date": "التاريخ",
+  "downloadInvoice": "تحميل الفاتورة",
+  "noResults": "لا يوجد سجل مدفوعات"
 }
 }

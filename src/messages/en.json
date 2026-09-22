@@ -170,7 +170,19 @@
     "viewAll": "View All",
     "finalPayment": "Final Payment",
     "openProject": "Open Project",
-    "dueIn": "Due in {days} days"
+    "dueIn": "Due in {days} days",
+  
+    "searchPlaceholder": "Search by project, invoice...",
+    "allProjects": "All Projects",
+    "project": "Project",
+    "installment": "Installment",
+    "amount": "Amount",
+    "dueDate": "Due Date",
+    "daysLeftLabel": "Days Left",
+    "pay": "Pay",
+    "payNow": "Pay Now",
+    "noResults": "No payments found",
+    "daysLeft": "{count, plural, one {# day} other {# days}}"
   },
   "supportTickets": {
     "title": "Support Ticket",
@@ -197,5 +209,43 @@
   "crPayment": "CR Payment",
   "finalPayment": "Final Payment"
 }
+  },
+  "billingPage": {
+    "title": "Billing & Payments",
+    "description": "Manage all your payments, invoices, installments and history in one place.",
+    "summary": {
+      "totalOutstanding": {
+        "title": "Total Outstanding",
+        "value": "EGP 60,000",
+        "description": "Across 3 projects"
+      },
+      "paidThisYear": {
+        "title": "Paid This Year",
+        "value": "EGP 100,000",
+        "description": "6 payments completed"
+      },
+      "upcomingPayments": {
+        "title": "Upcoming Payments",
+        "value": "2",
+        "description": "Next in 5 days"
+      },
+      "overduePayments": {
+        "title": "Overdue Payments",
+        "value": "1",
+        "description": "Total overdue"
+      }
+    }
+  },
+  "paymentHistory": {
+    "title": "Payment History",
+    "searchPlaceholder": "Search by project, invoice...",
+    "allProjects": "All Projects",
+    "invoice": "Invoice / Reference",
+    "project": "Project",
+    "amount": "Amount",
+    "method": "Method",
+    "date": "Date",
+    "downloadInvoice": "Download Invoice",
+    "noResults": "No payment history found"
   }
 }
