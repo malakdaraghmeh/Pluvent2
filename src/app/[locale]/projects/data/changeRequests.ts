@@ -24,7 +24,7 @@ export const changeRequestsData: ChangeRequest[] = [
     dueDate: "Jan 3, 2026",
   },
   {
-    id: "CR-001",
+    id: "CR-002",
     title: "Company Website Redesign",
     addBy: "Maryam Hosam",
     status: "Waiting User Input",
@@ -32,7 +32,7 @@ export const changeRequestsData: ChangeRequest[] = [
     dueDate: "Jan 3, 2026",
   },
   {
-    id: "CR-001",
+    id: "CR-003",
     title: "Company Website Redesign",
     addBy: "Maryam Hosam",
     status: "Pending Payment",
@@ -40,7 +40,7 @@ export const changeRequestsData: ChangeRequest[] = [
     dueDate: "Jan 3, 2026",
   },
   {
-    id: "CR-001",
+    id: "CR-004",
     title: "Company Website Redesign",
     addBy: "Maryam Hosam",
     status: "Pending Payment",
@@ -48,7 +48,7 @@ export const changeRequestsData: ChangeRequest[] = [
     dueDate: "Jan 3, 2026",
   },
   {
-    id: "CR-001",
+    id: "CR-005",
     title: "Company Website Redesign",
     addBy: "Maryam Hosam",
     status: "Inprogress",
@@ -56,7 +56,7 @@ export const changeRequestsData: ChangeRequest[] = [
     dueDate: "Jan 3, 2026",
   },
   {
-    id: "CR-001",
+    id: "CR-006",
     title: "Company Website Redesign",
     addBy: "Maryam Hosam",
     status: "Pending Payment",
@@ -64,7 +64,7 @@ export const changeRequestsData: ChangeRequest[] = [
     dueDate: "Jan 3, 2026",
   },
   {
-    id: "CR-001",
+    id: "CR-007",
     title: "Company Website Redesign",
     addBy: "Maryam Hosam",
     status: "Completed",

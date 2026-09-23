@@ -2,10 +2,18 @@
 import Link from "next/link";
 import { changeRequestsData } from "../data/changeRequests";
 import { Arrow, Add } from "@/assets";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
-const ChangeRequestsTable = () => {
+type ChangeRequestsTableProps = {
+  projectId: number;
+};
+
+const ChangeRequestsTable = ({
+  projectId,
+}: ChangeRequestsTableProps) => {
+  const locale = useLocale();
   const t = useTranslations("changeRequests");
+
 
   return (
     <div
@@ -293,19 +301,18 @@ const ChangeRequestsTable = () => {
 
               {/* Details */}
               <Link
-                href="#"
-                className="
-                  justify-self-start
-               
-                  text-[16px]
-                  font-semibold
-                  text-[#3634C7]
-                  transition-opacity
-                  hover:opacity-70
-                "
-              >
-                {t("details")}
-              </Link>
+            href={`/${locale}/projects/${projectId}/change-requests/${request.id}`}
+            className="
+                justify-self-start
+                text-[16px]
+                font-semibold
+                text-[#3634C7]
+                transition-opacity
+                hover:opacity-70
+            "
+            >
+            {t("details")}
+            </Link>
             </div>
           ))}
         </div>

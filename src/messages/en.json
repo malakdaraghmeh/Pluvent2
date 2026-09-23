@@ -92,10 +92,12 @@
   },
   "projectDetails": {
     "projectName": "Project Name",
+  
     "status": {
       "inProgress": "In Progress",
       "completed": "Completed"
     },
+  
     "startDate": "Start Date",
     "delivery": "Delivery",
     "daysLeft": "Days Left",
@@ -103,15 +105,21 @@
     "completed": "Completed",
     "projectDelivered": "project delivered",
     "lastUpdated": "Last Updated",
+  
+    "inWarrantyPeriod": "In your warranty period",
+    "afterWarrantyEnds": "After Warranty Ends",
+    "noNewTicketsAfterWarranty": "You won't be able to submit new support tickets.",
+  
     "projectTimeline": "Project Timeline",
-     "timeline": {
-    "discoveryStrategy": "Discovery & Strategy",
-    "designPrototyping": "Design & Prototyping",
-    "developmentIntegration": "Development & Integration",
-    "testingQuality": "Testing & Quality Assurance",
-    "launchDeployment": "Launch & Deployment",
-    "supportWarranty": "Support & Warranty"
-  }
+  
+    "timeline": {
+      "discoveryStrategy": "Discovery & Strategy",
+      "designPrototyping": "Design & Prototyping",
+      "developmentIntegration": "Development & Integration",
+      "testingQuality": "Testing & Quality Assurance",
+      "launchDeployment": "Launch & Deployment",
+      "supportWarranty": "Support & Warranty"
+    }
   },
   "changeRequests": {
   "title": "Change Requests",
@@ -169,7 +177,27 @@
     "title": "Support Ticket",
     "viewAll": "View All",
     "inProgress": "In Progress",
-    "inReview": "In Review"
+    "inReview": "In Review",
+    "warrantySupport": "Warranty Support",
+    "description": "Your project is covered by warranty. You can submit a support ticket for issues related to the delivered project.",
+    "features": [
+      "Bug Fixes",
+      "Technical issues",
+      "Warranty-related requests"
+    ],
+    "status": {
+      "title": "Warranty Active",
+      "description": "You can submit your ticket for warranty support or project assistance.",
+      "buttonText": "Submit Warranty Ticket"
+    },
+    "changeRequestPayments": {
+  "title": "Payments",
+  "firstPayment": "First Payment",
+  "secondPayment": "Second Payment",
+  "thirdPayment": "Third Payment",
+  "crPayment": "CR Payment",
+  "finalPayment": "Final Payment"
+}
   },
   
   "changeRequestDetails": {

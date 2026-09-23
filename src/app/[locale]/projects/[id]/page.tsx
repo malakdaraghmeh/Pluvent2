@@ -34,7 +34,7 @@ export default async function Page({ params }: Props) {
       <ProjectTimeline />
 
      {/* Change Requests */}
-    <ChangeRequestsTable />
+     <ChangeRequestsTable projectId={project.id} />
 
      {/* Files + Payments */}
      <ProjectFilesPayments />
