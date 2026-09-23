@@ -8,7 +8,7 @@ const DashboardPage = () => {
     <main
       className="
         min-h-screen
-        bg-[#F8F9FB]
+       
         p-4
         sm:p-5
         lg:p-6
@@ -42,7 +42,7 @@ const DashboardPage = () => {
           <ProjectProgress />
 
           {/* Right */}
-          <div className="flex w-full flex-col gap-4">
+          <div className="flex w-full flex-col gap-6">
             <UpcomingPayments />
             <SupportTickets />
           </div>

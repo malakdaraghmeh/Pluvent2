@@ -1,4 +1,3 @@
-// app/[locale]/layout.tsx
 import React from 'react';
 import '@/app/globals.css';
 import { Sora, Tajawal } from 'next/font/google';
@@ -19,8 +18,15 @@ const tajawal = Tajawal({
   variable: '--font-tajawal',
 });
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
   let messages;
+
   try {
     messages = (await import(`../../messages/${locale}.json`)).default;
   } catch {
@@ -41,6 +47,7 @@ export default async function LocaleLayout({
   params: { locale: string };
 }) {
   let messages;
+
   try {
     messages = (await import(`../../messages/${locale}.json`)).default;
   } catch {

@@ -64,7 +64,115 @@
     "projectsPage": {
         "title": "المشاريع",
         "description": "جميع مشاريعك مع Pulvent في مكان واحد.",
-        "searchPlaceholder": "ابحث عن مشروعك"
+        "searchPlaceholder": "ابحث عن مشروعك",
+     "projectProgress": "تقدم المشاريع",
+  "viewAll": "عرض الكل",
+     "status": {
+    "inProgress": "قيد التنفيذ",
+    "completed": "مكتمل"
+  },
+  "action": {
+    "openProject": "فتح المشروع",
+    "payNow": "ادفع الآن",
+    "viewProject": "عرض المشروع"
+  },
+  "statusLabel": {
+    "projectStatus": "حالة المشروع",
+    "warranty": "الضمان"
+  },
+    "warranty": {
+    "active": "نشط",
+    "valid": "ساري",
+    "onHold": "معلّق",
+    "suspended": "موقوف"
+  },
+  "overallProject": {
+    "overall": "الإجمالي",
+    "project": "المشروع"
+  }
+  
+
+  },
+  "projectDetails": {
+    "projectName": "اسم المشروع",
+    "status": {
+      "inProgress": "قيد التنفيذ",
+      "completed": "مكتمل"
+    },
+    "startDate": "تاريخ البدء",
+    "delivery": "التسليم",
+    "daysLeft": "الأيام المتبقية",
+    "toDeliver": "لتسليم مشروعك",
+    "completed": "مكتمل",
+    "projectDelivered": "تم تسليم المشروع",
+    "lastUpdated": "آخر تحديث",
+    "projectTimeline": "الخط الزمني للمشروع",
+     "timeline": {
+    "discoveryStrategy": "الاكتشاف والاستراتيجية",
+    "designPrototyping": "التصميم والنمذجة الأولية",
+    "developmentIntegration": "التطوير والتكامل",
+    "testingQuality": "الاختبار وضمان الجودة",
+    "launchDeployment": "الإطلاق والنشر",
+    "supportWarranty": "الدعم والضمان"
+  }
+  },
+  "changeRequests": {
+  "title": "طلبات التغيير",
+  "addChangeRequest": "إضافة طلب تغيير",
+  "id": "الرقم",
+  "requestTitle": "العنوان",
+  "addBy": "أضيف بواسطة",
+  "status": "الحالة",
+  "startDate": "تاريخ البدء",
+  "dueDate": "تاريخ الاستحقاق",
+  "details": "التفاصيل"
+},
+"fileDocuments": {
+  "title": "الملفات والمستندات",
+  "viewAll": "عرض الكل",
+  "download": "تحميل",
+  "dropFiles": "أسقط الملفات هنا أو اضغط للرفع",
+  "fileTypes": "PDF, DOCX, XLSX, PNG, JPG, ZIP — حتى 50 ميجابايت لكل ملف"
+},
+"payments": {
+  "title": "الدفعات",
+  "totalPaid": "تم الدفع من أصل $6,000",
+   "finalPayment": "الدفعة النهائية",
+  "payNow": "ادفع الآن",
+  "dueIn": "مستحق خلال {days} يوم",
+  "after": "بعد {days} يوم"
+},
+"dashboardStats": {
+  "projects": {
+    "title": "إجمالي المشاريع",
+    "description": "مشروعان نشطان · مشروعان مكتملان"
+  },
+  "paid": {
+    "title": "إجمالي المدفوع",
+    "description": "من أصل $150,000"
+  },
+  "upcoming": {
+    "title": "الدفعة القادمة",
+    "descriptionHighlight": "مستحقة خلال 15 يومًا",
+    "description": "لمشروع Puller"
+  },
+  "absent": {
+    "title": "الدفعات المستحقة",
+    "description": "دفعة واحدة · مراجعة واحدة"
+  }
+},
+"upcomingPayments": {
+  "title": "الدفعات القادمة",
+  "viewAll": "عرض الكل",
+  "finalPayment": "الدفعة النهائية",
+  "openProject": "فتح المشروع",
+  "dueIn": "مستحقة خلال {days} يوم"
+},
+"supportTickets": {
+  "title": "تذكرة دعم",
+  "viewAll": "عرض الكل",
+  "inProgress": "قيد التنفيذ",
+  "inReview": "قيد المراجعة"
     },
     "changeRequestDetails": {
         "crId": "CR-007",
@@ -101,5 +209,5 @@
         "step3Title": "المقترح قيد الانتظار",
         "step3Desc": "سنشارك معك مقترحًا يتضمن النطاق، والتكلفة، والجدول الزمني المتوقع للتسليم.",
         "step3Status": "معلق في النظام"
-    }
+  }
 }

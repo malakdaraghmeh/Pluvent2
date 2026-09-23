@@ -3,7 +3,7 @@ export type Payment = {
     label: string;
     amount: string;
     status: "due" | "upcoming";
-    days: string;
+    days: number;
   };
   
   export const paymentsData: Payment[] = [
@@ -12,20 +12,20 @@ export type Payment = {
       label: "Final Payment",
       amount: "$2,000",
       status: "due",
-      days: "Due in 1 days",
+      days: 1,
     },
     {
       id: 2,
       label: "Final Payment",
       amount: "$2,000",
       status: "upcoming",
-      days: "After 20 days",
+      days: 20,
     },
     {
       id: 3,
       label: "Final Payment",
       amount: "$2,000",
       status: "upcoming",
-      days: "After 20 days",
+      days:20,
     },
   ];

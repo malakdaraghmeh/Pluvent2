@@ -27,6 +27,8 @@ export { default as File  } from "./icons/file.svg";
 export { default as Upload  } from "./icons/upload.svg";
 export { default as Arrow } from "./icons/arrow2.svg";
 export { default as Add } from "./icons/add.svg";
+export { default as True } from "./icons/True.svg";
+
 
 
 

@@ -20,9 +20,10 @@ export default async function Page({ params }: PageProps) {
   return (
     <main className="flex min-h-screen w-full flex-col gap-5">
       {/* Page Header */}
-      <div className="flex flex-col gap-1 text-left">
+      <div className="flex flex-col gap-1 ">
         <h1
           className="
+          text-start
             text-[24px]
             font-semibold
             text-[#000000]
@@ -33,6 +34,7 @@ export default async function Page({ params }: PageProps) {
 
         <p
           className="
+          text-start
             text-[12px]
             text-[#7E8492]
           "
