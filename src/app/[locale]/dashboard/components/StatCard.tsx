@@ -69,8 +69,9 @@ const StatCard = ({ value, icon }: StatCardProps) => {
   return (
     <div
       className={`
-        min-h-[140px]
+        h-auto
         w-full
+        min-w-0
         rounded-2xl
         border
         bg-white
@@ -80,25 +81,32 @@ const StatCard = ({ value, icon }: StatCardProps) => {
         hover:shadow-md
         ${styles.border}
 
-        sm:p-4
-
-        lg:min-h-[140px]
+        sm:p-3
       `}
     >
-      {/* Top */}
+      {/* Top: Title + Icon */}
       <div
         className="
           flex
-          items-start
+          min-w-0
+          items-center
           justify-between
           gap-2
-
-          sm:gap-3
         "
       >
-       <p className="min-w-0 whitespace-nowrap font-semibold text-[16px] text-[#000000]">
-  {t(`${icon}.title`)}
-</p>
+        {/* Title */}
+        <p
+          className="
+            min-w-0
+            flex-1
+            break-words
+            font-semibold
+            text-[16px]
+            text-[#000000]
+          "
+        >
+          {t(`${icon}.title`)}
+        </p>
 
         {/* Icon */}
         <div
@@ -114,8 +122,8 @@ const StatCard = ({ value, icon }: StatCardProps) => {
             ${styles.iconBg}
             ${styles.iconBorder}
 
-            sm:h-9
-            sm:w-9
+            sm:h-8
+            sm:w-8
           `}
         >
           <Icon className={styles.iconColor} />
@@ -125,12 +133,11 @@ const StatCard = ({ value, icon }: StatCardProps) => {
       {/* Value */}
       <h2
         className="
-          mt-3
+          mt-2
           text-[26px]
           font-semibold
+          leading-tight
           text-[#000000]
-
-          sm:mt-4
         "
       >
         {value}
@@ -139,9 +146,10 @@ const StatCard = ({ value, icon }: StatCardProps) => {
       {/* Description */}
       <p
         className="
-          mt-2
+          mt-1
           min-w-0
           break-words
+          leading-tight
         "
       >
         {hasDescriptionHighlight ? (

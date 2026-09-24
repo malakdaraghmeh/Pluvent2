@@ -27,22 +27,23 @@ const ProjectProgressCard = ({
         max-w-full
         min-w-0
         flex-col
-        gap-4
+        gap-3
         overflow-hidden
         rounded-[24px]
         border
         border-[#EEF0F4]
         bg-white
-        p-4
+        p-3
         shadow-sm
 
-        sm:p-5
+        sm:gap-4
+        sm:p-4
 
-        lg:h-[231px]
+        lg:min-h-[231px]
         lg:flex-row
         lg:items-center
-        lg:gap-5
-        lg:p-6
+        lg:gap-4
+        lg:p-5
       "
     >
       {/* Progress Circle */}
@@ -120,8 +121,9 @@ const ProjectProgressCard = ({
           flex-1
           flex-col
           justify-center
+          gap-0
 
-          lg:h-[183px]
+          lg:min-h-0
           lg:max-w-[400px]
         "
       >
@@ -134,8 +136,6 @@ const ProjectProgressCard = ({
             items-start
             justify-between
             gap-2
-
-            sm:gap-3
           "
         >
           {/* Title */}
@@ -158,14 +158,13 @@ const ProjectProgressCard = ({
             className="
               max-w-[45%]
               shrink-0
-              whitespace-nowrap
               overflow-hidden
               text-ellipsis
+              whitespace-nowrap
               rounded-md
               bg-[#007AFF0D]
               px-2.5
               py-1.5
-
               text-[12px]
               font-normal
               text-[#007AFF]
@@ -185,7 +184,7 @@ const ProjectProgressCard = ({
         {/* Description */}
         <p
           className="
-            mt-2
+            mt-1.5
             line-clamp-2
             w-full
             min-w-0
@@ -195,9 +194,7 @@ const ProjectProgressCard = ({
             tracking-[0%]
             text-[#7E8492]
 
-            sm:mt-3
-
-            lg:max-w-[400px]
+            sm:mt-2
           "
         >
           {description}
@@ -206,7 +203,7 @@ const ProjectProgressCard = ({
         {/* Date + Payment */}
         <div
           className="
-            mt-3
+            mt-2
             flex
             min-h-[40px]
             w-full
@@ -221,9 +218,9 @@ const ProjectProgressCard = ({
             bg-[#E2E8F0]/10
             p-2
 
-            sm:mt-4
+            sm:mt-3
 
-            lg:w-[400px]
+            lg:max-w-[400px]
           "
         >
           {/* Due Date */}
@@ -256,15 +253,17 @@ const ProjectProgressCard = ({
         {/* Warranty + Open Project */}
         <div
           className="
-            mt-3
+            mt-2
             flex
             w-full
             min-w-0
+            flex-wrap
             items-center
             justify-between
-            gap-2
+            gap-x-2
+            gap-y-2
 
-            sm:mt-4
+            sm:mt-3
             sm:gap-3
           "
         >
@@ -279,9 +278,7 @@ const ProjectProgressCard = ({
             "
           >
             {t("statusLabel.warranty")}:{" "}
-            <span className="text-[#10B981]">
-              {warranty}
-            </span>
+            <span className="text-[#10B981]">{warranty}</span>
           </p>
 
           {/* Open Project */}
