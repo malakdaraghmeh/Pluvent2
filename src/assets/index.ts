@@ -28,6 +28,18 @@ export { default as Upload  } from "./icons/upload.svg";
 export { default as Arrow } from "./icons/arrow2.svg";
 export { default as Add } from "./icons/add.svg";
 export { default as True } from "./icons/True.svg";
+export { default as User1 } from "./icons/user1.svg";
+export { default as User2 } from "./icons/user2.svg";
+export { default as Email } from "./icons/email.svg";
+export { default as User4 } from "./icons/user4.svg";
+export { default as DropDown } from "./icons/drop-down.svg";
+export { default as MoreVertical } from "./icons/more-vertical.svg";
+export { default as AddUser } from "./icons/add-user.svg";
+export { default as Close } from "./icons/close.svg";
+
+
+
+
 
 
 
