@@ -1,10 +1,12 @@
+"use client";
+
 import React from "react";
 import { MetricItem } from "../data/usersMetrics";
+import { useTranslations } from "next-intl";
 
 interface UserMetricsGridProps {
   metrics: MetricItem[];
 }
-
 
 const cardStyleMap: Record<
   string,
@@ -29,6 +31,8 @@ const cardStyleMap: Record<
 export const UserMetricsGrid: React.FC<UserMetricsGridProps> = ({
   metrics,
 }) => {
+  const t = useTranslations("usersPage");
+
   return (
     <div className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-2 xl:grid-cols-4">
       {metrics.map((item) => {
@@ -46,13 +50,13 @@ export const UserMetricsGrid: React.FC<UserMetricsGridProps> = ({
                 styles?.badgeBg || "bg-gray-50"
               }`}
             >
-              <Icon  />
+              <Icon />
             </div>
 
             {/* Metric Content */}
             <div className="flex min-w-0 flex-1 flex-col justify-center">
               <span className="truncate text-[14px] font-medium leading-[20px] text-[#64748B] lg:text-[15px]">
-                {item.label}
+                {t(`metrics.${item.id}`)}
               </span>
 
               <span className="mt-[4px] text-[24px] font-semibold leading-[28px] text-[#0F172A]">

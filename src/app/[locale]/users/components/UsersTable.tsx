@@ -1,11 +1,11 @@
-
 "use client";
 
 import React, { useMemo, useState } from "react";
 
 import { UserTableItem } from "../data/usersTable";
-import { DropDown,MoreVertical } from "@/assets";
-import {  Search } from "lucide-react";
+import { DropDown, MoreVertical } from "@/assets";
+import { Search } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface UsersTableProps {
   users: UserTableItem[];
@@ -14,6 +14,7 @@ interface UsersTableProps {
 export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
   const [isRoleOpen, setIsRoleOpen] = useState(false);
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
+  const t = useTranslations("usersPage");
 
   // Get unique roles from users data
   const roles = useMemo(
@@ -58,18 +59,27 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
       >
         {/* Title */}
         <h2 className=" text-[22px] font-semibold text-[#12115C]">
-          Users
+          {t("title")}
         </h2>
 
         {/* Search & Filter */}
         <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
           {/* Search Input */}
           <div className="relative flex w-full items-center sm:w-[280px]">
-            <Search className="absolute left-4 h-4 w-4 text-[#9CA3AF] pointer-events-none rtl:left-auto rtl:right-4" />
+            <Search   className="
+            pointer-events-none
+            absolute
+            left-4
+            h-4
+            w-4
+            text-[#9CA3AF]
+            rtl:left-auto
+            rtl:right-4
+  " />
 
             <input
               type="text"
-              placeholder="Search by project, invoice..."
+              placeholder={t("searchPlaceholder")}
               className="
                 h-[38px]
                 w-full
@@ -82,6 +92,8 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
                 py-[10px]
                 text-[14px]
                 text-[#9CA3AF]
+                 rtl:pl-[16px]
+      rtl:pr-[40px]
               "
             />
           </div>
@@ -112,7 +124,9 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
               "
             >
               <span className="truncate">
-                {selectedRole ?? "Role"}
+                {selectedRole
+                  ? t(`roles.${selectedRole}`)
+                  : t("role")}
               </span>
 
               <span
@@ -163,14 +177,14 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
                       w-full
                       px-4
                       py-2.5
-                      text-left
+                      
                       text-[14px]
                       text-[#12115C]
                       transition-colors
                       hover:bg-[#F8F9FB]
                     "
                   >
-                    All Roles
+                    {t("allRoles")}
                   </button>
 
                   {/* Dynamic Roles */}
@@ -186,7 +200,7 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
                         w-full
                         px-4
                         py-2.5
-                        text-left
+                       
                         text-[14px]
                         transition-colors
                         hover:bg-[#F8F9FB]
@@ -197,7 +211,7 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
                         }
                       `}
                     >
-                      {role}
+                      {t(`roles.${role}`)}
                     </button>
                   ))}
                 </div>
@@ -234,22 +248,30 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
               md:px-6
             "
           >
-            {["User", "Mail", "Role", "Account Status", "Action"].map(
-              (heading) => (
-                <p
-                  key={heading}
-                  className={`
-                    text-[14px]
-                    font-semibold
-                    text-[#12115C
-                    ]
-                    ${heading === "Action" ? "text-center" : "text-left"}
-                  `}
-                >
-                  {heading}
-                </p>
-              )
-            )}
+            {[
+              t("table.user"),
+              t("table.mail"),
+              t("table.role"),
+              t("table.accountStatus"),
+              t("table.action"),
+            ].map((heading) => (
+              <p
+                key={heading}
+                className={`
+                  text-[14px]
+                  font-semibold
+                  text-[#12115C
+                  ]
+                  ${
+                    heading === t("table.action")
+                    ? "text-center"
+                    : "text-left rtl:text-right"
+                  }
+                `}
+              >
+                {heading}
+              </p>
+            ))}
           </div>
 
           {/* Table Rows */}
@@ -279,7 +301,7 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
                 className="
                   min-w-0
                   truncate
-                
+                 
                   text-[14px]
                   font-semibold
                   text-[#1F2937]
@@ -294,9 +316,9 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
                 className="
                   min-w-0
                   truncate
-          
+           
                   text-[14px]
-                
+                 
                   text-[#1F2937]
                 "
                 title={user.email}
@@ -309,38 +331,38 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
                 className="
                   min-w-0
                   truncate
-               
+                
                   text-[14px]
-               
+                
                   text-[#2F1ABD]
                 "
                 title={user.role}
               >
-                {user.role}
+                {t(`roles.${user.role}`)}
               </p>
 
               {/* Account Status */}
               <div className="justify-self-start">
-              <span
-            className={`
-                inline-flex
-                items-center
-                justify-center
-                whitespace-nowrap
-                rounded-full
-                px-3
-                py-1
-                text-[12px]
-                font-semibold
-                ${
-                user.status === "Active"
-                    ? "bg-[#34C7591A] text-[#34C759]"
-                    : "bg-[#FF3B301A] text-[#FF3B30]"
-                }
-            `}
-            >
-            {user.status}
-            </span>
+                <span
+                  className={`
+                    inline-flex 
+                    items-center 
+                    justify-center 
+                    whitespace-nowrap 
+                    rounded-full 
+                    px-3 
+                    py-1 
+                    text-[12px] 
+                    font-semibold 
+                    ${
+                      user.status === "Active"
+                        ? "bg-[#34C7591A] text-[#34C759]"
+                        : "bg-[#FF3B301A] text-[#FF3B30]"
+                    }
+                  `}
+                >
+                  {t(`statuses.${user.status}`)}
+                </span>
               </div>
 
               {/* Action */}
@@ -348,17 +370,17 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
                 type="button"
                 aria-label={`Actions for ${user.name}`}
                 className="
-                  inline-flex
-                  h-8
-                  w-8
-                  items-center
-                  justify-center
-                  justify-self-center
-                  rounded-lg
-                  text-[#64748B]
-                  transition-colors
-                  hover:bg-[#ECEFF4]
-                  hover:text-[#12115C]
+                  inline-flex 
+                  h-8 
+                  w-8 
+                  items-center 
+                  justify-center 
+                  justify-self-center 
+                  rounded-lg 
+                  text-[#64748B] 
+                  transition-colors 
+                  hover:bg-[#ECEFF4] 
+                  hover:text-[#12115C] 
                 "
               >
                 <MoreVertical />
@@ -370,19 +392,19 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
           {filteredUsers.length === 0 && (
             <div
               className="
-                flex
-                min-h-[100px]
-                items-center
-                justify-center
-                border-t
-                border-[#00E5C810]
-                px-4
-                text-[14px]
-                font-medium
-                text-[#64748B]
+                flex 
+                min-h-[100px] 
+                items-center 
+                justify-center 
+                border-t 
+                border-[#00E5C810] 
+                px-4 
+                text-[14px] 
+                font-medium 
+                text-[#64748B] 
               "
             >
-              No users found.
+              {t("noUsersFound")}
             </div>
           )}
         </div>

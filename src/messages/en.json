@@ -235,6 +235,40 @@
     "step3Title": "Proposal pending",
     "step3Desc": "We will share a proposal with scope, cost, and estimated delivery timeline.",
     "step3Status": "System Pending"
+  },
+  "usersPage": {
+    "title": "Users",
+    "titleUser": "User Management",
+    "addUser": "Add User",
+    "description": "Support is available for completed projects within their active warranty period.",
+    "searchPlaceholder": "Search by project, invoice...",
+    "role": "Role",
+    "allRoles": "All Roles",
+    "noUsersFound": "No users found.",
+  
+    "table": {
+      "user": "User",
+      "mail": "Mail",
+      "role": "Role",
+      "accountStatus": "Account Status",
+      "action": "Action"
+    },
+  
+    "roles": {
+      "Admin": "Admin",
+      "Employee": "Employee"
+    },
+  
+    "statuses": {
+      "Active": "Active",
+      "Disable": "Disable"
+    },
+  "metrics": {
+    "outstanding": "Total Outstanding ",
+    "active": "Active Accounts",
+    "pending": "Pending Invitations",
+    "rejected": "regect"
+  }
   }
 
 }
