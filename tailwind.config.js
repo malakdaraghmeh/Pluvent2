@@ -1,13 +1,29 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-    content: ['./src/app/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
-    theme: {
-        extend: {
-            colors: {
-                main: '#C39754',
-                mainBg: '#F4F6FA',
-            },
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/primereact/**/*.{js,jsx,ts,tsx}"
+  ],
+  theme: {
+    extend: {
+      colors: {
+        main: "#3632C7",
+        accent: "#39E3D7",
+        grayq: "#D7D6F4",
+      },
+      container: {
+        center: true,
+        padding: "1rem",
+        screens: {
+          sm: "600px",
+          md: "728px",
+          lg: "984px",
+          xl: "1200px",
+          "2xl": "1200px",
         },
+      },
     },
-    plugins: [],
+  },
+  plugins: [],
 };

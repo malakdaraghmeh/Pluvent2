@@ -1,0 +1,103 @@
+@import 'primereact/resources/themes/lara-light-blue/theme.css';
+@import 'primereact/resources/primereact.min.css';
+@import 'primeicons/primeicons.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* global  */
+:root {
+    --font-ar: "Tajawal", sans-serif;
+    --font-en: "Sora", sans-serif;
+}
+
+html[lang="ar"],
+html[lang="ar"] * {
+    font-family: var(--font-ar);
+}
+
+html[lang="en"],
+html[lang="en"] * {
+    font-family: var(--font-en);
+}
+
+body {
+    @apply antialiased;
+}
+
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+
+/* scrollbar */
+::-webkit-scrollbar {
+    @apply w-[8px] h-3;
+}
+
+::-webkit-scrollbar-track {
+    @apply rounded-full bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-main rounded-full;
+}
+
+.custom-card {
+    @apply shadow-lg border rounded-3xl p-4;
+}
+
+.custom-container {
+    @apply container mx-auto;
+}
+
+/* checkbox style */
+.custom-orange-checkbox .p-checkbox-box {
+    border-color: #2B7B4C !important;
+    background-color: white !important;
+}
+
+.custom-orange-checkbox .p-checkbox-box:not(.p-highlight) {
+    border-color: #2B7B4C !important;
+}
+
+.custom-orange-checkbox .p-checkbox-box.p-highlight {
+    border-color: #2B7B4C !important;
+    background-color: #2B7B4C !important;
+}
+
+.custom-orange-checkbox .p-checkbox-icon {
+    color: #2B7B4C !important;
+}
+
+.p-datatable .p-datatable-thead>tr>th {
+    text-align: center !important;
+}
+
+.p-datatable .p-datatable-thead>tr>th .p-column-header-content {
+    justify-content: center !important;
+}
+
+.p-button.p-button-icon-only {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.grid-bg {
+    background-image: 
+        linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.text-gradient-r {
+    @apply bg-gradient-to-r from-main to-accent bg-clip-text text-transparent;
+}
+
+.text-gradient-b {
+    @apply bg-gradient-to-b from-main via-main to-accent bg-clip-text text-transparent;
+}

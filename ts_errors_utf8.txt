@@ -1,0 +1,21 @@
+﻿src/Components/Helper/ErrorBoundary.tsx(26,24): error TS2339: Property 'hasError' does not exist on type 'Readonly<{}>'.
+src/Components/Helper/ErrorBoundary.tsx(42,41): error TS2339: Property 'error' does not exist on type 'Readonly<{}>'.
+src/Components/Helper/ErrorBoundary.tsx(44,41): error TS2339: Property 'errorInfo' does not exist on type 'Readonly<{}>'.
+src/Components/Helper/ErrorBoundary.tsx(57,27): error TS2339: Property 'children' does not exist on type 'Readonly<{}>'.
+src/Components/Layout/Header/Navbar/Navbar.tsx(9,28): error TS2307: Cannot find module '../ui/LanguageSelect' or its corresponding type declarations.
+src/Components/Layout/Header/Navbar/Navbar.tsx(10,24): error TS2307: Cannot find module '../ui/ButtonLink' or its corresponding type declarations.
+src/Components/Layout/Header/Navbar/Navbar.tsx(35,64): error TS2322: Type '{ src: string; width: number; height: number; alt: string; priority: true; className: string; }' is not assignable to type 'DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>'.
+  Property 'priority' does not exist on type 'DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>'.
+src/Components/Ui/ImageUpload.tsx(39,55): error TS2339: Property 'type' does not exist on type 'unknown'.
+src/Components/Ui/ImageUpload.tsx(80,42): error TS2339: Property 'onerror' does not exist on type 'EventTarget'.
+src/Components/Ui/ImageUpload.tsx(81,42): error TS2339: Property 'src' does not exist on type 'EventTarget'.
+src/Components/Ui/ImageUpload.tsx(90,33): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: ButtonProps): Button', gave the following error.
+    Type '"sm"' is not assignable to type '"small" | "large"'.
+  Overload 2 of 2, '(props: ButtonProps, context: any): Button', gave the following error.
+    Type '"sm"' is not assignable to type '"small" | "large"'.
+src/Pages/change-request-details/page.tsx(254,74): error TS2339: Property 'raw' does not exist on type 'TFunction<"changeRequestDetails", undefined>'.
+src/Pages/projects/[id]/change-requests/components/SupportTicket.tsx(16,22): error TS2339: Property 'raw' does not exist on type 'TFunction<"supportTickets", undefined>'.
+src/Pages/projects/[id]/change-requests/components/SupportTicket.tsx(134,48): error TS2339: Property 'src' does not exist on type 'string'.
+src/Pages/projects/components/ProjectDetails.tsx(244,41): error TS2339: Property 'src' does not exist on type 'string'.
+src/Pages/projects/components/ProjectDetails.tsx(260,45): error TS2339: Property 'src' does not exist on type 'string'.

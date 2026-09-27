@@ -1,0 +1,332 @@
+{
+  "Home": {
+    "title": "مرحبًا بك في موقعي",
+    "description": "هذا هو الإصدار العربي"
+  },
+  "navbar": {
+    "Home": "الرئيسية",
+    "Services": "الخدمات",
+    "Categories": "الاقسام",
+    "About": "من نحن",
+    "Products": "المنتجات",
+    "projects": "المشاريع",
+    "AllProducts": "جميع المنتجات",
+    "contactUs": "تواصل معنا",
+    "Booking": "الحجز",
+    "Login": "تسجيل الدخول",
+    "blogs": "المدونة"
+  },
+  "sidebar": {
+    "portal": "البوابة",
+    "account": "الحساب",
+    "expandSidebar": "توسيع الشريط الجانبي",
+    "collapseSidebar": "طي الشريط الجانبي",
+    "toggleTheme": "تغيير المظهر",
+    "Dashboard": "لوحة التحكم",
+    "Projects": "المشروع",
+    "FileAndDocument": "الملفات والمستندات",
+    "BillingAndPayments": "الفواتير والمدفوعات",
+    "Support": "الدعم والتذاكر",
+    "Messages": "الرسائل",
+    "UserManagement": "إدارة المستخدمين",
+    "Settings": "الإعدادات",
+    "ChangeRequestDetails": "تفاصيل طلب التغيير"
+  },
+  "files": {
+    "title": "الملفات والمستندات",
+    "subtitle": "ملفات ومستندات المشروع في مكان واحد.",
+    "searchPlaceholder": "ابحث عن عملك",
+    "dropzoneTitle": "أسقط الملفات هنا أو انقر للرفع",
+    "dropzoneHint": "PDF, DOCX, XLSX, PNG, JPG, ZIP — حتى 50 ميجابايت لكل ملف",
+    "uploadedBy": "تم الرفع بواسطة",
+    "download": "تحميل",
+    "downloading": "جاري تحميل"
+  },
+  "chat": {
+    "title": "الرسائل",
+    "searchPlaceholder": "ابحث في المحادثات...",
+    "pinned": "المثبتة",
+    "groupConversations": "محادثات المجموعة",
+    "createNewGroup": "إنشاء مجموعة جديدة",
+    "online": "متصل",
+    "justNow": "الآن",
+    "typeMessagePlaceholder": "اكتب رسالة...",
+    "createGroupModal": {
+      "title": "إنشاء مجموعة جديدة",
+      "subtitle": "قم بملء التفاصيل أدناه لإضافة طلب جديد.",
+      "groupNameLabel": "اسم المجموعة",
+      "groupNamePlaceholder": "أدخل عنوان طلب التغيير",
+      "chooseMembersLabel": "اختر الأعضاء",
+      "membersCount": "{count} أعضاء",
+      "submitButton": "إنشاء المجموعة"
+    }
+  },
+  "projectsPage": {
+    "title": "المشاريع",
+    "description": "جميع مشاريعك مع Pulvent في مكان واحد.",
+    "searchPlaceholder": "ابحث عن مشروعك",
+    "projectProgress": "تقدم المشاريع",
+    "viewAll": "عرض الكل",
+    "status": {
+      "inProgress": "قيد التنفيذ",
+      "completed": "مكتمل"
+    },
+    "action": {
+      "openProject": "فتح المشروع",
+      "payNow": "ادفع الآن",
+      "viewProject": "عرض المشروع"
+    },
+    "statusLabel": {
+      "projectStatus": "حالة المشروع",
+      "warranty": "الضمان"
+    },
+    "warranty": {
+      "active": "نشط",
+      "valid": "ساري",
+      "onHold": "معلّق",
+      "suspended": "موقوف"
+    },
+    "overallProject": {
+      "overall": "الإجمالي",
+      "project": "المشروع"
+    }
+  },
+  "projectDetails": {
+    "projectName": "اسم المشروع",
+    "status": {
+      "inProgress": "قيد التنفيذ",
+      "completed": "مكتمل"
+    },
+    "startDate": "تاريخ البدء",
+    "delivery": "تاريخ التسليم",
+    "daysLeft": "الأيام المتبقية",
+    "toDeliver": "لتسليم مشروعك",
+    "completed": "مكتمل",
+    "projectDelivered": "تم تسليم المشروع",
+    "lastUpdated": "آخر تحديث",
+    "inWarrantyPeriod": "ضمن فترة الضمان",
+    "afterWarrantyEnds": "بعد انتهاء الضمان",
+    "noNewTicketsAfterWarranty": "لن تتمكن من تقديم تذاكر دعم جديدة.",
+    "projectTimeline": "الجدول الزمني للمشروع",
+    "timeline": {
+      "discoveryStrategy": "الاكتشاف والاستراتيجية",
+      "designPrototyping": "التصميم والنماذج الأولية",
+      "developmentIntegration": "التطوير والتكامل",
+      "testingQuality": "الاختبار وضمان الجودة",
+      "launchDeployment": "الإطلاق والنشر",
+      "supportWarranty": "الدعم والضمان"
+    }
+  },
+  "changeRequests": {
+    "title": "طلبات التغيير",
+    "addChangeRequest": "إضافة طلب تغيير",
+    "id": "الرقم",
+    "requestTitle": "العنوان",
+    "addBy": "أضيف بواسطة",
+    "status": "الحالة",
+    "startDate": "تاريخ البدء",
+    "dueDate": "تاريخ الاستحقاق",
+    "details": "التفاصيل"
+  },
+  "fileDocuments": {
+    "title": "الملفات والمستندات",
+    "viewAll": "عرض الكل",
+    "download": "تحميل",
+    "dropFiles": "أسقط الملفات هنا أو اضغط للرفع",
+    "fileTypes": "PDF, DOCX, XLSX, PNG, JPG, ZIP — حتى 50 ميجابايت لكل ملف"
+  },
+  "payments": {
+    "title": "الدفعات",
+    "totalPaid": "تم الدفع من أصل $6,000",
+    "finalPayment": "الدفعة النهائية",
+    "payNow": "ادفع الآن",
+    "dueIn": "مستحق خلال {days} يوم",
+    "after": "بعد {days} يوم"
+  },
+  "dashboardStats": {
+    "projects": {
+      "title": "إجمالي المشاريع",
+      "description": "مشروعان نشطان · مشروعان مكتملان"
+    },
+    "paid": {
+      "title": "إجمالي المدفوع",
+      "description": "من أصل $150,000"
+    },
+    "upcoming": {
+      "title": "الدفعة القادمة",
+      "descriptionHighlight": "مستحقة خلال 15 يومًا",
+      "description": "لمشروع Puller"
+    },
+    "absent": {
+      "title": "الدفعات المستحقة",
+      "description": "دفعة واحدة · مراجعة واحدة"
+    }
+  },
+  "upcomingPayments": {
+    "title": "الدفعات القادمة",
+    "viewAll": "عرض الكل",
+    "finalPayment": "الدفعة النهائية",
+    "openProject": "فتح المشروع",
+    "dueIn": "مستحق خلال {days} أيام",
+    "searchPlaceholder": "ابحث حسب المشروع أو الفاتورة...",
+    "allProjects": "جميع المشاريع",
+    "project": "المشروع",
+    "installment": "القسط",
+    "amount": "المبلغ",
+    "dueDate": "تاريخ الاستحقاق",
+    "daysLeftLabel": "الأيام المتبقية",
+    "pay": "الدفع",
+    "payNow": "ادفع الآن",
+    "noResults": "لا توجد دفعات",
+    "daysLeft": "{count, plural, zero {# يوم} one {يوم واحد} two {يومان} few {# أيام} many {# يومًا} other {# يوم}}"
+  },
+  "supportTickets": {
+    "title": "تذكرة دعم",
+    "viewAll": "عرض الكل",
+    "inProgress": "قيد التنفيذ",
+    "inReview": "قيد المراجعة",
+    "warrantySupport": "دعم الضمان",
+    "description": "مشروعك مشمول بالضمان. يمكنك تقديم تذكرة دعم للمشكلات المتعلقة بالمشروع الذي تم تسليمه.",
+    "features": [
+      "إصلاح الأخطاء",
+      "المشكلات التقنية",
+      "الطلبات المتعلقة بالضمان"
+    ],
+    "status": {
+      "title": "الضمان ساري",
+      "description": "يمكنك تقديم تذكرة للحصول على دعم الضمان أو المساعدة المتعلقة بالمشروع.",
+      "buttonText": "تقديم تذكرة ضمان"
+    },
+    "changeRequestPayments": {
+      "title": "الدفعات",
+      "firstPayment": "الدفعة الأولى",
+      "secondPayment": "الدفعة الثانية",
+      "thirdPayment": "الدفعة الثالثة",
+      "crPayment": "دفعة طلب التغيير",
+      "finalPayment": "الدفعة النهائية"
+    }
+  },
+  "changeRequestDetails": {
+    "crId": "CR-007",
+    "projectLabel": "المشروع",
+    "projectName": "إعادة تصميم موقع الشركة",
+    "typeLabel": "النوع",
+    "typeName": "صفحة إضافية",
+    "title": "إضافة صفحة قائمة المدونة",
+    "currentStatus": "الحالة الحالية",
+    "statusInReview": "قيد المراجعة",
+    "sectionTitle": "تفاصيل طلب التغيير",
+    "requestedBy": "تم الطلب بواسطة",
+    "requesterName": "مريم حسام",
+    "requesterRole": "مصممة واجهات وتجربة المستخدم - شركة ABC",
+    "requestedOn": "تاريخ الطلب",
+    "requestDate": "30 مايو 2026",
+    "requestTime": "12:45 مساءً",
+    "descriptionLabel": "الوصف",
+    "descriptionText": "نرغب في إضافة صفحة قائمة المدونة لعرض جميع المقالات مع خيارات التصفية حسب الفئة، والتاريخ، وخاصية البحث. يجب أن تتبع هذه الصفحة قواعد التصميم والرموز الخاصة بنظام الهوية البصرية الأساسي.",
+    "attachmentsLabel": "المرفقات ({count})",
+    "downloadFile": "تحميل {fileName}",
+    "overviewTitle": "نظرة عامة على الطلب",
+    "requestIdLabel": "رقم الطلب",
+    "lastUpdatedLabel": "آخر تحديث",
+    "nextTitle": "ماذا يحدث بعد ذلك؟",
+    "nextDescription": "يقوم فريق التطوير والتصميم لدينا حاليًا بمراجعة طلبك. سنتحقق من المكونات المعتمدة ونعود إليك بخطة التنفيذ.",
+    "timelineTitle": "سجل النشاط",
+    "step1Title": "تم تقديم الطلب وتسجيله",
+    "step1Desc": "تم التقديم بواسطة <strong class=\"text-slate-700\">مريم حسام</strong>. تم توجيهه إلى قائمة الدعم للفرز الفني.",
+    "step1Time": "30 مايو 2026 - 12:45 مساءً",
+    "step2Title": "المراجعة قيد التنفيذ",
+    "step2Desc": "في انتظار تحديد الأولويات من مالك المنتج وتقدير المطور.",
+    "step2Status": "قيد التنفيذ",
+    "step3Title": "المقترح قيد الانتظار",
+    "step3Desc": "سنشارك معك مقترحًا يتضمن النطاق، والتكلفة، والجدول الزمني المتوقع للتسليم.",
+    "step3Status": "معلق في النظام"
+  },
+  "usersPage": {
+    "title": "المستخدمون",
+    "titleUser": "إدارة المستخدمين",
+    "addUser": "إضافة مستخدم",
+    "description": "يتوفر الدعم للمشاريع المكتملة خلال فترة الضمان الفعالة.",
+    "searchPlaceholder": "البحث عن مستخدم...",
+    "role": "الدور",
+    "allRoles": "جميع الأدوار",
+    "noUsersFound": "لم يتم العثور على مستخدمين.",
+    "table": {
+      "user": "المستخدم",
+      "mail": "البريد الإلكتروني",
+      "role": "الدور",
+      "accountStatus": "حالة الحساب",
+      "action": "الإجراء"
+    },
+    "roles": {
+      "Admin": "مدير",
+      "Employee": "موظف"
+    },
+    "statuses": {
+      "Active": "نشط",
+      "Disable": "معطل"
+    },
+    "metrics": {
+      "outstanding": "إجمالي المبلغ المستحق",
+      "active": "الحسابات النشطة",
+      "pending": "الدعوات المعلقة",
+      "rejected": "مرفوض"
+    },
+    "addUserModal": {
+      "title": "إضافة مستخدم",
+      "description": "إضافة مستخدم جديد إلى موقع Pulvent",
+      "fullName": "الاسم الكامل",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "password": "كلمة المرور",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "role": "الدور",
+      "placeholder": "اكتب هنا…",
+      "submit": "إضافة مستخدم"
+    }
+  },
+  "billingPage": {
+    "title": "الفواتير والمدفوعات",
+    "description": "إدارة جميع مدفوعاتك وفواتيرك وأقساطك وسجل مدفوعاتك في مكان واحد.",
+    "summary": {
+      "totalOutstanding": {
+        "title": "إجمالي المبلغ المستحق",
+        "value": "60,000 جنيه مصري",
+        "description": "عبر 3 مشاريع"
+      },
+      "paidThisYear": {
+        "title": "المدفوع هذا العام",
+        "value": "100,000 جنيه مصري",
+        "description": "تم إكمال 6 مدفوعات"
+      },
+      "upcomingPayments": {
+        "title": "المدفوعات القادمة",
+        "value": "2",
+        "description": "القادمة خلال 5 أيام"
+      },
+      "overduePayments": {
+        "title": "المدفوعات المتأخرة",
+        "value": "1",
+        "description": "إجمالي المتأخرات"
+      }
+    }
+  },
+  "paymentHistory": {
+    "title": "سجل المدفوعات",
+    "searchPlaceholder": "ابحث حسب المشروع أو الفاتورة...",
+    "allProjects": "جميع المشاريع",
+    "invoice": "الفاتورة / المرجع",
+    "project": "المشروع",
+    "amount": "المبلغ",
+    "method": "طريقة الدفع",
+    "date": "التاريخ",
+    "downloadInvoice": "تحميل الفاتورة",
+    "noResults": "لا يوجد سجل مدفوعات"
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة",
+    "description": "عذراً، الصفحة التي تبحث عنها غير موجودة.",
+    "backToHome": "العودة إلى الصفحة الرئيسية",
+    "logoAlt": "شعار بلفنت"
+  }
+}

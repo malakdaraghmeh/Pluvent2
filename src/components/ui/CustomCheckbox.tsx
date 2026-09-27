@@ -1,15 +1,16 @@
-import { Checkbox } from '@/components/ui/checkbox';
+/* eslint-disable react/prop-types */
+import { Checkbox } from 'primereact/checkbox';
 
-export default function CustomCheckbox({ id, checked, onChange, label }: { id: string, checked: boolean, onChange: any, label: string }) {
+export default function CustomCheckbox({ id, checked, onChange, label }) {
     return (
         <div className="flex items-center gap-2">
             <Checkbox
-                id={id}
+                inputId={id}
                 checked={checked}
-                onCheckedChange={onChange}
-                className="custom-checkbox"
+                onChange={onChange}
+                className="custom-orange-checkbox"
             />
-            <label htmlFor={id} className="text-sm border-none shadow-none text-gray-600 cursor-pointer select-none">
+            <label htmlFor={id} className="cursor-pointer">
                 {label}
             </label>
         </div>

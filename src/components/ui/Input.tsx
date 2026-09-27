@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -30,13 +30,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         const inputType = isPassword && showPassword ? 'text' : type;
 
         return (
-            <div className={`flex flex-col gap-1.5 relative ${className}`} dir={dir}>
+            <div className={`flex flex-col gap-1 mb-4 relative ${className}`} dir={dir}>
                 {label && (
                     <label
                         htmlFor={props.name}
-                        className="text-sm font-semibold text-gray-700 flex items-center gap-2"
+                        className="text-[#0B0D17] font-medium text-[18px] mb-2 flex items-center gap-2"
                     >
-                        {Icon && <Icon size={16} className="text-gray-500" />}
+                        {Icon && <Icon className="text-[#0B0D17]" />}
                         {label}
                     </label>
                 )}
@@ -48,10 +48,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                         dir={dir}
                         type={inputType}
                         placeholder={placeholder}
-                        className={`w-full px-4 py-2.5 min-h-[46px] bg-gray-50 border rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-200 ${error
-                            ? 'border-red-300 focus:ring-red-100'
-                            : 'border-gray-200 focus:ring-main/20 focus:border-main'
-                            } ${isPassword ? (dir === 'rtl' ? 'pl-10 pr-4' : 'pr-10 pl-4') : ''} ${inputClassName}`}
+                        className={`w-full bg-white border rounded-[12px] h-[50px] px-4 focus:ring-2 focus:ring-main/20 outline-none transition-all shadow-sm ${error ? 'border-red-500' : 'border-main/10'
+                            } pr-10 transition-all ${inputClassName}`}
                     />
 
                     {isPassword && (
@@ -66,7 +64,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                     )}
                 </div>
 
-                {error && <span className="text-xs text-red-500 mt-0.5">{error.message || (typeof error === 'string' ? error : null)}</span>}
+                {error && <span className="text-red-500 text-xs">{error.message}</span>}
             </div>
         );
     }

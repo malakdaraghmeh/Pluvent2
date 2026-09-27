@@ -1,19 +1,19 @@
-import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
+import { ReactNode } from 'react';
 
 interface ButtonLinkProps {
-    children: React.ReactNode;
-    onClick?: () => void;
-    href?: string;
+    children: ReactNode;
+    to?: string;
     className?: string;
+    onClick?: () => void;
 }
 
-const ButtonLink: React.FC<ButtonLinkProps> = ({ children, onClick, href = '/', className }) => {
+const ButtonLink = ({ children, to = '/', className = '', onClick }: ButtonLinkProps) => {
     return (
         <Link
-            href={href}
+            to={to}
             onClick={onClick}
-            className={`bg-main text-[20px] text-white px-8 py-2.5 rounded-full hover:bg-opacity-90 transition-all ${className}`}
+            className={`block text-center px-2 py-1 border-none rounded-md text-[14px] font-[400] text-white transition-colors cursor-pointer bg-main hover:bg-main/90 ${className}`}
         >
             {children}
         </Link>

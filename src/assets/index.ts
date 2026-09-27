@@ -1,72 +1,48 @@
 // images
-export { default as logo } from './images/logo.png';
+export { default as Logo } from './images/logo.png';
 
 // icons
-export { default as earthIcon } from './icons/earth.svg';
-export { default as folderIcon } from "./icons/folder.svg";
-export { default as paidIcon } from "./icons/paid.svg";
-export { default as  upcomingIcon } from "./icons/download.svg";
-export { default as  DownloadBilling } from "./icons/download-billing.svg";
-export { default as  SearchBilling } from "./icons/search.svg";
+export { default as earthIcon } from './icons/earth.svg?react';
+export { default as folderIcon } from './icons/folder.svg?react';
+export { default as paidIcon } from './icons/paid.svg?react';
+export { default as upcomingIcon } from './icons/download.svg?react';
+export { default as DownloadBilling } from './icons/download-billing.svg?react';
+export { default as SearchBilling } from './icons/search.svg?react';
 
-
-//export { default as upcomingIcon } from "./icons/upcoming.svg";
-export { default as absentIcon } from "./icons/time.svg";
-export { default as ArrowIcon } from "./icons/Icon.svg";
-export { default as Icon } from "./icons/arrow.svg";
-export { default as Search } from "./icons/Vector.svg";
-export { default as Filter } from "./icons/filter.svg";
-export { default as ArrowFilter  } from "./icons/arrow-filter.svg";
-export { default as StartDate  } from "./icons/start-date.svg";
-export { default as Delivery  } from "./icons/delivery.svg";
-export { default as TimelineItem1  } from "./icons/timeline1.svg";
-export { default as TimelineItem2 } from "./icons/timeline2.svg";
-export { default as TimelineItem3  } from "./icons/timeline3.svg";
-export { default as TimelineItem4  } from "./icons/timeline4.svg";
-export { default as TimelineItem5  } from "./icons/timeline5.svg";
-export { default as TimelineItem6  } from "./icons/timeline6.svg";
-export { default as LogoPulvent  } from "./icons/logo-pulvent.svg";
-export { default as File  } from "./icons/file.svg";
-export { default as Upload  } from "./icons/upload.svg";
-export { default as Arrow } from "./icons/arrow2.svg";
-export { default as Add } from "./icons/add.svg";
-export { default as True } from "./icons/True.svg";
-export { default as Billing1  } from "./icons/billing1.svg";
-export { default as Billing2 } from "./icons/billing2.svg";
-export { default as Billing3 } from "./icons/billing3.svg";
-export { default as Billing4 } from "./icons/billing4.svg";
-export { default as Visa } from "./icons/Visa.svg";
-export { default as Paypal } from "./icons/Paypal.svg";
-export { default as Apple } from "./icons/apple.svg";
-export { default as Instapay } from "./icons/instapay.svg";
-
-
-
-
-
-
-
-
-export { default as User1 } from "./icons/user1.svg";
-export { default as User2 } from "./icons/user2.svg";
-export { default as Email } from "./icons/email.svg";
-export { default as User4 } from "./icons/user4.svg";
-export { default as DropDown } from "./icons/drop-down.svg";
-export { default as MoreVertical } from "./icons/more-vertical.svg";
-export { default as AddUser } from "./icons/add-user.svg";
-export { default as Close } from "./icons/close.svg";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//export { default as upcomingIcon } from "./icons/upcoming.svg?react";
+export { default as absentIcon } from './icons/time.svg?react';
+export { default as ArrowIcon } from './icons/Icon.svg?react';
+export { default as Icon } from './icons/arrow.svg?react';
+export { default as Search } from './icons/Vector.svg?react';
+export { default as Filter } from './icons/filter.svg?react';
+export { default as ArrowFilter } from './icons/arrow-filter.svg?react';
+export { default as StartDate } from './icons/start-date.svg?react';
+export { default as Delivery } from './icons/delivery.svg?react';
+export { default as TimelineItem1 } from './icons/timeline1.svg?react';
+export { default as TimelineItem2 } from './icons/timeline2.svg?react';
+export { default as TimelineItem3 } from './icons/timeline3.svg?react';
+export { default as TimelineItem4 } from './icons/timeline4.svg?react';
+export { default as TimelineItem5 } from './icons/timeline5.svg?react';
+export { default as TimelineItem6 } from './icons/timeline6.svg?react';
+export { default as LogoPulvent } from './icons/logo-pulvent.svg?react';
+export { default as File } from './icons/file.svg?react';
+export { default as Upload } from './icons/upload.svg?react';
+export { default as Arrow } from './icons/arrow2.svg?react';
+export { default as Add } from './icons/add.svg?react';
+export { default as True } from './icons/True.svg?react';
+export { default as Billing1 } from './icons/billing1.svg?react';
+export { default as Billing2 } from './icons/billing2.svg?react';
+export { default as Billing3 } from './icons/billing3.svg?react';
+export { default as Billing4 } from './icons/billing4.svg?react';
+export { default as Visa } from './icons/Visa.svg?react';
+export { default as Paypal } from './icons/Paypal.svg?react';
+export { default as Apple } from './icons/apple.svg?react';
+export { default as Instapay } from './icons/instapay.svg?react';
+export { default as User1 } from './icons/user1.svg?react';
+export { default as User2 } from './icons/user2.svg?react';
+export { default as Email } from './icons/email.svg?react';
+export { default as User4 } from './icons/user4.svg?react';
+export { default as DropDown } from './icons/drop-down.svg?react';
+export { default as MoreVertical } from './icons/more-vertical.svg?react';
+export { default as AddUser } from './icons/add-user.svg?react';
+export { default as Close } from './icons/close.svg?react';
