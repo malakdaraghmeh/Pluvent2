@@ -268,7 +268,19 @@
     "active": "Active Accounts",
     "pending": "Pending Invitations",
     "rejected": "regect"
-  }
+  },
+  "addUserModal": {
+  "title": "Add User",
+  "description": "Add New User Into Pulvent Website",
+  "fullName": "Full Name",
+  "email": "Email",
+  "phone": "Phone Number",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "role": "Role",
+  "placeholder": "Title here…",
+  "submit": "Add User"
+}
   }
 
 }
