@@ -6,6 +6,9 @@ export { default as earthIcon } from './icons/earth.svg';
 export { default as folderIcon } from "./icons/folder.svg";
 export { default as paidIcon } from "./icons/paid.svg";
 export { default as  upcomingIcon } from "./icons/download.svg";
+export { default as  DownloadBilling } from "./icons/download-billing.svg";
+export { default as  SearchBilling } from "./icons/search.svg";
+
 
 //export { default as upcomingIcon } from "./icons/upcoming.svg";
 export { default as absentIcon } from "./icons/time.svg";
@@ -28,6 +31,22 @@ export { default as Upload  } from "./icons/upload.svg";
 export { default as Arrow } from "./icons/arrow2.svg";
 export { default as Add } from "./icons/add.svg";
 export { default as True } from "./icons/True.svg";
+export { default as Billing1  } from "./icons/billing1.svg";
+export { default as Billing2 } from "./icons/billing2.svg";
+export { default as Billing3 } from "./icons/billing3.svg";
+export { default as Billing4 } from "./icons/billing4.svg";
+export { default as Visa } from "./icons/Visa.svg";
+export { default as Paypal } from "./icons/Paypal.svg";
+export { default as Apple } from "./icons/apple.svg";
+export { default as Instapay } from "./icons/instapay.svg";
+
+
+
+
+
+
+
+
 export { default as User1 } from "./icons/user1.svg";
 export { default as User2 } from "./icons/user2.svg";
 export { default as Email } from "./icons/email.svg";
