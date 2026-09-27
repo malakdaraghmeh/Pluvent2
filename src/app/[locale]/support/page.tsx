@@ -5,11 +5,13 @@ import Header from './components/Header';
 import TabNavigation from './components/TabNavigation';
 import FilterDropdown from './components/FilterDropdown';
 import TicketCard from './components/TicketCard';
+import TicketTypeModal from './components/TicketTypeModal';
 import { TABS, TICKETS_DATA } from './ticketsData';
 
 export default function SupportTicketsPage() {
     const [activeTab, setActiveTab] = useState('All Tickets');
     const [filterType, setFilterType] = useState('all');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const filteredTickets = useMemo(() => {
         return TICKETS_DATA.filter(ticket => {
@@ -23,8 +25,21 @@ export default function SupportTicketsPage() {
         });
     }, [activeTab, filterType]);
 
+    // Opens the popup modal when clicking "New Ticket"
     const handleNewTicket = () => {
-        alert('New Ticket Modal / Navigation');
+        setIsModalOpen(true);
+    };
+
+    // Handles continuing from the modal selection
+    const handleContinueModal = (selectedType: 'project' | 'general') => {
+        setIsModalOpen(false);
+        console.log('Selected ticket type:', selectedType);
+
+        if (selectedType === 'project') {
+            // Add navigation or modal step for Project Ticket
+        } else {
+            // Add navigation or modal step for General Ticket
+        }
     };
 
     return (
@@ -50,6 +65,13 @@ export default function SupportTicketsPage() {
                     </div>
                 </div>
             </div>
+
+            {/* Ticket Selection Modal */}
+            <TicketTypeModal
+                open={isModalOpen}
+                onOpenChange={setIsModalOpen}
+                onContinue={handleContinueModal}
+            />
         </div>
     );
 }
