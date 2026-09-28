@@ -1,8 +1,8 @@
-import { Routes, Route, Navigate, useParams, useLocation } from 'react-router-dom';
+﻿import { Routes, Route, Navigate, useParams, useLocation } from 'react-router-dom';
 import NotFound from './Pages/NotFound/NotFound';
 import i18n from './i18n/i18n';
 import { useEffect } from 'react';
-import Layout from './Components/Layout/Layout';
+import Layout from './components/Layout/Layout';
 import Services from './Pages/Services/Services';
 import About from './Pages/About/About';
 import Contact from './Pages/Contact/Contact';
@@ -73,3 +73,4 @@ const AppRoutes = () => {
 };
 
 export default AppRoutes;
+

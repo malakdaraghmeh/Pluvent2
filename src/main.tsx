@@ -1,4 +1,4 @@
-import { createRoot } from 'react-dom/client';
+﻿import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import 'primereact/resources/themes/lara-light-blue/theme.css';
@@ -13,7 +13,7 @@ import { store } from './store/store';
 import { Toaster } from 'sonner';
 import { HelmetProvider } from 'react-helmet-async';
 import { PrimeReactProvider } from 'primereact/api';
-import ErrorBoundary from './Components/Helper/ErrorBoundary';
+import ErrorBoundary from './components/helper/ErrorBoundary';
 
 const container = document.getElementById('root');
 if (container) {
@@ -32,3 +32,5 @@ if (container) {
         </Provider>
     );
 }
+
+
