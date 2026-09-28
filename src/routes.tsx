@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import Services from './Pages/Services/Services';
 import About from './Pages/About/About';
 import Contact from './Pages/Contact/Contact';
-import ChangeRequestDetails from './Pages/change-request-details/page';
 import MessagesPage from './Pages/messages/page';
 import SupportTicketsPage from './Pages/support/SupportTicketsPage';
 import ProjectPage from './Pages/projects/page';
@@ -17,6 +16,7 @@ import BillingPage from './Pages/billing/page';
 import UsersPage from './Pages/users/page';
 import TicketDetails from './Pages/support/TicketDetails/page';
 import Layout from './components/Layout/Layout';
+import ChangeRequestDetailsPage from './Pages/projects/[id]/change-requests/[requestId]/page';
 
 function LocaleWrapper() {
     const { locale } = useParams();
@@ -40,7 +40,7 @@ function LocaleWrapper() {
                 <Route path='/services' element={<Services />} />
                 <Route path='/about' element={<About />} />
                 <Route path='/contact' element={<Contact />} />
-                <Route path='/projects/:projectId/change-requests/:requestId' element={<ChangeRequestDetails />} />
+                <Route path='/projects/:projectId/change-requests/:requestId' element={<ChangeRequestDetailsPage />} />
                 <Route path='/messages' element={<MessagesPage />} />
                 <Route path='/support' element={<SupportTicketsPage />} />
                 <Route path='/support/:id' element={<TicketDetails />} />

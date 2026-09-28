@@ -1,6 +1,5 @@
-import { useParams } from 'react-router-dom';
-
-import { useTranslation } from 'react-i18next';
+import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import ProjectDetails from "../../../components/ProjectDetails";
 import FileDocuments from "../../../components/FileDocuments";
@@ -11,25 +10,14 @@ import { changeRequestsData } from "../../../data/changeRequests";
 import ChangeRequestPayments from "../components/ChangeRequestPayments";
 import SupportTicket from "../components/SupportTicket";
 
-type Props = {
-  params: Promise<{
-    locale: string;
-    id: string;
-    requestId: string;
-  }>;
-};
+export default function ChangeRequestDetailsPage() {
+  const { projectId, requestId } = useParams();
 
-export default function ChangeRequestDetailsPage({
-  params,
-}: Props) {
-  const { id, requestId } = useParams();
-
-  // Get translations (Server Component)
   const { t } = useTranslation("projectDetails");
 
   // Get the parent project
   const project = projectDetailsData.find(
-    (item) => item.id === Number(id)
+    (item) => item.id === Number(projectId)
   );
 
   // Get the selected change request
