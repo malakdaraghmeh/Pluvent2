@@ -1,5 +1,3 @@
-
-
 import type { DashboardStat } from "../data/dashboardStats";
 
 import {
@@ -9,7 +7,7 @@ import {
   absentIcon,
 } from "@/assets";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 type StatCardProps = DashboardStat;
 
@@ -69,20 +67,18 @@ const StatCard = ({ value, icon }: StatCardProps) => {
   return (
     <div
       className={`
-        min-h-[140px]
+        h-[120px]
         w-full
+        min-w-0
         rounded-2xl
         border
         bg-white
-        p-3
+        px-4
+        py-2.5
         transition
         duration-300
         hover:shadow-md
         ${styles.border}
-
-        sm:p-4
-
-        lg:min-h-[140px]
       `}
     >
       {/* Top */}
@@ -92,11 +88,10 @@ const StatCard = ({ value, icon }: StatCardProps) => {
           items-start
           justify-between
           gap-2
-
-          sm:gap-3
         "
       >
-        <p className="min-w-0 whitespace-nowrap font-semibold text-[16px] text-[#000000]">
+        {/* Title */}
+        <p className="min-w-0 truncate font-semibold text-[16px] leading-[20px] text-[#000000]">
           {t(`${icon}.title`)}
         </p>
 
@@ -104,8 +99,8 @@ const StatCard = ({ value, icon }: StatCardProps) => {
         <div
           className={`
             flex
-            h-8
-            w-8
+            h-9
+            w-9
             shrink-0
             items-center
             justify-center
@@ -113,9 +108,6 @@ const StatCard = ({ value, icon }: StatCardProps) => {
             border
             ${styles.iconBg}
             ${styles.iconBorder}
-
-            sm:h-9
-            sm:w-9
           `}
         >
           <Icon className={styles.iconColor} />
@@ -125,25 +117,18 @@ const StatCard = ({ value, icon }: StatCardProps) => {
       {/* Value */}
       <h2
         className="
-          mt-3
+          mt-1
           text-[26px]
           font-semibold
+          leading-[30px]
           text-[#000000]
-
-          sm:mt-4
         "
       >
         {value}
       </h2>
 
       {/* Description */}
-      <p
-        className="
-          mt-2
-          min-w-0
-          break-words
-        "
-      >
+      <p className="mt-1 min-w-0 truncate leading-[16px]">
         {hasDescriptionHighlight ? (
           <>
             <span className="text-[11px] text-[#3634C7]">
