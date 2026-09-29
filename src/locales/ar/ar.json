@@ -366,5 +366,56 @@
             { "description": "تصميم المواقع", "total": "$ 5,250.00" },
             { "description": "الاختبار والتجربة", "total": "$ 5,250.00" }
         ]
+    },
+    "paymentDetails": {
+        "title": "تفاصيل الدفع",
+        "subtitle": "راجع تفاصيل هذه الدفعة قبل المتابعة.",
+        "projectLabel": "المشروع",
+        "projectName": "إعادة تصميم الموقع الإلكتروني",
+        "issuedDateLabel": "تاريخ الإصدار",
+        "issuedDateValue": "30 مايو 2026",
+        "paymentTypeLabel": "نوع الدفعة",
+        "paymentTypeValue": "المرحلة النهائية",
+        "dueDateLabel": "تاريخ الاستحقاق",
+        "dueDateValue": "30 يونيو 2026",
+        "amountDueLabel": "المبلغ المستحق",
+        "amountDueValue": "15,000 ج.م",
+        "referenceLabel": "الرقم المرجعي",
+        "referenceValue": "REF-2026-027",
+        "descriptionTitle": "وصف الدفعة",
+        "descriptionText": "دفعة المرحلة النهائية لمشروع إعادة تصميم الموقع الإلكتروني، شاملة تسليم التصاميم والتحضير للإطلاق.",
+        "backButton": "رجوع",
+        "continueButton": "المتابعة للدفع"
+    },
+    "invoice": {
+        "invoiceTo": "فاتورة إلى:",
+        "clientName": "أحمد حسن",
+        "clientPhone": "(612) 856 - 0989",
+        "clientAddress": "مصر - القاهرة شارع 72\nمدينة نصر",
+        "amountDue": "المبلغ المستحق",
+        "amountDueValue": "19,570.00 ج.م",
+        "vatNumber": "الرقم الضريبي:1000",
+        "dateDueHeader": "26 يوليو 2026",
+        "invoiceIdLabel": "رقم الفاتورة",
+        "invoiceIdValue": "رقم: 000027",
+        "issuedDateLabel": "تاريخ الإصدار:",
+        "issuedDateValue": "26 يونيو 2024",
+        "dueDateLabel": "تاريخ الاستحقاق:",
+        "dueDateValue": "26 يوليو 2024",
+        "description": "الوصف",
+        "total": "الإجمالي",
+        "items": [
+            { "description": "تصميم واجهة وتجربة المستخدم", "total": "$ 5,250.00" },
+            { "description": "تصميم الموقع", "total": "$ 5,250.00" },
+            { "description": "اختبار الجودة", "total": "$ 5,250.00" }
+        ],
+        "downloadPdf": "PDF",
+        "downloading": "جاري تحميل",
+        "totalAmountLabel": "المبلغ الإجمالي:",
+        "totalAmountValue": "$19,570.00",
+        "totalVat": "إجمالي القيمة المضافة:1000",
+        "agencyName": "وكالة بولفينت",
+        "agencyWebsite": "www.Pulvent.com",
+        "agencyContact": "contact@Pulvent.com / (884) 879 - 0102"
     }
 }
