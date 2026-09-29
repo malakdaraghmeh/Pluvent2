@@ -1,29 +1,20 @@
-
-import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import {
-    ChevronLeft,
-    ChevronRight,
-    ChevronDown,
-    Moon,
-    Sun,
-    X,
-} from 'lucide-react';
-
-import SidebarItem from './SidebarItem';
-import {
-    mainNavigation,
-    accountNavigation,
-} from './sidebar.data';
+import { ChevronDown, ChevronLeft, ChevronRight, Moon, Sun, X } from 'lucide-react';
 
 import Logo from '@icons/logo.svg?react';
 import PLogo from '@icons/p-logo.svg?react';
-
 import FlagAr from '@icons/egypt-flag.svg?react';
 import FlagEn from '@icons/usa-flag.svg?react';
+
+import SidebarItem from './SidebarItem';
+import ProfileInformationModal from './profile/ProfileInformationModal';
+
+import { accountNavigation, mainNavigation } from './sidebar.data';
+
+import type { ProfileData } from '../../../../utils/types/profile.types';
 
 interface SidebarProps {
     onCollapseChange?: (collapsed: boolean) => void;
@@ -38,26 +29,25 @@ export default function Sidebar({
     isMobileOpen = false,
     onMobileClose,
 }: SidebarProps) {
-    const { t } = useTranslation("sidebar");
+    const { t } = useTranslation('sidebar');
 
     const pathname = useLocation().pathname;
     const router = useNavigate();
 
-    const currentLocale =
-        pathname.split('/')[1] || 'en';
+    const currentLocale = pathname.split('/')[1] || 'en';
 
-    const [collapsed, setCollapsed] =
-        useState(false);
+    const [collapsed, setCollapsed] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(true);
+    const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-    const [isDarkMode, setIsDarkMode] =
-        useState(true);
-
-    const [isLanguageOpen, setIsLanguageOpen] =
-        useState(false);
-
-    /* ---------------------------------------------
-       CLOSE LANGUAGE WHEN MOBILE SIDEBAR CLOSES
-    --------------------------------------------- */
+    const [profileData, setProfileData] = useState<ProfileData>({
+        fullName: 'John Doe',
+        email: 'j.doe2541@gmail.com',
+        phoneNumber: '',
+        role: 'Admin',
+        lastUpdated: 'September 28, 2026',
+    });
 
     useEffect(() => {
         if (!isMobileOpen) {
@@ -65,56 +55,38 @@ export default function Sidebar({
         }
     }, [isMobileOpen]);
 
-    /* ---------------------------------------------
-       COLLAPSE
-    --------------------------------------------- */
-
     const handleToggleCollapse = () => {
         const newState = !collapsed;
 
         setCollapsed(newState);
-
         onCollapseChange?.(newState);
-
         setIsLanguageOpen(false);
     };
-
-    /* ---------------------------------------------
-       THEME
-    --------------------------------------------- */
 
     const handleToggleTheme = () => {
         const newTheme = !isDarkMode;
 
         setIsDarkMode(newTheme);
 
-        onThemeChange?.(
-            newTheme ? 'dark' : 'light'
-        );
+        onThemeChange?.(newTheme ? 'dark' : 'light');
 
         if (newTheme) {
-            document.documentElement.classList.add(
-                'dark'
-            );
+            document.documentElement.classList.add('dark');
         } else {
-            document.documentElement.classList.remove(
-                'dark'
-            );
+            document.documentElement.classList.remove('dark');
         }
     };
-
-    /* ---------------------------------------------
-       NAVIGATION
-    --------------------------------------------- */
 
     const handleNavigation = () => {
         onMobileClose?.();
         setIsLanguageOpen(false);
     };
 
-    /* ---------------------------------------------
-       LANGUAGE
-    --------------------------------------------- */
+    const handleOpenProfile = () => {
+        setIsProfileOpen(true);
+        setIsLanguageOpen(false);
+        onMobileClose?.();
+    };
 
     const changeLanguage = (nextLocale: string) => {
         if (nextLocale === currentLocale) {
@@ -129,16 +101,25 @@ export default function Sidebar({
         router(segments.join('/'));
 
         setIsLanguageOpen(false);
-
         onMobileClose?.();
+    };
+
+    const getInitials = (name: string) => {
+        const parts = name.trim().split(' ').filter(Boolean);
+
+        if (parts.length === 0) {
+            return '';
+        }
+
+        if (parts.length === 1) {
+            return parts[0].slice(0, 2).toUpperCase();
+        }
+
+        return `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase();
     };
 
     return (
         <>
-            {/* =====================================================
-                MOBILE OVERLAY
-            ====================================================== */}
-
             {isMobileOpen && (
                 <button
                     type="button"
@@ -156,10 +137,6 @@ export default function Sidebar({
                 />
             )}
 
-            {/* =====================================================
-                SIDEBAR CONTAINER
-            ====================================================== */}
-
             <aside
                 className={`
                     fixed
@@ -168,27 +145,22 @@ export default function Sidebar({
                     z-50
                     h-[calc(100vh-32px)]
                     p-2
-                    lg:m-4
                     transition-all
                     duration-300
                     ease-in-out
+
                     lg:static
                     lg:z-30
-                    lg:h-auto
+                    lg:m-4
                     lg:flex
+                    lg:h-auto
                     lg:p-0
 
-                    ${isMobileOpen
-                        ? 'translate-x-0'
-                        : '-translate-x-full'
-                    }
+                    ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'}
 
                     lg:translate-x-0
 
-                    ${collapsed
-                        ? 'lg:w-[104px]'
-                        : 'lg:w-[280px]'
-                    }
+                    ${collapsed ? 'lg:w-[104px]' : 'lg:w-[280px]'}
 
                     w-[280px]
                     sm:w-[300px]
@@ -199,7 +171,6 @@ export default function Sidebar({
                         relative
                         flex
                         h-full
-                        lg:flex-1
                         w-full
                         flex-col
                         overflow-hidden
@@ -208,21 +179,14 @@ export default function Sidebar({
                         px-4
                         py-5
                         text-white
-
                         transition-all
                         duration-300
 
-                        ${collapsed
-                            ? 'lg:items-center lg:px-3'
-                            : ''
-                        }
+                        lg:flex-1
+
+                        ${collapsed ? 'lg:items-center lg:px-3' : ''}
                     `}
                 >
-
-                    {/* =================================================
-                        MOBILE CLOSE
-                    ================================================== */}
-
                     <button
                         type="button"
                         onClick={onMobileClose}
@@ -249,18 +213,10 @@ export default function Sidebar({
                         <X size={18} />
                     </button>
 
-                    {/* =================================================
-                        COLLAPSE BUTTON
-                    ================================================== */}
-
                     <button
                         type="button"
                         onClick={handleToggleCollapse}
-                        aria-label={
-                            collapsed
-                                ? t('expandSidebar')
-                                : t('collapseSidebar')
-                        }
+                        aria-label={collapsed ? t('expandSidebar') : t('collapseSidebar')}
                         className="
                             fixed
                             z-50
@@ -285,9 +241,12 @@ export default function Sidebar({
                         style={{
                             top: '58px',
                             ...(currentLocale === 'ar'
-                                ? { right: collapsed ? '92px' : '268px' }
-                                : { left: collapsed ? '92px' : '268px' }
-                            ),
+                                ? {
+                                      right: collapsed ? '92px' : '268px',
+                                  }
+                                : {
+                                      left: collapsed ? '92px' : '268px',
+                                  }),
                         }}
                     >
                         {collapsed ? (
@@ -305,10 +264,6 @@ export default function Sidebar({
                         )}
                     </button>
 
-                    {/* =================================================
-                        LOGO
-                    ================================================== */}
-
                     <div
                         className={`
                             mb-8
@@ -318,15 +273,10 @@ export default function Sidebar({
                             transition-all
                             duration-300
 
-                            ${collapsed
-                                ? 'lg:flex lg:justify-center lg:px-0'
-                                : 'px-3'
-                            }
+                            ${collapsed ? 'lg:flex lg:justify-center lg:px-0' : 'px-3'}
                         `}
                     >
-                        <Link to={`/${currentLocale}`}
-                            onClick={handleNavigation}
-                        >
+                        <Link to={`/${currentLocale}`} onClick={handleNavigation}>
                             {!collapsed ? (
                                 <div className="flex flex-col">
                                     <div className="flex flex-row">
@@ -350,10 +300,6 @@ export default function Sidebar({
                         </Link>
                     </div>
 
-                    {/* =================================================
-                        NAVIGATION & CONTENT
-                    ================================================== */}
-
                     <div
                         className="
                             flex
@@ -372,45 +318,28 @@ export default function Sidebar({
                             hover:[::-webkit-scrollbar-thumb]:bg-white/40
                         "
                     >
-                        {/* MAIN NAVIGATION */}
                         <nav
                             className={`
                                 w-full
                                 space-y-2
                                 p-2
-                                ${collapsed
-                                    ? 'lg:flex lg:flex-col lg:items-center'
-                                    : ''
-                                }
+
+                                ${collapsed ? 'lg:flex lg:flex-col lg:items-center' : ''}
                             `}
                         >
-                            {mainNavigation.map(
-                                (item) => (
-                                    <div
-                                        key={item.label}
-                                        onClick={
-                                            handleNavigation
-                                        }
-                                    >
-                                        <SidebarItem
-                                            {...item}
-                                            label={t(
-                                                item.label
-                                            )}
-                                            rawHref={
-                                                item.href
-                                            }
-                                            href={`/${currentLocale}${item.href}`}
-                                            collapsed={
-                                                collapsed
-                                            }
-                                        />
-                                    </div>
-                                )
-                            )}
+                            {mainNavigation.map(item => (
+                                <div key={item.label} onClick={handleNavigation}>
+                                    <SidebarItem
+                                        {...item}
+                                        label={t(item.label)}
+                                        rawHref={item.href}
+                                        href={`/${currentLocale}${item.href}`}
+                                        collapsed={collapsed}
+                                    />
+                                </div>
+                            ))}
                         </nav>
 
-                        {/* DIVIDER */}
                         <div
                             className={`
                                 my-7
@@ -419,20 +348,15 @@ export default function Sidebar({
                                 transition-all
                                 duration-300
 
-                                ${collapsed
-                                    ? 'lg:mx-auto lg:w-10'
-                                    : 'w-full'
-                                }
+                                ${collapsed ? 'lg:mx-auto lg:w-10' : 'w-full'}
                             `}
                             style={{
-                                borderTop:
-                                    '1.55px solid',
+                                borderTop: '1.55px solid',
                                 borderImage:
                                     'linear-gradient(270deg, rgba(255,255,255,0) 0%, #39E1D7 49.58%, rgba(255,255,255,0) 100%) 1',
                             }}
                         />
 
-                        {/* ACCOUNT NAVIGATION */}
                         <div className="w-full">
                             {!collapsed && (
                                 <p
@@ -466,48 +390,25 @@ export default function Sidebar({
                                 className={`
                                     space-y-2
 
-                                    ${collapsed
-                                        ? 'lg:flex lg:flex-col lg:items-center'
-                                        : ''
-                                    }
+                                    ${collapsed ? 'lg:flex lg:flex-col lg:items-center' : ''}
                                 `}
                             >
-                                {accountNavigation.map(
-                                    (item) => (
-                                        <div
-                                            key={
-                                                item.label
-                                            }
-                                            onClick={
-                                                handleNavigation
-                                            }
-                                        >
-                                            <SidebarItem
-                                                {...item}
-                                                label={t(
-                                                    item.label
-                                                )}
-                                                rawHref={
-                                                    item.href
-                                                }
-                                                href={`/${currentLocale}${item.href}`}
-                                                collapsed={
-                                                    collapsed
-                                                }
-                                            />
-                                        </div>
-                                    )
-                                )}
+                                {accountNavigation.map(item => (
+                                    <div key={item.label} onClick={handleNavigation}>
+                                        <SidebarItem
+                                            {...item}
+                                            label={t(item.label)}
+                                            rawHref={item.href}
+                                            href={`/${currentLocale}${item.href}`}
+                                            collapsed={collapsed}
+                                        />
+                                    </div>
+                                ))}
                             </nav>
                         </div>
                     </div>
 
-                    {/* =====================================================
-                        BOTTOM SECTION
-                    ====================================================== */}
-
                     <div className="mt-8 w-full shrink-0">
-                        {/* LANGUAGE (SMALL SCREENS) */}
                         <div
                             className="
                                 relative
@@ -519,12 +420,7 @@ export default function Sidebar({
                         >
                             <button
                                 type="button"
-                                onClick={() =>
-                                    setIsLanguageOpen(
-                                        (prev) =>
-                                            !prev
-                                    )
-                                }
+                                onClick={() => setIsLanguageOpen(prev => !prev)}
                                 className="
                                     flex
                                     h-10
@@ -540,16 +436,10 @@ export default function Sidebar({
                                 "
                             >
                                 <div className="flex items-center gap-3">
-                                    {currentLocale === 'ar' ? (
-                                        <FlagAr />
-                                    ) : (
-                                        <FlagEn />
-                                    )}
+                                    {currentLocale === 'ar' ? <FlagAr /> : <FlagEn />}
 
                                     <span className="text-[14px] font-medium">
-                                        {currentLocale === 'ar'
-                                            ? 'العربية'
-                                            : 'English'}
+                                        {currentLocale === 'ar' ? 'العربية' : 'English'}
                                     </span>
                                 </div>
 
@@ -559,15 +449,11 @@ export default function Sidebar({
                                         transition-transform
                                         duration-200
 
-                                        ${isLanguageOpen
-                                            ? 'rotate-180'
-                                            : ''
-                                        }
+                                        ${isLanguageOpen ? 'rotate-180' : ''}
                                     `}
                                 />
                             </button>
 
-                            {/* DROPDOWN */}
                             {isLanguageOpen && (
                                 <div
                                     className="
@@ -588,9 +474,7 @@ export default function Sidebar({
                                 >
                                     <button
                                         type="button"
-                                        onClick={() =>
-                                            changeLanguage('ar')
-                                        }
+                                        onClick={() => changeLanguage('ar')}
                                         className={`
                                             flex
                                             w-full
@@ -602,9 +486,10 @@ export default function Sidebar({
                                             transition-colors
                                             hover:bg-gray-50
 
-                                            ${currentLocale === 'ar'
-                                                ? 'bg-gray-50 font-bold text-[#24453E]'
-                                                : 'text-gray-600'
+                                            ${
+                                                currentLocale === 'ar'
+                                                    ? 'bg-gray-50 font-bold text-[#24453E]'
+                                                    : 'text-gray-600'
                                             }
                                         `}
                                     >
@@ -614,9 +499,7 @@ export default function Sidebar({
 
                                     <button
                                         type="button"
-                                        onClick={() =>
-                                            changeLanguage('en')
-                                        }
+                                        onClick={() => changeLanguage('en')}
                                         className={`
                                             flex
                                             w-full
@@ -628,9 +511,10 @@ export default function Sidebar({
                                             transition-colors
                                             hover:bg-gray-50
 
-                                            ${currentLocale === 'en'
-                                                ? 'bg-gray-50 font-bold text-[#24453E]'
-                                                : 'text-gray-600'
+                                            ${
+                                                currentLocale === 'en'
+                                                    ? 'bg-gray-50 font-bold text-[#24453E]'
+                                                    : 'text-gray-600'
                                             }
                                         `}
                                     >
@@ -641,7 +525,6 @@ export default function Sidebar({
                             )}
                         </div>
 
-                        {/* THEME SWITCHER */}
                         <div
                             className="
                                 mb-6
@@ -653,11 +536,7 @@ export default function Sidebar({
                         >
                             <Sun
                                 size={15}
-                                className={
-                                    !isDarkMode
-                                        ? 'text-yellow-400'
-                                        : 'text-white/40'
-                                }
+                                className={!isDarkMode ? 'text-yellow-400' : 'text-white/40'}
                             />
 
                             <button
@@ -672,10 +551,7 @@ export default function Sidebar({
                                     transition-colors
                                     duration-300
 
-                                    ${isDarkMode
-                                        ? 'bg-[#3934C8]'
-                                        : 'bg-gray-300'
-                                    }
+                                    ${isDarkMode ? 'bg-[#3934C8]' : 'bg-gray-300'}
                                 `}
                             >
                                 <span
@@ -690,25 +566,17 @@ export default function Sidebar({
                                         transition-transform
                                         duration-300
 
-                                        ${isDarkMode
-                                            ? 'left-[22px]'
-                                            : 'left-1'
-                                        }
+                                        ${isDarkMode ? 'left-[22px]' : 'left-1'}
                                     `}
                                 />
                             </button>
 
                             <Moon
                                 size={15}
-                                className={
-                                    isDarkMode
-                                        ? 'text-[#29D6D5]'
-                                        : 'text-white/40'
-                                }
+                                className={isDarkMode ? 'text-[#29D6D5]' : 'text-white/40'}
                             />
                         </div>
 
-                        {/* DIVIDER */}
                         <div
                             className="
                                 mb-5
@@ -716,23 +584,26 @@ export default function Sidebar({
                                 w-full
                             "
                             style={{
-                                borderTop:
-                                    '1.55px solid',
+                                borderTop: '1.55px solid',
                                 borderImage:
                                     'linear-gradient(270deg, rgba(255,255,255,0) 0%, #FFFFFF 49.58%, rgba(255,255,255,0) 100%) 1',
                             }}
                         />
 
-                        {/* USER PROFILE */}
-                        <div
+                        <button
+                            type="button"
+                            onClick={handleOpenProfile}
                             className={`
                                 flex
+                                w-full
                                 items-center
+                                rounded-xl
+                                py-2
+                                text-left
+                                transition-colors
+                                hover:bg-white/10
 
-                                ${collapsed
-                                    ? 'lg:justify-center'
-                                    : 'gap-3 px-2'
-                                }
+                                ${collapsed ? 'lg:justify-center' : 'gap-3 px-2'}
                             `}
                         >
                             <div
@@ -750,24 +621,33 @@ export default function Sidebar({
                                     font-bold
                                 "
                             >
-                                JD
+                                {getInitials(profileData.fullName)}
                             </div>
 
                             {!collapsed && (
                                 <div className="min-w-0 flex-1">
                                     <p className="truncate text-sm font-bold">
-                                        John Doe
+                                        {profileData.fullName}
                                     </p>
 
                                     <p className="truncate text-[11px] text-white/60">
-                                        j.doe2541@gmail.com
+                                        {profileData.email}
                                     </p>
                                 </div>
                             )}
-                        </div>
+                        </button>
                     </div>
                 </div>
             </aside>
+
+            <ProfileInformationModal
+                isOpen={isProfileOpen}
+                onClose={() => setIsProfileOpen(false)}
+                profile={profileData}
+                onSave={updatedProfile => {
+                    setProfileData(updatedProfile);
+                }}
+            />
         </>
     );
 }

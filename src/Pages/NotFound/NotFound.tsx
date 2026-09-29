@@ -1,5 +1,5 @@
-import { Logo } from '../../assets';
-import ButtonLink from '../../Components/Ui/ButtonLink';
+﻿import { Logo } from '../../assets';
+import ButtonLink from '../../components/ui/ButtonLink';
 import { useTranslation } from 'react-i18next';
 
 export default function NotFound() {
@@ -19,3 +19,5 @@ export default function NotFound() {
         </div>
     );
 }
+
+

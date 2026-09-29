@@ -1,6 +1,6 @@
 // images
 export { default as Logo } from './images/logo.png';
-
+export { default as AmrProfilePhoto } from './images/amr-profile-photo.png';
 // icons
 export { default as earthIcon } from './icons/earth.svg?react';
 export { default as folderIcon } from './icons/folder.svg?react';
@@ -8,8 +8,6 @@ export { default as paidIcon } from './icons/paid.svg?react';
 export { default as upcomingIcon } from './icons/download.svg?react';
 export { default as DownloadBilling } from './icons/download-billing.svg?react';
 export { default as SearchBilling } from './icons/search.svg?react';
-
-//export { default as upcomingIcon } from "./icons/upcoming.svg?react";
 export { default as absentIcon } from './icons/time.svg?react';
 export { default as ArrowIcon } from './icons/Icon.svg?react';
 export { default as Icon } from './icons/arrow.svg?react';
@@ -46,3 +44,8 @@ export { default as DropDown } from './icons/drop-down.svg?react';
 export { default as MoreVertical } from './icons/more-vertical.svg?react';
 export { default as AddUser } from './icons/add-user.svg?react';
 export { default as Close } from './icons/close.svg?react';
+export { default as ProfileEditIcon } from './icons/profile-edit.svg?react';
+export { default as ProfileUserIcon } from './icons/profile-user.svg?react';
+export { default as ProfileContactIcon } from './icons/profile-contact.svg?react';
+export { default as ProfileSaveArrowIcon } from './icons/profile-save-arrow.svg?react';
+export { default as ProfileCloseIcon } from './icons/profile-close.svg?react';
