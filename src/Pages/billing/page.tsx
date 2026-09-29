@@ -7,9 +7,9 @@ const BillingPage = () => {
   const { t } = useTranslation("billingPage");
 
   return (
-    <main className="min-h-screen p-4 sm:p-5 lg:p-6">
-      <div className="mx-auto flex max-w-[1400px] flex-col gap-6">
-        <div className="flex flex-col gap-2">
+    <main className="min-h-screen p-2 sm:p-4 lg:p-5">
+      <div className="mx-auto flex max-w-[1400px] flex-col gap-4">
+        <div className="flex flex-col gap-1">
           <h1 className="text-[28px] font-semibold text-[#12115C]">
             {t("title")}
           </h1>
