@@ -126,7 +126,18 @@
         "status": "الحالة",
         "startDate": "تاريخ البدء",
         "dueDate": "تاريخ الاستحقاق",
-        "details": "التفاصيل"
+        "details": "التفاصيل",
+        "modal": {
+            "title": "إضافة طلب تغيير جديد",
+            "description": "قم بتعبئة التفاصيل أدناه لإضافة طلب تغيير جديد.",
+            "titleLabel": "العنوان",
+            "titlePlaceholder": "أدخل عنوان طلب التغيير",
+            "descriptionLabel": "الوصف",
+            "descriptionPlaceholder": "أدخل وصف طلب التغيير",
+            "dropFiles": "اسحب الملفات هنا أو اضغط للرفع",
+            "fileTypes": "PDF, DOCX, XLSX, PNG, JPG, ZIP — بحد أقصى 50 ميجابايت لكل ملف",
+            "submit": "إضافة طلب تغيير"
+          }
     },
     "fileDocuments": {
         "title": "الملفات والمستندات",

@@ -1,5 +1,6 @@
 import { Add, AddUser, Arrow, Close, Upload } from "@/assets";
 import React, { useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 type AddChangeRequestModalProps = {
   isOpen: boolean;
@@ -10,6 +11,8 @@ const AddChangeRequestModal = ({
   isOpen,
   onClose,
 }: AddChangeRequestModalProps) => {
+  const { t } = useTranslation("changeRequests");
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleUploadClick = () => {
@@ -74,7 +77,7 @@ const AddChangeRequestModal = ({
                 text-[#12115C]
               "
             >
-              Add New Change Request
+              {t("modal.title")}
             </h2>
           </div>
 
@@ -103,7 +106,7 @@ const AddChangeRequestModal = ({
 
         {/* Description */}
         <p className="text-[14px] text-[#615E8B]">
-          Fill in the details below to add a new change request.
+          {t("modal.description")}
         </p>
 
         {/* Form */}
@@ -111,12 +114,13 @@ const AddChangeRequestModal = ({
           {/* Title */}
           <div className="flex flex-col gap-2">
             <label className="text-[14px] font-semibold text-[#12115C]">
-              Title <span className="text-[#E02B2B]">*</span>
+              {t("modal.titleLabel")}{" "}
+              <span className="text-[#E02B2B]">*</span>
             </label>
 
             <input
               type="text"
-              placeholder="Enter change request title"
+              placeholder={t("modal.titlePlaceholder")}
               className="
                 h-[54px]
                 w-full
@@ -133,11 +137,12 @@ const AddChangeRequestModal = ({
           {/* Description */}
           <div className="flex flex-col gap-2">
             <label className="text-[14px] font-semibold text-[#12115C]">
-              Description <span className="text-[#E02B2B]">*</span>
+              {t("modal.descriptionLabel")}{" "}
+              <span className="text-[#E02B2B]">*</span>
             </label>
 
             <textarea
-              placeholder="Enter change request Description"
+              placeholder={t("modal.descriptionPlaceholder")}
               className="
                 h-[120px]
                 min-h-[120px]
@@ -156,98 +161,100 @@ const AddChangeRequestModal = ({
             />
           </div>
 
-         {/* Upload */}
-         <div className="flex w-full flex-col gap-2">
-  <button
-    type="button"
-    onClick={handleUploadClick}
-    className="
-      flex
-      h-[96px]
-      w-full
-      cursor-pointer
-      items-center
-      justify-center
-      gap-4
-      rounded-[20px]
-      border-[1.5px]
-      border-dashed
-      border-[#E2E8F0]
-      bg-[#FDFDFE]
-      p-6
-      transition-colors
-      hover:bg-[#F8FAFC]
-    "
-  >
-    {/* Upload Icon */}
-    <div className="flex shrink-0 items-center justify-center">
-      <Upload />
-    </div>
+          {/* Upload */}
+          <div className="flex w-full flex-col gap-2">
+            <button
+              type="button"
+              onClick={handleUploadClick}
+              className="
+                flex
+                h-[96px]
+                w-full
+                cursor-pointer
+                items-center
+                justify-center
+                gap-4
+                rounded-[20px]
+                border-[1.5px]
+                border-dashed
+                border-[#E2E8F0]
+                bg-[#FDFDFE]
+                p-6
+                transition-colors
+                hover:bg-[#F8FAFC]
+              "
+            >
+              {/* Upload Icon */}
+              <div className="flex shrink-0 items-center justify-center">
+                <Upload />
+              </div>
 
-    {/* Text */}
-    <div className="flex flex-col items-center">
-      <p
-        className="
-          text-[16px]
-          font-semibold
-          text-[#12115C]
-        "
-      >
-        Drop files here or click to upload
-      </p>
+              {/* Text */}
+              <div className="flex flex-col items-center">
+                <p
+                  className="
+                    text-[16px]
+                    font-semibold
+                    text-[#12115C]
+                  "
+                >
+                  {t("modal.dropFiles")}
+                </p>
 
-      <p
-        className="
-          mt-1
-          text-[13px]
-          text-[#6B7280]
-        "
-      >
-        PDF, DOCX, XLSX, PNG, JPG, ZIP — up to 50 MB each
-      </p>
-    </div>
-  </button>
+                <p
+                  className="
+                    mt-1
+                    text-[13px]
+                    text-[#6B7280]
+                  "
+                >
+                  {t("modal.fileTypes")}
+                </p>
+              </div>
+            </button>
 
-  {/* Hidden File Input */}
-  <input
-    ref={fileInputRef}
-    type="file"
-    className="hidden"
-    accept=".pdf,.docx,.xlsx,.png,.jpg,.jpeg,.zip"
-    multiple
-  />
-</div>
+            {/* Hidden File Input */}
+            <input
+              ref={fileInputRef}
+              type="file"
+              className="hidden"
+              accept=".pdf,.docx,.xlsx,.png,.jpg,.jpeg,.zip"
+              multiple
+            />
+          </div>
         </div>
 
         {/* Submit */}
         <button
-  type="button"
-  className="
-    mt-auto
-    flex
-    h-[44px]
-    w-full
-    items-center
-    justify-center
-    gap-2
-    rounded-[16px]
-    bg-[#12115C]
-    px-5
-    py-4
-    text-[18px]
-    text-white
-    transition-opacity
-    hover:opacity-90
-  "
->
-  <span>
-  <Add />
-  </span>
-  <span>Add Change Request</span>
-  <span>
-  <Arrow />
-  </span>
-</button>
+          type="button"
+          className="
+            mt-auto
+            flex
+            h-[44px]
+            w-full
+            items-center
+            justify-center
+            gap-2
+            rounded-[16px]
+            bg-[#12115C]
+            px-5
+            py-4
+            text-[18px]
+            text-white
+            transition-opacity
+            hover:opacity-90
+          "
+        >
+          <span>
+            <Add />
+          </span>
+
+          <span>{t("modal.submit")}</span>
+
+          <span className="flex shrink-0 items-center rtl:rotate-180">
+            <Arrow />
+          </span>
+        </button>
       </div>
     </div>
   );

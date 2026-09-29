@@ -125,7 +125,19 @@
         "status": "Status",
         "startDate": "Start Date",
         "dueDate": "Due Date",
-        "details": "Details"
+        "details": "Details",
+
+  "modal": {
+    "title": "Add New Change Request",
+    "description": "Fill in the details below to add a new change request.",
+    "titleLabel": "Title",
+    "titlePlaceholder": "Enter change request title",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Enter change request Description",
+    "dropFiles": "Drop files here or click to upload",
+    "fileTypes": "PDF, DOCX, XLSX, PNG, JPG, ZIP — up to 50 MB each",
+    "submit": "Add Change Request"
+  }
     },
     "fileDocuments": {
         "title": "File & Document",
