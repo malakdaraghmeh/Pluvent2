@@ -2,7 +2,6 @@
 import NotFound from './Pages/NotFound/NotFound';
 import i18n from './i18n/i18n';
 import { useEffect } from 'react';
-//import Layout from './components/Layout/Layout';
 import Services from './Pages/Services/Services';
 import About from './Pages/About/About';
 import Contact from './Pages/Contact/Contact';
@@ -13,10 +12,10 @@ import ProjectDetailsPage from './Pages/projects/[id]/page';
 import FileAndDocumentPage from './Pages/file-and-document/page';
 import DashboardPage from './Pages/dashboard/page';
 import BillingPage from './Pages/billing/page';
-import UsersPage from './Pages/users/page';
 import TicketDetails from './Pages/support/TicketDetails/page';
-import Layout from './components/Layout/Layout';
 import ChangeRequestDetailsPage from './Pages/projects/[id]/change-requests/[requestId]/page';
+import Layout from './Components/Layout/Layout';
+import UsersPage from './Pages/users/page';
 
 function LocaleWrapper() {
     const { locale } = useParams();

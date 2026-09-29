@@ -1,18 +1,17 @@
 
 import React, { useState } from "react";
-
-import UserMetricsGrid from "./components/UserMetricsGrid";
-import { usersMetricsData } from "./data/usersMetrics";
 import { Add, Arrow } from "@/assets";
+import { useTranslation } from "react-i18next";
+import UserMetricsGrid from "./components/UserMetricsGrid";
 import UsersTable from "./components/UsersTable";
 import { usersTableData } from "./data/usersTable";
 import AddUserModal from "./components/AddUserModal";
-import { useTranslation } from "react-i18next";
+import { usersMetricsData } from "./data/usersMetrics";
 
 export default function UsersPage() {
   const [isAddUserOpen, setIsAddUserOpen] = useState(false);
 
-  const {t} = useTranslation("usersPage");
+  const { t } = useTranslation("usersPage");
 
   return (
     <main className="min-h-screen">
