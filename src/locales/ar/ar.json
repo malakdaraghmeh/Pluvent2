@@ -338,5 +338,33 @@
         "description": "عذراً، الصفحة التي تبحث عنها غير موجودة.",
         "backToHome": "العودة إلى الصفحة الرئيسية",
         "logoAlt": "شعار بلفنت"
+    },
+    "invoiceModal": {
+        "companyName": "بولفينت",
+        "companySubtitle": "للتقنية والحلول الرقمية",
+        "invoiceTo": "الفاتورة إلى:",
+        "amountDue": "المبلغ المستحق",
+        "vatNumber": "الرقم الضريبي: 1000",
+        "invoiceId": "رقم الفاتورة",
+        "issuedDate": "تاريخ الإصدار:",
+        "dueDate": "تاريخ الاستحقاق:",
+        "description": "الوصف",
+        "total": "الإجمالي",
+        "totalAmount": "المبلغ الإجمالي:",
+        "totalVat": "إجمالي ضريبة القيمة المضافة: 1000",
+        "pdfButton": "PDF",
+        "agencyName": "وكالة بولفينت",
+        "agencyWebsite": "www.Pulvent.com",
+        "agencyContact": "contact@Pulvent.com / (884) 879 - 0102",
+        "client": {
+            "name": "أحمد حسن",
+            "phone": "(612) 856 - 0989",
+            "address": "مصر - القاهرة، ٧٢ شارع\nمدينة نصر"
+        },
+        "items": [
+            { "description": "تصميم واجهات وتجربة المستخدم (UI/UX)", "total": "$ 5,250.00" },
+            { "description": "تصميم المواقع", "total": "$ 5,250.00" },
+            { "description": "الاختبار والتجربة", "total": "$ 5,250.00" }
+        ]
     }
 }

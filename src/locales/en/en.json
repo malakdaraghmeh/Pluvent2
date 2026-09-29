@@ -337,5 +337,34 @@
         "description": "Sorry, the page you are looking for does not exist.",
         "backToHome": "Back to Home",
         "logoAlt": "Pulvent Logo"
+    },
+
+    "invoiceModal": {
+        "companyName": "Pulvent",
+        "companySubtitle": "Technologies And Digital Solutions",
+        "invoiceTo": "INVOICE TO:",
+        "amountDue": "AMOUNT DUE",
+        "vatNumber": "VAT:1000",
+        "invoiceId": "INVOICE ID",
+        "issuedDate": "ISSUED:",
+        "dueDate": "DUE DATE:",
+        "description": "DESCRIPTION",
+        "total": "TOTAL",
+        "totalAmount": "TOTAL AMOUNT:",
+        "totalVat": "TOTAL VAT:1000",
+        "pdfButton": "PDF",
+        "agencyName": "Pulvent Agency",
+        "agencyWebsite": "www.Pulvent.com",
+        "agencyContact": "contact@Pulvent.com / (884) 879 - 0102",
+        "client": {
+            "name": "Ahmed Hassan",
+            "phone": "(612) 856 - 0989",
+            "address": "Egypt - Cairo 72Stret\nNasir City"
+        },
+        "items": [
+            { "description": "Ui Ux deigne", "total": "$ 5,250.00" },
+            { "description": "Web design", "total": "$ 5,250.00" },
+            { "description": "Testing", "total": "$ 5,250.00" }
+        ]
     }
 }

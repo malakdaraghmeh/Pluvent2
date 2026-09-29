@@ -16,6 +16,7 @@ import TicketDetails from './Pages/support/TicketDetails/page';
 import ChangeRequestDetailsPage from './Pages/projects/[id]/change-requests/[requestId]/page';
 import Layout from './Components/Layout/Layout';
 import UsersPage from './Pages/users/page';
+import InvoiceModal from './Pages/InvoiceModal/invoiceModalPage';
 
 function LocaleWrapper() {
     const { locale } = useParams();
@@ -36,18 +37,23 @@ function LocaleWrapper() {
         <Routes>
             <Route element={<Layout />}>
                 <Route index element={<DashboardPage />} />
-                <Route path='/services' element={<Services />} />
-                <Route path='/about' element={<About />} />
-                <Route path='/contact' element={<Contact />} />
-                <Route path='/projects/:projectId/change-requests/:requestId' element={<ChangeRequestDetailsPage />} />
-                <Route path='/messages' element={<MessagesPage />} />
-                <Route path='/support' element={<SupportTicketsPage />} />
-                <Route path='/support/:id' element={<TicketDetails />} />
-                <Route path='/projects' element={<ProjectPage />} />
-                <Route path='/projects/:id' element={<ProjectDetailsPage />} />
-                <Route path='/file-and-document' element={<FileAndDocumentPage />} />
-                <Route path='/billing' element={<BillingPage />} />
-                <Route path='/users' element={<UsersPage />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route
+                    path="/projects/:projectId/change-requests/:requestId"
+                    element={<ChangeRequestDetailsPage />}
+                />
+                <Route path="/messages" element={<MessagesPage />} />
+                <Route path="/support" element={<SupportTicketsPage />} />
+                <Route path="/support/:id" element={<TicketDetails />} />
+                <Route path="/projects" element={<ProjectPage />} />
+                <Route path="/projects/:id" element={<ProjectDetailsPage />} />
+                <Route path="/file-and-document" element={<FileAndDocumentPage />} />
+                <Route path="/billing" element={<BillingPage />} />
+                <Route path="/users" element={<UsersPage />} />
+                <Route path="/invoice" element={<InvoiceModal onClose={undefined} />} />
+
                 <Route path="*" element={<NotFound />} />
             </Route>
         </Routes>
