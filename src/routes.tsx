@@ -14,8 +14,9 @@ import DashboardPage from './Pages/dashboard/page';
 import BillingPage from './Pages/billing/page';
 import TicketDetails from './Pages/support/TicketDetails/page';
 import ChangeRequestDetailsPage from './Pages/projects/[id]/change-requests/[requestId]/page';
-import Layout from './Components/Layout/Layout';
+
 import UsersPage from './Pages/users/page';
+import Layout from './components/Layout/Layout';
 
 function LocaleWrapper() {
     const { locale } = useParams();

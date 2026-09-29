@@ -1,8 +1,9 @@
-
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { changeRequestsData } from "../data/changeRequests";
 import { Arrow, Add } from "@/assets";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
+import AddChangeRequestModal from "./AddChangeRequestModal";
 
 type ChangeRequestsTableProps = {
   projectId: number;
@@ -11,9 +12,11 @@ type ChangeRequestsTableProps = {
 const ChangeRequestsTable = ({
   projectId,
 }: ChangeRequestsTableProps) => {
-  const locale = (localStorage.getItem("i18nextLng") || "en");
+  const locale = localStorage.getItem("i18nextLng") || "en";
   const { t } = useTranslation("changeRequests");
 
+  const [isAddChangeRequestOpen, setIsAddChangeRequestOpen] =
+    useState(false);
 
   return (
     <div
@@ -59,6 +62,7 @@ const ChangeRequestsTable = ({
         {/* Add Change Request */}
         <button
           type="button"
+          onClick={() => setIsAddChangeRequestOpen(true)}
           className="
             flex
             h-[44px]
@@ -69,7 +73,6 @@ const ChangeRequestsTable = ({
             bg-[#12115C]
             px-4
             py-3
-           
             font-medium
             text-white
             transition-opacity
@@ -124,7 +127,6 @@ const ChangeRequestsTable = ({
             <p
               className="
                 justify-self-start
-                
                 text-[14px]
                 text-[#12115C]
               "
@@ -135,7 +137,6 @@ const ChangeRequestsTable = ({
             <p
               className="
                 justify-self-start
-               
                 text-[14px]
                 text-[#12115C]
               "
@@ -146,7 +147,6 @@ const ChangeRequestsTable = ({
             <p
               className="
                 justify-self-start
-                
                 text-[14px]
                 text-[#12115C]
               "
@@ -157,7 +157,6 @@ const ChangeRequestsTable = ({
             <p
               className="
                 justify-self-start
-                
                 text-[14px]
                 text-[#12115C]
               "
@@ -168,7 +167,6 @@ const ChangeRequestsTable = ({
             <p
               className="
                 justify-self-start
-               
                 text-[14px]
                 text-[#12115C]
               "
@@ -179,7 +177,6 @@ const ChangeRequestsTable = ({
             <p
               className="
                 justify-self-start
-               
                 text-[14px]
                 text-[#12115C]
               "
@@ -190,7 +187,6 @@ const ChangeRequestsTable = ({
             <p
               className="
                 justify-self-start
-                
                 text-[14px]
                 text-[#12115C]
               "
@@ -211,9 +207,10 @@ const ChangeRequestsTable = ({
                 gap-4
                 border
                 px-4
-                ${index % 2 === 0
-                  ? "border-[#00E5C810] bg-[#00E5C805]"
-                  : "border-[#2F1ABD10] bg-white"
+                ${
+                  index % 2 === 0
+                    ? "border-[#00E5C810] bg-[#00E5C805]"
+                    : "border-[#2F1ABD10] bg-white"
                 }
               `}
             >
@@ -221,7 +218,6 @@ const ChangeRequestsTable = ({
               <p
                 className="
                   justify-self-start
-                  
                   text-[14px]
                   font-semibold
                   text-[#12125C]
@@ -236,7 +232,6 @@ const ChangeRequestsTable = ({
                   min-w-0
                   justify-self-start
                   truncate
-                 
                   text-[14px]
                   font-semibold
                   text-[#1F2937]
@@ -251,7 +246,6 @@ const ChangeRequestsTable = ({
                   min-w-0
                   justify-self-start
                   truncate
-                  
                   text-[14px]
                   font-semibold
                   text-[#12115C]
@@ -266,7 +260,6 @@ const ChangeRequestsTable = ({
                   min-w-0
                   justify-self-start
                   truncate
-                
                   text-[14px]
                   ${getStatusColor(request.status)}
                 `}
@@ -278,7 +271,6 @@ const ChangeRequestsTable = ({
               <p
                 className="
                   justify-self-start
-                 
                   text-[14px]
                   text-[#596173]
                 "
@@ -290,7 +282,6 @@ const ChangeRequestsTable = ({
               <p
                 className="
                   justify-self-start
-             
                   text-[14px]
                   text-[#5F6573]
                 "
@@ -299,15 +290,16 @@ const ChangeRequestsTable = ({
               </p>
 
               {/* Details */}
-              <Link to={`/${locale}/projects/${projectId}/change-requests/${request.id}`}
+              <Link
+                to={`/${locale}/projects/${projectId}/change-requests/${request.id}`}
                 className="
-                justify-self-start
-                text-[16px]
-                font-semibold
-                text-[#3634C7]
-                transition-opacity
-                hover:opacity-70
-            "
+                  justify-self-start
+                  text-[16px]
+                  font-semibold
+                  text-[#3634C7]
+                  transition-opacity
+                  hover:opacity-70
+                "
               >
                 {t("details")}
               </Link>
@@ -315,6 +307,12 @@ const ChangeRequestsTable = ({
           ))}
         </div>
       </div>
+
+      {/* Add Change Request Modal */}
+      <AddChangeRequestModal
+        isOpen={isAddChangeRequestOpen}
+        onClose={() => setIsAddChangeRequestOpen(false)}
+      />
     </div>
   );
 };
