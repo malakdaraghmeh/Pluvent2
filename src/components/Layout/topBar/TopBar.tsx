@@ -1,4 +1,4 @@
-
+﻿
 import { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ChevronDown, Menu } from 'lucide-react';
@@ -6,6 +6,8 @@ import { ChevronDown, Menu } from 'lucide-react';
 import Bell from '@icons/bell.svg?react';
 import FlagAr from '@icons/egypt-flag.svg?react';
 import FlagEn from '@icons/usa-flag.svg?react';
+
+import NotificationsDropdown from '../notifications/NotificationsDropdown';
 
 
 import { useTranslation } from 'react-i18next';
@@ -21,6 +23,9 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
     const router = useNavigate();
 
     const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+    const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+
+    const notificationButtonRef = useRef<HTMLButtonElement>(null);
 
     const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -146,7 +151,12 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
                 ================================================== */}
 
                 <button
+                    ref={notificationButtonRef}
                     type="button"
+                    onClick={() => {
+                        setIsNotificationsOpen(current => !current);
+                        setIsLanguageOpen(false);
+                    }}
                     className="
                         relative
                         flex
@@ -162,8 +172,11 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
                         sm:w-10
                     "
                     aria-label={t('notifications')}
+                    aria-expanded={isNotificationsOpen}
                 >
-                    <div className="w-[21px] h-[28px]"><Bell /></div>
+                    <div className="h-[28px] w-[21px]">
+                        <Bell />
+                    </div>
 
                     <span
                         className="
@@ -177,6 +190,12 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
                         "
                     />
                 </button>
+
+                <NotificationsDropdown
+                    isOpen={isNotificationsOpen}
+                    onClose={() => setIsNotificationsOpen(false)}
+                    triggerRef={notificationButtonRef}
+                />
 
                 {/* =================================================
                     LANGUAGE
@@ -293,7 +312,7 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
                                 `}
                             >
                                 <span>
-                                    العربية
+                                    Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©
                                 </span>
 
                                 <FlagAr />
