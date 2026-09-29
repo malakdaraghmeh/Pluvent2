@@ -321,6 +321,152 @@
         "lastUpdated": "آخر تحديث: {{value}}",
         "close": "إغلاق معلومات الملف الشخصي"
     },
+   "tickets": {
+       "header": {
+           "title": "تذاكر الدعم الفني",
+           "subtitle": "عرض وإدارة تذاكر الدعم المقدمة الخاصة بك",
+           "newTicket": "تذكرة جديدة"
+       },
+       "filter": {
+           "all": "جميع أنواع التذاكر",
+           "project": "تذاكر المشاريع",
+           "general": "تذاكر عامة"
+       },
+       "tabs": {
+           "All Tickets": "جميع التذاكر",
+           "Open": "مفتوحة",
+           "In Progress": "قيد التنفيذ",
+           "Closed": "مغلقة",
+           "all": "جميع التذاكر",
+           "open": "مفتوحة",
+           "in_progress": "قيد التنفيذ",
+           "closed": "مغلقة"
+       },
+       "card": {
+           "ticketNumber": "تذكرة رقم #{{id}}",
+           "uploadedBy": "تم الرفع بواسطة {{name}}",
+           "viewTicket": "عرض التذكرة"
+       },
+       "status": {
+           "Open": "مفتوحة",
+           "In Progress": "قيد التنفيذ",
+           "Closed": "مغلقة",
+           "open": "مفتوحة",
+           "in_progress": "قيد التنفيذ",
+           "closed": "مغلقة"
+       },
+       "type": {
+           "Project Ticket": "تذكرة مشروع",
+           "General Ticket": "تذكرة عامة",
+           "project": "تذكرة مشروع",
+           "general": "تذكرة عامة"
+       },
+       "createModal": {
+           "title": "إنشاء استفسار دعم جديد",
+           "subtitle": "يرجى ملء التفاصيل أدناه لمساعدتنا في معالجة طلبك بفعالية.",
+           "warrantyNotice": "الدعم الفني والضمان",
+           "warrantyDetails": "يتوفر الدعم المجاني للمشاريع المكتملة ضمن فترة الضمان السارية.",
+           "successAlert": "تم تقديم الاستفسار بنجاح!",
+           "submitBtn": "إرسال الاستفسار",
+           "fields": {
+               "subject": {
+                   "label": "الموضوع",
+                   "placeholder": "أدخل عنوانًا مختصرًا للمشكلة"
+               },
+               "category": {
+                   "label": "فئة التذكرة"
+               },
+               "issueType": {
+                   "label": "نوع المشكلة"
+               },
+               "description": {
+                   "label": "الوصف",
+                   "placeholder": "صف المشكلة أو الطلب بالتفصيل..."
+               },
+               "upload": {
+                   "label": "المرفقات",
+                   "optional": "اختياري"
+               }
+           },
+           "categories": {
+               "technical": "دعم فني",
+               "design": "تصميم",
+               "billing": "الفواتير والمالية"
+           },
+           "issueTypes": {
+               "bug": "خطأ برمجي (Bug)",
+               "feature": "طلب ميزة جديدة",
+               "question": "استفسار عام"
+           },
+           "dropzone": {
+               "title": "انقر للرفع أو اسحب الملفات وأسقطها هنا",
+               "hint": "يدعم الصور، والمستندات، والأرشيفات المضغوطة"
+           }
+       },
+       "details": {
+           "title": "تفاصيل التذكرة",
+           "ticketNumber": "تذكرة# {{id}}",
+           "uploadBy": "تم الرفع بواسطة : {{name}}",
+           "projectTicket": "تذكرة مشروع",
+           "generalTicket": "تذكرة عامة",
+           "postedAt": "تم النشر في {{time}}",
+           "responseAuthor": "بولفينت",
+           "responseMessage": "مرحبًا! لقد قمنا بمراجعة طلبك الأخير وشاركنا التحديثات مع فريقنا.",
+           "form": {
+               "descriptionLabel": "وصف التذكرة",
+               "attachmentsLabel": "رفع أي مرفقات",
+               "optional": "(اختياري)",
+               "dropzoneTitle": "اسحب الملفات هنا أو انقر للرفع",
+               "dropzoneHint": "PDF, DOCX, XLSX, PNG, JPG, ZIP — حتى 50 ميجابايت لكل ملف",
+               "closeTicket": "إغلاق التذكرة",
+               "reopenTicket": "إعادة فتح التذكرة",
+               "submitTicket": "إرسال الرد",
+               "successAlert": "تم إرسال الرد على التذكرة بنجاح!"
+           }
+       }
+   },
+    "createModal": {
+        "title": "إنشاء استفسار دعم جديد",
+        "subtitle": "يرجى ملء التفاصيل أدناه لمساعدتنا في معالجة طلبك بفعالية.",
+        "warrantyNotice": "الدعم الفني والضمان",
+        "warrantyDetails": "يتوفر الدعم المجاني للمشاريع المكتملة ضمن فترة الضمان السارية.",
+        "successAlert": "تم تقديم الاستفسار بنجاح!",
+        "submitBtn": "إرسال الاستفسار",
+        "fields": {
+            "subject": {
+                "label": "الموضوع",
+                "placeholder": "أدخل عنوانًا مختصرًا للمشكلة"
+            },
+            "category": {
+                "label": "فئة التذكرة"
+            },
+            "issueType": {
+                "label": "نوع المشكلة"
+            },
+            "description": {
+                "label": "الوصف",
+                "placeholder": "صف المشكلة أو الطلب بالتفصيل..."
+            },
+            "upload": {
+                "label": "المرفقات",
+                "optional": "اختياري"
+            }
+        },
+        "categories": {
+            "technical": "دعم فني",
+            "design": "تصميم",
+            "billing": "الفواتير والمالية"
+        },
+        "issueTypes": {
+            "bug": "خطأ برمجي (Bug)",
+            "feature": "طلب ميزة جديدة",
+            "question": "استفسار عام"
+        },
+        "dropzone": {
+            "title": "انقر للرفع أو اسحب الملفات وأسقطها هنا",
+            "hint": "يدعم الصور، والمستندات، والأرشيفات المضغوطة"
+        }
+    },
     "paymentHistory": {
         "title": "سجل المدفوعات",
         "searchPlaceholder": "ابحث حسب المشروع أو الفاتورة...",

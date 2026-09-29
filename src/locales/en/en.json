@@ -337,5 +337,110 @@
         "description": "Sorry, the page you are looking for does not exist.",
         "backToHome": "Back to Home",
         "logoAlt": "Pulvent Logo"
+    },
+
+    "tickets": {
+        "header": {
+            "title": "Support Tickets",
+            "subtitle": "View and manage your submitted support tickets",
+            "newTicket": "New Ticket"
+        },
+        "filter": {
+            "all": "All Ticket Types",
+            "project": "Project Tickets",
+            "general": "General Tickets"
+        },
+        "tabs": {
+            "All Tickets": "All Tickets",
+            "Open": "Open",
+            "In Progress": "In Progress",
+            "Closed": "Closed",
+            "all": "All Tickets",
+            "open": "Open",
+            "in_progress": "In Progress",
+            "closed": "Closed"
+        },
+        "card": {
+            "ticketNumber": "Ticket #{{id}}",
+            "uploadedBy": "Uploaded by {{name}}",
+            "viewTicket": "View Ticket"
+        },
+        "status": {
+            "Open": "Open",
+            "In Progress": "In Progress",
+            "Closed": "Closed",
+            "open": "Open",
+            "in_progress": "In Progress",
+            "closed": "Closed"
+        },
+        "type": {
+            "Project Ticket": "Project Ticket",
+            "General Ticket": "General Ticket",
+            "project": "Project Ticket",
+            "general": "General Ticket"
+        },
+        "createModal": {
+            "title": "Create Support Inquiry",
+            "subtitle": "Please fill in the details below to help us process your request effectively.",
+            "warrantyNotice": "Technical Support & Warranty",
+            "warrantyDetails": "Free support is available for completed projects within the active warranty period.",
+            "successAlert": "Inquiry submitted successfully!",
+            "submitBtn": "Submit Inquiry",
+            "fields": {
+                "subject": {
+                    "label": "Subject",
+                    "placeholder": "Enter a short title for the issue"
+                },
+                "category": {
+                    "label": "Ticket Category"
+                },
+                "issueType": {
+                    "label": "Issue Type"
+                },
+                "description": {
+                    "label": "Description",
+                    "placeholder": "Describe your issue or request in detail..."
+                },
+                "upload": {
+                    "label": "Attachments",
+                    "optional": "Optional"
+                }
+            },
+            "categories": {
+                "technical": "Technical Support",
+                "design": "Design",
+                "billing": "Billing & Finance"
+            },
+            "issueTypes": {
+                "bug": "Bug",
+                "feature": "Feature Request",
+                "question": "General Inquiry"
+            },
+            "dropzone": {
+                "title": "Click to upload or drag & drop files here",
+                "hint": "Supports images, documents, and compressed archives"
+            }
+        },
+        "details": {
+            "title": "Ticket Details",
+            "ticketNumber": "Ticket# {{id}}",
+            "uploadBy": "Upload By : {{name}}",
+            "projectTicket": "Project Ticket",
+            "generalTicket": "General Ticket",
+            "postedAt": "Posted at {{time}}",
+            "responseAuthor": "Pulvent",
+            "responseMessage": "Hi! We've reviewed your latest request and shared the updates with our team.",
+            "form": {
+                "descriptionLabel": "Ticket Description",
+                "attachmentsLabel": "Upload any Attachments",
+                "optional": "(Optional)",
+                "dropzoneTitle": "Drop files here or click to upload",
+                "dropzoneHint": "PDF, DOCX, XLSX, PNG, JPG, ZIP — up to 50 MB each",
+                "closeTicket": "Close Ticket",
+                "reopenTicket": "Reopen Ticket",
+                "submitTicket": "Submit Ticket",
+                "successAlert": "Ticket response submitted successfully!"
+            }
+        }
     }
 }
