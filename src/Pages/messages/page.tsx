@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Chat, Message } from './chat';
 import { INITIAL_CHATS, INITIAL_MESSAGES } from './mockData';

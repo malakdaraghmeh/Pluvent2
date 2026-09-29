@@ -1,5 +1,4 @@
-﻿
-import { useState, useRef, useEffect } from 'react';
+﻿import { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ChevronDown, Menu } from 'lucide-react';
 
@@ -9,7 +8,6 @@ import FlagEn from '@icons/usa-flag.svg?react';
 
 import NotificationsDropdown from '../notifications/NotificationsDropdown';
 
-
 import { useTranslation } from 'react-i18next';
 
 interface TopBarProps {
@@ -17,7 +15,7 @@ interface TopBarProps {
 }
 
 export default function TopBar({ onMobileMenu }: TopBarProps) {
-    const { t } = useTranslation("topBar");
+    const { t } = useTranslation('topBar');
 
     const pathname = useLocation().pathname;
     const router = useNavigate();
@@ -37,26 +35,15 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            if (
-                dropdownRef.current &&
-                !dropdownRef.current.contains(
-                    event.target as Node
-                )
-            ) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
                 setIsLanguageOpen(false);
             }
         };
 
-        document.addEventListener(
-            'mousedown',
-            handleClickOutside
-        );
+        document.addEventListener('mousedown', handleClickOutside);
 
         return () => {
-            document.removeEventListener(
-                'mousedown',
-                handleClickOutside
-            );
+            document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
 
@@ -110,7 +97,6 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
             ====================================================== */}
 
             <div className="flex min-w-0 items-center gap-3">
-
                 {/* MOBILE MENU */}
                 <button
                     type="button"
@@ -136,7 +122,9 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
 
                 {/* BREADCRUMB */}
                 <div className="min-w-0 overflow-hidden">
-                    <span className="text-gray-500 font-semibold">{t('home', { defaultValue: 'Home' })}</span>
+                    <span className="text-gray-500 font-semibold">
+                        {t('home', { defaultValue: 'Home' })}
+                    </span>
                 </div>
             </div>
 
@@ -145,7 +133,6 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
             ====================================================== */}
 
             <div className="flex shrink-0 items-center gap-2 sm:gap-4 lg:gap-5">
-
                 {/* =================================================
                     NOTIFICATIONS
                 ================================================== */}
@@ -212,11 +199,7 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
                 >
                     <button
                         type="button"
-                        onClick={() =>
-                            setIsLanguageOpen(
-                                (prev) => !prev
-                            )
-                        }
+                        onClick={() => setIsLanguageOpen(prev => !prev)}
                         className="
                             flex
                             flex-row
@@ -241,13 +224,9 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
                                 transition-transform
                                 duration-200
 
-                                ${isLanguageOpen
-                                    ? 'rotate-180'
-                                    : ''
-                                }
+                                ${isLanguageOpen ? 'rotate-180' : ''}
                             `}
                         />
-
 
                         {/* LANGUAGE */}
                         <span
@@ -258,17 +237,11 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
                                 text-[#24453E]
                             "
                         >
-                            {currentLocale === 'ar'
-                                ? 'AR'
-                                : 'EN'}
+                            {currentLocale === 'ar' ? 'AR' : 'EN'}
                         </span>
 
                         {/* FLAG */}
-                        {currentLocale === 'ar' ? (
-                            <FlagAr />
-                        ) : (
-                            <FlagEn />
-                        )}
+                        {currentLocale === 'ar' ? <FlagAr /> : <FlagEn />}
                     </button>
 
                     {/* LANGUAGE DROPDOWN */}
@@ -291,9 +264,7 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
                             {/* ARABIC */}
                             <button
                                 type="button"
-                                onClick={() =>
-                                    changeLanguage('ar')
-                                }
+                                onClick={() => changeLanguage('ar')}
                                 className={`
                                     flex
                                     w-full
@@ -305,15 +276,14 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
                                     transition-colors
                                     hover:bg-gray-50
 
-                                    ${currentLocale === 'ar'
-                                        ? 'bg-gray-50 font-bold text-[#24453E]'
-                                        : 'text-gray-600'
+                                    ${
+                                        currentLocale === 'ar'
+                                            ? 'bg-gray-50 font-bold text-[#24453E]'
+                                            : 'text-gray-600'
                                     }
                                 `}
                             >
-                                <span>
-                                    Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©
-                                </span>
+                                <span>Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©</span>
 
                                 <FlagAr />
                             </button>
@@ -321,9 +291,7 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
                             {/* ENGLISH */}
                             <button
                                 type="button"
-                                onClick={() =>
-                                    changeLanguage('en')
-                                }
+                                onClick={() => changeLanguage('en')}
                                 className={`
                                     flex
                                     w-full
@@ -335,15 +303,14 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
                                     transition-colors
                                     hover:bg-gray-50
 
-                                    ${currentLocale === 'en'
-                                        ? 'bg-gray-50 font-bold text-[#24453E]'
-                                        : 'text-gray-600'
+                                    ${
+                                        currentLocale === 'en'
+                                            ? 'bg-gray-50 font-bold text-[#24453E]'
+                                            : 'text-gray-600'
                                     }
                                 `}
                             >
-                                <span>
-                                    English
-                                </span>
+                                <span>English</span>
 
                                 <FlagEn />
                             </button>

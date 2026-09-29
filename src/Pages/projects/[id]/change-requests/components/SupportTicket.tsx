@@ -1,199 +1,92 @@
-
-
-
-
 import { useTranslation } from 'react-i18next';
 
-import supportTicket from "@/assets/images/support-ticket.png";
-import warrantyBg from "@/assets/images/warranty-bg.png";
-import bgSupport from "@/assets/images/bg-support.png";
-
-import { True, Arrow } from "@/assets";
+import { Arrow, True } from '@/assets';
+import bgSupport from '@/assets/images/bg-support.png';
+import supportTicket from '@/assets/images/support-ticket.png';
+import warrantyBg from '@/assets/images/warranty-bg.png';
 
 const SupportTicket = () => {
-  const { t } = useTranslation("supportTickets");
+    const { t } = useTranslation('supportTickets');
 
-  const features = t("features", { returnObjects: true }) as string[];
+    const features = t('features', { returnObjects: true }) as string[];
 
-  return (
-    <section
-      className="
-        flex
-        w-full
-        flex-col
-        gap-4
-        rounded-[24px]
-        bg-white
-        p-6
-        shadow-[0px_4px_20px_0px_#00000008]
-      "
-    >
-      <h2 className="text-[20px] font-semibold text-[#12115C]">
-        {t("title")}
-      </h2>
+    return (
+        <section className="flex w-full min-w-0 flex-col gap-4 rounded-[24px] bg-white p-4 shadow-[0px_4px_20px_0px_#00000008] sm:p-5 md:p-6">
+            <h2 className="text-[20px] font-semibold text-[#12115C]">{t('title')}</h2>
 
-      <div
-        className="
-          grid
-          w-full
-          grid-cols-1
-          items-center
-          gap-6
-          lg:grid-cols-[250px_minmax(0,1fr)_360px]
-        "
-      >
-        {/* 1. Illustration */}
+            <div className="grid w-full min-w-0 grid-cols-1 items-center gap-6 md:grid-cols-[220px_minmax(0,1fr)] xl:grid-cols-[minmax(190px,0.75fr)_minmax(240px,1fr)_minmax(280px,0.95fr)] 3xl:grid-cols-[minmax(240px,0.8fr)_minmax(320px,1fr)_minmax(360px,0.9fr)] 4xl:grid-cols-[minmax(280px,0.8fr)_minmax(360px,1fr)_minmax(400px,0.9fr)]">
+                <div className="flex min-w-0 items-center justify-center">
+                    <img
+                        src={supportTicket}
+                        alt=""
+                        width={300}
+                        height={220}
+                        className="h-auto w-full max-w-[250px] object-contain 3xl:max-w-[280px] 4xl:max-w-[300px]"
+                    />
+                </div>
 
-        <div className="flex w-full items-center justify-center">
-          <img
-            src={supportTicket}
-            alt="Support Ticket"
-            width={250}
-            height={190}
-            className="
-              h-auto
-              w-full
-              max-w-[250px]
-              object-contain
-            "
-          />
-        </div>
+                <div className="flex min-w-0 flex-col gap-3">
+                    <h3 className="break-words text-[20px] font-bold text-[#12115C]">
+                        {t('warrantySupport')}
+                    </h3>
 
-        {/* 2. Warranty Support */}
+                    <p className="max-w-full break-words text-[14px] leading-[1.6] text-[#6B7280]">
+                        {t('description')}
+                    </p>
 
-        <div className="flex min-w-0 flex-col gap-3">
-          <h3 className="text-[20px] font-bold text-[#12115C]">
-            {t("warrantySupport")}
-          </h3>
+                    <div className="flex flex-col gap-2">
+                        {features.map((feature, index) => (
+                            <div key={index} className="flex min-w-0 items-start gap-2">
+                                <span className="mt-[1px] flex h-[24px] w-[24px] shrink-0 items-center justify-center rounded-full bg-[#39E1D7] text-[8px] font-bold text-white">
+                                    <True />
+                                </span>
 
-          <p
-            className="
-              max-w-[360px]
-              text-[14px]
-              leading-[1.6]
-              text-[#6B7280]
-            "
-          >
-            {t("description")}
-          </p>
+                                <span className="min-w-0 break-words text-[16px] leading-[24px] text-[#12115C]">
+                                    {feature}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
 
-          {/* Features */}
-
-          <div className="flex flex-col gap-2">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-2"
-              >
-                <span
-                  className="
-                    flex
-                    h-[24px]
-                    w-[24px]
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-[#39E1D7]
-                    text-[8px]
-                    font-bold
-                    text-white
-                  "
+                <div
+                    className="flex min-h-[258px] min-w-0 w-full flex-col gap-6 rounded-[24px] border-[0.5px] border-[#39E1D7] bg-[#39E1D70D] bg-cover bg-center bg-no-repeat p-5 shadow-[0px_1px_3px_3px_#0000000D] md:col-span-2 xl:col-span-1 xl:p-6 3xl:min-h-[278px] 4xl:min-h-[290px]"
+                    style={{
+                        backgroundImage: `url(${warrantyBg})`,
+                    }}
                 >
-                  <True />
-                </span>
+                    <div className="flex min-w-0 items-center gap-2">
+                        <img
+                            src={bgSupport}
+                            alt=""
+                            width={30}
+                            height={30}
+                            className="h-[30px] w-[30px] shrink-0 object-contain"
+                        />
 
-                <span className="text-[16px] text-[#12115C]">
-                  {feature}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
+                        <h3 className="min-w-0 break-words text-[22px] font-bold text-[#12115C] 3xl:text-[24px]">
+                            {t('status.title')}
+                        </h3>
+                    </div>
 
-        {/* 3. Warranty Active */}
+                    <p className="min-w-0 break-words text-[16px] leading-[1.6] text-[#12115C]">
+                        {t('status.description')}
+                    </p>
 
-        <div
-          className="
-            flex
-            min-h-[258px]
-            w-full
-            flex-col
-            gap-6
-            rounded-[24px]
-            border-[0.5px]
-            border-[#39E1D7]
-            bg-[#39E1D70D]
-            bg-cover
-            bg-center
-            bg-no-repeat
-            p-6
-            shadow-[0px_1px_3px_3px_#0000000D]
-          "
-          style={{
-            backgroundImage: `url(${warrantyBg})`,
-          }}
-        >
-          {/* Status Header */}
+                    <button
+                        type="button"
+                        className="mt-auto flex min-h-[40px] w-full min-w-0 items-center justify-center gap-2 rounded-[10px] bg-[#12115C] px-4 py-2 text-center text-[16px] text-white transition hover:opacity-90 3xl:text-[18px]"
+                    >
+                        <span className="min-w-0 break-words">{t('status.buttonText')}</span>
 
-          <div className="flex items-center gap-2">
-            <div>
-              <img
-                src={bgSupport}
-                alt="Support Status"
-                width={30}
-                height={30}
-                className="object-contain"
-              />
+                        <span className="flex shrink-0 items-center rtl:rotate-180">
+                            <Arrow />
+                        </span>
+                    </button>
+                </div>
             </div>
-
-            <h3 className="text-[24px] font-bold text-[#12115C]">
-              {t("status.title")}
-            </h3>
-          </div>
-
-          {/* Status Description */}
-
-          <p
-            className="
-              text-[16px]
-              leading-[1.6]
-              text-[#12115C]
-            "
-          >
-            {t("status.description")}
-          </p>
-
-          {/* Button */}
-
-          <button
-            type="button"
-            className="
-              mt-auto
-              flex
-              h-[40px]
-              w-full
-              items-center
-              justify-center
-              gap-2
-              rounded-[10px]
-              bg-[#12115C]
-              text-[18px]
-              text-white
-              transition
-              hover:opacity-90
-            "
-          >
-            {t("status.buttonText")}
-
-            <span className="flex shrink-0 items-center rtl:rotate-180">
-              <Arrow />
-            </span>
-          </button>
-        </div>
-      </div>
-    </section>
-  );
+        </section>
+    );
 };
 
 export default SupportTicket;

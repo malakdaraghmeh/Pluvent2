@@ -1,133 +1,67 @@
-import ProjectCard from "./components/ProjectCard";
-import { projectsData } from "./data/projects";
-import { Search } from "@/assets";
-import { Filter } from "@/assets";
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import ProjectCard from './components/ProjectCard';
+import ProjectsToolbar from './components/ProjectsToolbar';
+import { projectsData } from './data/projects';
+import type { ProjectFilter } from '../../../utils/types/projects.types';
 
-export default function ProjectPage() {
+const ProjectPage = () => {
+    const { t } = useTranslation('projectsPage');
+    const [searchValue, setSearchValue] = useState('');
+    const [filter, setFilter] = useState<ProjectFilter>('all');
 
-  const { t } = useTranslation("projectsPage");
+    const filteredProjects = useMemo(() => {
+        const search = searchValue.trim().toLowerCase();
 
-  return (
-    <main className="flex min-h-screen w-full flex-col gap-5">
-      {/* Page Header */}
-      <div className="flex flex-col gap-1 ">
-        <h1
-          className="
-          text-start
-            text-[24px]
-            font-semibold
-            text-[#000000]
-          "
-        >
-          {t("title")}
-        </h1>
+        return projectsData.filter(project => {
+            const matchesSearch =
+                !search ||
+                project.title.toLowerCase().includes(search) ||
+                t('cardDescription').toLowerCase().includes(search);
 
-        <p
-          className="
-          text-start
-            text-[12px]
-            text-[#7E8492]
-          "
-        >
-          {t("description")}
-        </p>
-      </div>
+            const matchesFilter =
+                filter === 'all' ||
+                (filter === 'inProgress' && project.status === 'In Progress') ||
+                (filter === 'completed' && project.status === 'Completed');
 
-      {/* Search Bar */}
-      <div className="flex w-full items-center gap-[10px]">
-        {/* Search Box */}
-        <div
-          className="
-            flex
-            min-w-0
-            flex-1
-            items-center
-            gap-[10px]
-            rounded-[20px]
-            border-[0.5px]
-            border-[#D9D9D9]
-            bg-white
-            px-[14px]
-            py-[13px]
-          "
-        >
-          {/* Search Input */}
-          <div className="flex min-w-0 flex-1 items-center gap-2">
-            <span className="shrink-0">
-              <Search />
-            </span>
+            return matchesSearch && matchesFilter;
+        });
+    }, [filter, searchValue, t]);
 
-            <input
-              type="text"
-              placeholder={t("searchPlaceholder")}
-              className="
-                w-full
-                min-w-0
-                bg-transparent
-                text-[14px]
-                text-[#888282]
-                outline-none
-              "
+    return (
+        <main className="custom-container flex min-h-screen w-full min-w-0 flex-col gap-5 pb-8">
+            <div className="flex flex-col gap-1">
+                <h1 className="text-start text-[24px] font-semibold leading-[30px] text-black">
+                    {t('title')}
+                </h1>
+
+                <p className="break-words text-start text-[12px] leading-[18px] text-[#7E8492]">
+                    {t('description')}
+                </p>
+            </div>
+
+            <ProjectsToolbar
+                searchValue={searchValue}
+                filter={filter}
+                onSearchChange={setSearchValue}
+                onFilterChange={setFilter}
             />
-          </div>
-        </div>
 
-        {/* Filter Box */}
-        <button
-          type="button"
-          className="
-            flex
-            h-auto
-            w-[56px]
-            shrink-0
-            items-center
-            justify-center
-            rounded-[16px]
-            border-[0.5px]
-            border-[#D9D9D9]
-            bg-white
-            p-[4px]
-          "
-        >
-          <Filter />
-        </button>
-      </div>
+            <section className="w-full min-w-0 rounded-[24px] border border-[#39E1D7] bg-white p-4 sm:p-5 lg:p-6">
+                {filteredProjects.length ? (
+                    <div className="flex w-full min-w-0 flex-col gap-5 sm:gap-6 lg:gap-8">
+                        {filteredProjects.map(project => (
+                            <ProjectCard key={project.id} project={project} />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="flex min-h-[180px] items-center justify-center text-[14px] text-[#7E8492]">
+                        {t('noResults')}
+                    </div>
+                )}
+            </section>
+        </main>
+    );
+};
 
-      {/* Projects Container */}
-      <div
-        className="
-          mx-auto
-          flex
-          w-full
-          flex-col
-          gap-5
-          rounded-tr-[24px]
-          rounded-br-[24px]
-          rounded-bl-[24px]
-          border-r
-          border-b
-          border-l
-          border-[#39E1D7]
-          bg-white
-          p-4
-          sm:gap-6
-          sm:p-5
-          lg:max-w-[1086px]
-          lg:gap-8
-          lg:p-6
-        "
-      >
-        {/* Projects */}
-        <div className="flex w-full flex-col gap-5 sm:gap-6 lg:gap-8">
-          {projectsData.map((project) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-            />
-          ))}
-        </div>
-      </div>
-    </main>
-  );
-}
+export default ProjectPage;

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { X, Plus } from 'lucide-react';
 import { INITIAL_MEMBERS } from '../mockData';
@@ -10,7 +9,11 @@ interface CreateGroupModalProps {
     onCreateGroup: (name: string, memberIds: string[]) => void;
 }
 
-export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({ isOpen, onClose, onCreateGroup }) => {
+export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({
+    isOpen,
+    onClose,
+    onCreateGroup,
+}) => {
     const { t } = useTranslation('chat.createGroupModal');
     const [groupName, setGroupName] = useState('');
     const [selectedMemberIds, setSelectedMemberIds] = useState<string[]>(['1', '2', '3']);
@@ -39,9 +42,7 @@ export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({ isOpen, onCl
                 <div className="flex items-start justify-between">
                     <div>
                         <h2 className="text-xl font-bold text-[#0F172A]">{t('title')}</h2>
-                        <p className="mt-1 text-sm text-gray-500">
-                            {t('subtitle')}
-                        </p>
+                        <p className="mt-1 text-sm text-gray-500">{t('subtitle')}</p>
                     </div>
                     <button
                         onClick={onClose}
@@ -83,10 +84,11 @@ export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({ isOpen, onCl
                                     <div
                                         key={member.id}
                                         onClick={() => toggleMember(member.id)}
-                                        className={`flex items-center justify-between p-3 rounded-xl border cursor-pointer transition ${isSelected
-                                            ? 'border-emerald-200 bg-emerald-50/40'
-                                            : 'border-slate-100 bg-white hover:bg-slate-50'
-                                            }`}
+                                        className={`flex items-center justify-between p-3 rounded-xl border cursor-pointer transition ${
+                                            isSelected
+                                                ? 'border-emerald-200 bg-emerald-50/40'
+                                                : 'border-slate-100 bg-white hover:bg-slate-50'
+                                        }`}
                                     >
                                         <div className="flex items-center gap-3">
                                             <img
@@ -99,10 +101,11 @@ export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({ isOpen, onCl
                                                     {member.name}
                                                 </h4>
                                                 <span
-                                                    className={`text-xs font-medium ${member.isPinned
-                                                        ? 'text-teal-600'
-                                                        : 'text-indigo-600'
-                                                        }`}
+                                                    className={`text-xs font-medium ${
+                                                        member.isPinned
+                                                            ? 'text-teal-600'
+                                                            : 'text-indigo-600'
+                                                    }`}
                                                 >
                                                     {member.role}
                                                 </span>
@@ -110,10 +113,11 @@ export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({ isOpen, onCl
                                         </div>
 
                                         <div
-                                            className={`h-5 w-5 rounded-full border-2 flex items-center justify-center transition ${isSelected
-                                                ? 'border-indigo-600 bg-indigo-600'
-                                                : 'border-gray-300 bg-white'
-                                                }`}
+                                            className={`h-5 w-5 rounded-full border-2 flex items-center justify-center transition ${
+                                                isSelected
+                                                    ? 'border-indigo-600 bg-indigo-600'
+                                                    : 'border-gray-300 bg-white'
+                                            }`}
                                         >
                                             {isSelected && (
                                                 <div className="h-2 w-2 rounded-full bg-white" />

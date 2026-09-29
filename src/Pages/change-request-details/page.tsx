@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FileText, Download } from 'lucide-react';
@@ -10,7 +9,7 @@ import Yellow from '@icons/Vector (1).svg?react';
 import Gray from '@icons/Vector (2).svg?react';
 
 export default function ChangeRequestDetails() {
-    const { t } = useTranslation("changeRequestDetails");
+    const { t } = useTranslation('changeRequestDetails');
 
     return (
         <div className="min-h-screen bg-[#F8FAFC] p-3 sm:p-6 md:p-8 space-y-4 sm:space-y-6 font-sans text-slate-800">

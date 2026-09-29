@@ -48,16 +48,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                         dir={dir}
                         type={inputType}
                         placeholder={placeholder}
-                        className={`w-full bg-white border rounded-[12px] h-[50px] px-4 focus:ring-2 focus:ring-main/20 outline-none transition-all shadow-sm ${error ? 'border-red-500' : 'border-main/10'
-                            } pr-10 transition-all ${inputClassName}`}
+                        className={`w-full bg-white border rounded-[12px] h-[50px] px-4 focus:ring-2 focus:ring-main/20 outline-none transition-all shadow-sm ${
+                            error ? 'border-red-500' : 'border-main/10'
+                        } pr-10 transition-all ${inputClassName}`}
                     />
 
                     {isPassword && (
                         <button
                             type="button"
                             onClick={() => setShowPassword(!showPassword)}
-                            className={`absolute top-1/2 transform -translate-y-1/2 text-gray-500 ${dir === 'rtl' ? 'left-3' : 'right-3'
-                                }`}
+                            className={`absolute top-1/2 transform -translate-y-1/2 text-gray-500 ${
+                                dir === 'rtl' ? 'left-3' : 'right-3'
+                            }`}
                         >
                             {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                         </button>

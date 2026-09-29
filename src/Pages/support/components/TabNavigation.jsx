@@ -3,7 +3,7 @@ import React from 'react';
 export default function TabNavigation({ tabs, activeTab, onSelectTab }) {
     return (
         <div className="flex items-end overflow-x-auto no-scrollbar gap-1 relative z-10 w-full -mb-[2px]">
-            {tabs.map((tab) => {
+            {tabs.map(tab => {
                 const isActive = activeTab === tab.name;
                 return (
                     <button

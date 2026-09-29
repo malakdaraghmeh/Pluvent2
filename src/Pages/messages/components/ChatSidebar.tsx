@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Search, Plus, Users } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -23,7 +22,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
     onOpenCreateModal,
     className = '',
 }) => {
-    const { t } = useTranslation("chat");
+    const { t } = useTranslation('chat');
 
     const pinnedChat = chats.find(chat => chat.isPinned);
     const groupChats = chats.filter(chat => !chat.isPinned);
@@ -33,7 +32,9 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
     );
 
     return (
-        <div className={`w-full md:max-w-sm flex-col rounded-none md:rounded-3xl bg-white p-4 md:p-5 shadow-sm border-0 md:border border-slate-100 ${className}`}>
+        <div
+            className={`w-full md:max-w-sm flex-col rounded-none md:rounded-3xl bg-white p-4 md:p-5 shadow-sm border-0 md:border border-slate-100 ${className}`}
+        >
             <h1 className="text-2xl font-bold text-[#0F172A] tracking-tight">{t('title')}</h1>
 
             {/* Search Bar */}
@@ -58,10 +59,11 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
                         </span>
                         <div
                             onClick={() => onSelectChat(pinnedChat.id)}
-                            className={`mt-2.5 flex items-center justify-between p-3 rounded-2xl cursor-pointer transition ${selectedChatId === pinnedChat.id
+                            className={`mt-2.5 flex items-center justify-between p-3 rounded-2xl cursor-pointer transition ${
+                                selectedChatId === pinnedChat.id
                                     ? 'bg-[#EEF2FF]'
                                     : 'bg-white hover:bg-slate-50'
-                                }`}
+                            }`}
                         >
                             <div className="flex items-center gap-3">
                                 <div className="relative">
@@ -102,10 +104,11 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
                             <div
                                 key={chat.id}
                                 onClick={() => onSelectChat(chat.id)}
-                                className={`flex items-center justify-between p-3 rounded-2xl cursor-pointer transition ${selectedChatId === chat.id
+                                className={`flex items-center justify-between p-3 rounded-2xl cursor-pointer transition ${
+                                    selectedChatId === chat.id
                                         ? 'bg-[#EEF2FF]'
                                         : 'hover:bg-slate-50'
-                                    }`}
+                                }`}
                             >
                                 <div className="flex items-center gap-3 min-w-0">
                                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-white font-semibold text-sm shrink-0">
@@ -120,9 +123,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
                                 </div>
 
                                 <div className="flex flex-col items-end gap-1.5 shrink-0 ml-2 rtl:mr-2 rtl:ml-0">
-                                    <span className="text-[11px] text-gray-400">
-                                        {chat.time}
-                                    </span>
+                                    <span className="text-[11px] text-gray-400">{chat.time}</span>
                                     {chat.unreadCount && (
                                         <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#1E1B4B] text-[11px] font-bold text-white">
                                             {chat.unreadCount}

@@ -9,7 +9,12 @@ interface ImageUploadProps {
     error?: string;
 }
 
-export default function ImageUpload({ onImageSelect, initialImage, label = '', error }: ImageUploadProps) {
+export default function ImageUpload({
+    onImageSelect,
+    initialImage,
+    label = '',
+    error,
+}: ImageUploadProps) {
     const [preview, setPreview] = useState(initialImage || null);
     const [isDragOver, setIsDragOver] = useState(false);
 
@@ -106,12 +111,13 @@ export default function ImageUpload({ onImageSelect, initialImage, label = '', e
                 <div
                     className={`
             relative w-full h-48 border-2 border-dashed rounded-lg transition-colors duration-200 cursor-pointer
-            ${isDragOver
-                            ? 'border-blue-400 bg-blue-50'
-                            : error
-                                ? 'border-red-300 bg-red-50'
-                                : 'border-gray-300 hover:border-gray-400 bg-gray-50'
-                        }
+            ${
+                isDragOver
+                    ? 'border-blue-400 bg-blue-50'
+                    : error
+                      ? 'border-red-300 bg-red-50'
+                      : 'border-gray-300 hover:border-gray-400 bg-gray-50'
+            }
           `}
                     onDrop={handleDrop}
                     onDragOver={handleDragOver}
@@ -120,8 +126,9 @@ export default function ImageUpload({ onImageSelect, initialImage, label = '', e
                 >
                     <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-500">
                         <div
-                            className={`p-3 rounded-full mb-3 ${isDragOver ? 'bg-blue-100' : 'bg-gray-100'
-                                }`}
+                            className={`p-3 rounded-full mb-3 ${
+                                isDragOver ? 'bg-blue-100' : 'bg-gray-100'
+                            }`}
                         >
                             {isDragOver ? (
                                 <Upload className="w-6 h-6 text-blue-500" />

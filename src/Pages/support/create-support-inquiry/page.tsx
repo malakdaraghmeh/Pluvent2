@@ -70,7 +70,7 @@ export default function CreateSupportInquiry({ isOpen, onClose }: CreateSupportI
             <div
                 role="dialog"
                 aria-modal="true"
-                onClick={(e) => e.stopPropagation()}
+                onClick={e => e.stopPropagation()}
                 className="relative my-auto w-full max-w-4xl max-h-[calc(100vh-2rem)] overflow-y-auto bg-white rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 font-sans text-gray-800"
             >
                 {/* Page Title, Subtitle & Close Button */}
@@ -83,7 +83,11 @@ export default function CreateSupportInquiry({ isOpen, onClose }: CreateSupportI
                             Submit a ticket and our team will get back to you as soon as possible.
                         </p>
                     </div>
-                    <button type="button" onClick={onClose} className="p-2 shrink-0 text-gray-400 hover:text-gray-600 transition-colors bg-gray-50 rounded-full hover:bg-gray-100">
+                    <button
+                        type="button"
+                        onClick={onClose}
+                        className="p-2 shrink-0 text-gray-400 hover:text-gray-600 transition-colors bg-gray-50 rounded-full hover:bg-gray-100"
+                    >
                         <X className="w-5 h-5" />
                     </button>
                 </div>
@@ -189,10 +193,11 @@ export default function CreateSupportInquiry({ isOpen, onClose }: CreateSupportI
                                 onDragOver={handleDragOver}
                                 onDragLeave={handleDragLeave}
                                 onDrop={handleDrop}
-                                className={`border-2 border-dashed rounded-2xl p-8 text-center transition-all flex flex-col items-center justify-center cursor-pointer ${isDragging
-                                    ? 'border-cyan-400 bg-sky-50/50'
-                                    : 'border-slate-200 bg-white hover:border-slate-300'
-                                    }`}
+                                className={`border-2 border-dashed rounded-2xl p-8 text-center transition-all flex flex-col items-center justify-center cursor-pointer ${
+                                    isDragging
+                                        ? 'border-cyan-400 bg-sky-50/50'
+                                        : 'border-slate-200 bg-white hover:border-slate-300'
+                                }`}
                             >
                                 <input
                                     type="file"

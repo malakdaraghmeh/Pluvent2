@@ -1,71 +1,70 @@
 export type ProjectProgress = {
     id: number;
     title: string;
-    status: "In Progress" | "On Hold" | "Completed";
+    status: 'In Progress' | 'On Hold' | 'Completed';
     progress: number;
     description: string;
-    dateLabel: "Due" | "Expired";
+    dateLabel: 'Due' | 'Expired';
     dueDate: string;
     paidAmount: string;
     totalAmount: string;
-    warranty: "Active" | "Valid" | "Suspended";
-  };
-  
-  export const projectProgressData: ProjectProgress[] = [
+    warranty: 'Active' | 'Valid' | 'Suspended';
+};
+
+export const projectProgressData: ProjectProgress[] = [
     {
-      id: 1,
-      title: "XYZ Mobile App",
-      status: "In Progress",
-      progress: 63,
-      description:
-        "Mobile Development, Create and Implement a comprehensive design system for the product to",
-      dateLabel: "Due",
-      dueDate: "Jan 15, 2026",
-      paidAmount: "$12,000",
-      totalAmount: "$28,000",
-      warranty: "Active",
+        id: 1,
+        title: 'XYZ Mobile App',
+        status: 'In Progress',
+        progress: 63,
+        description:
+            'Mobile Development, Create and Implement a comprehensive design system for the product to',
+        dateLabel: 'Due',
+        dueDate: 'Jan 15, 2026',
+        paidAmount: '$12,000',
+        totalAmount: '$28,000',
+        warranty: 'Active',
     },
-  
+
     {
-      id: 2,
-      title: "XYZ Mobile App",
-      status: "On Hold",
-      progress: 63,
-      description:
-        "Mobile Development, Create and Implement a comprehensive design system for the product to",
-      dateLabel: "Due",
-      dueDate: "Jan 15, 2026",
-      paidAmount: "$12,000",
-      totalAmount: "$28,000",
-      warranty: "Active",
+        id: 2,
+        title: 'XYZ Mobile App',
+        status: 'On Hold',
+        progress: 63,
+        description:
+            'Mobile Development, Create and Implement a comprehensive design system for the product to',
+        dateLabel: 'Due',
+        dueDate: 'Jan 15, 2026',
+        paidAmount: '$12,000',
+        totalAmount: '$28,000',
+        warranty: 'Active',
     },
-  
+
     {
-      id: 3,
-      title: "XYZ Mobile App",
-      status: "Completed",
-      progress: 63,
-      description:
-        "Mobile Development, Create and Implement a comprehensive design system for the product to",
-      dateLabel: "Expired",
-      dueDate: "Jan 15, 2026",
-      paidAmount: "$28,000",
-      totalAmount: "$28,000",
-      warranty: "Valid",
+        id: 3,
+        title: 'XYZ Mobile App',
+        status: 'Completed',
+        progress: 63,
+        description:
+            'Mobile Development, Create and Implement a comprehensive design system for the product to',
+        dateLabel: 'Expired',
+        dueDate: 'Jan 15, 2026',
+        paidAmount: '$28,000',
+        totalAmount: '$28,000',
+        warranty: 'Valid',
     },
-  
+
     {
-      id: 4,
-      title: "XYZ Mobile App",
-      status: "Completed",
-      progress: 63,
-      description:
-        "Mobile Development, Create and Implement a comprehensive design system for the product to",
-      dateLabel: "Expired",
-      dueDate: "Jan 15, 2026",
-      paidAmount: "$28,000",
-      totalAmount: "$28,000",
-      warranty: "Suspended",
+        id: 4,
+        title: 'XYZ Mobile App',
+        status: 'Completed',
+        progress: 63,
+        description:
+            'Mobile Development, Create and Implement a comprehensive design system for the product to',
+        dateLabel: 'Expired',
+        dueDate: 'Jan 15, 2026',
+        paidAmount: '$28,000',
+        totalAmount: '$28,000',
+        warranty: 'Suspended',
     },
-  ];
-  
+];

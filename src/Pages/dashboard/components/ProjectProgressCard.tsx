@@ -1,314 +1,113 @@
-
-
-import type { ProjectProgress } from "../data/projectProgress";
-import { ArrowIcon } from "@/assets";
+import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import ArrowIcon from '@icons/arrow.svg?react';
+import type { ProjectProgress } from '../../../../utils/types/dashboard.types';
 
-type ProjectProgressCardProps = ProjectProgress;
+const warrantyKeyMap = {
+    Active: 'active',
+    Valid: 'valid',
+    'On Hold': 'onHold',
+    Suspended: 'suspended',
+} as const;
 
 const ProjectProgressCard = ({
-  title,
-  status,
-  progress,
-  description,
-  dueDate,
-  paidAmount,
-  totalAmount,
-  warranty,
-}: ProjectProgressCardProps) => {
-  const locale = (localStorage.getItem("i18nextLng") || "en");
-  const { t } = useTranslation("projectsPage");
+    id,
+    title,
+    status,
+    progress,
+    description,
+    dueDate,
+    paidAmount,
+    totalAmount,
+    warranty,
+}: ProjectProgress) => {
+    const { t } = useTranslation('projectsPage');
+    const { locale = 'en' } = useParams();
 
-  return (
-    <div
-      className="
-        flex
-        w-full
-        max-w-full
-        min-w-0
-        flex-col
-        gap-4
-        overflow-hidden
-        rounded-[24px]
-        border
-        border-[#EEF0F4]
-        bg-white
-        p-4
-        shadow-sm
+    return (
+        <article className="w-full min-w-0 rounded-[24px] border border-[#E8EBEF] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.03)] sm:p-5 lg:p-6 3xl:p-7 4xl:p-8">
+            <div className="grid w-full min-w-0 grid-cols-1 gap-5 sm:grid-cols-[120px_minmax(0,1fr)] sm:items-center lg:gap-6 3xl:grid-cols-[132px_minmax(0,1fr)] 3xl:gap-7 4xl:grid-cols-[144px_minmax(0,1fr)] 4xl:gap-8">
+                <div className="flex w-full justify-center sm:justify-start">
+                    <div
+                        className="relative flex h-[108px] w-[108px] shrink-0 items-center justify-center rounded-full 3xl:h-[118px] 3xl:w-[118px] 4xl:h-[128px] 4xl:w-[128px]"
+                        style={{
+                            background: `conic-gradient(#35D3CE 0deg,#3347D8 ${progress * 3.6}deg,#EEF1F5 ${progress * 3.6}deg 360deg)`,
+                        }}
+                    >
+                        <div className="flex h-[86px] w-[86px] flex-col items-center justify-center rounded-full bg-white text-center 3xl:h-[94px] 3xl:w-[94px] 4xl:h-[102px] 4xl:w-[102px]">
+                            <span className="text-[25px] font-semibold leading-none text-[#111827] 3xl:text-[27px] 4xl:text-[29px]">
+                                {progress}%
+                            </span>
 
-        sm:p-5
+                            <span className="mt-2 text-[9px] font-semibold leading-[11px] text-[#64748B] 3xl:text-[10px] 4xl:text-[11px]">
+                                {t('overallProject.overall')}
+                                <br />
+                                {t('overallProject.project')}
+                            </span>
+                        </div>
+                    </div>
+                </div>
 
-        lg:h-[231px]
-        lg:flex-row
-        lg:items-center
-        lg:gap-5
-        lg:p-6
-      "
-    >
-      {/* Progress Circle */}
-      <div
-        className="
-          relative
-          flex
-          h-20
-          w-20
-          shrink-0
-          items-center
-          justify-center
-          self-center
+                <div className="min-w-0">
+                    <div className="flex w-full min-w-0 flex-wrap items-start justify-between gap-3">
+                        <h3 className="min-w-0 break-words text-[20px] font-semibold leading-[26px] text-[#08040B] 3xl:text-[22px] 3xl:leading-[28px] 4xl:text-[24px] 4xl:leading-[30px]">
+                            {title}
+                        </h3>
 
-          sm:h-24
-          sm:w-24
+                        <span
+                            className={`shrink-0 rounded-[7px] px-4 py-2 text-[11px] font-normal 3xl:text-[12px] 4xl:text-[13px] ${
+                                status === 'Completed'
+                                    ? 'bg-[#2ECC710D] text-[#2ECC71]'
+                                    : 'bg-[#F0F7FF] text-[#007AFF]'
+                            }`}
+                        >
+                            {status === 'In Progress'
+                                ? t('status.inProgress')
+                                : t('status.completed')}
+                        </span>
+                    </div>
 
-          lg:self-auto
-        "
-      >
-        {/* Gradient Circle */}
-        <div
-          className="absolute inset-0 rounded-full"
-          style={{
-            background: `conic-gradient(
-              from 180deg,
-              #3634C7 0%,
-              #39E1D7 ${progress}%,
-              #EEF0F4 ${progress}%
-            )`,
-          }}
-        />
+                    <p className="mt-3 w-full whitespace-normal break-words text-start text-[14px] font-normal leading-[22px] text-[#7C8798] 3xl:text-[15px] 3xl:leading-[24px] 4xl:text-[16px] 4xl:leading-[26px]">
+                        {description}
+                    </p>
 
-        {/* Inner Circle */}
-        <div className="absolute inset-[8px] rounded-full bg-white sm:inset-[9px]" />
+                    <div className="mt-4 flex w-full min-w-0 flex-wrap items-center justify-between gap-x-4 gap-y-2 rounded-[10px] border border-[#D7DCE3] px-3 py-3 3xl:px-4 3xl:py-[14px] 4xl:px-5 4xl:py-4">
+                        <span className="min-w-0 break-words text-start text-[13px] font-normal leading-[18px] text-[#64748B] 3xl:text-[14px] 4xl:text-[15px]">
+                            {dueDate}
+                        </span>
 
-        {/* Percentage */}
-        <div className="relative text-center">
-          <p
-            className="
-              text-[22px]
-              font-bold
-              text-[#1E293B]
+                        <span
+                            dir="ltr"
+                            className="shrink-0 whitespace-nowrap text-[13px] font-medium leading-[18px] text-[#0F172A] [unicode-bidi:isolate] 3xl:text-[14px] 4xl:text-[15px]"
+                        >
+                            {paidAmount} / {totalAmount}
+                        </span>
+                    </div>
 
-              sm:text-[26px]
-            "
-          >
-            {progress}%
-          </p>
+                    <div className="mt-4 flex w-full min-w-0 flex-wrap items-center justify-between gap-x-4 gap-y-3">
+                        <div className="flex min-w-0 flex-wrap items-center gap-1 text-[13px] leading-[18px] 3xl:text-[14px] 4xl:text-[15px]">
+                            <span className="text-[#53627A]">
+                                {t('statusLabel.projectStatus')}:
+                            </span>
 
-          <p
-            className="
-              text-[9px]
-              font-semibold
-              leading-tight
-              text-[#64748B]
+                            <span className="text-[#00BF78]">
+                                {t(`warranty.${warrantyKeyMap[warranty]}`)}
+                            </span>
+                        </div>
 
-              sm:text-[10px]
-            "
-          >
-            {t("overallProject.overall")}
-            <br />
-            {t("overallProject.project")}
-          </p>
-        </div>
-      </div>
+                        <Link
+                            to={`/${locale}/projects/${id}`}
+                            className="flex shrink-0 items-center gap-2 text-[16px] font-semibold text-[#2217C7] transition-opacity hover:opacity-70 3xl:text-[17px] 4xl:text-[18px]"
+                        >
+                            <span>{t('action.openProject')}</span>
 
-      {/* Project Content */}
-      <div
-        className="
-          flex
-          w-full
-          max-w-full
-          min-w-0
-          flex-1
-          flex-col
-          justify-center
-
-          lg:h-[183px]
-          lg:max-w-[400px]
-        "
-      >
-        {/* Title + Status */}
-        <div
-          className="
-            flex
-            w-full
-            min-w-0
-            items-start
-            justify-between
-            gap-2
-
-            sm:gap-3
-          "
-        >
-          {/* Title */}
-          <h3
-            className="
-              min-w-0
-              flex-1
-              break-words
-              text-[20px]
-              font-bold
-              text-[#0F172A]
-            "
-            title={title}
-          >
-            {title}
-          </h3>
-
-          {/* Status */}
-          <span
-            className="
-              max-w-[45%]
-              shrink-0
-              whitespace-nowrap
-              overflow-hidden
-              text-ellipsis
-              rounded-md
-              bg-[#007AFF0D]
-              px-2.5
-              py-1.5
-
-              text-[12px]
-              font-normal
-              text-[#007AFF]
-
-              sm:max-w-none
-              sm:px-3
-            "
-          >
-            {status === "In Progress"
-              ? t("status.inProgress")
-              : status === "Completed"
-                ? t("status.completed")
-                : status}
-          </span>
-        </div>
-
-        {/* Description */}
-        <p
-          className="
-            mt-2
-            line-clamp-2
-            w-full
-            min-w-0
-            break-words
-            text-[14px]
-            leading-[150%]
-            tracking-[0%]
-            text-[#7E8492]
-
-            sm:mt-3
-
-            lg:max-w-[400px]
-          "
-        >
-          {description}
-        </p>
-
-        {/* Date + Payment */}
-        <div
-          className="
-            mt-3
-            flex
-            min-h-[40px]
-            w-full
-            min-w-0
-            items-center
-            justify-between
-            gap-2
-            overflow-hidden
-            rounded-[8px]
-            border-[0.5px]
-            border-[#B1B4B6]/50
-            bg-[#E2E8F0]/10
-            p-2
-
-            sm:mt-4
-
-            lg:w-[400px]
-          "
-        >
-          {/* Due Date */}
-          <span
-            className="
-              min-w-0
-              truncate
-              text-[14px]
-              font-normal
-              text-[#64748B]
-            "
-          >
-            {`Due ${dueDate}`}
-          </span>
-
-          {/* Payment */}
-          <span
-            className="
-              shrink-0
-              whitespace-nowrap
-              text-[14px]
-              font-normal
-              text-[#1E293B]
-            "
-          >
-            {paidAmount} / {totalAmount}
-          </span>
-        </div>
-
-        {/* Warranty + Open Project */}
-        <div
-          className="
-            mt-3
-            flex
-            w-full
-            min-w-0
-            items-center
-            justify-between
-            gap-2
-
-            sm:mt-4
-            sm:gap-3
-          "
-        >
-          {/* Warranty */}
-          <p
-            className="
-              min-w-0
-              flex-1
-              truncate
-              text-[14px]
-              text-[#475569]
-            "
-          >
-            {t("statusLabel.warranty")}:{" "}
-            <span className="text-[#10B981]">
-              {warranty}
-            </span>
-          </p>
-
-          {/* Open Project */}
-          <button
-            type="button"
-            className="
-              inline-flex
-              shrink-0
-              items-center
-              justify-center
-              gap-1.5
-              whitespace-nowrap
-              text-[16px]
-              font-semibold
-              text-[#2F1ABD]
-            "
-          >
-            <span>{t("action.openProject")}</span>
-
-            <span className={locale === "ar" ? "rotate-180" : ""}>
-              <ArrowIcon />
-            </span>
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+                            <ArrowIcon className="h-4 w-4 shrink-0 rtl:rotate-180 3xl:h-[18px] 3xl:w-[18px] 4xl:h-5 4xl:w-5" />
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </article>
+    );
 };
 
 export default ProjectProgressCard;

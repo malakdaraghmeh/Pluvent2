@@ -13,11 +13,12 @@ export default function NotFound() {
             <h2 className="text-3xl font-semibold mb-2">{t('title')}</h2>
             <p className="text-lg mb-8">{t('description')}</p>
 
-            <ButtonLink className="rounded-xl !bg-main !text-white px-8 py-3 font-semibold" to={`/${lang}`}>
+            <ButtonLink
+                className="rounded-xl !bg-main !text-white px-8 py-3 font-semibold"
+                to={`/${lang}`}
+            >
                 {t('backToHome')}
             </ButtonLink>
         </div>
     );
 }
-
-

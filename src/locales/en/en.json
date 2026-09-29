@@ -96,6 +96,7 @@
             "inProgress": "In Progress",
             "completed": "Completed"
         },
+        "description": "Qorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent",
         "startDate": "Start Date",
         "delivery": "Delivery",
         "daysLeft": "Days Left",
@@ -125,11 +126,19 @@
         "status": "Status",
         "startDate": "Start Date",
         "dueDate": "Due Date",
-        "details": "Details"
+        "details": "Details",
+        "statuses": {
+            "inReview": "In Review",
+            "waitingUserInput": "Waiting User Input",
+            "pendingPayment": "Pending Payment",
+            "inProgress": "In Progress",
+            "completed": "Completed"
+        }
     },
     "fileDocuments": {
         "title": "File & Document",
         "viewAll": "View All",
+        "uploadedBy": "Upload By",
         "download": "Download",
         "dropFiles": "Drop files here or click to upload",
         "fileTypes": "PDF, DOCX, XLSX, PNG, JPG, ZIP — up to 50 MB each"
@@ -139,8 +148,8 @@
         "totalPaid": "Paid of $6,000",
         "finalPayment": "Final Payment",
         "payNow": "Pay Now",
-        "dueIn": "Due in {days} days",
-        "after": "After {days} days"
+        "dueIn": "Due in {{days}} days",
+        "after": "After {{days}} days"
     },
     "dashboardStats": {
         "projects": {

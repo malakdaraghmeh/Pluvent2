@@ -1,35 +1,35 @@
-import { Email, User1, User2, User4 } from "@/assets";
+import { Email, User1, User2, User4 } from '@/assets';
 
-  export interface MetricItem {
+export interface MetricItem {
     id: string;
     label: string;
     value: number;
     icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  }
-  
-  export const usersMetricsData: MetricItem[] = [
+}
+
+export const usersMetricsData: MetricItem[] = [
     {
-      id: "outstanding",
-      label: "Total Outstanding",
-      value: 3,
-      icon: User1,
+        id: 'outstanding',
+        label: 'Total Outstanding',
+        value: 3,
+        icon: User1,
     },
     {
-      id: "active",
-      label: "Active Accounts",
-      value: 3,
-      icon: User2,
+        id: 'active',
+        label: 'Active Accounts',
+        value: 3,
+        icon: User2,
     },
     {
-      id: "pending",
-      label: "Pending Invitations",
-      value: 3,
-      icon: Email,
+        id: 'pending',
+        label: 'Pending Invitations',
+        value: 3,
+        icon: Email,
     },
     {
-      id: "rejected",
-      label: "Rejected",
-      value: 3,
-      icon: User4,
+        id: 'rejected',
+        label: 'Rejected',
+        value: 3,
+        icon: User4,
     },
-  ];
+];

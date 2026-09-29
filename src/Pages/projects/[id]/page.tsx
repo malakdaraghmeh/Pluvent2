@@ -1,38 +1,28 @@
-import ProjectDetails from "../components/ProjectDetails";
-import ProjectTimeline from "../components/ProjectTimeline";
-import { projectDetailsData } from "../data/projectDetails";
-import ChangeRequestsTable from "../components/ChangeRequestsTable";
-import ProjectFilesPayments from "../components/ProjectFilesPayments";
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
+import ProjectDetails from '../components/ProjectDetails';
+import ProjectTimeline from '../components/ProjectTimeline';
+import ChangeRequestsTable from '../components/ChangeRequestsTable';
+import ProjectFilesPayments from '../components/ProjectFilesPayments';
+import { projectDetailsData } from '../data/projectDetails';
 
 export default function Page() {
-  const { id } = useParams<{ id: string }>();
+    const { id, locale = 'en' } = useParams<{
+        id: string;
+        locale: string;
+    }>();
 
-  const project = projectDetailsData.find(
-    (item) => item.id === Number(id),
-  );
+    const project = projectDetailsData.find(item => item.id === Number(id));
 
-  if (!project) {
+    if (!project) {
+        return <Navigate to={`/${locale}/not-found`} replace />;
+    }
+
     return (
-      <div>
-        <h1>Project Not Found</h1>
-      </div>
+        <main className="custom-container flex min-h-screen w-full min-w-0 flex-col gap-6 pb-8 3xl:gap-8 4xl:gap-10">
+            <ProjectDetails project={project} />
+            <ProjectTimeline />
+            <ChangeRequestsTable />
+            <ProjectFilesPayments />
+        </main>
     );
-  }
-
-  return (
-    <main className="flex min-h-screen w-full flex-col gap-6">
-      {/* Project Information + Days Left */}
-      <ProjectDetails project={project} />
-
-      {/* Project Timeline */}
-      <ProjectTimeline />
-
-      {/* Change Requests */}
-      <ChangeRequestsTable projectId={project.id} />
-
-      {/* Files + Payments */}
-      <ProjectFilesPayments />
-    </main>
-  );
 }

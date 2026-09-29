@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Plus, ArrowLeft } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Chat, Message } from '../chat';
-import Send from "@icons/send.svg?react";
+import Send from '@icons/send.svg?react';
 
 interface ChatAreaProps {
     activeChat?: Chat;
@@ -24,10 +23,12 @@ export const ChatArea: React.FC<ChatAreaProps> = ({
     onBack,
     className = '',
 }) => {
-    const { t } = useTranslation("chat");
+    const { t } = useTranslation('chat');
 
     return (
-        <div className={`flex-1 flex-col rounded-none md:rounded-3xl bg-white p-3 md:p-6 shadow-sm border-0 md:border border-slate-100 justify-between ${className}`}>
+        <div
+            className={`flex-1 flex-col rounded-none md:rounded-3xl bg-white p-3 md:p-6 shadow-sm border-0 md:border border-slate-100 justify-between ${className}`}
+        >
             {/* Mobile Header with Back Button */}
             <div className="flex items-center gap-3 pb-3 mb-2 border-b border-slate-100 md:hidden">
                 <button
@@ -46,7 +47,9 @@ export const ChatArea: React.FC<ChatAreaProps> = ({
                         />
                         <div>
                             <h2 className="text-sm font-bold text-[#0F172A]">{activeChat.name}</h2>
-                            <p className="text-xs text-gray-400">{activeChat.subtitle || t('online')}</p>
+                            <p className="text-xs text-gray-400">
+                                {activeChat.subtitle || t('online')}
+                            </p>
                         </div>
                     </div>
                 )}
@@ -74,23 +77,32 @@ export const ChatArea: React.FC<ChatAreaProps> = ({
                             <div className="flex items-center gap-2 mb-2">
                                 {msg.isMe ? (
                                     <>
-                                        <span className="text-xs text-slate-400 font-normal">{msg.time}</span>
-                                        <span className="text-sm font-bold text-[#06043A]">{msg.senderName}</span>
+                                        <span className="text-xs text-slate-400 font-normal">
+                                            {msg.time}
+                                        </span>
+                                        <span className="text-sm font-bold text-[#06043A]">
+                                            {msg.senderName}
+                                        </span>
                                     </>
                                 ) : (
                                     <>
-                                        <span className="text-sm font-bold text-[#06043A]">{msg.senderName}</span>
-                                        <span className="text-xs text-slate-400 font-normal">{msg.time}</span>
+                                        <span className="text-sm font-bold text-[#06043A]">
+                                            {msg.senderName}
+                                        </span>
+                                        <span className="text-xs text-slate-400 font-normal">
+                                            {msg.time}
+                                        </span>
                                     </>
                                 )}
                             </div>
 
                             {/* Message Bubble */}
                             <div
-                                className={`relative px-5 py-3.5 text-xs md:text-sm leading-relaxed rounded-[26px] ${msg.isMe
-                                    ? 'bg-[#0B0A42] text-white rounded-br-[4px] rtl:rounded-br-[26px] rtl:rounded-bl-[4px]'
-                                    : 'bg-[#F3F2FA] text-[#06043A] rounded-bl-[4px] rtl:rounded-bl-[26px] rtl:rounded-br-[4px]'
-                                    }`}
+                                className={`relative px-5 py-3.5 text-xs md:text-sm leading-relaxed rounded-[26px] ${
+                                    msg.isMe
+                                        ? 'bg-[#0B0A42] text-white rounded-br-[4px] rtl:rounded-br-[26px] rtl:rounded-bl-[4px]'
+                                        : 'bg-[#F3F2FA] text-[#06043A] rounded-bl-[4px] rtl:rounded-bl-[26px] rtl:rounded-br-[4px]'
+                                }`}
                             >
                                 {msg.text}
 
@@ -117,7 +129,10 @@ export const ChatArea: React.FC<ChatAreaProps> = ({
             </div>
 
             {/* Message Input Box */}
-            <form onSubmit={onSendMessage} className="mt-3 md:mt-4 shadow-[0px_2px_15px_0px_#0000000D] p-1.5 md:p-2 rounded-full">
+            <form
+                onSubmit={onSendMessage}
+                className="mt-3 md:mt-4 shadow-[0px_2px_15px_0px_#0000000D] p-1.5 md:p-2 rounded-full"
+            >
                 <div className="flex items-center gap-2 md:gap-3 w-full">
                     <button
                         type="button"

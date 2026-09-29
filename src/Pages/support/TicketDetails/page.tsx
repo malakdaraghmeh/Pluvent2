@@ -68,10 +68,11 @@ export default function TicketDetails() {
                                     Ticket# 2023-CS123
                                 </h2>
                                 <span
-                                    className={`px-3 py-1 text-xs font-semibold rounded-md ${ticketStatus === 'Open'
+                                    className={`px-3 py-1 text-xs font-semibold rounded-md ${
+                                        ticketStatus === 'Open'
                                             ? 'bg-[#EEEFFB] text-[#5252A3]'
                                             : 'bg-gray-200 text-gray-600'
-                                        }`}
+                                    }`}
                                 >
                                     {ticketStatus}
                                 </span>
@@ -158,10 +159,11 @@ export default function TicketDetails() {
                                 onDragOver={handleDragOver}
                                 onDragLeave={handleDragLeave}
                                 onDrop={handleDrop}
-                                className={`border-2 border-dashed rounded-xl p-6 transition-all text-center flex flex-col sm:flex-row items-center justify-center gap-4 cursor-pointer ${isDragging
+                                className={`border-2 border-dashed rounded-xl p-6 transition-all text-center flex flex-col sm:flex-row items-center justify-center gap-4 cursor-pointer ${
+                                    isDragging
                                         ? 'border-[#38bdf8] bg-sky-50'
                                         : 'border-cyan-100 bg-white hover:bg-slate-50'
-                                    }`}
+                                }`}
                             >
                                 <input
                                     type="file"
@@ -174,7 +176,6 @@ export default function TicketDetails() {
                                     htmlFor="file-upload"
                                     className="flex flex-col sm:flex-row items-center gap-4 cursor-pointer w-full justify-center"
                                 >
-
                                     <FolderUpload />
                                     <div className="text-center sm:text-left">
                                         <p className="text-base font-bold text-[#100D40]">

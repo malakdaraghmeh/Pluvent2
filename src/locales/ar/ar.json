@@ -97,6 +97,7 @@
             "inProgress": "قيد التنفيذ",
             "completed": "مكتمل"
         },
+        "description": "هذا وصف تفصيلي للمشروع يوضح نطاق العمل ومتطلبات التنفيذ والمخرجات المستهدفة، مع مراعاة جودة التصميم والتطوير وتجربة الاستخدام وفقًا لمتطلبات المشروع.",
         "startDate": "تاريخ البدء",
         "delivery": "تاريخ التسليم",
         "daysLeft": "الأيام المتبقية",
@@ -126,11 +127,19 @@
         "status": "الحالة",
         "startDate": "تاريخ البدء",
         "dueDate": "تاريخ الاستحقاق",
-        "details": "التفاصيل"
+        "details": "التفاصيل",
+        "statuses": {
+            "inReview": "قيد المراجعة",
+            "waitingUserInput": "بانتظار رد المستخدم",
+            "pendingPayment": "بانتظار الدفع",
+            "inProgress": "قيد التنفيذ",
+            "completed": "مكتمل"
+        }
     },
     "fileDocuments": {
         "title": "الملفات والمستندات",
         "viewAll": "عرض الكل",
+        "uploadedBy": "رُفع بواسطة",
         "download": "تحميل",
         "dropFiles": "أسقط الملفات هنا أو اضغط للرفع",
         "fileTypes": "PDF, DOCX, XLSX, PNG, JPG, ZIP — حتى 50 ميجابايت لكل ملف"
@@ -140,8 +149,8 @@
         "totalPaid": "تم الدفع من أصل $6,000",
         "finalPayment": "الدفعة النهائية",
         "payNow": "ادفع الآن",
-        "dueIn": "مستحق خلال {days} يوم",
-        "after": "بعد {days} يوم"
+        "dueIn": "مستحق خلال {{days}} يوم",
+        "after": "بعد {{days}} يوم"
     },
     "dashboardStats": {
         "projects": {

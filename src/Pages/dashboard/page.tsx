@@ -1,51 +1,25 @@
-import StatsSection from "./components/StatsSection";
-import ProjectProgress from "./components/ProjectProgress";
-import UpcomingPayments from "./components/UpcomingPayments";
-import SupportTickets from "./components/SupportTickets";
+import ProjectProgress from './components/ProjectProgress';
+import StatsSection from './components/StatsSection';
+import SupportTickets from './components/SupportTickets';
+import UpcomingPayments from './components/UpcomingPayments';
 
 const DashboardPage = () => {
-  return (
-    <main
-      className="
-        min-h-screen
-      "
-    >
-      <div className="mx-auto w-full max-w-[1400px]">
-     
+    return (
+        <main className="custom-container w-full min-w-0 pb-6">
+            <StatsSection />
 
-        {/* Stats */}
-        <StatsSection />
+            <div className="mt-4 grid w-full min-w-0 grid-cols-1 gap-4 sm:mt-5 sm:gap-5 xl:mt-6 xl:grid-cols-[minmax(0,1fr)_385px] xl:items-stretch xl:gap-5 3xl:grid-cols-[minmax(0,1fr)_430px] 3xl:gap-6 4xl:grid-cols-[minmax(0,1fr)_480px] 4xl:gap-8">
+                <div className="h-full min-w-0">
+                    <ProjectProgress />
+                </div>
 
-        {/* Main Content */}
-        <div
-          className="
-            mt-4
-            grid
-            w-full
-            grid-cols-1
-            gap-4
-
-            sm:mt-5
-            sm:gap-5
-
-            lg:mt-6
-            lg:grid-cols-[2fr_1fr]
-            lg:items-stretch
-            lg:gap-4
-          "
-        >
-          {/* Left */}
-          <ProjectProgress />
-
-          {/* Right */}
-          <div className="flex w-full flex-col gap-6">
-            <UpcomingPayments />
-            <SupportTickets />
-          </div>
-        </div>
-      </div>
-    </main>
-  );
+                <div className="flex h-full min-w-0 flex-col gap-4 3xl:gap-6 4xl:gap-8">
+                    <UpcomingPayments />
+                    <SupportTickets />
+                </div>
+            </div>
+        </main>
+    );
 };
 
 export default DashboardPage;

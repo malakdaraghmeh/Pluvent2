@@ -1,197 +1,79 @@
-
-
-import { upcomingPayments } from "../data/upcomingPayments";
-import { Icon } from "@/assets";
+import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import ArrowIcon from '@icons/arrow.svg?react';
+import { upcomingPayments } from '../data/upcomingPayments';
 
 const UpcomingPayments = () => {
-  const locale = (localStorage.getItem("i18nextLng") || "en");
-  const { t } = useTranslation("upcomingPayments");
+    const { t } = useTranslation('upcomingPayments');
+    const { locale = 'en' } = useParams();
 
-  return (
-    <section
-      className="
-        w-full
-        max-w-full
-        min-w-0
-        overflow-hidden
-        rounded-[24px]
-        bg-white
-        p-4
+    const getDueText = (days: number) => t('dueIn').replace('{days}', String(days));
 
-        sm:p-5
+    return (
+        <section className="box-border w-full min-w-0 rounded-[24px] bg-white p-4 shadow-[0_4px_20px_rgba(0,0,0,0.0314)] sm:p-5 lg:p-6 3xl:p-7 4xl:p-8">
+            <div className="mb-4 flex w-full min-w-0 items-start justify-between gap-3 3xl:mb-5 4xl:mb-6">
+                <h2 className="min-w-0 break-words text-start text-[18px] font-semibold leading-[24px] text-[#12115C] lg:text-[20px] 3xl:text-[22px] 3xl:leading-[28px] 4xl:text-[24px]">
+                    {t('title')}
+                </h2>
 
-        lg:h-[351px]
-        lg:p-6
-      "
-    >
-      {/* Header */}
-      <div
-        className="
-          mb-4
-          flex
-          min-w-0
-          items-center
-          justify-between
-          gap-3
-        "
-      >
-        <h2
-          className="
-            min-w-0
-            truncate
-            text-[22px]
-            font-semibold
-            text-[#12115C]
-          "
-        >
-          {t("title")}
-        </h2>
-
-        <button
-          type="button"
-          className="
-            shrink-0
-            whitespace-nowrap
-            text-[16px]
-            text-[#3634C7]
-          "
-        >
-          {t("viewAll")}
-        </button>
-      </div>
-
-      {/* Payments */}
-      <div className="flex w-full min-w-0 flex-col gap-3 sm:gap-4">
-        {upcomingPayments.map((payment) => (
-          <div
-            key={payment.id}
-            className="
-              w-full
-              min-w-0
-              rounded-[16px]
-              border
-              border-[#E5E7EB]
-              p-4
-
-              sm:p-5
-
-              lg:h-[122px]
-              lg:p-6
-            "
-          >
-            {/* Top */}
-            <div
-              className="
-                flex
-                min-w-0
-                items-start
-                justify-between
-                gap-3
-              "
-            >
-              {/* Project Info */}
-              <div className="min-w-0 flex-1">
-                <h3
-                  className="
-                    truncate
-                    text-[16px]
-                    font-semibold
-                    text-[#12115C]
-                  "
-                  title={payment.projectName}
+                <Link
+                    to={`/${locale}/billing`}
+                    className="shrink-0 text-[14px] leading-[20px] text-[#3634C7] transition-opacity hover:opacity-70 3xl:text-[15px] 4xl:text-[16px]"
                 >
-                  {payment.projectName}
-                </h3>
-
-                <p
-                  className="
-                    mt-1
-                    text-[13px]
-                    text-[#9CA3AF]
-                  "
-                >
-                  {t("finalPayment")}
-                </p>
-              </div>
-
-              {/* Amount */}
-              <span
-                className="
-                  shrink-0
-                  whitespace-nowrap
-                  text-[22px]
-                  font-semibold
-                  text-[#12115C]
-                "
-              >
-                {payment.amount}
-              </span>
+                    {t('viewAll')}
+                </Link>
             </div>
 
-            {/* Bottom */}
-            <div
-              className="
-                mt-3
-                flex
-                min-w-0
-                items-center
-                justify-between
-                gap-3
-              "
-            >
-              {/* Due Status */}
-              <span
-                className={`
-                  inline-flex
-                  min-w-0
-                  shrink
-                  items-center
-                  justify-center
-                  rounded-[6px]
-                  px-[10px]
-                  py-[4px]
-                  text-[11px]
-                  font-semibold
-                  leading-none
-                  ${payment.dueType === "danger"
-                    ? "bg-[#FF3B300D] text-[#FF3B30]"
-                    : "bg-[#FFF7E8] text-[#F59E0B]"
-                  }
-                `}
-              >
-                {t("dueIn", { days: payment.dueDays })}
-              </span>
+            <div className="flex w-full min-w-0 flex-col gap-4 3xl:gap-5 4xl:gap-6">
+                {upcomingPayments.map(payment => (
+                    <article
+                        key={payment.id}
+                        className="flex min-h-[122px] w-full min-w-0 flex-col justify-between rounded-[16px] border border-[#E5E7EB] p-4 sm:p-5 lg:p-6 3xl:min-h-[136px] 3xl:p-7 4xl:min-h-[148px] 4xl:p-8"
+                    >
+                        <div className="flex w-full min-w-0 flex-wrap items-start justify-between gap-x-3 gap-y-2">
+                            <div className="min-w-0 flex-1">
+                                <h3 className="break-words text-start text-[14px] font-semibold leading-[19px] text-[#12115C] 3xl:text-[15px] 3xl:leading-[21px] 4xl:text-[16px] 4xl:leading-[22px]">
+                                    {payment.projectName}
+                                </h3>
 
-              {/* Open Project */}
-              <button
-                type="button"
-                className="
-                  inline-flex
-                  shrink-0
-                  items-center
-                  justify-center
-                  gap-1.5
-                  whitespace-nowrap
-                  text-[12px]
-                  font-semibold
-                  text-[#2F1ABD]
-                "
-              >
-                <span>{t("openProject")}</span>
+                                <p className="mt-2 break-words text-start text-[12px] leading-[16px] text-[#A0A8B8] 3xl:text-[13px] 4xl:text-[14px]">
+                                    {t('finalPayment')}
+                                </p>
+                            </div>
 
-                <span
-                  className={locale === "ar" ? "rotate-180" : ""}
-                >
-                  <Icon />
-                </span>
-              </button>
+                            <p
+                                dir="ltr"
+                                className="shrink-0 whitespace-nowrap text-[18px] font-semibold leading-[22px] text-[#12115C] [unicode-bidi:isolate] 3xl:text-[20px] 4xl:text-[22px]"
+                            >
+                                {payment.amount}
+                            </p>
+                        </div>
+
+                        <div className="mt-4 flex w-full min-w-0 flex-wrap items-center justify-between gap-3">
+                            <span
+                                className={`shrink-0 rounded-[6px] px-[10px] py-1 text-[10px] font-medium leading-[14px] 3xl:text-[11px] 4xl:text-[12px] ${
+                                    payment.dueType === 'danger'
+                                        ? 'bg-[#FFF1F1] text-[#FF3B30]'
+                                        : 'bg-[#FFF7E6] text-[#FF9500]'
+                                }`}
+                            >
+                                {getDueText(payment.dueDays)}
+                            </span>
+
+                            <Link
+                                to={`/${locale}/projects/${payment.id}`}
+                                className="flex shrink-0 items-center gap-2 text-[11px] font-semibold leading-[16px] text-[#2217C7] transition-opacity hover:opacity-70 3xl:text-[12px] 4xl:text-[13px]"
+                            >
+                                <span>{t('openProject')}</span>
+
+                                <ArrowIcon className="h-4 w-4 shrink-0 rtl:rotate-180 4xl:h-[18px] 4xl:w-[18px]" />
+                            </Link>
+                        </div>
+                    </article>
+                ))}
             </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
+        </section>
+    );
 };
 
 export default UpcomingPayments;

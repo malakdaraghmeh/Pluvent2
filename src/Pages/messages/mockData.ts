@@ -95,7 +95,8 @@ export const INITIAL_MESSAGES: Message[] = [
     {
         id: 'm1',
         senderName: 'Pulvent',
-        senderAvatar: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&h=100&fit=crop',
+        senderAvatar:
+            'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&h=100&fit=crop',
         text: "Hi! We've reviewed your latest request and shared the updates with our team.",
         time: '01:08 am',
         isMe: false,
@@ -103,7 +104,8 @@ export const INITIAL_MESSAGES: Message[] = [
     {
         id: 'm2',
         senderName: 'Amr',
-        senderAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop',
+        senderAvatar:
+            'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop',
         text: "Hi! We've reviewed your latest request and shared the updates with our team.",
         time: '02:08 am',
         isMe: true,
@@ -111,7 +113,8 @@ export const INITIAL_MESSAGES: Message[] = [
     {
         id: 'm3',
         senderName: 'Pulvent',
-        senderAvatar: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&h=100&fit=crop',
+        senderAvatar:
+            'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&h=100&fit=crop',
         text: "Hi! We've reviewed your latest request and shared the updates with our team.",
         time: '01:08 am',
         isMe: false,
@@ -119,7 +122,8 @@ export const INITIAL_MESSAGES: Message[] = [
     {
         id: 'm4',
         senderName: 'Amr',
-        senderAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
+        senderAvatar:
+            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
         text: "Hi! We've reviewed your latest request and shared the updates with our team.",
         time: '02:08 am',
         isMe: true,
