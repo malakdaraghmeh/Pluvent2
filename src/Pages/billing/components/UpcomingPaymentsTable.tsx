@@ -1,4 +1,4 @@
-
+"use client";
 
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
@@ -6,12 +6,14 @@ import { ChevronDown } from "lucide-react";
 import { upcomingPaymentsList } from "../data/upcomingPayments";
 import { Arrow, SearchBilling } from "@/assets";
 import { useTranslation } from "react-i18next";
+import CreditDebitCardModal from "./CreditDebitCardModal";
 
 export default function UpcomingPaymentsTable() {
   const { t } = useTranslation("upcomingPayments");
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedProject, setSelectedProject] = useState("All Projects");
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
 
   const filteredData = upcomingPaymentsList.filter((item) => {
     const matchesSearch =
@@ -26,201 +28,240 @@ export default function UpcomingPaymentsTable() {
   });
 
   return (
-    <div className="w-full max-w-[1086px] min-h-[366px] bg-white rounded-[16px] p-[24px] flex flex-col gap-[24px] shadow-sm">
-      {/* Header & Filter Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <h2 className="text-[22px] font-semibold text-[#12115C]">
-          {t("title")}
-        </h2>
+    <>
+      <div className="flex min-h-[366px] w-full max-w-[1086px] flex-col gap-[24px] rounded-[16px] bg-white p-[24px] shadow-sm">
+        {/* Header & Filter Controls */}
+        <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+          <h2 className="text-[22px] font-semibold text-[#12115C]">
+            {t("title")}
+          </h2>
 
-        <div className="flex w-full sm:w-auto items-center gap-3">
-          {/* Search Box */}
-          <div className="relative flex-1 sm:w-[280px] sm:max-w-[280px]">
-            <SearchBilling
-              className="absolute left-3 top-1/2 -translate-y-1/2 shrink-0 text-[#9CA3AF]"
-            />
-            <input
-              type="text"
-              placeholder={t("searchPlaceholder")}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="
-                w-full
-                h-[38px]
-                pl-[36px]
-                pr-[16px]
-                bg-white
-                border
-                border-[#ECEFF4]
-                rounded-[12px]
-                text-[14px]
-                text-[#111827]
-                placeholder:text-[#9CA3AF]
-                focus:outline-none
-              "
-            />
+          <div className="flex w-full items-center gap-3 sm:w-auto">
+            {/* Search */}
+            <div className="relative flex-1 sm:w-[280px] sm:max-w-[280px]">
+              <SearchBilling
+                className="
+                  absolute
+                  left-3
+                  top-1/2
+                  shrink-0
+                  -translate-y-1/2
+                  text-[#9CA3AF]
+                "
+              />
+
+              <input
+                type="text"
+                placeholder={t("searchPlaceholder")}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="
+                  h-[38px]
+                  w-full
+                  rounded-[12px]
+                  border
+                  border-[#ECEFF4]
+                  bg-white
+                  pl-[36px]
+                  pr-[16px]
+                  text-[14px]
+                  text-[#111827]
+                  placeholder:text-[#9CA3AF]
+                  focus:outline-none
+                "
+              />
+            </div>
+
+            {/* Filter */}
+            <div className="relative w-[139px] shrink-0">
+              <select
+                value={selectedProject}
+                onChange={(e) => setSelectedProject(e.target.value)}
+                className="
+                  h-[38px]
+                  w-full
+                  cursor-pointer
+                  appearance-none
+                  rounded-[12px]
+                  border
+                  border-[#ECEFF4]
+                  bg-white
+                  py-[8px]
+                  pl-[16px]
+                  pr-[36px]
+                  text-[14px]
+                  text-[#12115C]
+                  focus:outline-none
+                "
+              >
+                <option value="All Projects">
+                  {t("allProjects")}
+                </option>
+
+                <option value="Company Website Redesign">
+                  Company Website Redesign
+                </option>
+              </select>
+
+              <ChevronDown
+                className="
+                  pointer-events-none
+                  absolute
+                  right-3
+                  top-1/2
+                  h-4
+                  w-4
+                  -translate-y-1/2
+                  text-[#12115C]
+                "
+              />
+            </div>
           </div>
+        </div>
 
-          {/* Filter Dropdown */}
-          <div className="relative w-[139px] shrink-0">
-            <select
-              value={selectedProject}
-              onChange={(e) => setSelectedProject(e.target.value)}
-              className="
-                appearance-none
-                w-full
-                h-[38px]
-                bg-white
-                border
-                border-[#ECEFF4]
-                text-[#12115C]
-                text-[14px]
-                py-[8px]
-                pl-[16px]
-                pr-[36px]
-                rounded-[12px]
-                cursor-pointer
-                focus:outline-none
-              "
-            >
-              <option value="All Projects">
-                {t("allProjects")}
-              </option>
+        {/* Table */}
+        <div className="w-full max-w-[1038px] overflow-x-auto rounded-[8px] border border-[#00E5C820] bg-white">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr
+                className="
+                  h-[48px]
+                  border-b
+                  border-[#00E5C820]
+                  bg-white
+                  text-[14px]
+                  font-semibold
+                  text-[#12115C]
+                "
+              >
+                <th className="px-6 py-3">
+                  {t("project")}
+                </th>
 
-              <option value="Company Website Redesign">
-                Company Website Redesign
-              </option>
-            </select>
+                <th className="px-4 py-3">
+                  {t("installment")}
+                </th>
 
-            <ChevronDown
-              className="
-                absolute
-                right-3
-                top-1/2
-                -translate-y-1/2
-                w-4
-                h-4
-                text-[#12115C]
-                pointer-events-none
-              "
-            />
-          </div>
+                <th className="px-4 py-3">
+                  {t("amount")}
+                </th>
+
+                <th className="px-4 py-3">
+                  {t("dueDate")}
+                </th>
+
+                <th className="whitespace-nowrap px-4 py-3">
+                  {t("daysLeftLabel")}
+                </th>
+
+                <th className="whitespace-nowrap px-6 py-3">
+                  {t("pay")}
+                </th>
+              </tr>
+            </thead>
+
+            <tbody className="text-[14px]">
+              {filteredData.map((row, index) => (
+                <tr
+                  key={row.id}
+                  className={`
+                    border-b
+                    border-[#00E5C815]
+                    transition-colors
+                    last:border-none
+                    ${index % 2 === 0 ? "bg-[#00E5C805]" : "bg-white"}
+                  `}
+                >
+                  {/* Project */}
+                  <td className="px-6 py-4 font-semibold text-[#1F2937]">
+                    {row.project}
+                  </td>
+
+                  {/* Installment */}
+                  <td className="px-4 py-4 text-[#8C94A3]">
+                    {row.installment}
+                  </td>
+
+                  {/* Amount */}
+                  <td className="px-4 py-4 font-bold text-[#12115C]">
+                    {row.amount}
+                  </td>
+
+                  {/* Due Date */}
+                  <td className="px-4 py-4 text-[#8C94A3]">
+                    {row.dueDate}
+                  </td>
+
+                  {/* Days Left */}
+                  <td className="px-4 py-4 font-semibold">
+                    <span
+                      className={
+                        row.daysLeft <= 3
+                          ? "text-[#FF3B30]"
+                          : "text-[#1AB24D]"
+                      }
+                    >
+                      {t("dueIn", {
+                        days: row.daysLeft,
+                      })}
+                    </span>
+                  </td>
+
+                  {/* Pay */}
+                  <td className="whitespace-nowrap px-6 py-4 text-right">
+                    <button
+                      type="button"
+                      onClick={() => setIsPaymentModalOpen(true)}
+                      className="
+                        inline-flex
+                        h-[40px]
+                        items-center
+                        justify-center
+                        gap-2
+                        rounded-full
+                        bg-[#0F0C41]
+                        px-5
+                        text-[14px]
+                        font-medium
+                        text-white
+                        transition-all
+                        duration-200
+                        hover:bg-[#1A165C]
+                      "
+                    >
+                      <span className="shrink-0">
+                        {t("payNow")}
+                      </span>
+
+                      <span className="flex shrink-0 items-center rtl:rotate-180">
+                        <Arrow />
+                      </span>
+                    </button>
+                  </td>
+                </tr>
+              ))}
+
+              {/* No Results */}
+              {filteredData.length === 0 && (
+                <tr>
+                  <td
+                    colSpan={6}
+                    className="py-8 text-center text-[#8C94A3]"
+                  >
+                    {t("noResults")}
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
 
-      {/* Table */}
-      <div className="w-full max-w-[1038px] rounded-[8px] border border-[#00E5C820] overflow-x-auto bg-white">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr
-              className="
-                h-[48px]
-                bg-white
-                border-b
-                border-[#00E5C820]
-                text-[14px]
-                font-semibold
-                text-[#12115C]
-              "
-            >
-              <th className="py-3 px-6">{t("project")}</th>
-              <th className="py-3 px-4">{t("installment")}</th>
-              <th className="py-3 px-4">{t("amount")}</th>
-              <th className="py-3 px-4">{t("dueDate")}</th>
-              <th className="py-3 px-4 whitespace-nowrap">
-                {t("daysLeftLabel")}
-              </th>
-              <th className="py-3 px-6 whitespace-nowrap">
-                {t("pay")}
-              </th>
-            </tr>
-          </thead>
-
-          <tbody className="text-[14px]">
-            {filteredData.map((row, index) => (
-              <tr
-                key={row.id}
-                className={`
-                  transition-colors
-                  border-b
-                  border-[#00E5C815]
-                  last:border-none
-                  ${index % 2 === 0 ? "bg-[#00E5C805]" : "bg-white"}
-                `}
-              >
-                <td className="py-4 px-6 font-semibold text-[#1F2937]">
-                  {row.project}
-                </td>
-
-                <td className="py-4 px-4 text-[#8C94A3]">
-                  {row.installment}
-                </td>
-
-                <td className="py-4 px-4 font-bold text-[#12115C]">
-                  {row.amount}
-                </td>
-
-                <td className="py-4 px-4 text-[#8C94A3]">
-                  {row.dueDate}
-                </td>
-
-                <td className="py-4 px-4 font-semibold">
-                  <span
-                    className={
-                      row.daysLeft <= 3
-                        ? "text-[#FF3B30]"
-                        : "text-[#1AB24D]"
-                    }
-                  >
-                    {t("dueIn", { days: row.daysLeft })}
-                  </span>
-                </td>
-
-                <td className="py-4 px-6 text-right whitespace-nowrap">
-                  <button
-                    type="button"
-                    className="
-                      inline-flex
-                      items-center
-                      justify-center
-                      gap-2
-                      h-[40px]
-                      px-5
-                      bg-[#0F0C41]
-                      hover:bg-[#1A165C]
-                      text-white
-                      font-medium
-                      text-[14px]
-                      rounded-full
-                      transition-all
-                      duration-200
-                    "
-                  >
-                    <span className="shrink-0">
-                      {t("payNow")}
-                    </span>
-
-                    <span className="shrink-0 flex items-center rtl:rotate-180">
-                      <Arrow />
-                    </span>
-                  </button>
-                </td>
-              </tr>
-            ))}
-
-            {filteredData.length === 0 && (
-              <tr>
-                <td
-                  colSpan={6}
-                  className="py-8 text-center text-[#8C94A3]"
-                >
-                  {t("noResults")}
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-    </div>
+      {/* Payment Modal */}
+      <CreditDebitCardModal
+        isOpen={isPaymentModalOpen}
+        onClose={() => setIsPaymentModalOpen(false)}
+      />
+    </>
   );
 }
