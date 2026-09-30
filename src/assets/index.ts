@@ -52,6 +52,8 @@ export { default as ProfileCloseIcon } from './icons/profile-close.svg?react';
 export { default as DownArrow } from './icons/down-arrow.svg?react';
 export { default as CloseIcons } from './icons/close-icone.svg?react';
 export { default as FilesIcons } from './icons/files-icone.svg?react';
+export { default as PaymentSuccess } from './icons/payment-success.svg?react';
+
 
 
 

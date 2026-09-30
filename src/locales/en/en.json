@@ -349,5 +349,32 @@
         "description": "Sorry, the page you are looking for does not exist.",
         "backToHome": "Back to Home",
         "logoAlt": "Pulvent Logo"
-    }
+    },
+    "creditDebitCardModal": {
+        "title": "Credit & Debit Card",
+        "description": "Enter your card details to complete this payment.",
+        "cardNumber": "Credit Card Number",
+        "cardNumberPlaceholder": "0000 0000 0000 0000",
+        "cardholderName": "Cardholder Name",
+        "cardholderNamePlaceholder": "Cardholder Name",
+        "expiryMonth": "Expiry Month",
+        "expiryYear": "Expiry Year",
+        "monthPlaceholder": "MM",
+        "yearPlaceholder": "YYYY",
+        "cvv": "CVV",
+        "cvvPlaceholder": "3-digit",
+        "totalAmount": "Total Amount",
+        "project": "Project:",
+        "projectName": "Website Redesign",
+        "securityMessageLine1": "Your payment is encrypted and",
+        "securityMessageLine2": "securely processed.",
+        "back": "Back",
+        "continueToPayment": "Continue to Payment"
+      },
+      "paymentSuccessModal": {
+        "title": "Payment Successful",
+        "message": "Your payment has been completed successfully.",
+        "back": "Back",
+        "viewReceipt": "View Receipt"
+      }
 }

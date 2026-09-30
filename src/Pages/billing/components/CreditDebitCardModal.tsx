@@ -1,7 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-import { Arrow, Close, CloseIcons, DownArrow, FilesIcons } from "@/assets";
+import {
+  Arrow,
+  Close,
+  CloseIcons,
+  DownArrow,
+  FilesIcons,
+} from "@/assets";
+import PaymentSuccessModal from "./PaymentSuccessModal";
+import { useTranslation } from "react-i18next";
+import i18n from "@/i18n/i18n";
 
 interface CreditDebitCardModalProps {
   isOpen: boolean;
@@ -17,356 +26,360 @@ export default function CreditDebitCardModal({
   const [expiryMonth, setExpiryMonth] = useState("");
   const [expiryYear, setExpiryYear] = useState("");
   const [cvv, setCvv] = useState("");
+  const [isPaymentSuccessOpen, setIsPaymentSuccessOpen] = useState(false);
+
+  const { t } = useTranslation("creditDebitCardModal");
+  const isRtl = i18n.language === "ar";
 
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/30 px-4">
-     <div
-  className="
-    relative
-    flex
-    w-full
-    max-w-[700px]
-    max-h-[calc(100vh-40px)]
-    flex-col
-    gap-[32px]
-    overflow-y-auto
-    rounded-[8px]
-    border-[0.5px]
-    border-[#D9D9D9]
-    bg-white
-    px-[24px]
-    py-[40px]
-    shadow-[0px_2px_15px_0px_#0000000D]
-  "
->
+      <div
+        className="
+          relative
+          flex
+          w-full
+          max-w-[700px]
+          max-h-[calc(100vh-40px)]
+          flex-col
+          gap-[32px]
+          overflow-y-auto
+          rounded-[8px]
+          border-[0.5px]
+          border-[#D9D9D9]
+          bg-white
+          px-[24px]
+          py-[40px]
+          shadow-[0px_2px_15px_0px_#0000000D]
+        "
+      >
         {/* ==================== Header ==================== */}
 
-        <div >
+        <div>
           <h2 className="text-[22px] font-semibold text-[#12115C]">
-            Credit & Debit Card
+            {t("title")}
           </h2>
 
-          <p className=" text-[14px] text-[#615E8B]">
-            Enter your card details to complete this payment.
+          <p className="text-[14px] text-[#615E8B]">
+            {t("description")}
           </p>
         </div>
 
         {/* ==================== Close Button ==================== */}
 
         <button
-          type="button"
-          onClick={onClose}
-          className="
-            absolute
-            right-[24px]
-            top-[40px]
-            flex
-            h-[32px]
-            w-[32px]
-            items-center
-            justify-center
-            rounded-[8px]
-            bg-[#12115C]
-          "
-        >
-          <Close  />
-        </button>
+  type="button"
+  onClick={onClose}
+  className={`
+    absolute
+    ${isRtl ? "left-[24px]" : "right-[24px]"}
+    top-[40px]
+    flex
+    h-[32px]
+    w-[32px]
+    items-center
+    justify-center
+    rounded-[8px]
+    bg-[#12115C]
+  `}
+>
+  <Close />
+</button>
+
 
         {/* ==================== Card Number ==================== */}
 
         <div>
-          <label className="  text-[16px]  text-[#08040B]">
-            Credit Card Number
+          <label className="text-[16px] text-[#08040B]">
+            {t("cardNumber")}
           </label>
 
           <input
-        type="text"
-        value={cardNumber}
-        onChange={(e) => setCardNumber(e.target.value)}
-        placeholder="0000 0000 0000 0000"
-        maxLength={19}
-        className="
-            h-[54px]
-            w-full
-            rounded-[8px]
-            bg-[#F4F6FA]
-            px-[14px]
-            py-[13px]
-            text-[14px]
-            text-[#888282]
-            outline-none
-            placeholder:text-[#A0A5AF]
-        "
-        />
+            type="text"
+            value={cardNumber}
+            onChange={(e) => setCardNumber(e.target.value)}
+            placeholder={t("cardNumberPlaceholder")}
+            maxLength={19}
+            className="
+              h-[54px]
+              w-full
+              rounded-[8px]
+              bg-[#F4F6FA]
+              px-[14px]
+              py-[13px]
+              text-[14px]
+              text-[#888282]
+              outline-none
+              placeholder:text-[#A0A5AF]
+            "
+          />
         </div>
 
         {/* ==================== Cardholder Name ==================== */}
 
         <div>
           <label className="text-[16px] text-[#08040B]">
-            Cardholder Name
+            {t("cardholderName")}
           </label>
 
           <input
-        type="text"
-        value={cardholderName}
-        onChange={(e) => setCardholderName(e.target.value)}
-        placeholder="Cardholder Name"
-        className="
-            h-[54px]
-            w-full
-            rounded-[8px]
-            bg-[#F4F6FA]
-            px-[14px]
-            py-[13px]
-            text-[14px]
-            text-[#888282]
-            outline-none
-            placeholder:text-[#A0A5AF]
-        "
-        />
+            type="text"
+            value={cardholderName}
+            onChange={(e) => setCardholderName(e.target.value)}
+            placeholder={t("cardholderNamePlaceholder")}
+            className="
+              h-[54px]
+              w-full
+              rounded-[8px]
+              bg-[#F4F6FA]
+              px-[14px]
+              py-[13px]
+              text-[14px]
+              text-[#888282]
+              outline-none
+              placeholder:text-[#A0A5AF]
+            "
+          />
         </div>
 
         {/* ==================== Expiry ==================== */}
+
         <div className="flex w-full gap-[24px]">
-  {/* Month */}
+          {/* Month */}
 
-  <div className="flex-1">
-    <label className="mb-[8px] block text-[16px] text-[#08040B]">
-      Expiry Month
-    </label>
+          <div className="flex-1">
+            <label className="text-[16px] text-[#08040B]">
+              {t("expiryMonth")}
+            </label>
 
-    <div className="relative">
-      <select
-        value={expiryMonth}
-        onChange={(e) => setExpiryMonth(e.target.value)}
-        className="
-          h-[54px]
-          w-full
-          appearance-none
-          rounded-[8px]
-          bg-[#F4F6FA]
-          px-[14px]
-          py-[13px]
-          text-[14px]
-          text-[#A0A5AF]
-          outline-none
-        "
-      >
-        <option value="">MM</option>
-        <option value="01">01</option>
-        <option value="02">02</option>
-        <option value="03">03</option>
-        <option value="04">04</option>
-        <option value="05">05</option>
-        <option value="06">06</option>
-        <option value="07">07</option>
-        <option value="08">08</option>
-        <option value="09">09</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-      </select>
+            <div className="relative">
+              <select
+                value={expiryMonth}
+                onChange={(e) => setExpiryMonth(e.target.value)}
+                className="
+                  h-[54px]
+                  w-full
+                  appearance-none
+                  rounded-[8px]
+                  bg-[#F4F6FA]
+                  px-[14px]
+                  py-[13px]
+                  text-[14px]
+                  text-[#A0A5AF]
+                  outline-none
+                "
+              >
+                <option value="">{t("monthPlaceholder")}</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <span
+  className="
+    pointer-events-none
+    absolute
+    right-[14px]
+    rtl:right-auto
+    rtl:left-[14px]
+    top-1/2
+    -translate-y-1/2
+    text-[14px]
+    text-[#12115C]
+  "
+>
+  <DownArrow />
+</span>
+            </div>
+          </div>
 
-      <span
-        className="
-          pointer-events-none
-          absolute
-          right-[14px]
-          top-1/2
-          -translate-y-1/2
-          text-[14px]
-          text-[#12115C]
-        "
-      >
-        <DownArrow/>
-      </span>
-    </div>
-  </div>
+          {/* Year */}
 
-  {/* Year */}
+          <div className="flex-1">
+            <label className="text-[16px] text-[#08040B]">
+              {t("expiryYear")}
+            </label>
 
-  <div className="flex-1">
-    <label className=" text-[16px] text-[#08040B]">
-      Expiry Year
-    </label>
+            <div className="relative">
+              <select
+                value={expiryYear}
+                onChange={(e) => setExpiryYear(e.target.value)}
+                className="
+                  h-[54px]
+                  w-full
+                  appearance-none
+                  rounded-[8px]
+                  bg-[#F4F6FA]
+                  px-[14px]
+                  py-[13px]
+                  text-[14px]
+                  text-[#A0A5AF]
+                  outline-none
+                "
+              >
+                <option value="">{t("yearPlaceholder")}</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+                <option value="2031">2031</option>
+                <option value="2032">2032</option>
+              </select>
 
-    <div className="relative">
-      <select
-        value={expiryYear}
-        onChange={(e) => setExpiryYear(e.target.value)}
-        className="
-          h-[54px]
-          w-full
-          appearance-none
-          rounded-[8px]
-          bg-[#F4F6FA]
-          px-[14px]
-          py-[13px]
-          text-[14px]
-          text-[#A0A5AF]
-          outline-none
-        "
-      >
-        <option value="">YYYY</option>
-        <option value="2026">2026</option>
-        <option value="2027">2027</option>
-        <option value="2028">2028</option>
-        <option value="2029">2029</option>
-        <option value="2030">2030</option>
-        <option value="2031">2031</option>
-        <option value="2032">2032</option>
-      </select>
-
-      <span
-        className="
-          pointer-events-none
-          absolute
-          right-[14px]
-          top-1/2
-          -translate-y-1/2
-          text-[14px]
-          text-[#12115C]
-        "
-      >
-         <DownArrow/>
-      </span>
-    </div>
-  </div>
-</div>
+              <span
+  className="
+    pointer-events-none
+    absolute
+    right-[14px]
+    rtl:right-auto
+    rtl:left-[14px]
+    top-1/2
+    -translate-y-1/2
+    text-[14px]
+    text-[#12115C]
+  "
+>
+  <DownArrow />
+</span>
+            </div>
+          </div>
+        </div>
 
         {/* ==================== CVV ==================== */}
 
         <div>
           <label className="text-[16px] text-[#08040B]">
-            CVV
+            {t("cvv")}
           </label>
 
           <input
-  type="password"
-  value={cvv}
-  onChange={(e) => setCvv(e.target.value)}
-  placeholder="3-digit"
-  maxLength={3}
-  inputMode="numeric"
-  className="
-    h-[54px]
-    w-full
-    rounded-[8px]
-    bg-[#F4F6FA]
-    px-[14px]
-    py-[13px]
-    text-[14px]
-    text-[#888282]
-    outline-none
-    placeholder:text-[#A0A5AF]
-  "
-/>
+            type="password"
+            value={cvv}
+            onChange={(e) => setCvv(e.target.value)}
+            placeholder={t("cvvPlaceholder")}
+            maxLength={3}
+            inputMode="numeric"
+            className="
+              h-[54px]
+              w-full
+              rounded-[8px]
+              bg-[#F4F6FA]
+              px-[14px]
+              py-[13px]
+              text-[14px]
+              text-[#888282]
+              outline-none
+              placeholder:text-[#A0A5AF]
+            "
+          />
         </div>
 
+        {/* ==================== Payment Summary ==================== */}
 
-      {/* ==================== Payment Summary ==================== */}
+        <div
+          className="
+            flex
+            w-full
+            h-[100px]
+            items-center
+            justify-between
+            rounded-[12px]
+            border
+            border-[#E6EBF5]
+            bg-[#F4F6FA]
+            p-[18px]
+          "
+        >
+          {/* Amount */}
 
-<div
-  className="
-    flex
-    w-full
-    h-[100px]
-    items-center
-    justify-between
-    rounded-[12px]
-    border
-    border-[#E6EBF5]
-    bg-[#F4F6FA]
-    p-[18px]
-  "
->
-  {/* Amount */}
+          <div className="flex w-full items-center gap-2">
+            <div
+              className="
+                flex
+                h-[38px]
+                w-[38px]
+                shrink-0
+                items-center
+                justify-center
+                rounded-[10px]
+                bg-[#EBF3FC]
+                p-[10px]
+              "
+            >
+              <FilesIcons />
+            </div>
 
-  <div className="flex w-full items-center gap-2">
-  <div
-  className="
-    flex
-    h-[38px]
-    w-[38px]
-    shrink-0
-    items-center
-    justify-center
-    rounded-[10px]
-    bg-[#EBF3FC]
-    p-[10px]
-  "
->
-  <FilesIcons />
-</div>
+            <div>
+              <p className="text-[12px] font-semibold text-[#656582]">
+                {t("totalAmount")}
+              </p>
 
-  <div>
-    <p className="text-[12px] font-semibold text-[#656582]">
-      Total Amount
-    </p>
+              <p className="text-[20px] font-semibold text-[#2E27CD]">
+                EGP 15,000
+              </p>
 
-    <p className="text-[20px] font-semibold text-[#2E27CD]">
-      EGP 15,000
-    </p>
+              <p className="text-[11px] font-semibold text-[#656582]">
+                {t("project")}{" "}
+                <span className="text-[11px] font-semibold text-[#0F0C50]">
+                  {t("projectName")}
+                </span>
+              </p>
+            </div>
+          </div>
 
-    <p className="text-[11px] font-semibold text-[#656582]">
-      Project:{" "}
-      <span className="text-[11px] font-semibold text-[#0F0C50]">
-        Website Redesign
-      </span>
-    </p>
-  </div>
+          {/* Security Message */}
 
+          <div
+            className="
+              flex
+              h-[64px]
+              w-[250px]
+              items-center
+              gap-[8px]
+              rounded-[8px]
+              bg-white
+              p-[16px]
+            "
+          >
+            {/* Security Icon */}
 
-</div>
+            <div
+              className="
+                flex
+                h-[32px]
+                w-[32px]
+                shrink-0
+                items-center
+                justify-center
+                rounded-[8px]
+                bg-[#34C7590D]
+                p-[8px]
+              "
+            >
+              <CloseIcons />
+            </div>
 
-  {/* Security Message */}
+            {/* Security Text */}
 
-  <div
-    className="
-      flex
-      h-[64px]
-      w-[250px]
-      items-center
-      gap-[8px]
-      rounded-[8px]
-      bg-white
-      p-[16px]
-    "
-  >
-    {/* Security Icon */}
-
-    <div
-  className="
-    flex
-    h-[32px]
-    w-[32px]
-    shrink-0
-    items-center
-    justify-center
-    rounded-[8px]
-    bg-[#34C7590D]
-    p-[8px]
-  "
->
-  <CloseIcons />
-</div>
-
-    {/* Security Text */}
-
-    <div className="flex flex-col">
-      <p className="text-[11px]  text-[#34C759]">
-        Your payment is encrypted and
-      </p>
-
-      <p className="text-[11px]  text-[#34C759]">
-         securely processed.
-      </p>
-    </div>
-  </div>
-</div>
+            <div className="whitespace-nowrap">
+              <p className="text-[11px] leading-tight text-[#34C759]">
+                {t("securityMessageLine1")}
+                <br />
+                {t("securityMessageLine2")}
+              </p>
+            </div>
+          </div>
+        </div>
 
         {/* ==================== Footer Buttons ==================== */}
 
@@ -374,61 +387,69 @@ export default function CreditDebitCardModal({
           {/* Back */}
 
           <button
-  type="button"
-  onClick={onClose}
-  className="
-    flex
-    h-[44px]
-    w-[84px]
-    items-center
-    justify-center
-    gap-[8px]
-    rounded-[16px]
-    border
-    border-[#12115C]
-    px-[20px]
-    py-[16px]
-    text-[18px]
- 
-    text-[#12115C]
-    transition-all
-    duration-200
-    hover:bg-[#F4F3FA]
-  "
->
-  Back
-</button>
+            type="button"
+            onClick={onClose}
+            className="
+              flex
+              h-[44px]
+              w-[84px]
+              items-center
+              justify-center
+              gap-[8px]
+              rounded-[16px]
+              border
+              border-[#12115C]
+              px-[20px]
+              py-[16px]
+              text-[18px]
+              text-[#12115C]
+              transition-all
+              duration-200
+              hover:bg-[#F4F3FA]
+            "
+          >
+            {t("back")}
+          </button>
 
           {/* Continue */}
 
           <button
-  type="button"
-  className="
-    flex
-    h-[44px]
-    w-full
-    max-w-[560px]
-    items-center
-    justify-center
-    gap-[8px]
-    rounded-[16px]
-    bg-[#12115C]
-    px-[20px]
-    py-[16px]
-    text-[18px]
+            type="button"
+            onClick={() => setIsPaymentSuccessOpen(true)}
+            className="
+              flex
+              h-[44px]
+              w-full
+              max-w-[560px]
+              items-center
+              justify-center
+              gap-[8px]
+              rounded-[16px]
+              bg-[#12115C]
+              px-[20px]
+              py-[16px]
+              text-[18px]
+              text-white
+              transition-all
+              duration-200
+              hover:bg-[#1A165C]
+            "
+          >
+            <span>{t("continueToPayment")}</span>
 
-    text-white
-    transition-all
-    duration-200
-    hover:bg-[#1A165C]
-  "
->
-  <span>Continue to Payment</span>
+            <span className="rtl:rotate-180">
+              <Arrow />
+            </span>
+          </button>
 
-  <span className="rtl:rotate-180">
-    <Arrow />
-  </span>
-</button>
+          <PaymentSuccessModal
+            isOpen={isPaymentSuccessOpen}
+            onClose={() => setIsPaymentSuccessOpen(false)}
+            onBack={() => setIsPaymentSuccessOpen(false)}
+            onViewReceipt={() => {
+              console.log("View Receipt");
+            }}
+          />
         </div>
       </div>
     </div>

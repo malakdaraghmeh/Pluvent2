@@ -349,5 +349,33 @@
         "description": "عذراً، الصفحة التي تبحث عنها غير موجودة.",
         "backToHome": "العودة إلى الصفحة الرئيسية",
         "logoAlt": "شعار بلفنت"
-    }
+    },
+    "creditDebitCardModal": {
+        "title": "بطاقة الائتمان والخصم",
+        "description": "أدخل تفاصيل بطاقتك لإتمام عملية الدفع.",
+        "cardNumber": "رقم بطاقة الائتمان",
+        "cardNumberPlaceholder": "0000 0000 0000 0000",
+        "cardholderName": "اسم حامل البطاقة",
+        "cardholderNamePlaceholder": "اسم حامل البطاقة",
+        "expiryMonth": "شهر الانتهاء",
+        "expiryYear": "سنة الانتهاء",
+        "monthPlaceholder": "MM",
+        "yearPlaceholder": "YYYY",
+        "cvv": "CVV",
+        "cvvPlaceholder": "3 أرقام",
+        "totalAmount": "المبلغ الإجمالي",
+        "project": "المشروع:",
+        "projectName": "إعادة تصميم الموقع",
+        "securityMessageLine1": "عملية الدفع الخاصة بك مشفرة",
+        "securityMessageLine2": "وتتم معالجتها بأمان.",
+        "back": "رجوع",
+        "continueToPayment": "المتابعة إلى الدفع"
+      },
+      "paymentSuccessModal": {
+        "title": "تم الدفع بنجاح",
+        "message": "تم إتمام عملية الدفع بنجاح.",
+        "back": "رجوع",
+        "viewReceipt": "عرض الإيصال"
+      }
+    
 }
