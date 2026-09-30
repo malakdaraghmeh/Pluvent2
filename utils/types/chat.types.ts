@@ -1,7 +1,11 @@
+﻿export type MemberRole = 'pinned' | 'admin' | 'employee';
+
+export type ChatTimeKey = 'justNow' | 'yesterday' | 'monday' | 'may18' | 'may16';
+
 export interface Member {
     id: string;
     name: string;
-    role: string;
+    role: MemberRole;
     avatar: string;
     isPinned?: boolean;
 }
@@ -18,10 +22,10 @@ export interface Message {
 export interface Chat {
     id: string;
     name: string;
-    subtitle: string;
-    avatar: string;
-    isPinned: boolean;
+    avatar?: string;
     time?: string;
+    timeKey?: ChatTimeKey;
     unreadCount?: number;
     membersCount?: number;
+    isPinned?: boolean;
 }

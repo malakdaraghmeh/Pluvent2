@@ -1,37 +1,35 @@
-import { Routes, Route, Navigate, useParams, useLocation } from 'react-router-dom';
-import NotFound from './Pages/NotFound/NotFound';
-import i18n from './i18n/i18n';
 import { useEffect } from 'react';
-import Services from './Pages/Services/Services';
-import About from './Pages/About/About';
-import Contact from './Pages/Contact/Contact';
-import MessagesPage from './Pages/messages/page';
-import SupportTicketsPage from './Pages/support/SupportTicketsPage';
-import ProjectPage from './Pages/projects/page';
-import ProjectDetailsPage from './Pages/projects/[id]/page';
-import FileAndDocumentPage from './Pages/file-and-document/page';
-import DashboardPage from './Pages/dashboard/page';
-import BillingPage from './Pages/billing/page';
-import TicketDetails from './Pages/support/TicketDetails/page';
-import ChangeRequestDetailsPage from './Pages/projects/[id]/change-requests/[requestId]/page';
+import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
+import i18n from './i18n/i18n';
 import Layout from './components/Layout/Layout';
-import UsersPage from './Pages/users/page';
+import About from './Pages/About/About';
+import BillingPage from './Pages/billing/page';
+import ChangeRequestReviewDetails from './Pages/change-request-details/page';
+import Contact from './Pages/Contact/Contact';
+import DashboardPage from './Pages/dashboard/page';
+import FileAndDocumentPage from './Pages/file-and-document/page';
 import InvoiceModal from './Pages/InvoiceModal/invoiceModalPage';
+import MessagesPage from './Pages/messages/page';
+import NotFound from './Pages/NotFound/NotFound';
 import PaymentDetailsModal from './Pages/PaymentDetailsModal/paymentDetailsModal';
-
+import ProjectDetailsPage from './Pages/projects/[id]/page';
+import ChangeRequestDetailsPage from './Pages/projects/[id]/change-requests/[requestId]/page';
+import ProjectPage from './Pages/projects/page';
+import Services from './Pages/Services/Services';
+import SupportTicketsPage from './Pages/support/SupportTicketsPage';
+import TicketDetails from './Pages/support/TicketDetails/page';
+import UsersPage from './Pages/users/page';
+import WaitingUserInputPage from './Pages/change-request-details/waiting/page';
+import PendingPaymentPage from './Pages/change-request-details/payment/page';
+import InProgressPage from './Pages/change-request-details/in-progress/page';
+import CompletedChangeRequestPage from './Pages/change-request-details/completed/page';
 function LocaleWrapper() {
     const { locale } = useParams();
 
     useEffect(() => {
-        if (locale) {
-            i18n.changeLanguage(locale);
-
-            if (locale === 'ar') {
-                document.documentElement.dir = 'rtl';
-            } else {
-                document.documentElement.dir = 'ltr';
-            }
-        }
+        if (!locale) return;
+        i18n.changeLanguage(locale);
+        document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr';
     }, [locale]);
 
     return (
@@ -41,21 +39,46 @@ function LocaleWrapper() {
                 <Route path="/services" element={<Services />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/projects" element={<ProjectPage />} />
+                <Route path="/projects/:id" element={<ProjectDetailsPage />} />
+                <Route
+                    path="/projects/:projectId/change-requests/:requestId/payment"
+                    element={<PendingPaymentPage />}
+                />
                 <Route
                     path="/projects/:projectId/change-requests/:requestId"
                     element={<ChangeRequestDetailsPage />}
                 />
+                <Route path="/change-request-details" element={<ChangeRequestReviewDetails />} />
                 <Route path="/messages" element={<MessagesPage />} />
                 <Route path="/support" element={<SupportTicketsPage />} />
                 <Route path="/support/:id" element={<TicketDetails />} />
-                <Route path="/projects" element={<ProjectPage />} />
-                <Route path="/projects/:id" element={<ProjectDetailsPage />} />
                 <Route path="/file-and-document" element={<FileAndDocumentPage />} />
                 <Route path="/billing" element={<BillingPage />} />
                 <Route path="/users" element={<UsersPage />} />
                 <Route path="/invoice" element={<InvoiceModal onClose={undefined} />} />
-                <Route path="/paydet" element={<PaymentDetailsModal onClose={undefined} onContinue={undefined} onBack={undefined} />} />
-
+                <Route
+                    path="/paydet"
+                    element={
+                        <PaymentDetailsModal
+                            onClose={undefined}
+                            onContinue={undefined}
+                            onBack={undefined}
+                        />
+                    }
+                />
+                <Route
+                    path="/projects/:projectId/change-requests/:requestId/completed"
+                    element={<CompletedChangeRequestPage />}
+                />
+                <Route
+                    path="/projects/:projectId/change-requests/:requestId/in-progress"
+                    element={<InProgressPage />}
+                />
+                <Route
+                    path="/projects/:projectId/change-requests/:requestId/waiting"
+                    element={<WaitingUserInputPage />}
+                />
                 <Route path="*" element={<NotFound />} />
             </Route>
         </Routes>
@@ -70,15 +93,10 @@ const AppRoutes = () => {
     }, [pathname]);
 
     return (
-        <>
-            <>
-                <Routes>
-                    <Route path="/" element={<Navigate to="/en" replace />} />
-
-                    <Route path="/:locale/*" element={<LocaleWrapper />} />
-                </Routes>
-            </>
-        </>
+        <Routes>
+            <Route path="/" element={<Navigate to="/en" replace />} />
+            <Route path="/:locale/*" element={<LocaleWrapper />} />
+        </Routes>
     );
 };
 

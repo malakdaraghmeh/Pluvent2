@@ -44,21 +44,55 @@
     },
     "chat": {
         "title": "الرسائل",
-        "searchPlaceholder": "ابحث في المحادثات...",
+        "searchPlaceholder": "البحث في المحادثات...",
         "pinned": "المثبتة",
-        "groupConversations": "محادثات المجموعة",
+        "groupConversations": "محادثات المجموعات",
         "createNewGroup": "إنشاء مجموعة جديدة",
         "online": "متصل",
         "justNow": "الآن",
         "typeMessagePlaceholder": "اكتب رسالة...",
+        "membersCount": "{{count}} أعضاء",
+        "pulventTeamMembers": "فريق Pulvent يضم {{count}} أعضاء",
+        "back": "رجوع",
+        "addAttachment": "إضافة مرفق",
+        "sendMessage": "إرسال الرسالة",
+        "currentUserName": "Amr",
+        "privateChat": "Pulvent (محادثة خاصة)",
+        "sampleMessage": "مرحبًا! لقد راجعنا طلبك الأخير وشاركنا التحديثات مع فريقنا.",
+        "groups": {
+            "websiteRedesign": "مشروع إعادة تصميم الموقع...",
+            "marketing": "فريق التسويق",
+            "management": "فريق الإدارة",
+            "designReview": "مجموعة مراجعة التصميم",
+            "developers": "فريق المطورين"
+        },
+        "times": {
+            "justNow": "الآن",
+            "yesterday": "أمس",
+            "monday": "الاثنين",
+            "may18": "18 مايو",
+            "may16": "16 مايو"
+        },
+        "roles": {
+            "pinned": "مثبت",
+            "admin": "مدير",
+            "employee": "موظف"
+        },
+        "pulventName": "Pulvent",
+        "pulventTime": "01:08 ص",
+        "pulventMessage": "مرحبًا! لقد راجعنا طلبك الأخير وشاركنا التحديثات مع فريقنا.",
+        "userName": "عمرو",
+        "userTime": "02:08 ص",
+        "userMessage": "مرحبًا! لقد راجعنا طلبك الأخير وشاركنا التحديثات مع فريقنا.",
+        "placeholder": "اكتب رسالة...",
         "createGroupModal": {
             "title": "إنشاء مجموعة جديدة",
-            "subtitle": "قم بملء التفاصيل أدناه لإضافة طلب جديد.",
+            "subtitle": "أدخل البيانات المطلوبة لإنشاء مجموعة جديدة.",
             "groupNameLabel": "اسم المجموعة",
-            "groupNamePlaceholder": "أدخل عنوان طلب التغيير",
+            "groupNamePlaceholder": "أدخل اسم المجموعة",
             "chooseMembersLabel": "اختر الأعضاء",
-            "membersCount": "{count} أعضاء",
-            "submitButton": "إنشاء المجموعة"
+            "membersCount": "{{count}} أعضاء",
+            "submitButton": "إنشاء مجموعة جديدة"
         }
     },
     "projectsPage": {
@@ -228,24 +262,203 @@
         "requestDate": "30 مايو 2026",
         "requestTime": "12:45 مساءً",
         "descriptionLabel": "الوصف",
-        "descriptionText": "نرغب في إضافة صفحة قائمة المدونة لعرض جميع المقالات مع خيارات التصفية حسب الفئة، والتاريخ، وخاصية البحث. يجب أن تتبع هذه الصفحة قواعد التصميم والرموز الخاصة بنظام الهوية البصرية الأساسي.",
-        "attachmentsLabel": "المرفقات ({count})",
+        "descriptionText": "نرغب في إضافة صفحة لقائمة المدونة لعرض جميع المقالات مع إمكانية التصفية حسب الفئة والتاريخ، بالإضافة إلى خاصية البحث. ويجب أن تتبع الصفحة أنماط التصميم والهوية البصرية المعتمدة في النظام الأساسي.",
+        "attachmentsLabel": "المرفقات ({{count}})",
         "downloadFile": "تحميل {fileName}",
         "overviewTitle": "نظرة عامة على الطلب",
         "requestIdLabel": "رقم الطلب",
         "lastUpdatedLabel": "آخر تحديث",
         "nextTitle": "ماذا يحدث بعد ذلك؟",
-        "nextDescription": "يقوم فريق التطوير والتصميم لدينا حاليًا بمراجعة طلبك. سنتحقق من المكونات المعتمدة ونعود إليك بخطة التنفيذ.",
+        "nextDescription": "يقوم فريق التطوير والتصميم حاليًا بمراجعة طلبك. سيتم التحقق من المتطلبات والاعتماديات ثم التواصل معك بخطة التنفيذ.",
         "timelineTitle": "سجل النشاط",
         "step1Title": "تم تقديم الطلب وتسجيله",
-        "step1Desc": "تم التقديم بواسطة <strong class=\"text-slate-700\">مريم حسام</strong>. تم توجيهه إلى قائمة الدعم للفرز الفني.",
+        "step1Desc": "تم التقديم بواسطة <strong class=\"text-slate-700\">مريم حسام</strong>. وتم توجيه الطلب إلى فريق الدعم للفرز الفني.",
         "step1Time": "30 مايو 2026 - 12:45 مساءً",
         "step2Title": "المراجعة قيد التنفيذ",
-        "step2Desc": "في انتظار تحديد الأولويات من مالك المنتج وتقدير المطور.",
+        "step2Desc": "بانتظار تحديد الأولوية من مسؤول المنتج وتقدير فريق التطوير.",
         "step2Status": "قيد التنفيذ",
-        "step3Title": "المقترح قيد الانتظار",
-        "step3Desc": "سنشارك معك مقترحًا يتضمن النطاق، والتكلفة، والجدول الزمني المتوقع للتسليم.",
-        "step3Status": "معلق في النظام"
+        "step3Title": "العرض قيد الإعداد",
+        "step3Desc": "سيتم إرسال عرض يتضمن نطاق العمل والتكلفة والمدة المتوقعة للتنفيذ.",
+        "step3Status": "بانتظار النظام",
+        "breadcrumb": {
+            "portal": "البوابة",
+            "project": "المشروع",
+            "projectDetails": "تفاصيل المشروع",
+            "changeRequestDetails": "تفاصيل طلب التغيير"
+        },
+        "completed": {
+            "status": "مكتمل",
+            "work": {
+                "title": "تم التسليم بنجاح",
+                "description": "تم استكمال طلب التغيير الخاص بك وتسليمه.",
+                "overall": "الإجمالي"
+            },
+            "overview": {
+                "status": "الحالة",
+                "agreedCost": "التكلفة المتفق عليها",
+                "agreedCostValue": "9,000 جنيه",
+                "agreedTime": "المدة المتفق عليها",
+                "agreedTimeValue": "5 أيام",
+                "startedOn": "تاريخ بدء التنفيذ",
+                "startedOnValue": "21 مايو 2026 - 10:00 صباحًا",
+                "completedOn": "تاريخ الاكتمال",
+                "completedOnValue": "18 مايو 2026 - 01:30 مساءً"
+            },
+            "timeline": {
+                "submitted": {
+                    "title": "تم تقديم الطلب وتسجيله",
+                    "beforeName": "تم تقديم الطلب بواسطة",
+                    "afterName": "وتم توجيهه إلى فريق الدعم للفحص الفني.",
+                    "meta": "30 مايو 2026 - 12:45 مساءً"
+                },
+                "review": {
+                    "title": "اكتملت المراجعة",
+                    "description": "راجع فريقنا تفاصيل الطلب وتم إعداد العرض.",
+                    "meta": "30 مايو 2026 - 12:45 مساءً"
+                },
+                "payment": {
+                    "title": "تم إتمام الدفع",
+                    "description": "تم استلام وتأكيد دفعة بقيمة 9,000 جنيه.",
+                    "meta": "30 مايو 2026 - 12:45 مساءً"
+                },
+                "delivered": {
+                    "title": "تم التسليم",
+                    "description": "تم تسليم جميع المخرجات النهائية إليك.",
+                    "meta": "30 مايو 2026 - 12:45 مساءً"
+                }
+            }
+        },
+        "inProgress": {
+            "status": "قيد التنفيذ",
+            "work": {
+                "title": "العمل قيد التنفيذ",
+                "description": "بدأ فريقنا العمل على طلب التغيير الخاص بك.",
+                "overall": "الإجمالي"
+            },
+            "estimatedDelivery": "التسليم المتوقع",
+            "estimatedDeliveryValue": "27 مايو 2026",
+            "assignedTo": "مسند إلى",
+            "assignedToValue": "فريق التطوير",
+            "workingSince": "بدأ العمل منذ",
+            "workingSinceValue": "يومين",
+            "overview": {
+                "status": "الحالة",
+                "agreedCost": "التكلفة المتفق عليها",
+                "agreedCostValue": "9,000 جنيه",
+                "agreedTime": "المدة المتفق عليها",
+                "agreedTimeValue": "5 أيام",
+                "startedOn": "تاريخ بدء التنفيذ",
+                "startedOnValue": "21 مايو 2026 - 10:00 صباحًا"
+            },
+            "timeline": {
+                "submitted": {
+                    "title": "تم تقديم الطلب وتسجيله",
+                    "beforeName": "تم تقديم الطلب بواسطة",
+                    "afterName": "وتم توجيهه إلى فريق الدعم للفحص الفني.",
+                    "meta": "30 مايو 2026 - 12:45 مساءً"
+                },
+                "review": {
+                    "title": "اكتملت المراجعة",
+                    "description": "راجع فريقنا تفاصيل الطلب وتم إعداد العرض.",
+                    "meta": "30 مايو 2026 - 12:45 مساءً"
+                },
+                "payment": {
+                    "title": "تم إتمام الدفع",
+                    "description": "تم استلام وتأكيد دفعة بقيمة 9,000 جنيه.",
+                    "meta": "30 مايو 2026 - 12:45 مساءً"
+                },
+                "started": {
+                    "title": "بدأ التنفيذ",
+                    "description": "بدأ فريق تطوير Pulvent العمل على طلبك.",
+                    "meta": "30 مايو 2026 - 12:45 مساءً"
+                }
+            }
+        },
+        "payment": {
+            "status": "بانتظار الدفع",
+            "finalAgreement": "الاتفاق النهائي",
+            "agreedCost": "التكلفة المتفق عليها",
+            "cost": "12,000 جنيه",
+            "agreedTime": "المدة المتفق عليها",
+            "time": "7 أيام",
+            "agreementNote": "تم الاتفاق واعتماد جميع التفاصيل.",
+            "whatsNext": "ما التالي؟",
+            "nextDescription": "يرجى إتمام عملية الدفع لبدء العمل.",
+            "payNow": "ادفع الآن",
+            "waitingTitle": "بانتظار الدفع",
+            "waitingSince": "منذ 29 مايو 2026 - 02:10 مساءً",
+            "overview": {
+                "status": "الحالة",
+                "agreedOn": "تم الاتفاق في",
+                "agreedOnValue": "29 مايو 2026 - 02:10 مساءً"
+            },
+            "timeline": {
+                "step1Title": "تم تقديم الطلب وتسجيله",
+                "step1Description": "تم تقديم الطلب بواسطة مريم حسام، وتم توجيهه إلى فريق الدعم للفحص الفني.",
+                "step1Meta": "30 مايو 2026 - 12:45 مساءً",
+                "step2Title": "اكتملت المراجعة",
+                "step2Description": "راجع فريقنا تفاصيل الطلب وتم إعداد العرض.",
+                "step2Meta": "30 مايو 2026 - 12:45 مساءً",
+                "step3Title": "تمت مشاركة العرض",
+                "step3Description": "تمت مشاركة العرض متضمنًا نطاق العمل والتكلفة والمدة المتوقعة للتنفيذ.",
+                "step3Meta": "30 مايو 2026 - 12:45 مساءً",
+                "step4Title": "يبدأ العمل بعد الدفع",
+                "step4Description": "سيبدأ التنفيذ بمجرد إتمام عملية الدفع.",
+                "step4Meta": "قيد التنفيذ"
+            }
+        },
+        "waiting": {
+            "status": "بانتظار رد المستخدم",
+            "finalAgreement": "الاتفاق النهائي",
+            "agreedCost": "التكلفة المتفق عليها",
+            "cost": "12,000 جنيه",
+            "agreedTime": "المدة المتفق عليها",
+            "time": "7 أيام",
+            "discuss": {
+                "title": "لنتناقش",
+                "description": "يمكنك مناقشة السعر أو مدة التنفيذ مع مقدم الخدمة."
+            },
+            "chat": {
+                "pulventName": "Pulvent",
+                "pulventTime": "01:08 ص",
+                "pulventMessage": "مرحبًا، لقد راجعنا طلبك الأخير وشاركنا",
+                "userName": "مريم",
+                "userTime": "02:08 ص",
+                "userMessage": "مرحبًا، لقد راجعنا طلبك الأخير وشاركنا التحديثات مع فريقنا",
+                "placeholder": "اكتب رسالة..."
+            },
+            "overview": {
+                "status": "الحالة",
+                "active": "نشط",
+                "subStatus": "الحالة الفرعية",
+                "requestedOnValue": "28 مايو 2026",
+                "lastUpdatedValue": "30 مايو 2026 - 12:45 مساءً"
+            },
+            "nextDescription": "راجع العرض ثم وافق عليه أو اطلب التعديلات المطلوبة. بعد الموافقة سيتم طلب الدفعة قبل بدء التنفيذ.",
+            "timeline": {
+                "submitted": {
+                    "title": "تم تقديم الطلب وتسجيله",
+                    "beforeName": "تم التقديم بواسطة",
+                    "afterName": "وتم توجيه الطلب إلى فريق الدعم للفرز الفني.",
+                    "meta": "30 مايو 2026 - 12:45 مساءً"
+                },
+                "review": {
+                    "title": "اكتملت المراجعة",
+                    "description": "راجع فريقنا تفاصيل الطلب وتم إعداد العرض.",
+                    "meta": "30 مايو 2026 - 12:45 مساءً"
+                },
+                "proposal": {
+                    "title": "تمت مشاركة العرض",
+                    "description": "تمت مشاركة العرض متضمنًا نطاق العمل والتكلفة والمدة المتوقعة للتنفيذ.",
+                    "meta": "قيد التنفيذ"
+                },
+                "response": {
+                    "title": "بانتظار ردك",
+                    "description": "راجع العرض وأخبرنا بالطريقة التي ترغب في المتابعة بها.",
+                    "meta": "بانتظار النظام"
+                }
+            }
+        }
     },
     "usersPage": {
         "title": "المستخدمون",
@@ -330,110 +543,110 @@
         "lastUpdated": "آخر تحديث: {{value}}",
         "close": "إغلاق معلومات الملف الشخصي"
     },
-   "tickets": {
-       "header": {
-           "title": "تذاكر الدعم الفني",
-           "subtitle": "عرض وإدارة تذاكر الدعم المقدمة الخاصة بك",
-           "newTicket": "تذكرة جديدة"
-       },
-       "filter": {
-           "all": "جميع أنواع التذاكر",
-           "project": "تذاكر المشاريع",
-           "general": "تذاكر عامة"
-       },
-       "tabs": {
-           "All Tickets": "جميع التذاكر",
-           "Open": "مفتوحة",
-           "In Progress": "قيد التنفيذ",
-           "Closed": "مغلقة",
-           "all": "جميع التذاكر",
-           "open": "مفتوحة",
-           "in_progress": "قيد التنفيذ",
-           "closed": "مغلقة"
-       },
-       "card": {
-           "ticketNumber": "تذكرة رقم #{{id}}",
-           "uploadedBy": "تم الرفع بواسطة {{name}}",
-           "viewTicket": "عرض التذكرة"
-       },
-       "status": {
-           "Open": "مفتوحة",
-           "In Progress": "قيد التنفيذ",
-           "Closed": "مغلقة",
-           "open": "مفتوحة",
-           "in_progress": "قيد التنفيذ",
-           "closed": "مغلقة"
-       },
-       "type": {
-           "Project Ticket": "تذكرة مشروع",
-           "General Ticket": "تذكرة عامة",
-           "project": "تذكرة مشروع",
-           "general": "تذكرة عامة"
-       },
-       "createModal": {
-           "title": "إنشاء استفسار دعم جديد",
-           "subtitle": "يرجى ملء التفاصيل أدناه لمساعدتنا في معالجة طلبك بفعالية.",
-           "warrantyNotice": "الدعم الفني والضمان",
-           "warrantyDetails": "يتوفر الدعم المجاني للمشاريع المكتملة ضمن فترة الضمان السارية.",
-           "successAlert": "تم تقديم الاستفسار بنجاح!",
-           "submitBtn": "إرسال الاستفسار",
-           "fields": {
-               "subject": {
-                   "label": "الموضوع",
-                   "placeholder": "أدخل عنوانًا مختصرًا للمشكلة"
-               },
-               "category": {
-                   "label": "فئة التذكرة"
-               },
-               "issueType": {
-                   "label": "نوع المشكلة"
-               },
-               "description": {
-                   "label": "الوصف",
-                   "placeholder": "صف المشكلة أو الطلب بالتفصيل..."
-               },
-               "upload": {
-                   "label": "المرفقات",
-                   "optional": "اختياري"
-               }
-           },
-           "categories": {
-               "technical": "دعم فني",
-               "design": "تصميم",
-               "billing": "الفواتير والمالية"
-           },
-           "issueTypes": {
-               "bug": "خطأ برمجي (Bug)",
-               "feature": "طلب ميزة جديدة",
-               "question": "استفسار عام"
-           },
-           "dropzone": {
-               "title": "انقر للرفع أو اسحب الملفات وأسقطها هنا",
-               "hint": "يدعم الصور، والمستندات، والأرشيفات المضغوطة"
-           }
-       },
-       "details": {
-           "title": "تفاصيل التذكرة",
-           "ticketNumber": "تذكرة# {{id}}",
-           "uploadBy": "تم الرفع بواسطة : {{name}}",
-           "projectTicket": "تذكرة مشروع",
-           "generalTicket": "تذكرة عامة",
-           "postedAt": "تم النشر في {{time}}",
-           "responseAuthor": "بولفينت",
-           "responseMessage": "مرحبًا! لقد قمنا بمراجعة طلبك الأخير وشاركنا التحديثات مع فريقنا.",
-           "form": {
-               "descriptionLabel": "وصف التذكرة",
-               "attachmentsLabel": "رفع أي مرفقات",
-               "optional": "(اختياري)",
-               "dropzoneTitle": "اسحب الملفات هنا أو انقر للرفع",
-               "dropzoneHint": "PDF, DOCX, XLSX, PNG, JPG, ZIP — حتى 50 ميجابايت لكل ملف",
-               "closeTicket": "إغلاق التذكرة",
-               "reopenTicket": "إعادة فتح التذكرة",
-               "submitTicket": "إرسال الرد",
-               "successAlert": "تم إرسال الرد على التذكرة بنجاح!"
-           }
-       }
-   },
+    "tickets": {
+        "header": {
+            "title": "تذاكر الدعم الفني",
+            "subtitle": "عرض وإدارة تذاكر الدعم المقدمة الخاصة بك",
+            "newTicket": "تذكرة جديدة"
+        },
+        "filter": {
+            "all": "جميع أنواع التذاكر",
+            "project": "تذاكر المشاريع",
+            "general": "تذاكر عامة"
+        },
+        "tabs": {
+            "All Tickets": "جميع التذاكر",
+            "Open": "مفتوحة",
+            "In Progress": "قيد التنفيذ",
+            "Closed": "مغلقة",
+            "all": "جميع التذاكر",
+            "open": "مفتوحة",
+            "in_progress": "قيد التنفيذ",
+            "closed": "مغلقة"
+        },
+        "card": {
+            "ticketNumber": "تذكرة رقم #{{id}}",
+            "uploadedBy": "تم الرفع بواسطة {{name}}",
+            "viewTicket": "عرض التذكرة"
+        },
+        "status": {
+            "Open": "مفتوحة",
+            "In Progress": "قيد التنفيذ",
+            "Closed": "مغلقة",
+            "open": "مفتوحة",
+            "in_progress": "قيد التنفيذ",
+            "closed": "مغلقة"
+        },
+        "type": {
+            "Project Ticket": "تذكرة مشروع",
+            "General Ticket": "تذكرة عامة",
+            "project": "تذكرة مشروع",
+            "general": "تذكرة عامة"
+        },
+        "createModal": {
+            "title": "إنشاء استفسار دعم جديد",
+            "subtitle": "يرجى ملء التفاصيل أدناه لمساعدتنا في معالجة طلبك بفعالية.",
+            "warrantyNotice": "الدعم الفني والضمان",
+            "warrantyDetails": "يتوفر الدعم المجاني للمشاريع المكتملة ضمن فترة الضمان السارية.",
+            "successAlert": "تم تقديم الاستفسار بنجاح!",
+            "submitBtn": "إرسال الاستفسار",
+            "fields": {
+                "subject": {
+                    "label": "الموضوع",
+                    "placeholder": "أدخل عنوانًا مختصرًا للمشكلة"
+                },
+                "category": {
+                    "label": "فئة التذكرة"
+                },
+                "issueType": {
+                    "label": "نوع المشكلة"
+                },
+                "description": {
+                    "label": "الوصف",
+                    "placeholder": "صف المشكلة أو الطلب بالتفصيل..."
+                },
+                "upload": {
+                    "label": "المرفقات",
+                    "optional": "اختياري"
+                }
+            },
+            "categories": {
+                "technical": "دعم فني",
+                "design": "تصميم",
+                "billing": "الفواتير والمالية"
+            },
+            "issueTypes": {
+                "bug": "خطأ برمجي (Bug)",
+                "feature": "طلب ميزة جديدة",
+                "question": "استفسار عام"
+            },
+            "dropzone": {
+                "title": "انقر للرفع أو اسحب الملفات وأسقطها هنا",
+                "hint": "يدعم الصور، والمستندات، والأرشيفات المضغوطة"
+            }
+        },
+        "details": {
+            "title": "تفاصيل التذكرة",
+            "ticketNumber": "تذكرة# {{id}}",
+            "uploadBy": "تم الرفع بواسطة : {{name}}",
+            "projectTicket": "تذكرة مشروع",
+            "generalTicket": "تذكرة عامة",
+            "postedAt": "تم النشر في {{time}}",
+            "responseAuthor": "بولفينت",
+            "responseMessage": "مرحبًا! لقد قمنا بمراجعة طلبك الأخير وشاركنا التحديثات مع فريقنا.",
+            "form": {
+                "descriptionLabel": "وصف التذكرة",
+                "attachmentsLabel": "رفع أي مرفقات",
+                "optional": "(اختياري)",
+                "dropzoneTitle": "اسحب الملفات هنا أو انقر للرفع",
+                "dropzoneHint": "PDF, DOCX, XLSX, PNG, JPG, ZIP — حتى 50 ميجابايت لكل ملف",
+                "closeTicket": "إغلاق التذكرة",
+                "reopenTicket": "إعادة فتح التذكرة",
+                "submitTicket": "إرسال الرد",
+                "successAlert": "تم إرسال الرد على التذكرة بنجاح!"
+            }
+        }
+    },
     "createModal": {
         "title": "إنشاء استفسار دعم جديد",
         "subtitle": "يرجى ملء التفاصيل أدناه لمساعدتنا في معالجة طلبك بفعالية.",
@@ -517,9 +730,18 @@
             "address": "مصر - القاهرة، ٧٢ شارع\nمدينة نصر"
         },
         "items": [
-            { "description": "تصميم واجهات وتجربة المستخدم (UI/UX)", "total": "$ 5,250.00" },
-            { "description": "تصميم المواقع", "total": "$ 5,250.00" },
-            { "description": "الاختبار والتجربة", "total": "$ 5,250.00" }
+            {
+                "description": "تصميم واجهات وتجربة المستخدم (UI/UX)",
+                "total": "$ 5,250.00"
+            },
+            {
+                "description": "تصميم المواقع",
+                "total": "$ 5,250.00"
+            },
+            {
+                "description": "الاختبار والتجربة",
+                "total": "$ 5,250.00"
+            }
         ]
     },
     "paymentDetails": {
@@ -560,9 +782,18 @@
         "description": "الوصف",
         "total": "الإجمالي",
         "items": [
-            { "description": "تصميم واجهة وتجربة المستخدم", "total": "$ 5,250.00" },
-            { "description": "تصميم الموقع", "total": "$ 5,250.00" },
-            { "description": "اختبار الجودة", "total": "$ 5,250.00" }
+            {
+                "description": "تصميم واجهة وتجربة المستخدم",
+                "total": "$ 5,250.00"
+            },
+            {
+                "description": "تصميم الموقع",
+                "total": "$ 5,250.00"
+            },
+            {
+                "description": "اختبار الجودة",
+                "total": "$ 5,250.00"
+            }
         ],
         "downloadPdf": "PDF",
         "downloading": "جاري تحميل",

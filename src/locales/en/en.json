@@ -50,14 +50,41 @@
         "online": "Online",
         "justNow": "Just now",
         "typeMessagePlaceholder": "Type Message...",
+        "membersCount": "{{count}} members",
+        "pulventTeamMembers": "Pulvent Team With {{count}} members",
+        "back": "Back",
+        "addAttachment": "Add attachment",
+        "sendMessage": "Send message",
+        "currentUserName": "Amr",
+        "privateChat": "Pulvent (Private Chat)",
+        "sampleMessage": "Hi! We've reviewed your latest request and shared the updates with our team.",
+        "groups": {
+            "websiteRedesign": "Project Website Redesign T...",
+            "marketing": "Marketing Team",
+            "management": "Management Team",
+            "designReview": "Design Review Group",
+            "developers": "Developers Group"
+        },
+        "times": {
+            "justNow": "Just now",
+            "yesterday": "Yesterday",
+            "monday": "Mon",
+            "may18": "May 18",
+            "may16": "May 16"
+        },
+        "roles": {
+            "pinned": "Pinned",
+            "admin": "Admin",
+            "employee": "Employee"
+        },
         "createGroupModal": {
             "title": "Create New Group",
-            "subtitle": "Fill in the details below to add a new change request.",
+            "subtitle": "Fill in the details below to create a new group.",
             "groupNameLabel": "Name of Group",
-            "groupNamePlaceholder": "Enter change request title",
-            "chooseMembersLabel": "Choose Member",
-            "membersCount": "{count} Members",
-            "submitButton": "Create Group"
+            "groupNamePlaceholder": "Enter group name",
+            "chooseMembersLabel": "Choose Members",
+            "membersCount": "{{count}} Members",
+            "submitButton": "Create New Group"
         }
     },
     "projectsPage": {
@@ -266,7 +293,7 @@
         "requestTime": "12:45 PM",
         "descriptionLabel": "Description",
         "descriptionText": "We would like to add a blog listing page to display all articles with filters by category, date, and search functionality. This page should inherit style tokens from the primary branding design system.",
-        "attachmentsLabel": "Attachments ({count})",
+        "attachmentsLabel": "Attachments ({{count}})",
         "downloadFile": "Download {fileName}",
         "overviewTitle": "Request Overview",
         "requestIdLabel": "Request ID",
@@ -282,7 +309,186 @@
         "step2Status": "In Progress",
         "step3Title": "Proposal pending",
         "step3Desc": "We will share a proposal with scope, cost, and estimated delivery timeline.",
-        "step3Status": "System Pending"
+        "step3Status": "System Pending",
+        "breadcrumb": {
+            "portal": "Portal",
+            "project": "Project",
+            "projectDetails": "Project Details",
+            "changeRequestDetails": "Change Request Details"
+        },
+        "completed": {
+            "status": "Completed",
+            "work": {
+                "title": "Delivered Successfully",
+                "description": "Your change request has been completed and delivered.",
+                "overall": "Overall"
+            },
+            "overview": {
+                "status": "Status",
+                "agreedCost": "Agreed Cost",
+                "agreedCostValue": "EGP 9,000",
+                "agreedTime": "Agreed Time",
+                "agreedTimeValue": "5 Days",
+                "startedOn": "Started On",
+                "startedOnValue": "May 21, 2026 - 10:00 AM",
+                "completedOn": "Completed On",
+                "completedOnValue": "May 18, 2026 - 01:30 PM"
+            },
+            "timeline": {
+                "submitted": {
+                    "title": "Request Submitted & Logged",
+                    "beforeName": "Submitted by",
+                    "afterName": "Assigned to support queue for technical triage.",
+                    "meta": "May 30, 2026 - 12:45 PM"
+                },
+                "review": {
+                    "title": "Review completed",
+                    "description": "Our team reviewed your request details and prepared the proposal.",
+                    "meta": "May 30, 2026 - 12:45 PM"
+                },
+                "payment": {
+                    "title": "Payment Completed",
+                    "description": "Payment of EGP 9,000 received and confirmed.",
+                    "meta": "May 30, 2026 - 12:45 PM"
+                },
+                "delivered": {
+                    "title": "Delivered",
+                    "description": "The final deliverables have been handed over to you.",
+                    "meta": "May 30, 2026 - 12:45 PM"
+                }
+            }
+        },
+        "inProgress": {
+            "status": "In Progress",
+            "work": {
+                "title": "Work In Progress",
+                "description": "We have started working on your change request.",
+                "overall": "Overall"
+            },
+            "estimatedDelivery": "Estimated Delivery",
+            "estimatedDeliveryValue": "May 27, 2026",
+            "assignedTo": "Assigned To",
+            "assignedToValue": "Development Team",
+            "workingSince": "Working Since",
+            "workingSinceValue": "2 days ago",
+            "overview": {
+                "status": "Status",
+                "agreedCost": "Agreed Cost",
+                "agreedCostValue": "EGP 9,000",
+                "agreedTime": "Agreed Time",
+                "agreedTimeValue": "5 Days",
+                "startedOn": "Started On",
+                "startedOnValue": "May 21, 2026 - 10:00 AM"
+            },
+            "timeline": {
+                "submitted": {
+                    "title": "Request Submitted & Logged",
+                    "beforeName": "Submitted by",
+                    "afterName": "Assigned to support queue for technical triage.",
+                    "meta": "May 30, 2026 - 12:45 PM"
+                },
+                "review": {
+                    "title": "Review completed",
+                    "description": "Our team reviewed your request details and prepared the proposal.",
+                    "meta": "May 30, 2026 - 12:45 PM"
+                },
+                "payment": {
+                    "title": "Payment Completed",
+                    "description": "Payment of EGP 9,000 received and confirmed.",
+                    "meta": "May 30, 2026 - 12:45 PM"
+                },
+                "started": {
+                    "title": "Work Started",
+                    "description": "The Pulvent development team has started working on your request.",
+                    "meta": "May 30, 2026 - 12:45 PM"
+                }
+            }
+        },
+        "payment": {
+            "status": "Pending Payment",
+            "finalAgreement": "Final Agreement",
+            "agreedCost": "Agreed Cost",
+            "cost": "EGP 12,000",
+            "agreedTime": "Agreed Time",
+            "time": "7 Days",
+            "agreementNote": "All details have been agreed and approved.",
+            "whatsNext": "What's Next?",
+            "nextDescription": "Please proceed with the payment to start the work.",
+            "payNow": "Pay Now",
+            "waitingTitle": "Waiting for Payment",
+            "waitingSince": "Since May 29, 2026 - 02:10 PM",
+            "overview": {
+                "status": "Status",
+                "agreedOn": "Agreed On",
+                "agreedOnValue": "May 29, 2026 - 02:10 PM"
+            },
+            "timeline": {
+                "step1Title": "Request Submitted & Logged",
+                "step1Description": "Submitted by Maryam Hosam. Assigned to support queue for technical triage.",
+                "step1Meta": "May 30, 2026 - 12:45 PM",
+                "step2Title": "Review completed",
+                "step2Description": "Our team reviewed your request details and prepared the proposal.",
+                "step2Meta": "May 30, 2026 - 12:45 PM",
+                "step3Title": "Proposal shared",
+                "step3Description": "We've shared the proposal including scope, cost, and estimated delivery.",
+                "step3Meta": "May 30, 2026 - 12:45 PM",
+                "step4Title": "Work Starts After Payment",
+                "step4Description": "Implementation will begin once payment is completed.",
+                "step4Meta": "In Progress"
+            }
+        },
+        "waiting": {
+            "status": "Waiting for User Input",
+            "finalAgreement": "Final Agreement",
+            "agreedCost": "Agreed Cost",
+            "cost": "EGP 12,000",
+            "agreedTime": "Agreed Time",
+            "time": "7 Days",
+            "discuss": {
+                "title": "Let's discuss",
+                "description": "You can negotiate the price or time with the provider."
+            },
+            "chat": {
+                "pulventName": "Pulvent",
+                "pulventTime": "01:08 am",
+                "pulventMessage": "Hi! We've reviewed your latest request and shared the",
+                "userName": "Maryam",
+                "userTime": "02:08 am",
+                "userMessage": "Hi! We've reviewed your latest request and shared the updates with our",
+                "placeholder": "Type Message..."
+            },
+            "overview": {
+                "status": "Status",
+                "active": "Active",
+                "subStatus": "Sub-status",
+                "requestedOnValue": "May 28, 2026",
+                "lastUpdatedValue": "May 30, 2026 12:45 PM"
+            },
+            "nextDescription": "Review the proposal and either approve it or request changes. Once approved, payment will be requested before work begins.",
+            "timeline": {
+                "submitted": {
+                    "title": "Request Submitted & Logged",
+                    "beforeName": "Submitted by",
+                    "afterName": "Assigned to support queue for technical triage.",
+                    "meta": "May 30, 2026 - 12:45 PM"
+                },
+                "review": {
+                    "title": "Review completed",
+                    "description": "Our team reviewed your request details and prepared the proposal.",
+                    "meta": "May 30, 2026 - 12:45 PM"
+                },
+                "proposal": {
+                    "title": "Proposal shared",
+                    "description": "We've shared the proposal including scope, cost, and estimated delivery.",
+                    "meta": "In Progress"
+                },
+                "response": {
+                    "title": "Awaiting your response",
+                    "description": "Please review the proposal and let us know how you'd like to proceed.",
+                    "meta": "System Pending"
+                }
+            }
+        }
     },
     "usersPage": {
         "title": "Users",
@@ -347,7 +553,6 @@
         "backToHome": "Back to Home",
         "logoAlt": "Pulvent Logo"
     },
-
     "tickets": {
         "header": {
             "title": "Support Tickets",
@@ -452,7 +657,6 @@
             }
         }
     },
-
     "invoiceModal": {
         "companyName": "Pulvent",
         "companySubtitle": "Technologies And Digital Solutions",
@@ -476,9 +680,18 @@
             "address": "Egypt - Cairo 72Stret\nNasir City"
         },
         "items": [
-            { "description": "Ui Ux deigne", "total": "$ 5,250.00" },
-            { "description": "Web design", "total": "$ 5,250.00" },
-            { "description": "Testing", "total": "$ 5,250.00" }
+            {
+                "description": "Ui Ux deigne",
+                "total": "$ 5,250.00"
+            },
+            {
+                "description": "Web design",
+                "total": "$ 5,250.00"
+            },
+            {
+                "description": "Testing",
+                "total": "$ 5,250.00"
+            }
         ]
     },
     "paymentDetails": {
@@ -519,9 +732,18 @@
         "description": "DESCRIPTION",
         "total": "TOTAL",
         "items": [
-            { "description": "Ui Ux design", "total": "$ 5,250.00" },
-            { "description": "Web design", "total": "$ 5,250.00" },
-            { "description": "Testing", "total": "$ 5,250.00" }
+            {
+                "description": "Ui Ux design",
+                "total": "$ 5,250.00"
+            },
+            {
+                "description": "Web design",
+                "total": "$ 5,250.00"
+            },
+            {
+                "description": "Testing",
+                "total": "$ 5,250.00"
+            }
         ],
         "downloadPdf": "PDF",
         "downloading": "Downloading",
