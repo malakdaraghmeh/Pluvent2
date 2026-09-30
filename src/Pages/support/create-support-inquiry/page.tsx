@@ -1,31 +1,28 @@
 import React, { useState } from 'react';
-import { Info, CheckCircle2, ChevronDown, X, ChevronRight } from 'lucide-react';
+import { Info, CheckCircle2, ChevronDown, X, ChevronRight, ChevronLeft } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import FolderUpload from '@icons/folder-upload.svg?react';
 
-interface CreateSupportInquiryProps {
-    isOpen: boolean;
-    onClose: () => void;
-}
+export default function CreateSupportInquiry({ isOpen, onClose }) {
+    const { t, i18n } = useTranslation('tickets');
+    const isRtl = i18n.language === 'ar';
 
-export default function CreateSupportInquiry({ isOpen, onClose }: CreateSupportInquiryProps) {
-    const [subject, setSubject] = useState('Logo file not displaying correctly in print');
-    const [ticketCategory, setTicketCategory] = useState('Technical Issue');
-    const [issueType, setIssueType] = useState('Bug Report');
-    const [description, setDescription] = useState(
-        'The logo file is not displaying correctly in print. Please check the attached file and let me know how we can fix this.'
-    );
+    const [subject, setSubject] = useState('');
+    const [ticketCategory, setTicketCategory] = useState('technical');
+    const [issueType, setIssueType] = useState('bug');
+    const [description, setDescription] = useState('');
 
-    const [files, setFiles] = useState<File[]>([]);
+    const [files, setFiles] = useState([]);
     const [isDragging, setIsDragging] = useState(false);
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = e => {
         if (e.target.files && e.target.files.length > 0) {
             const selectedFiles = Array.from(e.target.files);
             setFiles(prev => [...prev, ...selectedFiles]);
         }
     };
 
-    const handleDragOver = (e: React.DragEvent) => {
+    const handleDragOver = e => {
         e.preventDefault();
         setIsDragging(true);
     };
@@ -34,7 +31,7 @@ export default function CreateSupportInquiry({ isOpen, onClose }: CreateSupportI
         setIsDragging(false);
     };
 
-    const handleDrop = (e: React.DragEvent) => {
+    const handleDrop = e => {
         e.preventDefault();
         setIsDragging(false);
         if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
@@ -43,11 +40,11 @@ export default function CreateSupportInquiry({ isOpen, onClose }: CreateSupportI
         }
     };
 
-    const removeFile = (indexToRemove: number) => {
+    const removeFile = indexToRemove => {
         setFiles(prev => prev.filter((_, index) => index !== indexToRemove));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = e => {
         e.preventDefault();
         console.log({
             subject,
@@ -56,7 +53,7 @@ export default function CreateSupportInquiry({ isOpen, onClose }: CreateSupportI
             description,
             files,
         });
-        alert('Ticket submitted successfully!');
+        alert(t('createModal.successAlert'));
         onClose();
     };
 
@@ -73,15 +70,13 @@ export default function CreateSupportInquiry({ isOpen, onClose }: CreateSupportI
                 onClick={e => e.stopPropagation()}
                 className="relative my-auto w-full max-w-4xl max-h-[calc(100vh-2rem)] overflow-y-auto bg-white rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 font-sans text-gray-800"
             >
-                {/* Page Title, Subtitle & Close Button */}
+                {/* Header */}
                 <div className="flex items-start justify-between border-b pb-4 border-gray-100">
                     <div>
                         <h1 className="text-2xl sm:text-3xl font-extrabold text-[#100D40]">
-                            Create Support Inquiry
+                            {t('createModal.title')}
                         </h1>
-                        <p className="text-sm text-gray-400 mt-1">
-                            Submit a ticket and our team will get back to you as soon as possible.
-                        </p>
+                        <p className="text-sm text-gray-400 mt-1">{t('createModal.subtitle')}</p>
                     </div>
                     <button
                         type="button"
@@ -92,7 +87,7 @@ export default function CreateSupportInquiry({ isOpen, onClose }: CreateSupportI
                     </button>
                 </div>
 
-                {/* Form Container */}
+                {/* Content */}
                 <div className="space-y-6">
                     {/* Warranty Banner */}
                     <div className="border border-emerald-400 bg-[#E8F8F3] rounded-2xl p-4 flex items-center justify-between">
@@ -102,10 +97,10 @@ export default function CreateSupportInquiry({ isOpen, onClose }: CreateSupportI
                             </div>
                             <div>
                                 <p className="text-sm font-bold text-emerald-950">
-                                    You are creating a ticket for a project under warranty.
+                                    {t('createModal.warrantyNotice')}
                                 </p>
                                 <p className="text-xs text-emerald-700 font-medium mt-0.5">
-                                    Brand Identity & Visual Design • Warranty Active • 315 Days Left
+                                    {t('createModal.warrantyDetails')}
                                 </p>
                             </div>
                         </div>
@@ -113,17 +108,19 @@ export default function CreateSupportInquiry({ isOpen, onClose }: CreateSupportI
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        {/* Form Fields Header Row */}
+                        {/* Header Inputs */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {/* Subject */}
                             <div>
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                    Subject <span className="text-red-500">*</span>
+                                    {t('createModal.fields.subject.label')}{' '}
+                                    <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     type="text"
                                     required
-                                    placeholder={subject}
+                                    value={subject}
+                                    placeholder={t('createModal.fields.subject.placeholder')}
                                     onChange={e => setSubject(e.target.value)}
                                     className="w-full bg-[#F3F4F8] border border-transparent rounded-xl px-4 py-3 text-sm text-gray-800 focus:bg-white focus:border-gray-200 focus:outline-none transition-all"
                                 />
@@ -132,61 +129,90 @@ export default function CreateSupportInquiry({ isOpen, onClose }: CreateSupportI
                             {/* Ticket Category */}
                             <div>
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                    Ticket Category <span className="text-red-500">*</span>
+                                    {t('createModal.fields.category.label')}{' '}
+                                    <span className="text-red-500">*</span>
                                 </label>
                                 <div className="relative">
                                     <select
                                         value={ticketCategory}
                                         onChange={e => setTicketCategory(e.target.value)}
-                                        className="w-full bg-[#F3F4F8] border border-transparent rounded-xl px-4 py-3 text-sm text-gray-800 appearance-none focus:bg-white focus:border-gray-200 focus:outline-none transition-all pr-10 cursor-pointer"
+                                        className={`w-full bg-[#F3F4F8] border border-transparent rounded-xl py-3 text-sm text-gray-800 appearance-none focus:bg-white focus:border-gray-200 focus:outline-none transition-all cursor-pointer ${
+                                            isRtl ? 'pr-4 pl-10' : 'pl-4 pr-10'
+                                        }`}
                                     >
-                                        <option value="Technical Issue">Technical Issue</option>
-                                        <option value="Design Request">Design Request</option>
-                                        <option value="Account & Billing">Account & Billing</option>
+                                        <option value="technical">
+                                            {t('createModal.categories.technical')}
+                                        </option>
+                                        <option value="design">
+                                            {t('createModal.categories.design')}
+                                        </option>
+                                        <option value="billing">
+                                            {t('createModal.categories.billing')}
+                                        </option>
                                     </select>
-                                    <ChevronDown className="w-4 h-4 text-gray-500 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                                    <ChevronDown
+                                        className={`w-4 h-4 text-gray-500 absolute top-1/2 -translate-y-1/2 pointer-events-none ${
+                                            isRtl ? 'left-3.5' : 'right-3.5'
+                                        }`}
+                                    />
                                 </div>
                             </div>
 
                             {/* Issue Type */}
                             <div>
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                    Issue Type
+                                    {t('createModal.fields.issueType.label')}
                                 </label>
                                 <div className="relative">
                                     <select
                                         value={issueType}
                                         onChange={e => setIssueType(e.target.value)}
-                                        className="w-full bg-[#F3F4F8] border border-transparent rounded-xl px-4 py-3 text-sm text-gray-800 appearance-none focus:bg-white focus:border-gray-200 focus:outline-none transition-all pr-10 cursor-pointer"
+                                        className={`w-full bg-[#F3F4F8] border border-transparent rounded-xl py-3 text-sm text-gray-800 appearance-none focus:bg-white focus:border-gray-200 focus:outline-none transition-all cursor-pointer ${
+                                            isRtl ? 'pr-4 pl-10' : 'pl-4 pr-10'
+                                        }`}
                                     >
-                                        <option value="Bug Report">Bug Report</option>
-                                        <option value="Feature Request">Feature Request</option>
-                                        <option value="Question">Question</option>
+                                        <option value="bug">
+                                            {t('createModal.issueTypes.bug')}
+                                        </option>
+                                        <option value="feature">
+                                            {t('createModal.issueTypes.feature')}
+                                        </option>
+                                        <option value="question">
+                                            {t('createModal.issueTypes.question')}
+                                        </option>
                                     </select>
-                                    <ChevronDown className="w-4 h-4 text-gray-500 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                                    <ChevronDown
+                                        className={`w-4 h-4 text-gray-500 absolute top-1/2 -translate-y-1/2 pointer-events-none ${
+                                            isRtl ? 'left-3.5' : 'right-3.5'
+                                        }`}
+                                    />
                                 </div>
                             </div>
                         </div>
 
-                        {/* Description Textarea */}
+                        {/* Description */}
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                Description <span className="text-red-500">*</span>
+                                {t('createModal.fields.description.label')}{' '}
+                                <span className="text-red-500">*</span>
                             </label>
                             <textarea
                                 rows={5}
                                 required
-                                placeholder={description}
+                                value={description}
+                                placeholder={t('createModal.fields.description.placeholder')}
                                 onChange={e => setDescription(e.target.value)}
                                 className="w-full bg-[#F3F4F8] border border-transparent rounded-xl p-4 text-sm text-gray-800 focus:bg-white focus:border-gray-200 focus:outline-none transition-all resize-none"
                             />
                         </div>
 
-                        {/* Drag & Drop File Upload */}
+                        {/* File Upload Dropzone */}
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                Upload any Attachments{' '}
-                                <span className="text-gray-400 font-normal">(Optional)</span>
+                                {t('createModal.fields.upload.label')}{' '}
+                                <span className="text-gray-400 font-normal">
+                                    ({t('createModal.fields.upload.optional')})
+                                </span>
                             </label>
 
                             <div
@@ -211,17 +237,16 @@ export default function CreateSupportInquiry({ isOpen, onClose }: CreateSupportI
                                     className="flex flex-col items-center cursor-pointer"
                                 >
                                     <FolderUpload />
-
                                     <p className="text-base font-bold text-[#100D40]">
-                                        Drop files here or click to upload
+                                        {t('createModal.dropzone.title')}
                                     </p>
                                     <p className="text-xs text-gray-400 mt-1">
-                                        PDF, DOCX, XLSX, PNG, JPG, ZIP — up to 50 MB each
+                                        {t('createModal.dropzone.hint')}
                                     </p>
                                 </label>
                             </div>
 
-                            {/* Uploaded Files Preview */}
+                            {/* Files List */}
                             {files.length > 0 && (
                                 <div className="mt-3 space-y-2">
                                     {files.map((file, idx) => (
@@ -251,8 +276,12 @@ export default function CreateSupportInquiry({ isOpen, onClose }: CreateSupportI
                                 type="submit"
                                 className="w-full sm:w-auto px-8 py-3.5 bg-[#100D40] hover:bg-[#1a1758] text-white font-semibold text-sm rounded-2xl flex items-center justify-center gap-2 transition-all shadow-sm"
                             >
-                                <span>Submit Ticket</span>
-                                <ChevronRight className="w-4 h-4 stroke-[2.5]" />
+                                <span>{t('createModal.submitBtn')}</span>
+                                {isRtl ? (
+                                    <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
+                                ) : (
+                                    <ChevronRight className="w-4 h-4 stroke-[2.5]" />
+                                )}
                             </button>
                         </div>
                     </form>

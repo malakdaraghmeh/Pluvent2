@@ -1,14 +1,19 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function TabNavigation({ tabs, activeTab, onSelectTab }) {
+    const { t } = useTranslation('tickets');
+
     return (
         <div className="flex items-end overflow-x-auto no-scrollbar gap-1 relative z-10 w-full -mb-[2px]">
             {tabs.map(tab => {
-                const isActive = activeTab === tab.name;
+                const isActive = activeTab === tab.key || activeTab === tab.name;
+                const tabKey = tab.key || tab.name;
+
                 return (
                     <button
-                        key={tab.name}
-                        onClick={() => onSelectTab(tab.name)}
+                        key={tabKey}
+                        onClick={() => onSelectTab(tabKey)}
                         style={
                             isActive
                                 ? {
@@ -24,7 +29,7 @@ export default function TabNavigation({ tabs, activeTab, onSelectTab }) {
                         }`}
                     >
                         <div className="flex items-center gap-2">
-                            <span>{tab.name}</span>
+                            <span>{t(`tabs.${tabKey}`, tab.name)}</span>
                             {tab.count !== undefined && (
                                 <span className="text-[10px] sm:text-[11px] bg-[#D1F2F0] text-[#0C1236] px-2 py-0.5 rounded-full font-extrabold">
                                     {tab.count}

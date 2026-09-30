@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Upload, X, ArrowRight } from 'lucide-react';
+import { Upload, X, ArrowRight, ArrowLeft } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import FolderUpload from '@icons/folder-upload.svg?react';
 
 export default function TicketDetails() {
+    const { t, i18n } = useTranslation('tickets');
+    const isRtl = i18n.language === 'ar';
+
     const [ticketStatus, setTicketStatus] = useState('Open');
     const [description, setDescription] = useState(
         'The logo file is not displaying correctly in print. Please check the attached file and let me know how we can fix this.'
@@ -43,7 +47,7 @@ export default function TicketDetails() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        alert('Ticket response submitted successfully!');
+        alert(t('details.form.successAlert'));
     };
 
     const handleCloseTicket = () => {
@@ -55,7 +59,7 @@ export default function TicketDetails() {
             <div className="max-w-5xl mx-auto">
                 {/* Page Heading */}
                 <h1 className="text-2xl sm:text-3xl font-bold text-[#100D40] mb-6">
-                    Ticket Details
+                    {t('details.title')}
                 </h1>
 
                 {/* Main Card */}
@@ -65,7 +69,7 @@ export default function TicketDetails() {
                         <div>
                             <div className="flex items-center gap-3">
                                 <h2 className="text-xl sm:text-2xl font-bold text-[#100D40]">
-                                    Ticket# 2023-CS123
+                                    {t('details.ticketNumber', { id: '2023-CS123' })}
                                 </h2>
                                 <span
                                     className={`px-3 py-1 text-xs font-semibold rounded-md ${
@@ -74,17 +78,21 @@ export default function TicketDetails() {
                                             : 'bg-gray-200 text-gray-600'
                                     }`}
                                 >
-                                    {ticketStatus}
+                                    {t(`status.${ticketStatus}`)}
                                 </span>
                             </div>
                             <p className="text-gray-500 font-medium text-sm mt-1">
-                                Upload By : <span className="text-gray-600">Maryam Hosam</span>
+                                {t('details.uploadBy', { name: 'Maryam Hosam' })}
                             </p>
                         </div>
 
                         <div className="md:text-right">
-                            <h3 className="text-lg font-bold text-[#100D40]">Project Ticket</h3>
-                            <p className="text-xs text-gray-400 mt-1">Posted at 2025 - 12:45 AM</p>
+                            <h3 className="text-lg font-bold text-[#100D40]">
+                                {t('details.projectTicket')}
+                            </h3>
+                            <p className="text-xs text-gray-400 mt-1">
+                                {t('details.postedAt', { time: '2025 - 12:45 AM' })}
+                            </p>
                         </div>
                     </div>
 
@@ -95,22 +103,13 @@ export default function TicketDetails() {
                         </h3>
                         <div className="space-y-3 text-sm text-gray-400 leading-relaxed">
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum
-                                dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit
-                                amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet,
-                                consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing
-                                elit.
-                            </p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum
-                                dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+                                dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit
                                 amet, consectetur adipiscing elit.
                             </p>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum
-                                dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit
-                                amet, consectetur
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+                                dolor sit amet, consectetur adipiscing elit.
                             </p>
                         </div>
                     </div>
@@ -118,13 +117,14 @@ export default function TicketDetails() {
                     {/* Response Bubble */}
                     <div className="flex flex-col items-end pt-2">
                         <div className="flex items-center gap-2 mb-1 pr-1 text-xs text-gray-500">
-                            <span className="font-bold text-[#100D40]">Pulvent</span>
+                            <span className="font-bold text-[#100D40]">
+                                {t('details.responseAuthor')}
+                            </span>
                             <span className="text-gray-400">01:08 am</span>
                         </div>
                         <div className="flex items-end gap-2 max-w-xl">
                             <div className="relative bg-[#100D40] text-white text-xs sm:text-sm py-3 px-5 rounded-2xl rounded-tr-none shadow-sm">
-                                Hi! We&apos;ve reviewed your latest request and shared the updates
-                                with our team.
+                                {t('details.responseMessage')}
                             </div>
                             <div className="w-8 h-8 rounded-full bg-[#100D40] flex items-center justify-center text-cyan-400 font-extrabold text-sm flex-shrink-0 shadow">
                                 P
@@ -137,7 +137,8 @@ export default function TicketDetails() {
                         {/* Description Textarea */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Ticket Description <span className="text-red-500">*</span>
+                                {t('details.form.descriptionLabel')}{' '}
+                                <span className="text-red-500">*</span>
                             </label>
                             <textarea
                                 rows={4}
@@ -151,8 +152,10 @@ export default function TicketDetails() {
                         {/* Dropzone Attachment Section */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Upload any Attachments{' '}
-                                <span className="text-gray-400 font-normal">(Optional)</span>
+                                {t('details.form.attachmentsLabel')}{' '}
+                                <span className="text-gray-400 font-normal">
+                                    {t('details.form.optional')}
+                                </span>
                             </label>
 
                             <div
@@ -179,10 +182,10 @@ export default function TicketDetails() {
                                     <FolderUpload />
                                     <div className="text-center sm:text-left">
                                         <p className="text-base font-bold text-[#100D40]">
-                                            Drop files here or click to upload
+                                            {t('details.form.dropzoneTitle')}
                                         </p>
                                         <p className="text-xs text-gray-400 mt-1">
-                                            PDF, DOCX, XLSX, PNG, JPG, ZIP — up to 50 MB each
+                                            {t('details.form.dropzoneHint')}
                                         </p>
                                     </div>
                                 </label>
@@ -219,15 +222,21 @@ export default function TicketDetails() {
                                 onClick={handleCloseTicket}
                                 className="w-full sm:w-auto px-8 py-3 rounded-full border border-red-400 text-red-500 font-medium text-sm hover:bg-red-50 transition-colors"
                             >
-                                {ticketStatus === 'Open' ? 'Close Ticket' : 'Reopen Ticket'}
+                                {ticketStatus === 'Open'
+                                    ? t('details.form.closeTicket')
+                                    : t('details.form.reopenTicket')}
                             </button>
 
                             <button
                                 type="submit"
                                 className="w-full sm:w-auto px-8 py-3 rounded-full bg-[#100D40] hover:bg-[#1a1758] text-white font-medium text-sm flex items-center justify-center gap-2 transition-colors"
                             >
-                                Submit Ticket
-                                <ArrowRight className="w-4 h-4" />
+                                <span>{t('details.form.submitTicket')}</span>
+                                {isRtl ? (
+                                    <ArrowLeft className="w-4 h-4" />
+                                ) : (
+                                    <ArrowRight className="w-4 h-4" />
+                                )}
                             </button>
                         </div>
                     </form>
