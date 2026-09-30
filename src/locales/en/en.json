@@ -346,5 +346,85 @@
         "description": "Sorry, the page you are looking for does not exist.",
         "backToHome": "Back to Home",
         "logoAlt": "Pulvent Logo"
+    },
+
+    "invoiceModal": {
+        "companyName": "Pulvent",
+        "companySubtitle": "Technologies And Digital Solutions",
+        "invoiceTo": "INVOICE TO:",
+        "amountDue": "AMOUNT DUE",
+        "vatNumber": "VAT:1000",
+        "invoiceId": "INVOICE ID",
+        "issuedDate": "ISSUED:",
+        "dueDate": "DUE DATE:",
+        "description": "DESCRIPTION",
+        "total": "TOTAL",
+        "totalAmount": "TOTAL AMOUNT:",
+        "totalVat": "TOTAL VAT:1000",
+        "pdfButton": "PDF",
+        "agencyName": "Pulvent Agency",
+        "agencyWebsite": "www.Pulvent.com",
+        "agencyContact": "contact@Pulvent.com / (884) 879 - 0102",
+        "client": {
+            "name": "Ahmed Hassan",
+            "phone": "(612) 856 - 0989",
+            "address": "Egypt - Cairo 72Stret\nNasir City"
+        },
+        "items": [
+            { "description": "Ui Ux deigne", "total": "$ 5,250.00" },
+            { "description": "Web design", "total": "$ 5,250.00" },
+            { "description": "Testing", "total": "$ 5,250.00" }
+        ]
+    },
+    "paymentDetails": {
+        "title": "Payment Details",
+        "subtitle": "Review this payment before continuing.",
+        "projectLabel": "Project",
+        "projectName": "Website Redesign",
+        "issuedDateLabel": "Issued Date",
+        "issuedDateValue": "May 30, 2026",
+        "paymentTypeLabel": "Payment Type",
+        "paymentTypeValue": "Final Milestone",
+        "dueDateLabel": "Due Date",
+        "dueDateValue": "Jun 30, 2026",
+        "amountDueLabel": "Amount Due",
+        "amountDueValue": "EGP 15,000",
+        "referenceLabel": "Reference",
+        "referenceValue": "REF-2026-027",
+        "descriptionTitle": "Payment Description",
+        "descriptionText": "Final milestone payment for the website redesign project, including design handoff and launch preparation.",
+        "backButton": "Back",
+        "continueButton": "Continue to Payment"
+    },
+    "invoice": {
+        "invoiceTo": "INVOICE TO:",
+        "clientName": "Ahmed Hassan",
+        "clientPhone": "(612) 856 - 0989",
+        "clientAddress": "Egypt - Cairo 72Stret\nNasir City",
+        "amountDue": "AMOUNT DUE",
+        "amountDueValue": "EGP 19,570.00",
+        "vatNumber": "VAT:1000",
+        "dateDueHeader": "July 26, 2026",
+        "invoiceIdLabel": "INVOICE ID",
+        "invoiceIdValue": "Nº: 000027",
+        "issuedDateLabel": "ISSUED:",
+        "issuedDateValue": "June 26, 2024",
+        "dueDateLabel": "DUE DATE:",
+        "dueDateValue": "July 26, 2024",
+        "description": "DESCRIPTION",
+        "total": "TOTAL",
+        "items": [
+            { "description": "Ui Ux design", "total": "$ 5,250.00" },
+            { "description": "Web design", "total": "$ 5,250.00" },
+            { "description": "Testing", "total": "$ 5,250.00" }
+        ],
+        "downloadPdf": "PDF",
+        "downloading": "Downloading",
+        "totalAmountLabel": "TOTAL AMOUNT:",
+        "totalAmountValue": "$19,570.00",
+        "totalVat": "TOTAL VAT:1000",
+        "agencyName": "Pulvent Agency",
+        "agencyWebsite": "www.Pulvent.com",
+        "agencyContact": "contact@Pulvent.com / (884) 879 - 0102"
     }
 }
