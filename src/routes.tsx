@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, useParams, useLocation } from 'react-router-dom';
+﻿import { Routes, Route, Navigate, useParams, useLocation } from 'react-router-dom';
 import NotFound from './Pages/NotFound/NotFound';
 import i18n from './i18n/i18n';
 import { useEffect } from 'react';
@@ -18,6 +18,7 @@ import Layout from './components/Layout/Layout';
 import UsersPage from './Pages/users/page';
 import InvoiceModal from './Pages/InvoiceModal/invoiceModalPage';
 import PaymentDetailsModal from './Pages/PaymentDetailsModal/paymentDetailsModal';
+import ProjectDetails from './Pages/projectDetails/ProjectDetails';
 
 function LocaleWrapper() {
     const { locale } = useParams();
@@ -54,7 +55,27 @@ function LocaleWrapper() {
                 <Route path="/billing" element={<BillingPage />} />
                 <Route path="/users" element={<UsersPage />} />
                 <Route path="/invoice" element={<InvoiceModal onClose={undefined} />} />
-                <Route path="/paydet" element={<PaymentDetailsModal onClose={undefined} onContinue={undefined} onBack={undefined} />} />
+                <Route
+                    path="/paydet"
+                    element={
+                        <PaymentDetailsModal
+                            onClose={undefined}
+                            onContinue={undefined}
+                            onBack={undefined}
+                        />
+                    }
+                />
+                <Route
+                    path="/paydet"
+                    element={
+                        <PaymentDetailsModal
+                            onClose={undefined}
+                            onContinue={undefined}
+                            onBack={undefined}
+                        />
+                    }
+                />
+                <Route path="/prdet" element={<ProjectDetails />} />
 
                 <Route path="*" element={<NotFound />} />
             </Route>
