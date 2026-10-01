@@ -154,19 +154,17 @@
         "startDate": "Start Date",
         "dueDate": "Due Date",
         "details": "Details",
-
-  "modal": {
-    "title": "Add New Change Request",
-    "description": "Fill in the details below to add a new change request.",
-    "titleLabel": "Title",
-    "titlePlaceholder": "Enter change request title",
-    "descriptionLabel": "Description",
-    "descriptionPlaceholder": "Enter change request Description",
-    "dropFiles": "Drop files here or click to upload",
-    "fileTypes": "PDF, DOCX, XLSX, PNG, JPG, ZIP — up to 50 MB each",
-    "submit": "Add Change Request"
-  }
-        "details": "Details",
+        "modal": {
+            "title": "Add New Change Request",
+            "description": "Fill in the details below to add a new change request.",
+            "titleLabel": "Title",
+            "titlePlaceholder": "Enter change request title",
+            "descriptionLabel": "Description",
+            "descriptionPlaceholder": "Enter change request Description",
+            "dropFiles": "Drop files here or click to upload",
+            "fileTypes": "PDF, DOCX, XLSX, PNG, JPG, ZIP — up to 50 MB each",
+            "submit": "Add Change Request"
+        },
         "statuses": {
             "inReview": "In Review",
             "waitingUserInput": "Waiting User Input",
@@ -235,7 +233,11 @@
         "inReview": "In Review",
         "warrantySupport": "Warranty Support",
         "description": "Your project is covered by warranty. You can submit a support ticket for issues related to the delivered project.",
-        "features": ["Bug Fixes", "Technical issues", "Warranty-related requests"],
+        "features": [
+            "Bug Fixes",
+            "Technical issues",
+            "Warranty-related requests"
+        ],
         "status": {
             "title": "Warranty Active",
             "description": "You can submit your ticket for warranty support or project assistance.",
@@ -586,13 +588,13 @@
         "securityMessageLine2": "securely processed.",
         "back": "Back",
         "continueToPayment": "Continue to Payment"
-      },
-      "paymentSuccessModal": {
+    },
+    "paymentSuccessModal": {
         "title": "Payment Successful",
         "message": "Your payment has been completed successfully.",
         "back": "Back",
         "viewReceipt": "View Receipt"
-      },
+    },
     "tickets": {
         "header": {
             "title": "Support Tickets",
