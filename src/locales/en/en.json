@@ -813,5 +813,65 @@
             "Feature enhancements",
             "Any other project-related inquiries"
         ]
+    },"supportPlans":{
+        "pageTitle": "Support Plans",
+        "essential": {
+            "title": "Essential Support",
+            "button": "Request Now",
+            "features": [
+                "Bug Fixing & Troubleshooting",
+                "System Health Checks",
+                "Minor Configuration",
+                "Email / Ticket Support",
+                "Monthly Review",
+                "Backup Verification"
+            ]
+        },
+        "professional": {
+            "title": "Professional Support",
+            "button": "Request Now",
+            "features": [
+                "Priority Support",
+                "Application & Server Monitoring",
+                "Database & Backup Monitoring",
+                "Performance & Security Checks",
+                "API & Integration Monitoring",
+                "Minor Modifications",
+                "Monthly Maintenance & Reports",
+                "Deployment & Release Support"
+            ]
+        },
+        "businessCritical": {
+            "title": "Business Critical Support",
+            "button": "Request Now",
+            "features": [
+                "High-Priority Incident Handling",
+                "Proactive Monitoring",
+                "Database & Performance Optimization",
+                "Security & Integration Monitoring",
+                "Backup & Recovery",
+                "Production Deployment Support",
+                "Priority Bug Fixing",
+                "Dedicated Technical Contact",
+                "Monthly Optimization Review"
+            ]
+        },
+        "enterprise": {
+            "title": "Enterprise Support",
+            "button": "Request Now",
+            "features": [
+                "24/7 Critical Support",
+                "Dedicated Support Engineer",
+                "Account Manager",
+                "DevOps & Cloud Management",
+                "Cybersecurity Monitoring",
+                "Disaster Recovery",
+                "SLA-based Support",
+                "Penetration & Security Reviews",
+                "Release Management",
+                "Dedicated Development Hours",
+                "On-site Support"
+            ]
+        }
     }
 }

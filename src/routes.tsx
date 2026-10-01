@@ -24,6 +24,7 @@ import InvoiceModal from './Pages/InvoiceModal/invoiceModalPage';
 import PaymentDetailsModal from './Pages/PaymentDetailsModal/paymentDetailsModal';
 import ProjectDetails from './Pages/projectDetails/ProjectDetails';
 import Layout from './Components/Layout/Layout';
+import SupportPlans from './Pages/supportPlans/SupportPlans';
 
 function LocaleWrapper() {
     const { locale } = useParams();
@@ -59,7 +60,7 @@ function LocaleWrapper() {
                 <Route path="/billing" element={<BillingPage />} />
                 <Route path="/users" element={<UsersPage />} />
                 <Route path="/invoice" element={<InvoiceModal onClose={undefined} />} />
-             
+
                 <Route
                     path="/projects/:projectId/change-requests/:requestId/completed"
                     element={<CompletedChangeRequestPage />}
@@ -83,6 +84,7 @@ function LocaleWrapper() {
                     }
                 />
                 <Route path="/prdet" element={<ProjectDetails />} />
+                <Route path="/support-plans" element={<SupportPlans />} />
 
                 <Route path="*" element={<NotFound />} />
             </Route>
