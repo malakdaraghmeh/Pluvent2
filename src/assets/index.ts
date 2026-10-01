@@ -49,5 +49,13 @@ export { default as ProfileUserIcon } from './icons/profile-user.svg?react';
 export { default as ProfileContactIcon } from './icons/profile-contact.svg?react';
 export { default as ProfileSaveArrowIcon } from './icons/profile-save-arrow.svg?react';
 export { default as ProfileCloseIcon } from './icons/profile-close.svg?react';
+export { default as DownArrow } from './icons/down-arrow.svg?react';
+export { default as CloseIcons } from './icons/close-icone.svg?react';
+export { default as FilesIcons } from './icons/files-icone.svg?react';
+export { default as PaymentSuccess } from './icons/payment-success.svg?react';
+
+
+
+
 export { default as ChatIcon } from './icons/chat-1.svg?react';
 export { default as ChatDecorationIcon } from './icons/Group 6.svg?react';

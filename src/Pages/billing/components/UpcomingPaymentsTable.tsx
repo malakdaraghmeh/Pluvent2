@@ -1,43 +1,49 @@
-import React, { useState } from 'react';
+"use client";import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 import { upcomingPaymentsList } from '../data/upcomingPayments';
 import { Arrow, SearchBilling } from '@/assets';
 import { useTranslation } from 'react-i18next';
+import CreditDebitCardModal from "./CreditDebitCardModal";
 
 export default function UpcomingPaymentsTable() {
-    const { t } = useTranslation('upcomingPayments');
+  const { t } = useTranslation('upcomingPayments');
 
-    const [searchTerm, setSearchTerm] = useState('');
-    const [selectedProject, setSelectedProject] = useState('All Projects');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedProject, setSelectedProject] = useState('All Projects');
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
 
-    const filteredData = upcomingPaymentsList.filter(item => {
-        const matchesSearch =
-            item.project.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.installment.toLowerCase().includes(searchTerm.toLowerCase());
+  const filteredData = upcomingPaymentsList.filter(item => {
+    const matchesSearch =
+      item.project.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.installment.toLowerCase().includes(searchTerm.toLowerCase());
 
-        const matchesFilter =
-            selectedProject === 'All Projects' || item.project === selectedProject;
+    const matchesFilter =
+      selectedProject === 'All Projects' || item.project === selectedProject;
 
-        return matchesSearch && matchesFilter;
-    });
+    return matchesSearch && matchesFilter;
+  });
 
-    return (
-        <div className="w-full max-w-[1086px] min-h-[366px] bg-white rounded-[16px] p-[24px] flex flex-col gap-[24px] shadow-sm">
-            {/* Header & Filter Controls */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <h2 className="text-[22px] font-semibold text-[#12115C]">{t('title')}</h2>
+  return (
+    <div className="flex min-h-[366px] w-full max-w-[1086px] flex-col gap-[24px] rounded-[16px] bg-white p-[24px] shadow-sm">
+      {/* Header & Filter Controls */}
+      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+        <h2 className="text-[22px] font-semibold text-[#12115C]">
+          {t("title")}
+        </h2>
 
-                <div className="flex w-full sm:w-auto items-center gap-3">
-                    {/* Search Box */}
-                    <div className="relative flex-1 sm:w-[280px] sm:max-w-[280px]">
-                        <SearchBilling className="absolute left-3 top-1/2 -translate-y-1/2 shrink-0 text-[#9CA3AF]" />
-                        <input
-                            type="text"
-                            placeholder={t('searchPlaceholder')}
-                            value={searchTerm}
-                            onChange={e => setSearchTerm(e.target.value)}
-                            className="
+        <div className="flex w-full items-center gap-3 sm:w-auto">
+          {/* Search Box */}
+          <div className="relative flex-1 sm:w-[280px] sm:max-w-[280px]">
+            <SearchBilling
+              className="absolute left-3 top-1/2 -translate-y-1/2 shrink-0 text-[#9CA3AF]"
+            />
+            <input
+              type="text"
+              placeholder={t("searchPlaceholder")}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="
                 w-full
                 h-[38px]
                 pl-[36px]
@@ -51,8 +57,8 @@ export default function UpcomingPaymentsTable() {
                 placeholder:text-[#9CA3AF]
                 focus:outline-none
               "
-                        />
-                    </div>
+            />
+          </div>
 
                     {/* Filter Dropdown */}
                     <div className="relative w-[139px] shrink-0">
@@ -78,26 +84,26 @@ export default function UpcomingPaymentsTable() {
                         >
                             <option value="All Projects">{t('allProjects')}</option>
 
-                            <option value="Company Website Redesign">
-                                Company Website Redesign
-                            </option>
-                        </select>
+                              <option value="Company Website Redesign">
+                                  Company Website Redesign
+                              </option>
+                          </select>
 
-                        <ChevronDown
-                            className="
-                absolute
-                right-3
-                top-1/2
-                -translate-y-1/2
-                w-4
-                h-4
-                text-[#12115C]
-                pointer-events-none
-              "
-                        />
-                    </div>
-                </div>
-            </div>
+                          <ChevronDown
+                              className="
+                  pointer-events-none
+                  absolute
+                  right-3
+                  top-1/2
+                  h-4
+                  w-4
+                  -translate-y-1/2
+                  text-[#12115C]
+                "
+                          />
+                      </div>
+                  </div>
+              </div>
 
             {/* Table */}
             <div className="w-full max-w-[1038px] rounded-[8px] border border-[#00E5C820] overflow-x-auto bg-white">
@@ -123,21 +129,22 @@ export default function UpcomingPaymentsTable() {
                         </tr>
                     </thead>
 
-                    <tbody className="text-[14px]">
-                        {filteredData.map((row, index) => (
-                            <tr
-                                key={row.id}
-                                className={`
-                  transition-colors
-                  border-b
-                  border-[#00E5C815]
-                  last:border-none
-                  ${index % 2 === 0 ? 'bg-[#00E5C805]' : 'bg-white'}
-                `}
-                            >
-                                <td className="py-4 px-6 font-semibold text-[#1F2937]">
-                                    {row.project}
-                                </td>
+                      <tbody className="text-[14px]">
+                          {filteredData.map((row, index) => (
+                              <tr
+                                  key={row.id}
+                                  className={`
+                    border-b
+                    border-[#00E5C815]
+                    transition-colors
+                    last:border-none
+                    ${index % 2 === 0 ? 'bg-[#00E5C805]' : 'bg-white'}
+                  `}
+                              >
+                                  {/* Project */}
+                  <td className="px-6 py-4 font-semibold text-[#1F2937]">
+                                      {row.project}
+                                  </td>
 
                                 <td className="py-4 px-4 text-[#8C94A3]">{row.installment}</td>
 
@@ -177,13 +184,13 @@ export default function UpcomingPaymentsTable() {
                                     >
                                         <span className="shrink-0">{t('payNow')}</span>
 
-                                        <span className="shrink-0 flex items-center rtl:rotate-180">
-                                            <Arrow />
-                                        </span>
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
+                                          <span className="flex shrink-0 items-center rtl:rotate-180">
+                                              <Arrow />
+                                          </span>
+                                      </button>
+                                  </td>
+                              </tr>
+                          ))}
 
                         {filteredData.length === 0 && (
                             <tr>

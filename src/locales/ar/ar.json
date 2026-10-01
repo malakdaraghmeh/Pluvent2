@@ -135,6 +135,18 @@
             "inProgress": "قيد التنفيذ",
             "completed": "مكتمل"
         }
+        "details": "التفاصيل",
+        "modal": {
+            "title": "إضافة طلب تغيير جديد",
+            "description": "قم بتعبئة التفاصيل أدناه لإضافة طلب تغيير جديد.",
+            "titleLabel": "العنوان",
+            "titlePlaceholder": "أدخل عنوان طلب التغيير",
+            "descriptionLabel": "الوصف",
+            "descriptionPlaceholder": "أدخل وصف طلب التغيير",
+            "dropFiles": "اسحب الملفات هنا أو اضغط للرفع",
+            "fileTypes": "PDF, DOCX, XLSX, PNG, JPG, ZIP — بحد أقصى 50 ميجابايت لكل ملف",
+            "submit": "إضافة طلب تغيير"
+          }
     },
     "fileDocuments": {
         "title": "الملفات والمستندات",
@@ -589,5 +601,33 @@
             "تحسينات الميزات",
             "أي استفسارات أخرى تتعلق بالمشروع"
         ]
-    }
+    },
+    "creditDebitCardModal": {
+        "title": "بطاقة الائتمان والخصم",
+        "description": "أدخل تفاصيل بطاقتك لإتمام عملية الدفع.",
+        "cardNumber": "رقم بطاقة الائتمان",
+        "cardNumberPlaceholder": "0000 0000 0000 0000",
+        "cardholderName": "اسم حامل البطاقة",
+        "cardholderNamePlaceholder": "اسم حامل البطاقة",
+        "expiryMonth": "شهر الانتهاء",
+        "expiryYear": "سنة الانتهاء",
+        "monthPlaceholder": "MM",
+        "yearPlaceholder": "YYYY",
+        "cvv": "CVV",
+        "cvvPlaceholder": "3 أرقام",
+        "totalAmount": "المبلغ الإجمالي",
+        "project": "المشروع:",
+        "projectName": "إعادة تصميم الموقع",
+        "securityMessageLine1": "عملية الدفع الخاصة بك مشفرة",
+        "securityMessageLine2": "وتتم معالجتها بأمان.",
+        "back": "رجوع",
+        "continueToPayment": "المتابعة إلى الدفع"
+      },
+      "paymentSuccessModal": {
+        "title": "تم الدفع بنجاح",
+        "message": "تم إتمام عملية الدفع بنجاح.",
+        "back": "رجوع",
+        "viewReceipt": "عرض الإيصال"
+      }
+    
 }

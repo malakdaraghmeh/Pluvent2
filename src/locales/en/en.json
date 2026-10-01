@@ -127,6 +127,19 @@
         "startDate": "Start Date",
         "dueDate": "Due Date",
         "details": "Details",
+
+  "modal": {
+    "title": "Add New Change Request",
+    "description": "Fill in the details below to add a new change request.",
+    "titleLabel": "Title",
+    "titlePlaceholder": "Enter change request title",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Enter change request Description",
+    "dropFiles": "Drop files here or click to upload",
+    "fileTypes": "PDF, DOCX, XLSX, PNG, JPG, ZIP — up to 50 MB each",
+    "submit": "Add Change Request"
+  }
+        "details": "Details",
         "statuses": {
             "inReview": "In Review",
             "waitingUserInput": "Waiting User Input",
@@ -347,6 +360,33 @@
         "backToHome": "Back to Home",
         "logoAlt": "Pulvent Logo"
     },
+    "creditDebitCardModal": {
+        "title": "Credit & Debit Card",
+        "description": "Enter your card details to complete this payment.",
+        "cardNumber": "Credit Card Number",
+        "cardNumberPlaceholder": "0000 0000 0000 0000",
+        "cardholderName": "Cardholder Name",
+        "cardholderNamePlaceholder": "Cardholder Name",
+        "expiryMonth": "Expiry Month",
+        "expiryYear": "Expiry Year",
+        "monthPlaceholder": "MM",
+        "yearPlaceholder": "YYYY",
+        "cvv": "CVV",
+        "cvvPlaceholder": "3-digit",
+        "totalAmount": "Total Amount",
+        "project": "Project:",
+        "projectName": "Website Redesign",
+        "securityMessageLine1": "Your payment is encrypted and",
+        "securityMessageLine2": "securely processed.",
+        "back": "Back",
+        "continueToPayment": "Continue to Payment"
+      },
+      "paymentSuccessModal": {
+        "title": "Payment Successful",
+        "message": "Your payment has been completed successfully.",
+        "back": "Back",
+        "viewReceipt": "View Receipt"
+      },
 
     "tickets": {
         "header": {
