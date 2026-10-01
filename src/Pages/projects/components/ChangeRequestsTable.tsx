@@ -268,7 +268,19 @@ const ChangeRequestsTable = () => {
 
               {/* Details */}
               <Link
-                to={`/${locale}/projects/${projectId}/change-requests/${request.id}`}
+                to={
+                                    request.status === 'InReview'
+                                        ? `/${locale}/change-request-details`
+                                        : request.status === 'Waiting User Input'
+                                          ? `/${locale}/projects/${projectId}/change-requests/${request.id}/waiting`
+                                          : request.status === 'Pending Payment'
+                                            ? `/${locale}/projects/${projectId}/change-requests/${request.id}/payment`
+                                            : request.status === 'Inprogress'
+                                              ? `/${locale}/projects/${projectId}/change-requests/${request.id}/in-progress`
+                                              : request.status === 'Completed'
+                                                ? `/${locale}/projects/${projectId}/change-requests/${request.id}/completed`
+                                                : `/${locale}/projects/${projectId}/change-requests/${request.id}`
+                                }
                 className="
                   justify-self-start
                   text-[16px]
