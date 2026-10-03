@@ -1,12 +1,4 @@
-export interface UpcomingPayment {
-    id: string;
-    project: string;
-    installment: string;
-    amount: string;
-    dueDate: string;
-    daysLeft: number;
-    daysLeftText: string;
-}
+import type { UpcomingPayment } from '../../../../utils/types/billing.types';
 
 export const upcomingPaymentsList: UpcomingPayment[] = [
     {
@@ -16,7 +8,6 @@ export const upcomingPaymentsList: UpcomingPayment[] = [
         amount: 'EGP 10,000.00',
         dueDate: 'May 30, 2026',
         daysLeft: 2,
-        daysLeftText: '2 days',
     },
     {
         id: '2',
@@ -25,7 +16,6 @@ export const upcomingPaymentsList: UpcomingPayment[] = [
         amount: 'EGP 10,000.00',
         dueDate: 'May 30, 2026',
         daysLeft: 10,
-        daysLeftText: '10 days',
     },
     {
         id: '3',
@@ -34,6 +24,5 @@ export const upcomingPaymentsList: UpcomingPayment[] = [
         amount: 'EGP 10,000.00',
         dueDate: 'May 30, 2026',
         daysLeft: 20,
-        daysLeftText: '20 days',
     },
 ];

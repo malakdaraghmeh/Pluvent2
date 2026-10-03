@@ -5,7 +5,7 @@
     MessagesUserAvatarTwo,
 } from '@/assets';
 
-import type { Chat, Member, Message } from '@/utils/types/chat.types';
+import type { Chat, Member, Message } from '../../../utils/types/chat.types';
 
 export const INITIAL_MEMBERS: Member[] = [
     {

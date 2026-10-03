@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { MessagesAmrAvatar } from '@/assets';
-import type { Chat, Message } from '@/utils/types/chat.types';
+
+import type { Chat, CreateGroupPayload, Message } from '../../../utils/types/chat.types';
 
 import { ChatArea } from './components/ChatArea';
 import { ChatSidebar } from './components/ChatSidebar';
@@ -34,6 +35,7 @@ export default function MessagesPage() {
         event.preventDefault();
 
         const text = inputText.trim();
+
         if (!text) return;
 
         const newMessage: Message = {
@@ -52,7 +54,7 @@ export default function MessagesPage() {
         setInputText('');
     };
 
-    const handleCreateGroup = (name: string, memberIds: string[]) => {
+    const handleCreateGroup = ({ name, memberIds }: CreateGroupPayload) => {
         const newGroup: Chat = {
             id: `group-${Date.now()}`,
             name,
@@ -77,7 +79,7 @@ export default function MessagesPage() {
     const activeChat = chats.find(chat => chat.id === selectedChatId) ?? chats[0];
 
     return (
-        <main className="flex min-h-full w-full bg-[#F7F8FA] px-4 py-4 md:px-5 3xl:px-6 4xl:px-8">
+        <main className="flex min-h-0 w-full min-w-0 bg-[#F7F8FA] px-4 py-4 md:px-5 3xl:px-6 4xl:px-8">
             <div className="flex w-full min-w-0 items-stretch gap-0 md:gap-5 3xl:gap-6 4xl:gap-8">
                 <ChatSidebar
                     chats={chats}

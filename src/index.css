@@ -115,3 +115,12 @@ body {
 .text-gradient-b {
     @apply bg-gradient-to-b from-main via-main to-accent bg-clip-text text-transparent;
 }
+
+.messages-members-list {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.messages-members-list::-webkit-scrollbar {
+    display: none;
+}

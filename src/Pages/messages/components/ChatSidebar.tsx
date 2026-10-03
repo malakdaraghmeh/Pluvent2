@@ -7,8 +7,7 @@ import {
     MessagesUsersIcon,
 } from '@/assets';
 
-import type { Chat } from '@/utils/types/chat.types';
-
+import type { Chat } from '../../../../utils/types/chat.types';
 interface ChatSidebarProps {
     chats: Chat[];
     selectedChatId: string;

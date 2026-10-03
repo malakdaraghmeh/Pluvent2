@@ -1,18 +1,8 @@
-﻿import type { FormEvent } from 'react';
-import { useTranslation } from 'react-i18next';
+﻿import { useTranslation } from 'react-i18next';
 
 import { MessagesBackIcon, MessagesPlusIcon, MessagesSendIcon } from '@/assets';
-import type { Chat, Message } from '@/utils/types/chat.types';
 
-interface ChatAreaProps {
-    activeChat?: Chat;
-    messages: Message[];
-    inputText: string;
-    onInputChange: (text: string) => void;
-    onSendMessage: (event: FormEvent) => void;
-    onBack: () => void;
-    className?: string;
-}
+import type { ChatAreaProps } from '../../../../utils/types/chat.types';
 
 export const ChatArea = ({
     activeChat,
@@ -26,7 +16,7 @@ export const ChatArea = ({
     const { t, i18n } = useTranslation('chat');
     const isArabic = i18n.language.startsWith('ar');
 
-    const getMessageText = (message: Message) => {
+    const getMessageText = (message: ChatAreaProps['messages'][number]) => {
         if (message.text !== 'sampleMessage') return message.text;
 
         return t('sampleMessage', {
@@ -60,10 +50,12 @@ export const ChatArea = ({
                                     className="h-9 w-9 shrink-0 rounded-full object-cover"
                                 />
                             )}
+
                             <div className="min-w-0">
                                 <h2 className="truncate text-sm font-semibold text-[#101828]">
                                     {activeChat.name}
                                 </h2>
+
                                 <p className="truncate text-xs text-[#98A2B3]">
                                     {activeChat.isPinned
                                         ? t('pulventTeamMembers', { count: 2 })
@@ -81,7 +73,9 @@ export const ChatArea = ({
                         {messages.map(message => (
                             <div
                                 key={message.id}
-                                className={`flex w-full items-start gap-3 ${message.isMe ? 'flex-row-reverse' : 'flex-row'}`}
+                                className={`flex w-full items-start gap-3 ${
+                                    message.isMe ? 'flex-row-reverse' : 'flex-row'
+                                }`}
                             >
                                 <img
                                     src={message.senderAvatar}
@@ -90,19 +84,26 @@ export const ChatArea = ({
                                 />
 
                                 <div
-                                    className={`flex min-w-0 flex-col ${message.isMe ? 'items-end' : 'items-start'}`}
+                                    className={`flex min-w-0 flex-col ${
+                                        message.isMe ? 'items-end' : 'items-start'
+                                    }`}
                                 >
                                     <div className="mb-[6px] flex items-center gap-2">
                                         <span className="text-[12px] font-semibold text-[#17164C] 3xl:text-[13px] 4xl:text-[14px]">
                                             {message.senderName}
                                         </span>
+
                                         <span className="text-[11px] font-normal text-[#98A2B3] 3xl:text-[12px]">
                                             {message.time}
                                         </span>
                                     </div>
 
                                     <div
-                                        className={`w-fit rounded-[100px] px-4 py-[11px] text-[12px] leading-[18px] max-md:max-w-[85%] max-md:whitespace-normal md:max-w-none md:whitespace-nowrap 3xl:px-5 3xl:py-3 3xl:text-[13px] 4xl:px-6 4xl:py-[14px] 4xl:text-[14px] ${message.isMe ? 'bg-[#12115C] text-white' : 'bg-[#F2F1FA] text-[#27264D]'}`}
+                                        className={`w-fit rounded-[100px] px-4 py-[11px] text-[12px] leading-[18px] max-md:max-w-[85%] max-md:whitespace-normal md:max-w-none md:whitespace-nowrap 3xl:px-5 3xl:py-3 3xl:text-[13px] 4xl:px-6 4xl:py-[14px] 4xl:text-[14px] ${
+                                            message.isMe
+                                                ? 'bg-[#12115C] text-white'
+                                                : 'bg-[#F2F1FA] text-[#27264D]'
+                                        }`}
                                     >
                                         {getMessageText(message)}
                                     </div>
