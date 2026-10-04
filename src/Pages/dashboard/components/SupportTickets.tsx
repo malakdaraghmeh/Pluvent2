@@ -1,11 +1,16 @@
+/* eslint-disable react/prop-types */
+
+import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ChatDecorationIcon, ChatIcon } from '@/assets';
 import { supportTickets } from '../data/supportTickets';
+import AskAi from '@/Pages/askAi/AskAi';
 
 const SupportTickets = () => {
     const { t } = useTranslation('supportTickets');
     const { locale = 'en' } = useParams();
+    const [isAskAiOpen, setIsAskAiOpen] = useState(false);
 
     return (
         <section className="relative flex w-full min-w-0 flex-1 flex-col rounded-[24px] bg-white p-4 pb-10 shadow-[0_4px_20px_rgba(0,0,0,0.0314)] sm:p-5 sm:pb-10 lg:p-6 lg:pb-10 3xl:p-7 3xl:pb-12 4xl:p-8 4xl:pb-14">
@@ -50,10 +55,11 @@ const SupportTickets = () => {
                 ))}
             </div>
 
-            <Link
-                to={`/${locale}/messages`}
+            <button
+                type="button"
+                onClick={() => setIsAskAiOpen(true)}
                 aria-label="Chat"
-                className="absolute bottom-[-8px] end-[8px] z-30 h-[65px] w-[77px] 3xl:h-[72px] 3xl:w-[84px] 4xl:h-[78px] 4xl:w-[90px]"
+                className="absolute bottom-[-8px] end-[8px] z-30 h-[65px] w-[77px] 3xl:h-[72px] 3xl:w-[84px] 4xl:h-[78px] 4xl:w-[90px] cursor-pointer border-none bg-transparent p-0 text-left"
             >
                 <span className="absolute bottom-0 end-0 flex h-[52px] w-[52px] flex-col items-center justify-center rounded-full bg-[#12115C] shadow-[0_4px_12px_rgba(18,17,92,0.25)] 3xl:h-[58px] 3xl:w-[58px] 4xl:h-[64px] 4xl:w-[64px]">
                     <ChatIcon className="h-8 w-8 shrink-0 3xl:h-9 3xl:w-9 4xl:h-10 4xl:w-10" />
@@ -64,7 +70,9 @@ const SupportTickets = () => {
                 </span>
 
                 <ChatDecorationIcon className="absolute end-[-2px] top-0 h-8 w-8 3xl:h-9 3xl:w-9 4xl:h-10 4xl:w-10" />
-            </Link>
+            </button>
+
+            <AskAi isOpen={isAskAiOpen} onClose={() => setIsAskAiOpen(false)} />
         </section>
     );
 };
