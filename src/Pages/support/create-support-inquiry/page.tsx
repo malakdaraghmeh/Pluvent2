@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Info, CheckCircle2, ChevronDown, X, ChevronRight, ChevronLeft } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import FolderUpload from '@icons/folder-upload.svg?react';
+import SupportTicketConfirmModal from '../components/SupportTicketConfirmModal';
 
 export default function CreateSupportInquiry({ isOpen, onClose }) {
     const { t, i18n } = useTranslation('tickets');
@@ -14,6 +15,7 @@ export default function CreateSupportInquiry({ isOpen, onClose }) {
 
     const [files, setFiles] = useState([]);
     const [isDragging, setIsDragging] = useState(false);
+    const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
 
     const handleFileChange = e => {
         if (e.target.files && e.target.files.length > 0) {
@@ -44,7 +46,7 @@ export default function CreateSupportInquiry({ isOpen, onClose }) {
         setFiles(prev => prev.filter((_, index) => index !== indexToRemove));
     };
 
-    const handleSubmit = e => {
+  /*   const handleSubmit = e => {
         e.preventDefault();
         console.log({
             subject,
@@ -55,7 +57,20 @@ export default function CreateSupportInquiry({ isOpen, onClose }) {
         });
         alert(t('createModal.successAlert'));
         onClose();
-    };
+    }; */
+    const handleSubmit = () => {
+    console.log({
+        subject,
+        ticketCategory,
+        issueType,
+        description,
+        files,
+    });
+
+    alert(t('createModal.successAlert'));
+
+    onClose();
+};
 
     if (!isOpen) return null;
 
@@ -107,7 +122,10 @@ export default function CreateSupportInquiry({ isOpen, onClose }) {
                         <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 hidden sm:block" />
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form    onSubmit={(e) => {
+                            e.preventDefault();
+                            setIsConfirmModalOpen(true);
+                        }} className="space-y-6">
                         {/* Header Inputs */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {/* Subject */}
@@ -285,6 +303,16 @@ export default function CreateSupportInquiry({ isOpen, onClose }) {
                             </button>
                         </div>
                     </form>
+                    <SupportTicketConfirmModal
+                isOpen={isConfirmModalOpen}
+                onClose={() => setIsConfirmModalOpen(false)}
+                onConfirm={() => {
+                    setIsConfirmModalOpen(false);
+
+                    handleSubmit();
+                }}
+  isRtl={isRtl}
+/>
                 </div>
             </div>
         </div>

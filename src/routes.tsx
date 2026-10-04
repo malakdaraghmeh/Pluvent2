@@ -27,6 +27,7 @@ import UsersPage from './Pages/users/page';
 import SupportPlans from './Pages/supportPlans/SupportPlans';
 import InvoiceModal from './Pages/InvoiceModal/invoiceModalPage';
 import Layout from './components/Layout/Layout';
+import TicketCard from './Pages/support/components/TicketCard';
 
 function LocaleWrapper() {
     const { locale } = useParams();
@@ -46,6 +47,8 @@ function LocaleWrapper() {
                 <Route path="/services" element={<Services />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+               
+
 
                 <Route path="/projects" element={<ProjectPage />} />
                 <Route path="/projects/:id" element={<ProjectDetailsPage />} />
