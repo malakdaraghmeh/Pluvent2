@@ -1,7 +1,6 @@
 
 
 
-import { DashboardStat } from "@/Pages/dashboard/data/dashboardStats";
 import {
   folderIcon,
   paidIcon,
@@ -11,6 +10,7 @@ import {
 
 
 import { useTranslation } from "react-i18next";
+import { DashboardStat } from "utils/types/dashboard.types";
 
 type StatCardProps = DashboardStat;
 

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
 
-import Layout from './Components/Layout/Layout';
+//import Layout from './Components/Layout/Layout';
 import i18n from './i18n/i18n';
 import About from './Pages/About/About';
 import BillingPage from './Pages/billing/page';
@@ -26,6 +26,7 @@ import TicketDetails from './Pages/support/TicketDetails/page';
 import UsersPage from './Pages/users/page';
 import SupportPlans from './Pages/supportPlans/SupportPlans';
 import InvoiceModal from './Pages/InvoiceModal/invoiceModalPage';
+import Layout from './components/Layout/Layout';
 
 function LocaleWrapper() {
     const { locale } = useParams();
@@ -65,7 +66,7 @@ function LocaleWrapper() {
                 <Route path="/file-and-document" element={<FileAndDocumentPage />} />
                 <Route path="/billing" element={<BillingPage />} />
                 <Route path="/users" element={<UsersPage />} />
-                <Route path="/invoice" element={<InvoiceModal onClose={undefined} />} />
+                <Route path="/invoice"    element={ <InvoiceModal   isOpen={true} onClose={() => {}}/> } />
 
                 <Route
                     path="/projects/:projectId/change-requests/:requestId/completed"

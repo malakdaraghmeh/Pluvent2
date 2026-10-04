@@ -1,5 +1,5 @@
 
-import { ProjectProgress } from "@/Pages/dashboard/data/projectProgress";
+import { ProjectProgress } from "@/Pages/projects/data/projectProgress";
 import { ArrowIcon } from "@/assets";
 import React from "react";
 import { useTranslation } from "react-i18next";
