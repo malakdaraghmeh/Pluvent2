@@ -250,7 +250,11 @@
         "inReview": "قيد المراجعة",
         "warrantySupport": "دعم الضمان",
         "description": "مشروعك مشمول بالضمان. يمكنك تقديم تذكرة دعم للمشكلات المتعلقة بالمشروع الذي تم تسليمه.",
-        "features": ["إصلاح الأخطاء", "المشكلات التقنية", "الطلبات المتعلقة بالضمان"],
+        "features": [
+            "إصلاح الأخطاء",
+            "المشكلات التقنية",
+            "الطلبات المتعلقة بالضمان"
+        ],
         "status": {
             "title": "الضمان ساري",
             "description": "يمكنك تقديم تذكرة للحصول على دعم الضمان أو المساعدة المتعلقة بالمشروع.",
@@ -739,35 +743,26 @@
         "amountDueValue": "19,570.00 ج.م",
         "vatNumber": "الضريبة: 1000",
         "dateDueHeader": "26 يوليو 2026",
-
         "invoiceId": "رقم الفاتورة",
         "invoiceIdValue": "رقم: 000027",
-
         "issuedDate": "تاريخ الإصدار:",
         "issuedDateValue": "26 يونيو 2024",
-
         "dueDate": "تاريخ الاستحقاق:",
         "dueDateValue": "26 يوليو 2024",
-
         "description": "الوصف",
         "total": "الإجمالي",
-
         "totalAmount": "إجمالي المبلغ:",
         "totalAmountValue": "19,570.00 ج.م",
         "totalVat": "إجمالي الضريبة: 1000",
-
         "pdfButton": "PDF",
-
         "agencyName": "وكالة Pulvent",
         "agencyWebsite": "www.Pulvent.com",
         "agencyContact": "contact@Pulvent.com / (884) 879 - 0102",
-
         "client": {
             "name": "أحمد حسن",
             "phone": "(612) 856 - 0989",
             "address": "مصر - القاهرة - شارع 72\nمدينة نصر"
         },
-
         "items": [
             {
                 "description": "تصميم UI/UX",
@@ -889,7 +884,8 @@
         "message": "تم إتمام عملية الدفع بنجاح.",
         "back": "رجوع",
         "viewReceipt": "عرض الإيصال"
-    },"supportPlans":{
+    },
+    "supportPlans": {
         "pageTitle": "خطط الدعم",
         "essential": {
             "title": "الدعم الأساسي",
@@ -947,9 +943,10 @@
                 "إدارة الإصدارات",
                 "ساعات تطوير مخصصة",
                 "الدعم الميداني في الموقع"
-            ]
-        "viewReceipt": "عرض الإيصال",
-        "close": "إغلاق"
+            ],
+            "viewReceipt": "عرض الإيصال",
+            "close": "إغلاق"
+        }
     },
     "paymentMethodModal": {
         "title": "اختر طريقة الدفع",

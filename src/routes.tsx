@@ -13,7 +13,6 @@ import WaitingUserInputPage from './Pages/change-request-details/waiting/page';
 import Contact from './Pages/Contact/Contact';
 import DashboardPage from './Pages/dashboard/page';
 import FileAndDocumentPage from './Pages/file-and-document/page';
-import InvoiceModal from './Pages/InvoiceModal/invoiceModalPage';
 import MessagesPage from './Pages/messages/page';
 import NotFound from './Pages/NotFound/NotFound';
 import ProjectDetails from './Pages/projectDetails/ProjectDetails';
@@ -25,15 +24,8 @@ import Services from './Pages/Services/Services';
 import SupportTicketsPage from './Pages/support/SupportTicketsPage';
 import TicketDetails from './Pages/support/TicketDetails/page';
 import UsersPage from './Pages/users/page';
-import WaitingUserInputPage from './Pages/change-request-details/waiting/page';
-import PendingPaymentPage from './Pages/change-request-details/payment/page';
-import InProgressPage from './Pages/change-request-details/in-progress/page';
-import CompletedChangeRequestPage from './Pages/change-request-details/completed/page';
-import InvoiceModal from './Pages/InvoiceModal/invoiceModalPage';
-import PaymentDetailsModal from './Pages/PaymentDetailsModal/paymentDetailsModal';
-import ProjectDetails from './Pages/projectDetails/ProjectDetails';
-import Layout from './Components/Layout/Layout';
 import SupportPlans from './Pages/supportPlans/SupportPlans';
+import InvoiceModal from './Pages/InvoiceModal/invoiceModalPage';
 
 function LocaleWrapper() {
     const { locale } = useParams();
@@ -96,9 +88,6 @@ function LocaleWrapper() {
                 <Route path="/file-and-document" element={<FileAndDocumentPage />} />
                 <Route path="/billing" element={<BillingPage />} />
                 <Route path="/users" element={<UsersPage />} />
-
-                <Route path="/invoice" element={<InvoiceModal onClose={undefined} />} />
-
                 <Route path="/prdet" element={<ProjectDetails />} />
                 <Route path="/support-plans" element={<SupportPlans />} />
 

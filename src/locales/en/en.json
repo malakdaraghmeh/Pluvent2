@@ -242,7 +242,11 @@
         "inReview": "In Review",
         "warrantySupport": "Warranty Support",
         "description": "Your project is covered by warranty. You can submit a support ticket for issues related to the delivered project.",
-        "features": ["Bug Fixes", "Technical issues", "Warranty-related requests"],
+        "features": [
+            "Bug Fixes",
+            "Technical issues",
+            "Warranty-related requests"
+        ],
         "status": {
             "title": "Warranty Active",
             "description": "You can submit your ticket for warranty support or project assistance.",
@@ -718,35 +722,26 @@
         "amountDueValue": "EGP 19,570.00",
         "vatNumber": "VAT:1000",
         "dateDueHeader": "July 26, 2026",
-
         "invoiceId": "INVOICE ID",
         "invoiceIdValue": "N°: 000027",
-
         "issuedDate": "ISSUED:",
         "issuedDateValue": "June 26, 2024",
-
         "dueDate": "DUE DATE:",
         "dueDateValue": "July 26, 2024",
-
         "description": "DESCRIPTION",
         "total": "TOTAL",
-
         "totalAmount": "TOTAL AMOUNT:",
         "totalAmountValue": "$ 19,570.00",
         "totalVat": "TOTAL VAT:1000",
-
         "pdfButton": "PDF",
-
         "agencyName": "Pulvent Agency",
         "agencyWebsite": "www.Pulvent.com",
         "agencyContact": "contact@Pulvent.com / (884) 879 - 0102",
-
         "client": {
             "name": "Ahmed Hassan",
             "phone": "(612) 856 - 0989",
             "address": "Egypt - Cairo 72Stret\nNasir City"
         },
-
         "items": [
             {
                 "description": "Ui Ux deigne",
@@ -840,7 +835,8 @@
             "Feature enhancements",
             "Any other project-related inquiries"
         ]
-    },"supportPlans":{
+    },
+    "supportPlans": {
         "pageTitle": "Support Plans",
         "essential": {
             "title": "Essential Support",
@@ -899,21 +895,22 @@
                 "Dedicated Development Hours",
                 "On-site Support"
             ]
-    },
-    "paymentMethodModal": {
-        "title": "Choose Payment Method",
-        "subtitle": "Select your preferred payment option to continue.",
-        "close": "Close",
-        "back": "Back",
-        "continueToPayment": "Continue to Payment",
-        "methods": {
-            "creditDebitCard": "Credit & Debit Card",
-            "paypal": "Pay securely with PayPal",
-            "stripe": "Pay securely with Stripe",
-            "applePay": "Fast & secure payment",
-            "fawry": "Pay through Fawry",
-            "instapay": "Pay instantly with InstaPay",
-            "wallet": "Cash or Digital Wallet"
+        },
+        "paymentMethodModal": {
+            "title": "Choose Payment Method",
+            "subtitle": "Select your preferred payment option to continue.",
+            "close": "Close",
+            "back": "Back",
+            "continueToPayment": "Continue to Payment",
+            "methods": {
+                "creditDebitCard": "Credit & Debit Card",
+                "paypal": "Pay securely with PayPal",
+                "stripe": "Pay securely with Stripe",
+                "applePay": "Fast & secure payment",
+                "fawry": "Pay through Fawry",
+                "instapay": "Pay instantly with InstaPay",
+                "wallet": "Cash or Digital Wallet"
+            }
         }
     }
 }
