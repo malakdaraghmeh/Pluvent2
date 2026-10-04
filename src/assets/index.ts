@@ -1,4 +1,4 @@
-﻿// images
+// images
 export { default as Logo } from './images/logo.png';
 export { default as AmrProfilePhoto } from './images/amr-profile-photo.png';
 export { default as ChangeRequestSubmitterAvatar } from './images/change-request-submitter-avatar.png';
@@ -55,9 +55,6 @@ export { default as CloseIcons } from './icons/close-icone.svg?react';
 export { default as FilesIcons } from './icons/files-icone.svg?react';
 export { default as PaymentSuccess } from './icons/payment-success.svg?react';
 
-
-
-
 export { default as ChatIcon } from './icons/chat-1.svg?react';
 export { default as ChatDecorationIcon } from './icons/Group 6.svg?react';
 export { default as BreadcrumbArrow } from './icons/arrow-left-s.svg?react';
@@ -79,7 +76,6 @@ export { default as MessagesSendIcon } from './icons/send.svg?react';
 export { default as MessagesAddIcon } from './icons/add.svg?react';
 export { default as MessagesGroupIcon } from './icons/users.svg?react';
 
-
 export { default as MessagesBackIcon } from './icons/arrow-left-s.svg?react';
 
 export { default as MessagesPlusIcon } from './icons/akar-icons_plus.svg?react';
@@ -88,5 +84,28 @@ export { default as MessagesCreateGroupPlusIcon } from './icons/plus(2).svg?reac
 export { default as MessagesUsersIcon } from './icons/users(1).svg?react';
 
 export { default as MessagesCurrentUserAvatar } from './images/messages-current-user-avatar.jpg';
-
+// src/assets/index.ts
+export { default as ModalCloseIcon } from './icons/Icon-273(1).svg?react';
 export { default as MessagesUsersDarkIcon } from './icons/users(2).svg?react';
+export { default as MessagesCreateGroupCloseIcon } from './icons/Icon-273(1).svg?react';
+export { default as MessagesCreateGroupArrowIcon } from './icons/lib-icon-arrow3(11).svg?react';
+export { default as MessagesRadioSelectedIcon } from './icons/Raido Buttons.svg?react';
+export { default as MessagesRadioUnselectedIcon } from './icons/Raido Buttons(2).svg?react';
+export { default as MessagesCreateGroupAddIcon } from './icons/line.svg?react';
+export { default as MessagesProjectSelectArrowIcon } from './icons/lib-icon-arrow3(15).svg?react';
+
+export { default as PulventFullLogo } from './icons/logo.svg?react';
+export { default as PaymentDetailsProjectIcon } from './icons/briefcase.svg?react';
+export { default as PaymentDetailsPaymentTypeIcon } from './icons/wallet(1).svg?react';
+export { default as PaymentDetailsAmountIcon } from './icons/credit-card(2).svg?react';
+export { default as PaymentDetailsIssuedDateIcon } from './icons/calendar(3).svg?react';
+export { default as PaymentDetailsDueDateIcon } from './icons/calendar(4).svg?react';
+export { default as PaymentDetailsReferenceIcon } from './icons/tag.svg?react';
+export { default as PaymentDetailsDescriptionIcon } from './icons/file(1).svg?react';
+export { default as PaymentVisaLogo } from './icons/visa-logo(1).svg?react';
+export { default as PaymentPaypalLogo } from './icons/PayPal(1).svg?react';
+export { default as PaymentStripeLogo } from './icons/Stripe.svg?react';
+export { default as PaymentApplePayLogo } from './icons/ApplePay.svg?react';
+export { default as PaymentFawryLogo } from './icons/faw 1(1).svg?react';
+export { default as PaymentInstapayLogo } from './icons/insta 1.svg?react';
+export { default as PaymentWalletLogo } from './icons/ChatGPT Image Aug 12, 2026, 10_12_55 PM 1.svg?react';

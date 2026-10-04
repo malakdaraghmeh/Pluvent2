@@ -35,12 +35,13 @@
     "files": {
         "title": "الملفات والمستندات",
         "subtitle": "ملفات ومستندات المشروع في مكان واحد.",
-        "searchPlaceholder": "ابحث عن عملك",
-        "dropzoneTitle": "أسقط الملفات هنا أو انقر للرفع",
-        "dropzoneHint": "PDF, DOCX, XLSX, PNG, JPG, ZIP — حتى 50 ميجابايت لكل ملف",
+        "searchPlaceholder": "ابحث عن ملف",
+        "filter": "تصفية",
+        "dropzoneTitle": "اسحب الملفات هنا أو اضغط للرفع",
+        "dropzoneHint": "PDF, DOCX, XLSX, PNG, JPG, ZIP — بحد أقصى 50 ميجابايت لكل ملف",
         "uploadedBy": "تم الرفع بواسطة",
         "download": "تحميل",
-        "downloading": "جاري تحميل"
+        "downloading": "جاري التحميل"
     },
     "chat": {
         "title": "الرسائل",
@@ -87,12 +88,15 @@
         "placeholder": "اكتب رسالة...",
         "createGroupModal": {
             "title": "إنشاء مجموعة جديدة",
-            "subtitle": "أدخل البيانات المطلوبة لإنشاء مجموعة جديدة.",
+            "subtitle": "أدخل التفاصيل أدناه لإضافة طلب تغيير جديد.",
             "groupNameLabel": "اسم المجموعة",
-            "groupNamePlaceholder": "أدخل اسم المجموعة",
-            "chooseMembersLabel": "اختر الأعضاء",
+            "groupNamePlaceholder": "أدخل عنوان طلب التغيير",
+            "chooseMembersLabel": "اختر عضوًا",
             "membersCount": "{{count}} أعضاء",
-            "submitButton": "إنشاء مجموعة جديدة"
+            "selectProjectLabel": "اختر المشروع",
+            "projectPlaceholder": "اختر المشروع",
+            "submitButton": "إنشاء مجموعة",
+            "close": "إغلاق"
         }
     },
     "projectsPage": {
@@ -221,7 +225,7 @@
         "viewAll": "عرض الكل",
         "finalPayment": "الدفعة النهائية",
         "openProject": "فتح المشروع",
-        "dueIn": "مستحق خلال {days} أيام",
+        "dueIn": "مستحق خلال {{days}} أيام",
         "searchPlaceholder": "ابحث حسب المشروع أو الفاتورة...",
         "allProjects": "جميع المشاريع",
         "project": "المشروع",
@@ -232,7 +236,12 @@
         "pay": "الدفع",
         "payNow": "ادفع الآن",
         "noResults": "لا توجد دفعات",
-        "daysLeft": "{count, plural, zero {# يوم} one {يوم واحد} two {يومان} few {# أيام} many {# يومًا} other {# يوم}}"
+        "daysLeft": "{count, plural, zero {# يوم} one {يوم واحد} two {يومان} few {# أيام} many {# يومًا} other {# يوم}}",
+        "projectNames": {
+            "companyWebsiteRedesign": "إعادة تصميم الموقع الإلكتروني للشركة"
+        },
+        "installmentValue": "القسط {{current}} من {{total}}",
+        "amountValue": "{{amount}} جنيه مصري"
     },
     "supportTickets": {
         "title": "تذكرة دعم",
@@ -241,11 +250,7 @@
         "inReview": "قيد المراجعة",
         "warrantySupport": "دعم الضمان",
         "description": "مشروعك مشمول بالضمان. يمكنك تقديم تذكرة دعم للمشكلات المتعلقة بالمشروع الذي تم تسليمه.",
-        "features": [
-            "إصلاح الأخطاء",
-            "المشكلات التقنية",
-            "الطلبات المتعلقة بالضمان"
-        ],
+        "features": ["إصلاح الأخطاء", "المشكلات التقنية", "الطلبات المتعلقة بالضمان"],
         "status": {
             "title": "الضمان ساري",
             "description": "يمكنك تقديم تذكرة للحصول على دعم الضمان أو المساعدة المتعلقة بالمشروع.",
@@ -714,7 +719,11 @@
         "method": "طريقة الدفع",
         "date": "التاريخ",
         "downloadInvoice": "تحميل الفاتورة",
-        "noResults": "لا يوجد سجل مدفوعات"
+        "noResults": "لا يوجد سجل مدفوعات",
+        "projectNames": {
+            "companyWebsiteRedesign": "إعادة تصميم الموقع الإلكتروني للشركة"
+        },
+        "amountValue": "{{amount}} جنيه مصري"
     },
     "notFound": {
         "title": "الصفحة غير موجودة",
@@ -723,38 +732,53 @@
         "logoAlt": "شعار بلفنت"
     },
     "invoiceModal": {
-        "companyName": "بولفينت",
-        "companySubtitle": "للتقنية والحلول الرقمية",
+        "companyName": "Pulvent",
+        "companySubtitle": "تقنيات وحلول رقمية",
         "invoiceTo": "الفاتورة إلى:",
         "amountDue": "المبلغ المستحق",
-        "vatNumber": "الرقم الضريبي: 1000",
+        "amountDueValue": "19,570.00 ج.م",
+        "vatNumber": "الضريبة: 1000",
+        "dateDueHeader": "26 يوليو 2026",
+
         "invoiceId": "رقم الفاتورة",
+        "invoiceIdValue": "رقم: 000027",
+
         "issuedDate": "تاريخ الإصدار:",
+        "issuedDateValue": "26 يونيو 2024",
+
         "dueDate": "تاريخ الاستحقاق:",
+        "dueDateValue": "26 يوليو 2024",
+
         "description": "الوصف",
         "total": "الإجمالي",
-        "totalAmount": "المبلغ الإجمالي:",
-        "totalVat": "إجمالي ضريبة القيمة المضافة: 1000",
+
+        "totalAmount": "إجمالي المبلغ:",
+        "totalAmountValue": "19,570.00 ج.م",
+        "totalVat": "إجمالي الضريبة: 1000",
+
         "pdfButton": "PDF",
-        "agencyName": "وكالة بولفينت",
+
+        "agencyName": "وكالة Pulvent",
         "agencyWebsite": "www.Pulvent.com",
         "agencyContact": "contact@Pulvent.com / (884) 879 - 0102",
+
         "client": {
             "name": "أحمد حسن",
             "phone": "(612) 856 - 0989",
-            "address": "مصر - القاهرة، ٧٢ شارع\nمدينة نصر"
+            "address": "مصر - القاهرة - شارع 72\nمدينة نصر"
         },
+
         "items": [
             {
-                "description": "تصميم واجهات وتجربة المستخدم (UI/UX)",
+                "description": "تصميم UI/UX",
                 "total": "$ 5,250.00"
             },
             {
-                "description": "تصميم المواقع",
+                "description": "تصميم الويب",
                 "total": "$ 5,250.00"
             },
             {
-                "description": "الاختبار والتجربة",
+                "description": "الاختبار",
                 "total": "$ 5,250.00"
             }
         ]
@@ -770,6 +794,7 @@
         "paymentTypeValue": "المرحلة النهائية",
         "dueDateLabel": "تاريخ الاستحقاق",
         "dueDateValue": "30 يونيو 2026",
+        "close": "إغلاق",
         "amountDueLabel": "المبلغ المستحق",
         "amountDueValue": "15,000 ج.م",
         "referenceLabel": "الرقم المرجعي",
@@ -838,30 +863,48 @@
         ]
     },
     "creditDebitCardModal": {
-        "title": "بطاقة الائتمان والخصم",
-        "description": "أدخل تفاصيل بطاقتك لإتمام عملية الدفع.",
+        "title": "بطاقة ائتمان وخصم",
+        "description": "أدخل بيانات بطاقتك لإتمام عملية الدفع.",
         "cardNumber": "رقم بطاقة الائتمان",
         "cardNumberPlaceholder": "0000 0000 0000 0000",
         "cardholderName": "اسم حامل البطاقة",
-        "cardholderNamePlaceholder": "اسم حامل البطاقة",
+        "cardholderNamePlaceholder": "3 أرقام",
         "expiryMonth": "شهر الانتهاء",
         "expiryYear": "سنة الانتهاء",
         "monthPlaceholder": "MM",
         "yearPlaceholder": "YYYY",
         "cvv": "CVV",
         "cvvPlaceholder": "3 أرقام",
-        "totalAmount": "المبلغ الإجمالي",
+        "totalAmount": "إجمالي المبلغ",
         "project": "المشروع:",
-        "projectName": "إعادة تصميم الموقع",
-        "securityMessageLine1": "عملية الدفع الخاصة بك مشفرة",
-        "securityMessageLine2": "وتتم معالجتها بأمان.",
+        "projectName": "إعادة تصميم الموقع الإلكتروني",
+        "securityMessageLine1": "عملية الدفع الخاصة بك مشفرة ويتم",
+        "securityMessageLine2": "معالجتها بشكل آمن.",
         "back": "رجوع",
-        "continueToPayment": "المتابعة إلى الدفع"
+        "continueToPayment": "متابعة الدفع",
+        "close": "إغلاق"
     },
     "paymentSuccessModal": {
         "title": "تم الدفع بنجاح",
         "message": "تم إتمام عملية الدفع بنجاح.",
         "back": "رجوع",
-        "viewReceipt": "عرض الإيصال"
+        "viewReceipt": "عرض الإيصال",
+        "close": "إغلاق"
+    },
+    "paymentMethodModal": {
+        "title": "اختر طريقة الدفع",
+        "subtitle": "اختر طريقة الدفع المفضلة لديك للمتابعة.",
+        "close": "إغلاق",
+        "back": "رجوع",
+        "continueToPayment": "المتابعة للدفع",
+        "methods": {
+            "creditDebitCard": "بطاقة ائتمان أو خصم",
+            "paypal": "ادفع بأمان عبر PayPal",
+            "stripe": "ادفع بأمان عبر Stripe",
+            "applePay": "دفع سريع وآمن",
+            "fawry": "ادفع عبر Fawry",
+            "instapay": "ادفع فورًا عبر InstaPay",
+            "wallet": "نقدًا أو محفظة رقمية"
+        }
     }
 }

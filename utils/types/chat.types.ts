@@ -27,5 +27,29 @@ export interface Chat {
     timeKey?: ChatTimeKey;
     unreadCount?: number;
     membersCount?: number;
+    projectId?: number;
     isPinned?: boolean;
+}
+
+export interface CreateGroupPayload {
+    name: string;
+    memberIds: string[];
+    projectId: number;
+}
+
+export interface CreateGroupModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    onCreateGroup: (payload: CreateGroupPayload) => void;
+}
+import type { FormEvent } from 'react';
+
+export interface ChatAreaProps {
+    activeChat?: Chat;
+    messages: Message[];
+    inputText: string;
+    onInputChange: (text: string) => void;
+    onSendMessage: (event: FormEvent) => void;
+    onBack: () => void;
+    className?: string;
 }
