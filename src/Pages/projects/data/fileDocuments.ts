@@ -1,6 +1,6 @@
-﻿import type { FileDocument } from '../../../../utils/types/project-details.types';
+﻿import type { FileItem } from '../../../../utils/types/file-and-document.types';
 
-export const fileDocumentsData: FileDocument[] = [
+export const fileDocumentsData: FileItem[] = [
     {
         id: 1,
         fileName: 'Project Proposal.pdf',
@@ -34,4 +34,3 @@ export const fileDocumentsData: FileDocument[] = [
         type: 'document',
     },
 ];
-

@@ -1,13 +1,4 @@
-export interface PaymentHistoryItem {
-    id: string;
-    invoice: string;
-    project: string;
-    amount: string;
-    methodType: 'visa' | 'paypal' | 'applepay' | 'instapay';
-    methodText: string;
-    date: string;
-    downloadUrl?: string;
-}
+import type { PaymentHistoryItem } from '../../../../utils/types/billing.types';
 
 export const paymentHistoryList: PaymentHistoryItem[] = [
     {

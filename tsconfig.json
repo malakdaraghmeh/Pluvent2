@@ -21,7 +21,7 @@
             "@icons/*": ["src/assets/icons/*"]
         }
     },
-    "include": ["src", "utils/types/chat.types.ts"],
+    "include": ["src", "utils/types/**/*.ts"],
     "references": [
         {
             "path": "./tsconfig.node.json"

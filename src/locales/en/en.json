@@ -32,9 +32,10 @@
         "ChangeRequestDetails": "Change Request Details"
     },
     "files": {
-        "title": "File And Document",
+        "title": "File & Document",
         "subtitle": "Project files and documents in one place.",
         "searchPlaceholder": "Find your work",
+        "filter": "Filter",
         "dropzoneTitle": "Drop files here or click to upload",
         "dropzoneHint": "PDF, DOCX, XLSX, PNG, JPG, ZIP — up to 50 MB each",
         "uploadedBy": "Upload By",
@@ -79,12 +80,15 @@
         },
         "createGroupModal": {
             "title": "Create New Group",
-            "subtitle": "Fill in the details below to create a new group.",
+            "subtitle": "Fill in the details below to add a new change request.",
             "groupNameLabel": "Name of Group",
-            "groupNamePlaceholder": "Enter group name",
-            "chooseMembersLabel": "Choose Members",
+            "groupNamePlaceholder": "Enter change request title",
+            "chooseMembersLabel": "Choose Member",
             "membersCount": "{{count}} Members",
-            "submitButton": "Create New Group"
+            "selectProjectLabel": "Select Project",
+            "projectPlaceholder": "Enter Project",
+            "submitButton": "Create Group",
+            "close": "Close"
         }
     },
     "projectsPage": {
@@ -213,7 +217,7 @@
         "viewAll": "View All",
         "finalPayment": "Final Payment",
         "openProject": "Open Project",
-        "dueIn": "Due in {days} days",
+        "dueIn": "Due in {{days}} days",
         "searchPlaceholder": "Search by project, invoice...",
         "allProjects": "All Projects",
         "project": "Project",
@@ -224,7 +228,12 @@
         "pay": "Pay",
         "payNow": "Pay Now",
         "noResults": "No payments found",
-        "daysLeft": "{count, plural, one {# day} other {# days}}"
+        "daysLeft": "{count, plural, one {# day} other {# days}}",
+        "projectNames": {
+            "companyWebsiteRedesign": "Company Website Redesign"
+        },
+        "installmentValue": "Installment {{current}} of {{total}}",
+        "amountValue": "EGP {{amount}}"
     },
     "supportTickets": {
         "title": "Support Ticket",
@@ -233,11 +242,7 @@
         "inReview": "In Review",
         "warrantySupport": "Warranty Support",
         "description": "Your project is covered by warranty. You can submit a support ticket for issues related to the delivered project.",
-        "features": [
-            "Bug Fixes",
-            "Technical issues",
-            "Warranty-related requests"
-        ],
+        "features": ["Bug Fixes", "Technical issues", "Warranty-related requests"],
         "status": {
             "title": "Warranty Active",
             "description": "You can submit your ticket for warranty support or project assistance.",
@@ -288,7 +293,11 @@
         "method": "Method",
         "date": "Date",
         "downloadInvoice": "Download Invoice",
-        "noResults": "No payment history found"
+        "noResults": "No payment history found",
+        "projectNames": {
+            "companyWebsiteRedesign": "Company Website Redesign"
+        },
+        "amountValue": "EGP {{amount}}"
     },
     "changeRequestDetails": {
         "crId": "CR-007",
@@ -574,7 +583,7 @@
         "cardNumber": "Credit Card Number",
         "cardNumberPlaceholder": "0000 0000 0000 0000",
         "cardholderName": "Cardholder Name",
-        "cardholderNamePlaceholder": "Cardholder Name",
+        "cardholderNamePlaceholder": "3-digit",
         "expiryMonth": "Expiry Month",
         "expiryYear": "Expiry Year",
         "monthPlaceholder": "MM",
@@ -587,13 +596,15 @@
         "securityMessageLine1": "Your payment is encrypted and",
         "securityMessageLine2": "securely processed.",
         "back": "Back",
-        "continueToPayment": "Continue to Payment"
+        "continueToPayment": "Continue to Payment",
+        "close": "Close"
     },
     "paymentSuccessModal": {
         "title": "Payment Successful",
         "message": "Your payment has been completed successfully.",
         "back": "Back",
-        "viewReceipt": "View Receipt"
+        "viewReceipt": "View Receipt",
+        "close": "Close"
     },
     "tickets": {
         "header": {
@@ -704,23 +715,38 @@
         "companySubtitle": "Technologies And Digital Solutions",
         "invoiceTo": "INVOICE TO:",
         "amountDue": "AMOUNT DUE",
+        "amountDueValue": "EGP 19,570.00",
         "vatNumber": "VAT:1000",
+        "dateDueHeader": "July 26, 2026",
+
         "invoiceId": "INVOICE ID",
+        "invoiceIdValue": "N°: 000027",
+
         "issuedDate": "ISSUED:",
+        "issuedDateValue": "June 26, 2024",
+
         "dueDate": "DUE DATE:",
+        "dueDateValue": "July 26, 2024",
+
         "description": "DESCRIPTION",
         "total": "TOTAL",
+
         "totalAmount": "TOTAL AMOUNT:",
+        "totalAmountValue": "$ 19,570.00",
         "totalVat": "TOTAL VAT:1000",
+
         "pdfButton": "PDF",
+
         "agencyName": "Pulvent Agency",
         "agencyWebsite": "www.Pulvent.com",
         "agencyContact": "contact@Pulvent.com / (884) 879 - 0102",
+
         "client": {
             "name": "Ahmed Hassan",
             "phone": "(612) 856 - 0989",
             "address": "Egypt - Cairo 72Stret\nNasir City"
         },
+
         "items": [
             {
                 "description": "Ui Ux deigne",
@@ -748,6 +774,7 @@
         "dueDateLabel": "Due Date",
         "dueDateValue": "Jun 30, 2026",
         "amountDueLabel": "Amount Due",
+        "close": "Close",
         "amountDueValue": "EGP 15,000",
         "referenceLabel": "Reference",
         "referenceValue": "REF-2026-027",
@@ -872,6 +899,21 @@
                 "Dedicated Development Hours",
                 "On-site Support"
             ]
+    },
+    "paymentMethodModal": {
+        "title": "Choose Payment Method",
+        "subtitle": "Select your preferred payment option to continue.",
+        "close": "Close",
+        "back": "Back",
+        "continueToPayment": "Continue to Payment",
+        "methods": {
+            "creditDebitCard": "Credit & Debit Card",
+            "paypal": "Pay securely with PayPal",
+            "stripe": "Pay securely with Stripe",
+            "applePay": "Fast & secure payment",
+            "fawry": "Pay through Fawry",
+            "instapay": "Pay instantly with InstaPay",
+            "wallet": "Cash or Digital Wallet"
         }
     }
 }
