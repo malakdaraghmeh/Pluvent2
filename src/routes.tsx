@@ -25,6 +25,15 @@ import Services from './Pages/Services/Services';
 import SupportTicketsPage from './Pages/support/SupportTicketsPage';
 import TicketDetails from './Pages/support/TicketDetails/page';
 import UsersPage from './Pages/users/page';
+import WaitingUserInputPage from './Pages/change-request-details/waiting/page';
+import PendingPaymentPage from './Pages/change-request-details/payment/page';
+import InProgressPage from './Pages/change-request-details/in-progress/page';
+import CompletedChangeRequestPage from './Pages/change-request-details/completed/page';
+import InvoiceModal from './Pages/InvoiceModal/invoiceModalPage';
+import PaymentDetailsModal from './Pages/PaymentDetailsModal/paymentDetailsModal';
+import ProjectDetails from './Pages/projectDetails/ProjectDetails';
+import Layout from './Components/Layout/Layout';
+import SupportPlans from './Pages/supportPlans/SupportPlans';
 
 function LocaleWrapper() {
     const { locale } = useParams();
@@ -57,6 +66,15 @@ function LocaleWrapper() {
                     path="/projects/:projectId/change-requests/:requestId"
                     element={<ChangeRequestDetailsPage />}
                 />
+                <Route path="/change-request-details" element={<ChangeRequestReviewDetails />} />
+                <Route path="/messages" element={<MessagesPage />} />
+                <Route path="/support" element={<SupportTicketsPage />} />
+                <Route path="/support/:id" element={<TicketDetails />} />
+                <Route path="/file-and-document" element={<FileAndDocumentPage />} />
+                <Route path="/billing" element={<BillingPage />} />
+                <Route path="/users" element={<UsersPage />} />
+                <Route path="/invoice" element={<InvoiceModal onClose={undefined} />} />
+
                 <Route
                     path="/projects/:projectId/change-requests/:requestId/completed"
                     element={<CompletedChangeRequestPage />}
@@ -82,6 +100,7 @@ function LocaleWrapper() {
                 <Route path="/invoice" element={<InvoiceModal onClose={undefined} />} />
 
                 <Route path="/prdet" element={<ProjectDetails />} />
+                <Route path="/support-plans" element={<SupportPlans />} />
 
                 <Route path="*" element={<NotFound />} />
             </Route>
