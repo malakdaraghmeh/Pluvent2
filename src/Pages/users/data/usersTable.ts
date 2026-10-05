@@ -1,10 +1,4 @@
-export interface UserTableItem {
-    id: string;
-    name: string;
-    email: string;
-    role: 'Admin' | 'Employee';
-    status: 'Active' | 'Disable';
-}
+import type { UserTableItem } from '../../../utils/types/users.types';
 
 export const usersTableData: UserTableItem[] = [
     {

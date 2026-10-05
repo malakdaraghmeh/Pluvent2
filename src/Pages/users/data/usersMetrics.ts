@@ -1,11 +1,6 @@
 import { Email, User1, User2, User4 } from '@/assets';
 
-export interface MetricItem {
-    id: string;
-    label: string;
-    value: number;
-    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-}
+import type { MetricItem } from '../../../utils/types/users.types';
 
 export const usersMetricsData: MetricItem[] = [
     {

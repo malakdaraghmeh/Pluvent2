@@ -124,3 +124,26 @@ body {
 .messages-members-list::-webkit-scrollbar {
     display: none;
 }
+
+.add-user-modal-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #C8CCD8 transparent;
+    scrollbar-gutter: stable;
+}
+
+.add-user-modal-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.add-user-modal-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.add-user-modal-scroll::-webkit-scrollbar-thumb {
+    background: #C8CCD8;
+    border-radius: 999px;
+}
+
+.add-user-modal-scroll::-webkit-scrollbar-thumb:hover {
+    background: #9DA3B4;
+}

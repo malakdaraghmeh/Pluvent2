@@ -9,6 +9,8 @@ export type PaymentMethodId =
     | 'instapay'
     | 'wallet';
 
+export type PaymentFlowStage = 'details' | 'method' | 'creditCard';
+
 export interface PaymentMethodModalProps {
     isOpen: boolean;
     onClose: () => void;

@@ -19,12 +19,15 @@ const FileDocuments = ({
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [isDragOver, setIsDragOver] = useState(false);
     const isArabic = i18n.language.startsWith('ar');
-    const textAlign = isArabic ? 'text-right' : 'text-left';
+    const textAlignment = isArabic ? 'text-right' : 'text-left';
     const dateLocale = isArabic ? 'ar-EG' : 'en-US';
 
     const formatDate = (value: string) => {
         const date = new Date(value);
-        if (Number.isNaN(date.getTime())) return value;
+
+        if (Number.isNaN(date.getTime())) {
+            return value;
+        }
 
         return new Intl.DateTimeFormat(dateLocale, {
             month: 'short',
@@ -60,7 +63,7 @@ const FileDocuments = ({
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
-                className={`flex w-full items-center justify-center border-dashed text-center transition-colors ${
+                className={`flex w-full items-center justify-center border-dashed transition-colors ${
                     variant === 'all'
                         ? `min-h-[190px] flex-col gap-3 rounded-[16px] border-[1.5px] px-4 py-6 ${
                               isDragOver
@@ -75,7 +78,7 @@ const FileDocuments = ({
                 }`}
             >
                 <Upload className={variant === 'all' ? 'h-10 w-10 shrink-0' : 'shrink-0'} />
-                <div className="min-w-0">
+                <div className={`min-w-0 ${textAlignment}`}>
                     <p
                         className={`${variant === 'all' ? 'text-[14px]' : 'text-[16px]'} font-semibold leading-5 text-[#12115C]`}
                     >
@@ -117,7 +120,7 @@ const FileDocuments = ({
                                 <File className="h-5 w-5" />
                             )}
                         </div>
-                        <div className={`min-w-0 flex-1 ${textAlign}`}>
+                        <div className={`min-w-0 flex-1 ${textAlignment}`}>
                             <p className="truncate text-[14px] font-semibold leading-5 text-[#12115C] sm:text-[15px]">
                                 {file.fileName}
                             </p>
@@ -153,10 +156,12 @@ const FileDocuments = ({
     }
 
     return (
-        <section className="flex w-full max-w-[690px] flex-col gap-3 rounded-[24px] border border-[#ECEFF4] bg-white p-4 sm:p-5 md:p-6">
+        <section className="flex w-full min-w-0 flex-col gap-3 rounded-[24px] border border-[#ECEFF4] bg-white p-4 sm:p-5 md:p-6">
             {showTitle && (
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                    <h2 className={`text-[22px] font-semibold text-[#12115C] ${textAlign}`}>
+                <div
+                    className={`flex flex-col gap-2 sm:items-center sm:justify-between ${isArabic ? 'sm:flex-row-reverse' : 'sm:flex-row'}`}
+                >
+                    <h2 className={`text-[22px] font-semibold text-[#12115C] ${textAlignment}`}>
                         {t('title')}
                     </h2>
                     {showViewAll && (

@@ -102,9 +102,10 @@
     "projectsPage": {
         "title": "المشاريع",
         "description": "جميع مشاريعك مع Pulvent في مكان واحد.",
-        "searchPlaceholder": "ابحث عن مشروعك",
-        "projectProgress": "تقدم المشاريع",
+        "searchPlaceholder": "ابحث عن أعمالك",
+        "projectProgress": "تقدم المشروع",
         "viewAll": "عرض الكل",
+        "cardDescription": "تطوير تطبيقات الهاتف المحمول، إنشاء وتنفيذ نظام تصميم شامل للمنتج",
         "status": {
             "inProgress": "قيد التنفيذ",
             "completed": "مكتمل"
@@ -121,12 +122,28 @@
         "warranty": {
             "active": "نشط",
             "valid": "ساري",
-            "onHold": "معلّق",
-            "suspended": "موقوف"
+            "onHold": "معلق",
+            "suspended": "موقوف",
+            "explorePaidPlans": "استكشف خطط الضمان المدفوعة"
         },
         "overallProject": {
-            "overall": "الإجمالي",
+            "overall": "إجمالي",
             "project": "المشروع"
+        },
+        "dateLabel": {
+            "due": "الاستحقاق",
+            "expired": "انتهى:"
+        },
+        "filter": {
+            "label": "تصفية المشاريع",
+            "all": "الكل",
+            "inProgress": "قيد التنفيذ",
+            "completed": "مكتمل"
+        },
+        "dashboardProject": {
+            "title": "تطبيق XYZ للهاتف المحمول",
+            "description": "تطوير تطبيقات الهاتف المحمول، إنشاء وتنفيذ نظام تصميم شامل للمنتج",
+            "dueDate": "الاستحقاق 15 يناير 2026"
         }
     },
     "projectDetails": {
@@ -237,6 +254,7 @@
         "payNow": "ادفع الآن",
         "noResults": "لا توجد دفعات",
         "daysLeft": "{count, plural, zero {# يوم} one {يوم واحد} two {يومان} few {# أيام} many {# يومًا} other {# يوم}}",
+        "projectName": "إعادة تصميم موقع ABC",
         "projectNames": {
             "companyWebsiteRedesign": "إعادة تصميم الموقع الإلكتروني للشركة"
         },
@@ -263,6 +281,11 @@
             "thirdPayment": "الدفعة الثالثة",
             "crPayment": "دفعة طلب التغيير",
             "finalPayment": "الدفعة النهائية"
+        },
+        "chat": "دردشة",
+        "tickets": {
+            "first": "تنسيق ملف الشعار غير ...",
+            "second": "مشكلة تسجيل الدخول في بيئة..."
         }
     },
     "changeRequestDetails": {
@@ -572,7 +595,7 @@
         "filter": {
             "all": "جميع أنواع التذاكر",
             "project": "تذاكر المشاريع",
-            "general": "تذاكر عامة"
+            "general": "التذاكر العامة"
         },
         "tabs": {
             "All Tickets": "جميع التذاكر",
@@ -582,12 +605,18 @@
             "all": "جميع التذاكر",
             "open": "مفتوحة",
             "in_progress": "قيد التنفيذ",
-            "closed": "مغلقة"
+            "closed": "مغلقة",
+            "Pending Reply": "بانتظار الرد",
+            "inProgress": "قيد التنفيذ",
+            "pendingReply": "بانتظار الرد",
+            "pending_reply": "بانتظار الرد"
         },
         "card": {
             "ticketNumber": "تذكرة رقم #{{id}}",
             "uploadedBy": "تم الرفع بواسطة {{name}}",
-            "viewTicket": "عرض التذكرة"
+            "viewTicket": "عرض التذكرة",
+            "postedAt": "تم النشر في {{time}}",
+            "description": "تفاصيل تذكرة الدعم والمشكلة التي تم الإبلاغ عنها."
         },
         "status": {
             "Open": "مفتوحة",
@@ -595,7 +624,11 @@
             "Closed": "مغلقة",
             "open": "مفتوحة",
             "in_progress": "قيد التنفيذ",
-            "closed": "مغلقة"
+            "closed": "مغلقة",
+            "Pending Reply": "بانتظار الرد",
+            "inProgress": "قيد التنفيذ",
+            "pendingReply": "بانتظار الرد",
+            "pending_reply": "بانتظار الرد"
         },
         "type": {
             "Project Ticket": "تذكرة مشروع",
@@ -631,40 +664,59 @@
                 }
             },
             "categories": {
-                "technical": "دعم فني",
-                "design": "تصميم",
+                "technical": "الدعم الفني",
+                "design": "التصميم",
                 "billing": "الفواتير والمالية"
             },
             "issueTypes": {
-                "bug": "خطأ برمجي (Bug)",
+                "bug": "خطأ برمجي",
                 "feature": "طلب ميزة جديدة",
                 "question": "استفسار عام"
             },
             "dropzone": {
                 "title": "انقر للرفع أو اسحب الملفات وأسقطها هنا",
-                "hint": "يدعم الصور، والمستندات، والأرشيفات المضغوطة"
-            }
+                "hint": "يدعم الصور والمستندات والملفات المضغوطة"
+            },
+            "close": "إغلاق",
+            "removeAttachment": "إزالة المرفق"
         },
         "details": {
             "title": "تفاصيل التذكرة",
-            "ticketNumber": "تذكرة# {{id}}",
-            "uploadBy": "تم الرفع بواسطة : {{name}}",
+            "ticketNumber": "تذكرة رقم #{{id}}",
+            "uploadBy": "تم الرفع بواسطة: {{name}}",
             "projectTicket": "تذكرة مشروع",
             "generalTicket": "تذكرة عامة",
             "postedAt": "تم النشر في {{time}}",
-            "responseAuthor": "بولفينت",
-            "responseMessage": "مرحبًا! لقد قمنا بمراجعة طلبك الأخير وشاركنا التحديثات مع فريقنا.",
+            "responseAuthor": "Pulvent",
+            "responseMessage": "مرحبًا! لقد راجعنا طلبك الأخير وشاركنا التحديثات مع فريقنا.",
             "form": {
                 "descriptionLabel": "وصف التذكرة",
-                "attachmentsLabel": "رفع أي مرفقات",
+                "attachmentsLabel": "رفع المرفقات",
                 "optional": "(اختياري)",
                 "dropzoneTitle": "اسحب الملفات هنا أو انقر للرفع",
                 "dropzoneHint": "PDF, DOCX, XLSX, PNG, JPG, ZIP — حتى 50 ميجابايت لكل ملف",
                 "closeTicket": "إغلاق التذكرة",
                 "reopenTicket": "إعادة فتح التذكرة",
-                "submitTicket": "إرسال الرد",
-                "successAlert": "تم إرسال الرد على التذكرة بنجاح!"
-            }
+                "submitTicket": "إرسال التذكرة",
+                "successAlert": "تم إرسال الرد على التذكرة بنجاح!",
+                "defaultDescription": "ملف الشعار لا يظهر بشكل صحيح عند الطباعة. يرجى مراجعة الملف المرفق وإبلاغي بكيفية حل المشكلة.",
+                "removeAttachment": "إزالة المرفق",
+                "remindMe": "ذكرني"
+            },
+            "questionTitle": "كيف يمكنني إيداع الأموال في البوابة؟",
+            "questionParagraphOne": "تفاصيل المشكلة أو الاستفسار المقدم في تذكرة الدعم.",
+            "questionParagraphTwo": "معلومات إضافية متعلقة بطلب الدعم.",
+            "responseTime": "01:08 ص"
+        },
+        "breadcrumb": {
+            "portal": "البوابة",
+            "supportTicket": "تذكرة الدعم",
+            "createTicket": "إنشاء تذكرة"
+        },
+        "reply": {
+            "supportTeamReplied": "رد فريق الدعم",
+            "waiting": "بانتظار الرد",
+            "previewDescription": "معاينة رد فريق الدعم"
         }
     },
     "createModal": {
@@ -707,7 +759,9 @@
         "dropzone": {
             "title": "انقر للرفع أو اسحب الملفات وأسقطها هنا",
             "hint": "يدعم الصور، والمستندات، والأرشيفات المضغوطة"
-        }
+        },
+        "close": "إغلاق",
+        "removeAttachment": "إزالة المرفق"
     },
     "paymentHistory": {
         "title": "سجل المدفوعات",
@@ -719,11 +773,7 @@
         "method": "طريقة الدفع",
         "date": "التاريخ",
         "downloadInvoice": "تحميل الفاتورة",
-        "noResults": "لا يوجد سجل مدفوعات",
-        "projectNames": {
-            "companyWebsiteRedesign": "إعادة تصميم الموقع الإلكتروني للشركة"
-        },
-        "amountValue": "{{amount}} جنيه مصري"
+        "noResults": "لا يوجد سجل مدفوعات"
     },
     "notFound": {
         "title": "الصفحة غير موجودة",
@@ -732,44 +782,38 @@
         "logoAlt": "شعار بلفنت"
     },
     "invoiceModal": {
-        "companyName": "Pulvent",
-        "companySubtitle": "تقنيات وحلول رقمية",
+        "companyName": "بولفينت",
+        "companySubtitle": "للتقنية والحلول الرقمية",
         "invoiceTo": "الفاتورة إلى:",
         "amountDue": "المبلغ المستحق",
-        "amountDueValue": "19,570.00 ج.م",
-        "vatNumber": "الضريبة: 1000",
-        "dateDueHeader": "26 يوليو 2026",
+        "vatNumber": "الرقم الضريبي: 1000",
         "invoiceId": "رقم الفاتورة",
-        "invoiceIdValue": "رقم: 000027",
         "issuedDate": "تاريخ الإصدار:",
-        "issuedDateValue": "26 يونيو 2024",
         "dueDate": "تاريخ الاستحقاق:",
-        "dueDateValue": "26 يوليو 2024",
         "description": "الوصف",
         "total": "الإجمالي",
-        "totalAmount": "إجمالي المبلغ:",
-        "totalAmountValue": "19,570.00 ج.م",
-        "totalVat": "إجمالي الضريبة: 1000",
+        "totalAmount": "المبلغ الإجمالي:",
+        "totalVat": "إجمالي ضريبة القيمة المضافة: 1000",
         "pdfButton": "PDF",
-        "agencyName": "وكالة Pulvent",
+        "agencyName": "وكالة بولفينت",
         "agencyWebsite": "www.Pulvent.com",
         "agencyContact": "contact@Pulvent.com / (884) 879 - 0102",
         "client": {
             "name": "أحمد حسن",
             "phone": "(612) 856 - 0989",
-            "address": "مصر - القاهرة - شارع 72\nمدينة نصر"
+            "address": "مصر - القاهرة، ٧٢ شارع\nمدينة نصر"
         },
         "items": [
             {
-                "description": "تصميم UI/UX",
+                "description": "تصميم واجهات وتجربة المستخدم (UI/UX)",
                 "total": "$ 5,250.00"
             },
             {
-                "description": "تصميم الويب",
+                "description": "تصميم المواقع",
                 "total": "$ 5,250.00"
             },
             {
-                "description": "الاختبار",
+                "description": "الاختبار والتجربة",
                 "total": "$ 5,250.00"
             }
         ]
@@ -785,7 +829,6 @@
         "paymentTypeValue": "المرحلة النهائية",
         "dueDateLabel": "تاريخ الاستحقاق",
         "dueDateValue": "30 يونيو 2026",
-        "close": "إغلاق",
         "amountDueLabel": "المبلغ المستحق",
         "amountDueValue": "15,000 ج.م",
         "referenceLabel": "الرقم المرجعي",
@@ -854,146 +897,32 @@
         ]
     },
     "creditDebitCardModal": {
-        "title": "بطاقة ائتمان وخصم",
-        "description": "أدخل بيانات بطاقتك لإتمام عملية الدفع.",
+        "title": "بطاقة الائتمان والخصم",
+        "description": "أدخل تفاصيل بطاقتك لإتمام عملية الدفع.",
         "cardNumber": "رقم بطاقة الائتمان",
         "cardNumberPlaceholder": "0000 0000 0000 0000",
         "cardholderName": "اسم حامل البطاقة",
-        "cardholderNamePlaceholder": "3 أرقام",
+        "cardholderNamePlaceholder": "اسم حامل البطاقة",
         "expiryMonth": "شهر الانتهاء",
         "expiryYear": "سنة الانتهاء",
         "monthPlaceholder": "MM",
         "yearPlaceholder": "YYYY",
         "cvv": "CVV",
         "cvvPlaceholder": "3 أرقام",
-        "totalAmount": "إجمالي المبلغ",
+        "totalAmount": "المبلغ الإجمالي",
         "project": "المشروع:",
-        "projectName": "إعادة تصميم الموقع الإلكتروني",
-        "securityMessageLine1": "عملية الدفع الخاصة بك مشفرة ويتم",
-        "securityMessageLine2": "معالجتها بشكل آمن.",
+        "projectName": "إعادة تصميم الموقع",
+        "securityMessageLine1": "عملية الدفع الخاصة بك مشفرة",
+        "securityMessageLine2": "وتتم معالجتها بأمان.",
         "back": "رجوع",
-        "continueToPayment": "متابعة الدفع",
+        "continueToPayment": "المتابعة إلى الدفع",
         "close": "إغلاق"
     },
     "paymentSuccessModal": {
         "title": "تم الدفع بنجاح",
         "message": "تم إتمام عملية الدفع بنجاح.",
         "back": "رجوع",
-        "viewReceipt": "عرض الإيصال"
-    },
-    "supportPlans": {
-        "pageTitle": "خطط الدعم",
-        "essential": {
-            "title": "الدعم الأساسي",
-            "button": "اطلب الآن",
-            "features": [
-                "إصلاح الأعطال وحل المشكلات",
-                "فحوصات سلامة النظام",
-                "تعديلات الإعدادات البسيطة",
-                "دعم عبر البريد والتذاكر",
-                "مراجعة شهرية",
-                "التحقق من النسخ الاحتياطي"
-            ]
-        },
-        "professional": {
-            "title": "الدعم الاحترافي",
-            "button": "اطلب الآن",
-            "features": [
-                "دعم ذو أولوية",
-                "مراقبة التطبيقات والسيرفرات",
-                "مراقبة قواعد البيانات والنسخ الاحتياطي",
-                "فحوصات الأداء والأمان",
-                "مراقبة الواجهات والربط البرمجي",
-                "تعديلات بسيطة",
-                "الصيانة والتقارير الشهرية",
-                "دعم النشر والإصدار"
-            ]
-        },
-        "businessCritical": {
-            "title": "دعم الأعمال الحرج",
-            "button": "اطلب الآن",
-            "features": [
-                "التعامل مع الحوادث عالية الأولوية",
-                "المراقبة الاستباقية",
-                "تحسين أداء قواعد البيانات",
-                "مراقبة الأمان والربط",
-                "النسخ الاحتياطي والاستعادة",
-                "دعم البيئة الإنتاجية للنشر",
-                "إصلاح الثغرات بالأولوية",
-                "جهة اتصال تقنية مخصصة",
-                "مراجعة تحسين الأداء الشهرية"
-            ]
-        },
-        "enterprise": {
-            "title": "دعم المؤسسات",
-            "button": "اطلب الآن",
-            "features": [
-                "دعم حرج على مدار 24/7",
-                "مهندس دعم مخصص",
-                "مدير حساب مخصص",
-                "إدارة السحابة والـ DevOps",
-                "مراقبة الأمن السيبراني",
-                "التعافي من الكوارث",
-                "دعم قائم على مستوى الخدمة SLA",
-                "مراجعات الاختراق والأمان",
-                "إدارة الإصدارات",
-                "ساعات تطوير مخصصة",
-                "الدعم الميداني في الموقع"
-            ],
-            "viewReceipt": "عرض الإيصال",
-            "close": "إغلاق"
-        }
-    },
-    "paymentMethodModal": {
-        "title": "اختر طريقة الدفع",
-        "subtitle": "اختر طريقة الدفع المفضلة لديك للمتابعة.",
-        "close": "إغلاق",
-        "back": "رجوع",
-        "continueToPayment": "المتابعة للدفع",
-        "methods": {
-            "creditDebitCard": "بطاقة ائتمان أو خصم",
-            "paypal": "ادفع بأمان عبر PayPal",
-            "stripe": "ادفع بأمان عبر Stripe",
-            "applePay": "دفع سريع وآمن",
-            "fawry": "ادفع عبر Fawry",
-            "instapay": "ادفع فورًا عبر InstaPay",
-            "wallet": "نقدًا أو محفظة رقمية"
-        }
-    },
-    "SelectProject": {
-        "openProjectSelectionModal": "فتح نافذة اختيار المشروع",
-        "back": "رجوع",
-        "whichProjectDoYouNeedHelpWith": "ما هو المشروع الذي تحتاج إلى مساعدة بشأنه؟",
-        "selectAProjectToContinue": "اختر مشروعاً للمتابعة في طلبك.",
-        "brandIdentityVisualDesign": "هوية العلامة التجارية والتصميم المرئي",
-        "designDigitalExperience": "التصميم والتجربة الرقمية",
-        "warrantyActive": "الضمان ساري",
-        "daysLeft": "أيام متبقية",
-        "completed": "مكتمل",
-        "mobileApplication": "تطبيق الجوال",
-        "development": "التطوير",
-        "warrantyExpired": "انتهى الضمان",
-        "supportUnavailable": "الدعم غير متوفر",
-        "explorePaidWarrantyPlans": "استكشاف خطط الضمان المدفوعة",
-        "cantFindYourProject": "لا يمكنك العثور على مشروعك؟",
-        "createAGeneralInquiryTicket": "إنشاء تذكرة استفسار عام.",
-        "navigatingToPaidWarrantyPlans": "جاري الانتقال إلى خطط الضمان المدفوعة...",
-        "creatingGeneralInquiryTicket": "جاري إنشاء تذكرة الاستفسار العام..."
-    },
-    "ticketTypeModal": {
-        "title": "ما موضوع التذكرة الخاص بك؟",
-        "description": "اختر نوع التذكرة التي ترغب في إنشائها.",
-        "options": {
-            "project": {
-                "title": "المشروع المكتمل",
-                "description": "الحصول على المساعدة بشأن مشروع معين، بما في ذلك المشكلات التقنية، والتسليمات، والتحديثات، أو الطلبات المتعلقة بالمشروع."
-            },
-            "general": {
-                "title": "استفسار عام",
-                "description": "تواصل مع Pulvent بشأن خدمة معينة، أو اطرح سؤالاً عامًا، أو اطلب معلومات، أو تواصل مع فريقنا."
-            }
-        },
-        "continue": "متابعة",
+        "viewReceipt": "عرض الإيصال",
         "close": "إغلاق"
     }
 }
