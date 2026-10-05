@@ -963,5 +963,24 @@
             "instapay": "ادفع فورًا عبر InstaPay",
             "wallet": "نقدًا أو محفظة رقمية"
         }
+    },"SelectProject":{
+        "openProjectSelectionModal": "فتح نافذة اختيار المشروع",
+        "back": "رجوع",
+        "whichProjectDoYouNeedHelpWith": "ما هو المشروع الذي تحتاج إلى مساعدة بشأنه؟",
+        "selectAProjectToContinue": "اختر مشروعاً للمتابعة في طلبك.",
+        "brandIdentityVisualDesign": "هوية العلامة التجارية والتصميم المرئي",
+        "designDigitalExperience": "التصميم والتجربة الرقمية",
+        "warrantyActive": "الضمان ساري",
+        "daysLeft": "أيام متبقية",
+        "completed": "مكتمل",
+        "mobileApplication": "تطبيق الجوال",
+        "development": "التطوير",
+        "warrantyExpired": "انتهى الضمان",
+        "supportUnavailable": "الدعم غير متوفر",
+        "explorePaidWarrantyPlans": "استكشاف خطط الضمان المدفوعة",
+        "cantFindYourProject": "لا يمكنك العثور على مشروعك؟",
+        "createAGeneralInquiryTicket": "إنشاء تذكرة استفسار عام.",
+        "navigatingToPaidWarrantyPlans": "جاري الانتقال إلى خطط الضمان المدفوعة...",
+        "creatingGeneralInquiryTicket": "جاري إنشاء تذكرة الاستفسار العام..."
     }
 }

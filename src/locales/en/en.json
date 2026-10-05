@@ -911,6 +911,25 @@
                 "instapay": "Pay instantly with InstaPay",
                 "wallet": "Cash or Digital Wallet"
             }
+        },"SelectProject":{
+            "openProjectSelectionModal": "Open Project Selection Modal",
+            "back": "Back",
+            "whichProjectDoYouNeedHelpWith": "Which project do you need help with?",
+            "selectAProjectToContinue": "Select a project to continue with your request.",
+            "brandIdentityVisualDesign": "Brand Identity & Visual Design",
+            "designDigitalExperience": "Design & Digital Experience",
+            "warrantyActive": "Warranty Active",
+            "daysLeft": "Days Left",
+            "completed": "Completed",
+            "mobileApplication": "Mobile Application",
+            "development": "Development",
+            "warrantyExpired": "Warranty Expired",
+            "supportUnavailable": "Support Unavailable",
+            "explorePaidWarrantyPlans": "Explore Paid Warranty Plans",
+            "cantFindYourProject": "Can't find your project?",
+            "createAGeneralInquiryTicket": "Create a General Inquiry ticket.",
+            "navigatingToPaidWarrantyPlans": "Navigating to Paid Warranty Plans...",
+            "creatingGeneralInquiryTicket": "Creating General Inquiry Ticket..."
         }
     }
 }
