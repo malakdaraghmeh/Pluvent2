@@ -73,7 +73,7 @@ export const ChatSidebar = ({
         if (!count) return null;
 
         return (
-            <span className="inline-flex min-h-[19px] min-w-[19px] items-center justify-center rounded-[100px] bg-[#3634C7] px-[6px] py-[3px] text-[10px] font-medium leading-none text-white">
+            <span className="inline-flex min-h-[19px] min-w-[19px] items-center justify-center rounded-[100px] bg-[#3634C7] px-[6px] py-[3px] text-[10px] font-semibold leading-none text-white">
                 {count}
             </span>
         );
@@ -83,29 +83,52 @@ export const ChatSidebar = ({
         <aside
             className={`min-w-0 flex-col overflow-hidden bg-white shadow-sm max-md:h-screen max-md:w-full max-md:p-4 md:h-[calc(100vh-32px)] md:w-[340px] md:flex-none md:rounded-[24px] md:border md:border-[#EEF0F5] md:p-4 3xl:w-[400px] 3xl:p-5 4xl:w-[460px] 4xl:p-6 ${className}`}
         >
-            <h1 className="shrink-0 text-[22px] font-semibold text-[#101828] 3xl:text-[24px] 4xl:text-[26px]">
+            <h1 className="shrink-0 text-[22px] font-semibold text-[#1E293B] ">
                 {t('title')}
             </h1>
+            <div
+  className="
+    mt-4
+    flex
+    h-[38px]
+    w-full
+    max-w-[340px]
+    items-center
+    gap-[8px]
+    rounded-[12px]
+    border
+    border-[#ECEFF4]
+    bg-white
+    px-[16px]
+    3xl:mt-5
+  "
+>
+  <MessagesSearchIcon className="h-4 w-4 shrink-0 3xl:h-[18px] 3xl:w-[18px]" />
 
-            <div className="relative mt-4 shrink-0 3xl:mt-5">
-                <MessagesSearchIcon className="absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 3xl:h-[18px] 3xl:w-[18px]" />
-
-                <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={event => onSearchChange(event.target.value)}
-                    placeholder={t('searchPlaceholder')}
-                    className="h-10 w-full rounded-[10px] border border-[#EAECF0] bg-white ps-[38px] pe-3 text-[12px] text-[#344054] outline-none placeholder:text-[#98A2B3] 3xl:h-11 3xl:ps-[42px] 3xl:text-[13px] 4xl:h-12 4xl:text-[14px]"
-                />
-            </div>
+  <input
+    type="text"
+    value={searchQuery}
+    onChange={event => onSearchChange(event.target.value)}
+    placeholder={t('searchPlaceholder')}
+    className="
+      min-w-0
+      flex-1
+      bg-transparent
+      text-[14px]
+      text-[#9CA3AF]
+      outline-none
+      placeholder:text-[#9CA3AF]
+    "
+  />
+</div>
 
             {pinnedChat && (
                 <div className="mt-5 shrink-0">
-                    <p className="mb-2 text-[11px] font-medium text-[#667085] 3xl:text-[12px]">
+                    <p className="mb-2 text-[12px] font-semibold text-[#6B7280]">
                         {t('pinned')}
                     </p>
 
-                    <button
+                 {/*    <button
                         type="button"
                         onClick={() => onSelectChat(pinnedChat.id)}
                         className={`flex w-full items-center justify-between gap-3 rounded-[10px] px-3 py-[10px] text-start transition 3xl:px-4 3xl:py-3 ${selectedChatId === pinnedChat.id ? 'bg-[#F0EFFF]' : 'hover:bg-[#F8F9FC]'}`}
@@ -138,12 +161,54 @@ export const ChatSidebar = ({
                         </div>
 
                         {renderUnreadBadge(pinnedChat.unreadCount)}
-                    </button>
+                    </button> */}
+                                        <button
+    type="button"
+    onClick={() => onSelectChat(pinnedChat.id)}
+    className={`flex h-[73px] w-full max-w-[340px] items-center justify-between gap-[12px] rounded-[12px] bg-[#2F1ABD10] p-[12px] text-start transition ${
+        selectedChatId === pinnedChat.id
+            ? 'bg-[#F0EFFF]'
+            : 'hover:bg-[#F8F9FC]'
+    }`}
+>
+<div className="flex min-w-0 items-center gap-[12px]">
+    {pinnedChat.avatar && (
+        <div className="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[32px] bg-[#12115C] p-[8px]">
+            <img
+                src={pinnedChat.avatar}
+                alt={pinnedChat.name}
+                className="h-full w-full object-contain"
+            />
+        </div>
+    )}
+
+        <div className="min-w-0">
+            <p className="truncate text-[13px] font-semibold text-[#1E293B]">
+                {t('privateChat', { defaultValue: pinnedChat.name })}
+            </p>
+
+            <p className="truncate text-[12px] text-[#64748B]  ">
+                {t('pulventTeamMembers', { count: 2 })}
+            </p>
+
+            <div className="mt-[2px] flex items-center gap-1">
+                <span className="h-[5px] w-[5px] rounded-full bg-[#34C759]" />
+                <span className="text-[11px] text-[#34C759] ">
+                    {t('online')}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    {renderUnreadBadge(pinnedChat.unreadCount)}
+</button>
+
+
                 </div>
             )}
 
             <div className="mt-5 flex min-h-0 flex-1 flex-col 3xl:mt-6">
-                <p className="mb-2 shrink-0 text-[11px] font-medium text-[#667085] 3xl:text-[12px]">
+                <p className="mb-2 shrink-0 text-[12px] font-semibold text-[#64748B]">
                     {t('groupConversations')}
                 </p>
 
@@ -167,11 +232,11 @@ export const ChatSidebar = ({
                                 </div>
 
                                 <div className="min-w-0">
-                                    <p className="truncate text-[12px] font-semibold text-[#101828] 3xl:text-[13px] 4xl:text-[14px]">
+                                    <p className="truncate text-[13px] font-semibold text-[#1E293B] ">
                                         {getChatName(chat)}
                                     </p>
 
-                                    <p className="text-[10px] text-[#667085] 3xl:text-[11px] 4xl:text-[12px]">
+                                    <p className="text-[12px] text-[#64748B] ">
                                         {t('membersCount', { count: chat.membersCount ?? 0 })}
                                     </p>
                                 </div>
@@ -179,7 +244,7 @@ export const ChatSidebar = ({
 
                             <div className="flex shrink-0 flex-col items-end gap-1">
                                 {getChatTime(chat) && (
-                                    <span className="whitespace-nowrap text-[9px] text-[#98A2B3] 3xl:text-[10px] 4xl:text-[11px]">
+                                    <span className="whitespace-nowrap text-[11px] text-[#94A3B8] ">
                                         {getChatTime(chat)}
                                     </span>
                                 )}
@@ -198,7 +263,7 @@ export const ChatSidebar = ({
                     className="flex h-10 w-full items-center justify-center gap-2 rounded-[8px] border border-[#3634C7] text-[12px] font-medium text-[#3634C7] transition hover:bg-[#F7F7FF] 3xl:h-11 3xl:text-[13px] 4xl:h-12 4xl:text-[14px]"
                 >
                     <MessagesCreateGroupPlusIcon className="h-4 w-4 3xl:h-[18px] 3xl:w-[18px]" />
-                    <span>{t('createNewGroup')}</span>
+                    <span className="text-[13px] font-semibold">{t('createNewGroup')}</span>
                 </button>
             </div>
         </aside>
