@@ -1,6 +1,7 @@
 import React from "react";
 import PulventLogo from "@/assets/images/pulvent.png";
 import { Arrow } from "@/assets";
+import { useTranslation } from "react-i18next";
 
 interface SupportTicketConfirmModalProps {
   isOpen: boolean;
@@ -15,6 +16,8 @@ const SupportTicketConfirmModal = ({
   onConfirm,
   isRtl,
 }: SupportTicketConfirmModalProps) => {
+  const { t } = useTranslation("supportTicketConfirmModal");
+
   if (!isOpen) return null;
 
   return (
@@ -36,9 +39,9 @@ const SupportTicketConfirmModal = ({
 
           {/* Message */}
           <p className="m-0 max-w-full text-center text-xl font-semibold leading-7 text-black sm:text-2xl">
-            Are you sure you want to open
+            {t("messageLine1")}
             <br />
-            a new support ticket?
+            {t("messageLine2")}
           </p>
 
           {/* Buttons */}
@@ -50,7 +53,7 @@ const SupportTicketConfirmModal = ({
               onClick={onClose}
               className="flex-1 rounded-md border border-[#FF4B4B] bg-white px-3 py-2 text-[20px] text-[#FF4B4B] transition hover:bg-[#FFF5F5]"
             >
-              Cancel
+              {t("cancel")}
             </button>
 
             {/* Submit */}
@@ -59,8 +62,11 @@ const SupportTicketConfirmModal = ({
               onClick={onConfirm}
               className="flex flex-1 items-center justify-center gap-2 rounded-md bg-[#12115C] px-3 py-2 text-[20px] text-white transition hover:bg-[#1a185f]"
             >
-              <span>Submit</span>
-              <Arrow />
+              <span>{t("submit")}</span>
+              <span className={isRtl ? "scale-x-[-1]" : ""}>
+    <Arrow />
+  </span>
+
             </button>
 
           </div>

@@ -963,5 +963,11 @@
             "instapay": "ادفع فورًا عبر InstaPay",
             "wallet": "نقدًا أو محفظة رقمية"
         }
-    }
+    },
+"supportTicketConfirmModal": {
+  "messageLine1": "هل أنت متأكد أنك تريد فتح",
+  "messageLine2": "تذكرة دعم جديدة؟",
+  "cancel": "إلغاء",
+  "submit": "إرسال"
+}
 }

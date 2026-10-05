@@ -912,5 +912,11 @@
                 "wallet": "Cash or Digital Wallet"
             }
         }
-    }
+    },
+    "supportTicketConfirmModal": {
+        "messageLine1": "Are you sure you want to open",
+        "messageLine2": "a new support ticket?",
+        "cancel": "Cancel",
+        "submit": "Submit"
+      }
 }
