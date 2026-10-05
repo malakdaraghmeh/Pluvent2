@@ -1,8 +1,6 @@
 ﻿import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
 import { projectProgressData } from '../data/projectProgress';
-
 import ProjectProgressCard from './ProjectProgressCard';
 
 const ProjectProgress = () => {

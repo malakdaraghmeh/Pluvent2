@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
 import { Add, Arrow } from '@/assets';
-
 import AddChangeRequestModal from './AddChangeRequestModal';
 import { changeRequestsData } from '../data/changeRequests';
-
 import type { ChangeRequestStatus } from '../../../../utils/types/project-details.types';
 
 const statusTranslationKeys: Record<ChangeRequestStatus, string> = {

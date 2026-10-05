@@ -1,6 +1,6 @@
 import { Email, User1, User2, User4 } from '@/assets';
 
-import type { MetricItem } from '../../../utils/types/users.types';
+import type { MetricItem } from '../../../../utils/types/users.types';
 
 export const usersMetricsData: MetricItem[] = [
     {

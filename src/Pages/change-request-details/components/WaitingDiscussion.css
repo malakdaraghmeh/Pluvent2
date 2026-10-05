@@ -1,0 +1,28 @@
+.waiting-chat-scroll {
+    scrollbar-width: auto;
+    scrollbar-color: #B1B4B6 #FCFCFC;
+    overscroll-behavior: contain;
+}
+
+.waiting-chat-scroll::-webkit-scrollbar {
+    width: 12px;
+}
+
+.waiting-chat-scroll::-webkit-scrollbar-track {
+    background: #FCFCFC;
+    border: 0.5px solid #E8E8E8;
+    border-radius: 16px;
+}
+
+.waiting-chat-scroll::-webkit-scrollbar-thumb {
+    min-height: 190px;
+    background: #B1B4B6;
+    border: 3px solid #FCFCFC;
+    border-radius: 100px;
+}
+
+.waiting-chat-scroll::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none;
+}

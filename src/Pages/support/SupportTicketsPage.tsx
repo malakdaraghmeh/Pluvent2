@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 
-import CreateSupportInquiry from './create-support-inquiry/page';
+import CreateSupportInquiry from './create-support-inquiry/components/CreateSupportInquiryModal';
 import FilterDropdown from './components/FilterDropdown';
 import Header from './components/Header';
 import TabNavigation from './components/TabNavigation';

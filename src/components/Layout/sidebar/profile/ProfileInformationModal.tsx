@@ -24,14 +24,14 @@ export default function ProfileInformationModal({
     const { t, i18n } = useTranslation('profile');
     const isArabic = i18n.language.startsWith('ar');
 
-    const [formData, setFormData] = useState<ProfileData>(profile);
+    const [formData, setFormData] = useState<ProfileData>({ ...profile, fullName: 'James Carter' });
     const [isPersonalEditing, setIsPersonalEditing] = useState(false);
     const [isContactEditing, setIsContactEditing] = useState(false);
 
     useEffect(() => {
         if (!isOpen) return;
 
-        setFormData(profile);
+        setFormData({ ...profile, fullName: 'James Carter' });
         setIsPersonalEditing(false);
         setIsContactEditing(false);
     }, [isOpen, profile]);
@@ -62,7 +62,7 @@ export default function ProfileInformationModal({
     };
 
     const handleCancel = () => {
-        setFormData(profile);
+        setFormData({ ...profile, fullName: 'James Carter' });
         setIsPersonalEditing(false);
         setIsContactEditing(false);
         onClose();
@@ -118,7 +118,7 @@ export default function ProfileInformationModal({
                     min-[1920px]:w-[840px]
                     min-[2500px]:w-[900px]
 
-                    ${isArabic ? 'lg:left-[calc(50%-140px)]' : 'lg:left-[calc(50%+140px)]'}
+                    
                 `}
             >
                 <ProfileModalHeader onClose={onClose} />

@@ -3,6 +3,14 @@ export { default as Logo } from './images/logo.png';
 export { default as SupportTicketReplyLogo } from './images/logo png 2(1).png';
 export { default as AmrProfilePhoto } from './images/amr-profile-photo.png';
 export { default as ChangeRequestSubmitterAvatar } from './images/change-request-submitter-avatar.png';
+export { default as ChangeRequestChatAvatar } from './images/change-request-chat-avatar.png';
+export { default as MessagesPulventLogo } from './images/messages-pulvent-logo.png';
+export { default as MessagesAmrAvatar } from './images/messages-amr-avatar.png';
+export { default as MessagesUserAvatarTwo } from './images/messages-user-avatar-2.jpg';
+export { default as MessagesSaudiFlag } from './images/messages-saudi-flag.png';
+export { default as MessagesCurrentUserAvatar } from './images/messages-current-user-avatar.jpg';
+export { default as AttachmentImageIcon } from './images/image(2).png';
+
 // icons
 export { default as earthIcon } from './icons/earth.svg?react';
 export { default as folderIcon } from './icons/folder.svg?react';
@@ -59,7 +67,6 @@ export { default as DashboardArrow } from './icons/arrow.svg?react';
 export { default as ChatIcon } from './icons/chat-1.svg?react';
 export { default as ChatDecorationIcon } from './icons/Group 6.svg?react';
 export { default as BreadcrumbArrow } from './icons/arrow-left-s.svg?react';
-export { default as ChangeRequestChatAvatar } from './images/change-request-chat-avatar.png';
 export { default as ChangeRequestFileIcon } from './icons/file-text.svg?react';
 export { default as ChangeRequestChatIcon } from './icons/chat-1.svg?react';
 export { default as ChangeRequestPulventLogo } from './icons/p-logo.svg?react';
@@ -68,24 +75,14 @@ export { default as ChangeRequestNextSteps } from './icons/image 88.svg?react';
 export { default as ChangeRequestTimelineDone } from './icons/check_circle.svg?react';
 export { default as ChangeRequestTimelineProgress } from './icons/Vector (1).svg?react';
 export { default as ChangeRequestTimelinePending } from './icons/Vector (2).svg?react';
-export { default as MessagesPulventLogo } from './images/messages-pulvent-logo.png';
-export { default as MessagesAmrAvatar } from './images/messages-amr-avatar.png';
-export { default as MessagesUserAvatarTwo } from './images/messages-user-avatar-2.jpg';
-export { default as MessagesSaudiFlag } from './images/messages-saudi-flag.png';
 export { default as MessagesSearchIcon } from './icons/search.svg?react';
 export { default as MessagesSendIcon } from './icons/send.svg?react';
 export { default as MessagesAddIcon } from './icons/add.svg?react';
 export { default as MessagesGroupIcon } from './icons/users.svg?react';
-
 export { default as MessagesBackIcon } from './icons/arrow-left-s.svg?react';
-
 export { default as MessagesPlusIcon } from './icons/akar-icons_plus.svg?react';
-
 export { default as MessagesCreateGroupPlusIcon } from './icons/plus(2).svg?react';
 export { default as MessagesUsersIcon } from './icons/users(1).svg?react';
-
-export { default as MessagesCurrentUserAvatar } from './images/messages-current-user-avatar.jpg';
-// src/assets/index.ts
 export { default as ModalCloseIcon } from './icons/Icon-273(1).svg?react';
 export { default as MessagesUsersDarkIcon } from './icons/users(2).svg?react';
 export { default as MessagesCreateGroupCloseIcon } from './icons/Icon-273(1).svg?react';
@@ -94,7 +91,6 @@ export { default as MessagesRadioSelectedIcon } from './icons/Raido Buttons.svg?
 export { default as MessagesRadioUnselectedIcon } from './icons/Raido Buttons(2).svg?react';
 export { default as MessagesCreateGroupAddIcon } from './icons/line.svg?react';
 export { default as MessagesProjectSelectArrowIcon } from './icons/lib-icon-arrow3(15).svg?react';
-
 export { default as PulventFullLogo } from './icons/logo.svg?react';
 export { default as PaymentDetailsProjectIcon } from './icons/briefcase.svg?react';
 export { default as PaymentDetailsPaymentTypeIcon } from './icons/wallet(1).svg?react';
@@ -110,7 +106,6 @@ export { default as PaymentApplePayLogo } from './icons/ApplePay.svg?react';
 export { default as PaymentFawryLogo } from './icons/faw 1(1).svg?react';
 export { default as PaymentInstapayLogo } from './icons/insta 1.svg?react';
 export { default as PaymentWalletLogo } from './icons/ChatGPT Image Aug 12, 2026, 10_12_55 PM 1.svg?react';
-
 export { default as SupportTicketFilterArrowIcon } from './icons/lib-icon-arrow3(16).svg?react';
 export { default as SupportTicketViewArrowIcon } from './icons/lib-icon-arrow3(17).svg?react';
 export { default as SupportTicketNewTicketArrowIcon } from './icons/lib-icon-arrow3(17).svg?react';
@@ -119,3 +114,7 @@ export { default as SupportTicketFolderUploadIcon } from './icons/folder-upload.
 export { default as SupportTicketRemindIcon } from './icons/hand.svg?react';
 export { default as ChevronLeft } from './icons/chevron-left.svg?react';
 export { default as ProjectProgressArrow } from './icons/arrow.svg?react';
+export { default as Check10 } from './icons/check(10).svg?react';
+export { default as TopBarLanguageChevron } from './icons/chevron-right.svg?react';
+export { default as ChangeRequestHeaderFileIcon } from './icons/file-text(14).svg?react';
+export { default as AttachmentPdfIcon } from './icons/file-text(13).svg?react';
