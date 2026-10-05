@@ -92,7 +92,6 @@ function LocaleWrapper() {
                 <Route path="/prdet" element={<ProjectDetails />} />
                 <Route path="/support-plans" element={<SupportPlans />} />
                 <Route path="/select-pro" element={<SelectProjectModal />} />
-
                 <Route path="*" element={<NotFound />} />
             </Route>
         </Routes>
