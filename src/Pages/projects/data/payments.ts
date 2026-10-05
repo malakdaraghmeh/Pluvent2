@@ -20,4 +20,3 @@ export const paymentsData: Payment[] = [
         days: 20,
     },
 ];
-

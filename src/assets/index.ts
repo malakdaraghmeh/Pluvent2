@@ -1,5 +1,6 @@
 // images
 export { default as Logo } from './images/logo.png';
+export { default as SupportTicketReplyLogo } from './images/logo png 2(1).png';
 export { default as AmrProfilePhoto } from './images/amr-profile-photo.png';
 export { default as ChangeRequestSubmitterAvatar } from './images/change-request-submitter-avatar.png';
 // icons
@@ -54,7 +55,7 @@ export { default as DownArrow } from './icons/down-arrow.svg?react';
 export { default as CloseIcons } from './icons/close-icone.svg?react';
 export { default as FilesIcons } from './icons/files-icone.svg?react';
 export { default as PaymentSuccess } from './icons/payment-success.svg?react';
-
+export { default as DashboardArrow } from './icons/arrow.svg?react';
 export { default as ChatIcon } from './icons/chat-1.svg?react';
 export { default as ChatDecorationIcon } from './icons/Group 6.svg?react';
 export { default as BreadcrumbArrow } from './icons/arrow-left-s.svg?react';
@@ -109,3 +110,12 @@ export { default as PaymentApplePayLogo } from './icons/ApplePay.svg?react';
 export { default as PaymentFawryLogo } from './icons/faw 1(1).svg?react';
 export { default as PaymentInstapayLogo } from './icons/insta 1.svg?react';
 export { default as PaymentWalletLogo } from './icons/ChatGPT Image Aug 12, 2026, 10_12_55 PM 1.svg?react';
+
+export { default as SupportTicketFilterArrowIcon } from './icons/lib-icon-arrow3(16).svg?react';
+export { default as SupportTicketViewArrowIcon } from './icons/lib-icon-arrow3(17).svg?react';
+export { default as SupportTicketNewTicketArrowIcon } from './icons/lib-icon-arrow3(17).svg?react';
+export { default as SupportTicketNewTicketPlusIcon } from './icons/line.svg?react';
+export { default as SupportTicketFolderUploadIcon } from './icons/folder-upload.svg?react';
+export { default as SupportTicketRemindIcon } from './icons/hand.svg?react';
+export { default as ChevronLeft } from './icons/chevron-left.svg?react';
+export { default as ProjectProgressArrow } from './icons/arrow.svg?react';

@@ -7,6 +7,7 @@ export interface FileItem {
     size: string;
     date: string;
     type: FileDocumentType;
+    downloadUrl?: string;
 }
 
 export interface FileDocumentsProps {

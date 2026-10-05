@@ -1,30 +1,92 @@
-import React, { useState } from 'react';
-import { Upload, X, ArrowRight, ArrowLeft } from 'lucide-react';
+import {
+    useEffect,
+    useRef,
+    useState,
+    type ChangeEvent,
+    type DragEvent,
+    type FormEvent,
+} from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import FolderUpload from '@icons/folder-upload.svg?react';
+
+import {
+    SupportTicketFolderUploadIcon,
+    SupportTicketReplyLogo,
+    SupportTicketViewArrowIcon,
+} from '@/assets';
+import ActionButton from '@/components/ui/ActionButton';
+
+import type {
+    SupportTicket,
+    SupportTicketStatus,
+    TicketDetailsLocationState,
+} from '../../../utils/types/support-tickets.types';
+
+import ClosedTicketDetails from './components/ClosedTicketDetails';
+import PendingReplyTicketDetails from './components/PendingReplyTicketDetails';
 
 export default function TicketDetails() {
+    const { id } = useParams();
+    const location = useLocation();
     const { t, i18n } = useTranslation('tickets');
-    const isRtl = i18n.language === 'ar';
 
-    const [ticketStatus, setTicketStatus] = useState('Open');
-    const [description, setDescription] = useState(
-        'The logo file is not displaying correctly in print. Please check the attached file and let me know how we can fix this.'
-    );
-    const [files, setFiles] = useState([]);
+    const state = location.state as TicketDetailsLocationState | null;
+    const ticket = state?.ticket;
+
+    const isArabic = i18n.language.startsWith('ar');
+
+    const [ticketStatus, setTicketStatus] = useState<SupportTicketStatus>(ticket?.status ?? 'open');
+
+    const [description, setDescription] = useState(t('details.form.defaultDescription'));
+
+    const [files, setFiles] = useState<File[]>([]);
     const [isDragging, setIsDragging] = useState(false);
 
-    // Handle file selection
-    const handleFileChange = e => {
-        if (e.target.files && e.target.files.length > 0) {
-            const selectedFiles = Array.from(e.target.files);
-            setFiles(prev => [...prev, ...selectedFiles]);
-        }
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const ticketId = ticket?.id || id || '2023-CS123';
+    const uploadedBy = ticket?.uploadedBy || 'Maryam Hosam';
+    const ticketDate = ticket?.date || '2025 - 12:45 AM';
+
+    const ticketType =
+        ticketStatus === 'pendingReply' || ticketStatus === 'closed'
+            ? 'general'
+            : ticket?.type || 'project';
+
+    const resolvedTicket: SupportTicket = {
+        id: ticketId,
+        status: ticketStatus,
+        type: ticketType,
+        uploadedBy,
+        date: ticketDate,
+        contentKey: ticket?.contentKey || 'card.description',
+        replyStatus: ticket?.replyStatus || {
+            type: 'repliedPreview',
+            textKey: 'reply.previewDescription',
+        },
     };
 
-    // Drag & Drop Handlers
-    const handleDragOver = e => {
-        e.preventDefault();
+    useEffect(() => {
+        setTicketStatus(ticket?.status ?? 'open');
+    }, [ticket?.status]);
+
+    useEffect(() => {
+        setDescription(t('details.form.defaultDescription'));
+    }, [i18n.language, t]);
+
+    const addFiles = (selectedFiles: FileList | null) => {
+        if (!selectedFiles?.length) return;
+
+        setFiles(current => [...current, ...Array.from(selectedFiles)]);
+    };
+
+    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+        addFiles(event.target.files);
+        event.target.value = '';
+    };
+
+    const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
+        event.preventDefault();
         setIsDragging(true);
     };
 
@@ -32,216 +94,304 @@ export default function TicketDetails() {
         setIsDragging(false);
     };
 
-    const handleDrop = e => {
-        e.preventDefault();
+    const handleDrop = (event: DragEvent<HTMLDivElement>) => {
+        event.preventDefault();
         setIsDragging(false);
-        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-            const droppedFiles = Array.from(e.dataTransfer.files);
-            setFiles(prev => [...prev, ...droppedFiles]);
-        }
+        addFiles(event.dataTransfer.files);
     };
 
-    const removeFile = indexToRemove => {
-        setFiles(prev => prev.filter((_, index) => index !== indexToRemove));
+    const removeFile = (indexToRemove: number) => {
+        setFiles(current => current.filter((_, index) => index !== indexToRemove));
     };
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        alert(t('details.form.successAlert'));
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        window.alert(t('details.form.successAlert'));
     };
 
     const handleCloseTicket = () => {
-        setTicketStatus(ticketStatus === 'Open' ? 'Closed' : 'Open');
+        setTicketStatus('closed');
+    };
+
+    const handleReopenTicket = () => {
+        setTicketStatus('open');
+    };
+
+    const handleRemind = () => {
+        // API integration will be connected here.
     };
 
     return (
-        <div className="min-h-screen bg-[#F3F4F8] p-4 sm:p-6 md:p-10 font-sans text-gray-700">
-            <div className="max-w-5xl mx-auto">
-                {/* Page Heading */}
-                <h1 className="text-2xl sm:text-3xl font-bold text-[#100D40] mb-6">
-                    {t('details.title')}
-                </h1>
+        <main className="min-h-screen w-full bg-[#F4F6FB] px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+            <div className="mx-auto w-full max-w-[1086px] min-[1920px]:max-w-[1400px] min-[2500px]:max-w-[1780px]">
+                {ticketStatus === 'pendingReply' ? (
+                    <PendingReplyTicketDetails
+                        ticket={resolvedTicket}
+                        onCloseTicket={handleCloseTicket}
+                        onRemind={handleRemind}
+                    />
+                ) : ticketStatus === 'closed' ? (
+                    <ClosedTicketDetails
+                        ticket={resolvedTicket}
+                        onReopenTicket={handleReopenTicket}
+                    />
+                ) : (
+                    <div className="flex w-full flex-col gap-6">
+                        <h1
+                            className={`font-['Sora',sans-serif] text-[28px] font-semibold leading-[28px] tracking-normal text-[#12115C] ${
+                                isArabic ? 'text-right' : 'text-left'
+                            }`}
+                        >
+                            {t('details.title')}
+                        </h1>
 
-                {/* Main Card */}
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 space-y-6">
-                    {/* Header Section */}
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2">
-                        <div>
-                            <div className="flex items-center gap-3">
-                                <h2 className="text-xl sm:text-2xl font-bold text-[#100D40]">
-                                    {t('details.ticketNumber', { id: '2023-CS123' })}
-                                </h2>
-                                <span
-                                    className={`px-3 py-1 text-xs font-semibold rounded-md ${
-                                        ticketStatus === 'Open'
-                                            ? 'bg-[#EEEFFB] text-[#5252A3]'
-                                            : 'bg-gray-200 text-gray-600'
-                                    }`}
-                                >
-                                    {t(`status.${ticketStatus}`)}
-                                </span>
-                            </div>
-                            <p className="text-gray-500 font-medium text-sm mt-1">
-                                {t('details.uploadBy', { name: 'Maryam Hosam' })}
-                            </p>
-                        </div>
+                        <form
+                            onSubmit={handleSubmit}
+                            className="flex w-full flex-col gap-4 rounded-[24px] border border-[#ECEFF4] bg-white p-4 sm:p-5 lg:min-h-[857px] lg:p-6"
+                        >
+                            <section className="flex w-full flex-col gap-4">
+                                <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                                    <div className="min-w-0">
+                                        <div className="flex flex-wrap items-center gap-3">
+                                            <h2 className="text-[20px] font-semibold leading-[32px] tracking-normal text-[#2E2C34]">
+                                                {t('details.ticketNumber', {
+                                                    id: ticketId,
+                                                })}
+                                            </h2>
 
-                        <div className="md:text-right">
-                            <h3 className="text-lg font-bold text-[#100D40]">
-                                {t('details.projectTicket')}
-                            </h3>
-                            <p className="text-xs text-gray-400 mt-1">
-                                {t('details.postedAt', { time: '2025 - 12:45 AM' })}
-                            </p>
-                        </div>
-                    </div>
+                                            <span className="flex h-[30px] w-[64px] shrink-0 items-center justify-center rounded-[4px] bg-[#2F1ABD10] px-3 text-[14px] font-semibold leading-[16px] text-[#2F1ABD]">
+                                                {t('status.open')}
+                                            </span>
+                                        </div>
 
-                    {/* Ticket Query Content */}
-                    <div className="space-y-4">
-                        <h3 className="text-lg font-bold text-[#100D40]">
-                            How to deposit money to my portal?
-                        </h3>
-                        <div className="space-y-3 text-sm text-gray-400 leading-relaxed">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
-                                dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit
-                                amet, consectetur adipiscing elit.
-                            </p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
-                                dolor sit amet, consectetur adipiscing elit.
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Response Bubble */}
-                    <div className="flex flex-col items-end pt-2">
-                        <div className="flex items-center gap-2 mb-1 pr-1 text-xs text-gray-500">
-                            <span className="font-bold text-[#100D40]">
-                                {t('details.responseAuthor')}
-                            </span>
-                            <span className="text-gray-400">01:08 am</span>
-                        </div>
-                        <div className="flex items-end gap-2 max-w-xl">
-                            <div className="relative bg-[#100D40] text-white text-xs sm:text-sm py-3 px-5 rounded-2xl rounded-tr-none shadow-sm">
-                                {t('details.responseMessage')}
-                            </div>
-                            <div className="w-8 h-8 rounded-full bg-[#100D40] flex items-center justify-center text-cyan-400 font-extrabold text-sm flex-shrink-0 shadow">
-                                P
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Form Section */}
-                    <form onSubmit={handleSubmit} className="space-y-6 pt-4">
-                        {/* Description Textarea */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                {t('details.form.descriptionLabel')}{' '}
-                                <span className="text-red-500">*</span>
-                            </label>
-                            <textarea
-                                rows={4}
-                                value={description}
-                                onChange={e => setDescription(e.target.value)}
-                                required
-                                className="w-full bg-[#F3F4F8] border border-gray-200 rounded-xl p-4 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#100D40] focus:bg-white transition-all resize-none"
-                            />
-                        </div>
-
-                        {/* Dropzone Attachment Section */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                {t('details.form.attachmentsLabel')}{' '}
-                                <span className="text-gray-400 font-normal">
-                                    {t('details.form.optional')}
-                                </span>
-                            </label>
-
-                            <div
-                                onDragOver={handleDragOver}
-                                onDragLeave={handleDragLeave}
-                                onDrop={handleDrop}
-                                className={`border-2 border-dashed rounded-xl p-6 transition-all text-center flex flex-col sm:flex-row items-center justify-center gap-4 cursor-pointer ${
-                                    isDragging
-                                        ? 'border-[#38bdf8] bg-sky-50'
-                                        : 'border-cyan-100 bg-white hover:bg-slate-50'
-                                }`}
-                            >
-                                <input
-                                    type="file"
-                                    id="file-upload"
-                                    multiple
-                                    onChange={handleFileChange}
-                                    className="hidden"
-                                />
-                                <label
-                                    htmlFor="file-upload"
-                                    className="flex flex-col sm:flex-row items-center gap-4 cursor-pointer w-full justify-center"
-                                >
-                                    <FolderUpload />
-                                    <div className="text-center sm:text-left">
-                                        <p className="text-base font-bold text-[#100D40]">
-                                            {t('details.form.dropzoneTitle')}
-                                        </p>
-                                        <p className="text-xs text-gray-400 mt-1">
-                                            {t('details.form.dropzoneHint')}
+                                        <p className="text-[18px] font-normal leading-[32px] tracking-normal text-[#6B7280]">
+                                            {t('details.uploadBy', {
+                                                name: uploadedBy,
+                                            })}
                                         </p>
                                     </div>
-                                </label>
-                            </div>
 
-                            {/* Uploaded Files List */}
-                            {files.length > 0 && (
-                                <div className="mt-3 space-y-2">
-                                    {files.map((file, idx) => (
-                                        <div
-                                            key={idx}
-                                            className="flex items-center justify-between p-2.5 bg-gray-50 rounded-lg text-xs border border-gray-200"
-                                        >
-                                            <span className="truncate max-w-xs font-medium text-gray-700">
-                                                {file.name}
-                                            </span>
-                                            <button
-                                                type="button"
-                                                onClick={() => removeFile(idx)}
-                                                className="text-gray-400 hover:text-red-500 transition-colors"
-                                            >
-                                                <X className="w-4 h-4" />
-                                            </button>
-                                        </div>
-                                    ))}
+                                    <div
+                                        className={`flex shrink-0 flex-col gap-4 ${
+                                            isArabic
+                                                ? 'items-start text-left'
+                                                : 'items-end text-right'
+                                        }`}
+                                    >
+                                        <p className="text-[18px] font-bold leading-[20px] tracking-normal text-[#12115C]">
+                                            {t(`type.${ticketType}`)}
+                                        </p>
+
+                                        <p className="text-[14px] font-normal leading-[20px] tracking-normal text-[#84818A]">
+                                            {t('details.postedAt', {
+                                                time: ticketDate,
+                                            })}
+                                        </p>
+                                    </div>
                                 </div>
-                            )}
-                        </div>
 
-                        {/* Actions */}
-                        <div className="flex flex-col sm:flex-row items-center justify-end gap-3 pt-4">
-                            <button
-                                type="button"
-                                onClick={handleCloseTicket}
-                                className="w-full sm:w-auto px-8 py-3 rounded-full border border-red-400 text-red-500 font-medium text-sm hover:bg-red-50 transition-colors"
-                            >
-                                {ticketStatus === 'Open'
-                                    ? t('details.form.closeTicket')
-                                    : t('details.form.reopenTicket')}
-                            </button>
+                                <div className="flex w-full flex-col gap-4">
+                                    <h3
+                                        className={`text-[18px] font-semibold leading-[14px] tracking-normal text-[#2E2C34] ${
+                                            isArabic ? 'text-right' : 'text-left'
+                                        }`}
+                                    >
+                                        {t('details.questionTitle')}
+                                    </h3>
 
-                            <button
-                                type="submit"
-                                className="w-full sm:w-auto px-8 py-3 rounded-full bg-[#100D40] hover:bg-[#1a1758] text-white font-medium text-sm flex items-center justify-center gap-2 transition-colors"
-                            >
-                                <span>{t('details.form.submitTicket')}</span>
-                                {isRtl ? (
-                                    <ArrowLeft className="w-4 h-4" />
-                                ) : (
-                                    <ArrowRight className="w-4 h-4" />
-                                )}
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                                    <div
+                                        className={`flex w-full flex-col gap-4 text-[14px] font-normal leading-[20px] tracking-normal text-[#84818A] ${
+                                            isArabic ? 'text-right' : 'text-left'
+                                        }`}
+                                    >
+                                        <p>{t('details.questionParagraphOne')}</p>
+
+                                        <p>{t('details.questionParagraphTwo')}</p>
+
+                                        <p>{t('details.questionParagraphOne')}</p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    className={`flex min-h-[82px] w-full items-end ${
+                                        isArabic ? 'justify-start' : 'justify-end'
+                                    }`}
+                                >
+                                    <div
+                                        className={`flex max-w-full items-end gap-2 ${
+                                            isArabic ? 'flex-row-reverse' : 'flex-row'
+                                        }`}
+                                    >
+                                        <div
+                                            className={`flex min-w-0 flex-col ${
+                                                isArabic ? 'items-start' : 'items-end'
+                                            }`}
+                                        >
+                                            <div
+                                                className={`mb-1 flex h-[20px] items-center gap-4 px-1 ${
+                                                    isArabic ? 'flex-row-reverse' : 'flex-row'
+                                                }`}
+                                            >
+                                                <span className="text-[14px] font-semibold leading-[19.6px] text-[#12115C]">
+                                                    {t('details.responseAuthor')}
+                                                </span>
+
+                                                <span className="text-[12px] font-normal leading-[16.8px] text-[#6B7280]">
+                                                    {t('details.responseTime')}
+                                                </span>
+                                            </div>
+
+                                            <div className="relative flex min-h-[48px] w-full max-w-[532px] items-center rounded-[100px] bg-[#12115C] px-4 py-[14px]">
+                                                <p
+                                                    className={`w-full font-['Sora',sans-serif] text-[13px] font-normal leading-[18.2px] tracking-normal text-[#F7F6F7] ${
+                                                        isArabic ? 'text-right' : 'text-left'
+                                                    }`}
+                                                >
+                                                    {t('details.responseMessage')}
+                                                </p>
+
+                                                <span
+                                                    className={`absolute bottom-[-7px] h-[8px] w-[30px] bg-[#12115C] [clip-path:polygon(0_0,100%_0,100%_100%)] ${
+                                                        isArabic ? 'left-3 scale-x-[-1]' : 'right-3'
+                                                    }`}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-[32px] bg-[#12115C] p-2">
+                                            <img
+                                                src={SupportTicketReplyLogo}
+                                                alt=""
+                                                className="h-full w-full object-contain"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section className="flex w-full flex-col gap-10">
+                                <div className="flex w-full flex-col gap-1">
+                                    <label
+                                        htmlFor="ticket-description"
+                                        className={`text-[14px] font-normal leading-[18px] tracking-normal text-[#2E2C34] ${
+                                            isArabic ? 'text-right' : 'text-left'
+                                        }`}
+                                    >
+                                        {t('details.form.descriptionLabel')}{' '}
+                                        <span className="text-[#F23333]">*</span>
+                                    </label>
+
+                                    <textarea
+                                        id="ticket-description"
+                                        value={description}
+                                        onChange={event => setDescription(event.target.value)}
+                                        required
+                                        className={`min-h-[120px] w-full resize-none rounded-[12px] border border-[#E2E8F0] bg-[#F4F6FA] p-[14px] text-[14px] font-normal leading-[21px] tracking-normal text-[#0F172A] outline-none transition-colors focus:border-[#12115C] ${
+                                            isArabic ? 'text-right' : 'text-left'
+                                        }`}
+                                    />
+                                </div>
+
+                                <div className="flex w-full flex-col gap-[10px]">
+                                    <p
+                                        className={`text-[14px] font-normal leading-[14px] tracking-normal text-[#2E2C34] ${
+                                            isArabic ? 'text-right' : 'text-left'
+                                        }`}
+                                    >
+                                        {t('details.form.attachmentsLabel')}{' '}
+                                        <span className="text-[#84818A]">
+                                            {t('details.form.optional')}
+                                        </span>
+                                    </p>
+
+                                    <div
+                                        role="button"
+                                        tabIndex={0}
+                                        onClick={() => fileInputRef.current?.click()}
+                                        onKeyDown={event => {
+                                            if (event.key === 'Enter' || event.key === ' ') {
+                                                fileInputRef.current?.click();
+                                            }
+                                        }}
+                                        onDragOver={handleDragOver}
+                                        onDragLeave={handleDragLeave}
+                                        onDrop={handleDrop}
+                                        className={`flex min-h-[96px] w-full cursor-pointer items-center justify-center gap-4 rounded-[20px] border-[1.5px] border-dashed p-6 transition-colors ${
+                                            isDragging
+                                                ? 'border-[#39E1D7] bg-[#F4FFFE]'
+                                                : 'border-[#E2E8F0] bg-[#FDFDFE]'
+                                        }`}
+                                    >
+                                        <SupportTicketFolderUploadIcon className="h-10 w-10 shrink-0" />
+
+                                        <div className="min-w-0 text-center">
+                                            <p className="font-['Sora',sans-serif] text-[16px] font-semibold leading-[16px] tracking-normal text-[#12115C]">
+                                                {t('details.form.dropzoneTitle')}
+                                            </p>
+
+                                            <p className="mt-2 font-['Sora',sans-serif] text-[13px] font-normal leading-[13px] tracking-normal text-[#6B7280]">
+                                                {t('details.form.dropzoneHint')}
+                                            </p>
+                                        </div>
+
+                                        <input
+                                            ref={fileInputRef}
+                                            type="file"
+                                            multiple
+                                            className="hidden"
+                                            onChange={handleFileChange}
+                                        />
+                                    </div>
+
+                                    {files.length > 0 && (
+                                        <div className="flex flex-wrap gap-2">
+                                            {files.map((file, index) => (
+                                                <button
+                                                    key={`${file.name}-${index}`}
+                                                    type="button"
+                                                    onClick={() => removeFile(index)}
+                                                    className="rounded-[8px] border border-[#E2E8F0] bg-white px-3 py-2 text-[12px] text-[#6B7280]"
+                                                >
+                                                    {file.name}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div
+                                    className={`flex w-full flex-col gap-3 sm:flex-row sm:items-center ${
+                                        isArabic ? 'sm:justify-start' : 'sm:justify-end'
+                                    } sm:gap-4`}
+                                >
+                                    <ActionButton
+                                        type="button"
+                                        onClick={handleCloseTicket}
+                                        className="!h-[44px] !w-full !rounded-[16px] !border !border-[#F23333] !bg-white !px-4 !font-['Sora',sans-serif] !text-[18px] !font-normal !leading-[28px] !text-[#F23333] sm:!w-[240px] 3xl:!h-[44px] 3xl:!w-[240px] 3xl:!rounded-[16px] 3xl:!px-4 3xl:!text-[18px] 4xl:!h-[44px] 4xl:!w-[240px] 4xl:!rounded-[16px] 4xl:!px-4 4xl:!text-[18px]"
+                                    >
+                                        {t('details.form.closeTicket')}
+                                    </ActionButton>
+
+                                    <ActionButton
+                                        type="submit"
+                                        trailingIcon={
+                                            <SupportTicketViewArrowIcon
+                                                className={`h-4 w-4 shrink-0 ${
+                                                    isArabic ? 'rotate-180' : ''
+                                                }`}
+                                            />
+                                        }
+                                        className="!h-[44px] !w-full !gap-2 !rounded-[16px] !bg-[#12115C] !px-5 !font-['Sora',sans-serif] !text-[18px] !font-normal !leading-[28px] !text-white sm:!w-[240px] 3xl:!h-[44px] 3xl:!w-[240px] 3xl:!rounded-[16px] 3xl:!px-5 3xl:!text-[18px] 4xl:!h-[44px] 4xl:!w-[240px] 4xl:!rounded-[16px] 4xl:!px-5 4xl:!text-[18px]"
+                                    >
+                                        {t('details.form.submitTicket')}
+                                    </ActionButton>
+                                </div>
+                            </section>
+                        </form>
+                    </div>
+                )}
             </div>
-        </div>
+        </main>
     );
 }

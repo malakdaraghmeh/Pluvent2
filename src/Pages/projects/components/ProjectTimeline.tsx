@@ -33,11 +33,11 @@ export default function ProjectTimeline() {
     const { t } = useTranslation('projectDetails');
 
     return (
-        <div className="box-border flex w-full max-w-[1086px] flex-col gap-8 rounded-[12px] bg-white p-6 shadow-[0px_1px_3px_3px_#0000001A] max-sm:gap-6 max-sm:p-4">
+        <div className="box-border flex w-full min-w-0 flex-col gap-8 rounded-[12px] bg-white p-6 shadow-[0px_1px_3px_3px_#0000001A] max-sm:gap-6 max-sm:p-4">
+            {' '}
             <h2 className="text-[22px] font-semibold text-[#12115C] max-sm:text-[18px]">
                 {t('projectTimeline')}
             </h2>
-
             <div className="w-full overflow-x-auto overflow-y-hidden pb-2 scrollbar-thin">
                 <div className="pt-[9px]">
                     <div className="flex min-w-[900px] items-start justify-between gap-2 sm:min-w-0">
@@ -113,4 +113,3 @@ export default function ProjectTimeline() {
         </div>
     );
 }
-

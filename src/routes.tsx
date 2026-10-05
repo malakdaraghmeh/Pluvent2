@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
 
-import Layout from './Components/Layout/Layout';
+import Layout from './components/Layout/Layout';
 import i18n from './i18n/i18n';
 import About from './Pages/About/About';
 import BillingPage from './Pages/billing/page';
@@ -16,8 +16,10 @@ import FileAndDocumentPage from './Pages/file-and-document/page';
 import MessagesPage from './Pages/messages/page';
 import NotFound from './Pages/NotFound/NotFound';
 import ProjectDetails from './Pages/projectDetails/ProjectDetails';
+import { projectDetailsData } from './Pages/projects/data/projectDetails';
 import ChangeRequestDetailsPage from './Pages/projects/[id]/change-requests/[requestId]/page';
 import ProjectFileAndDocumentPage from './Pages/projects/[id]/files/page';
+import CompletedProjectPage from './Pages/projects/[id]/completed/page';
 import ProjectDetailsPage from './Pages/projects/[id]/page';
 import ProjectPage from './Pages/projects/page';
 import Services from './Pages/Services/Services';
@@ -34,8 +36,7 @@ function LocaleWrapper() {
         if (!locale) return;
 
         i18n.changeLanguage(locale);
-        document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr';
-    }, [locale]);
+}, [locale]);
 
     return (
         <Routes>
@@ -48,6 +49,7 @@ function LocaleWrapper() {
 
                 <Route path="/projects" element={<ProjectPage />} />
                 <Route path="/projects/:id" element={<ProjectDetailsPage />} />
+                <Route path="/projects/:id/completed" element={<CompletedProjectPage />} />
                 <Route path="/projects/:id/files" element={<ProjectFileAndDocumentPage />} />
 
                 <Route
@@ -88,7 +90,7 @@ function LocaleWrapper() {
                 <Route path="/file-and-document" element={<FileAndDocumentPage />} />
                 <Route path="/billing" element={<BillingPage />} />
                 <Route path="/users" element={<UsersPage />} />
-                <Route path="/prdet" element={<ProjectDetails />} />
+                <Route path="/prdet" element={<ProjectDetails project={projectDetailsData[0]} />} />
                 <Route path="/support-plans" element={<SupportPlans />} />
 
                 <Route path="*" element={<NotFound />} />
@@ -117,3 +119,5 @@ const AppRoutes = () => {
 };
 
 export default AppRoutes;
+
+
