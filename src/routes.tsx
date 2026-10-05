@@ -28,6 +28,7 @@ import TicketDetails from './Pages/support/TicketDetails/page';
 import UsersPage from './Pages/users/page';
 import SupportPlans from './Pages/supportPlans/SupportPlans';
 import InvoiceModal from './Pages/InvoiceModal/invoiceModalPage';
+import SelectProjectModal from './Pages/support/selectProject/selectProject';
 
 function LocaleWrapper() {
     const { locale } = useParams();
@@ -92,7 +93,7 @@ function LocaleWrapper() {
                 <Route path="/users" element={<UsersPage />} />
                 <Route path="/prdet" element={<ProjectDetails project={projectDetailsData[0]} />} />
                 <Route path="/support-plans" element={<SupportPlans />} />
-
+                <Route path="/select-pro" element={<SelectProjectModal />} />
                 <Route path="*" element={<NotFound />} />
             </Route>
         </Routes>
