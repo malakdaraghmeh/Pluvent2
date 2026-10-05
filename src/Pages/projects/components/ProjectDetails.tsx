@@ -71,7 +71,7 @@ export default function ProjectDetails({
             : Math.round((Math.min(100, Math.max(0, progressPercent)) / 100) * 46);
 
     return (
-        <div className="flex w-full flex-col items-stretch gap-6 lg:flex-row">
+        <div className="flex w-full min-w-0 flex-col items-stretch gap-6 lg:flex-row">
             <div className="flex min-w-0 flex-1 flex-col gap-6 rounded-[24px] border-[0.5px] border-[#ECEFF4] bg-white p-6 shadow-[0px_1px_3px_3px_#0000001A]">
                 <div className="flex items-start justify-between">
                     <div className="min-w-0 flex-1">
@@ -114,7 +114,7 @@ export default function ProjectDetails({
                             <StartDate />
                         </span>
 
-                        <p className="min-w-0 whitespace-nowrap text-[13px] text-[#3634C7] 2xl:text-[14px] 3xl:text-[16px]">
+                        <p className="min-w-0 whitespace-nowrap text-[11px] font-normal leading-[16px] text-[#3634C7] min-[1450px]:text-[12px] min-[1700px]:text-[13px] min-[1920px]:text-[14px]">
                             <span className="text-[#12115C]">{t('startDate')}:</span>{' '}
                             <span className="[unicode-bidi:isolate]">
                                 {formatDate(project.startDate)}
@@ -133,7 +133,7 @@ export default function ProjectDetails({
                             <Delivery />
                         </span>
 
-                        <p className="min-w-0 whitespace-nowrap text-[13px] text-[#3634C7] 2xl:text-[14px] 3xl:text-[16px]">
+                        <p className="min-w-0 whitespace-nowrap text-[10px] font-normal leading-[16px] text-[#3634C7] min-[1450px]:text-[11px] min-[1700px]:text-[12px] min-[1920px]:text-[14px]">
                             <span className="text-[#12115C]">{t('delivery')}:</span>{' '}
                             <span className="[unicode-bidi:isolate]">
                                 {formatDate(project.deliveryDate)}

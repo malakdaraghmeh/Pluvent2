@@ -1,15 +1,15 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Modal from '@/components/ui/modal';
 import type { InvoiceModalProps } from '@/utils/types/invoice.types';
 
-import InvoiceBanner from './Components/InvoiceBanner';
-import InvoiceFooter from './Components/InvoiceFooter';
-import InvoiceHeaderLogo from './Components/InvoiceHeaderLogo';
-import InvoiceItemsTable from './Components/InvoiceItemsTable';
-import InvoiceMetadata from './Components/InvoiceMetadata';
-import InvoiceTotalSummary from './Components/InvoiceTotalSummary';
+import InvoiceBanner from './components/InvoiceBanner';
+import InvoiceFooter from './components/InvoiceFooter';
+import InvoiceHeaderLogo from './components/InvoiceHeaderLogo';
+import InvoiceItemsTable from './components/InvoiceItemsTable';
+import InvoiceMetadata from './components/InvoiceMetadata';
+import InvoiceTotalSummary from './components/InvoiceTotalSummary';
 
 const INVOICE_WIDTH = 595;
 const INVOICE_HEIGHT = 748;

@@ -1,29 +1,42 @@
-import React, { useState } from 'react';
-import { Info, CheckCircle2, ChevronDown, X, ChevronRight, ChevronLeft } from 'lucide-react';
+import { useState, type ChangeEvent, type DragEvent, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import FolderUpload from '@icons/folder-upload.svg?react';
+import {
+    ModalCloseIcon,
+    SupportTicketFilterArrowIcon,
+    SupportTicketViewArrowIcon,
+    Upload,
+} from '@/assets';
+import ActionButton from '@/components/ui/ActionButton';
+import Modal from '@/components/ui/modal';
+import ModalCloseButton from '@/components/ui/ModalCloseButton';
 
-export default function CreateSupportInquiry({ isOpen, onClose }) {
+import type { CreateSupportInquiryProps } from '../../../../utils/types/support-tickets.types';
+
+const CreateSupportInquiry = ({ isOpen, onClose }: CreateSupportInquiryProps) => {
     const { t, i18n } = useTranslation('tickets');
-    const isRtl = i18n.language === 'ar';
+    const isArabic = i18n.language.startsWith('ar');
+    const textAlignment = isArabic ? 'text-right' : 'text-left';
 
     const [subject, setSubject] = useState('');
     const [ticketCategory, setTicketCategory] = useState('technical');
     const [issueType, setIssueType] = useState('bug');
     const [description, setDescription] = useState('');
-
-    const [files, setFiles] = useState([]);
+    const [files, setFiles] = useState<File[]>([]);
     const [isDragging, setIsDragging] = useState(false);
 
-    const handleFileChange = e => {
-        if (e.target.files && e.target.files.length > 0) {
-            const selectedFiles = Array.from(e.target.files);
-            setFiles(prev => [...prev, ...selectedFiles]);
-        }
+    const addFiles = (selectedFiles: FileList | File[]) => {
+        setFiles(currentFiles => [...currentFiles, ...Array.from(selectedFiles)]);
     };
 
-    const handleDragOver = e => {
-        e.preventDefault();
+    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+        if (!event.target.files?.length) return;
+
+        addFiles(event.target.files);
+        event.target.value = '';
+    };
+
+    const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
+        event.preventDefault();
         setIsDragging(true);
     };
 
@@ -31,21 +44,22 @@ export default function CreateSupportInquiry({ isOpen, onClose }) {
         setIsDragging(false);
     };
 
-    const handleDrop = e => {
-        e.preventDefault();
+    const handleDrop = (event: DragEvent<HTMLDivElement>) => {
+        event.preventDefault();
         setIsDragging(false);
-        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-            const droppedFiles = Array.from(e.dataTransfer.files);
-            setFiles(prev => [...prev, ...droppedFiles]);
+
+        if (event.dataTransfer.files.length) {
+            addFiles(event.dataTransfer.files);
         }
     };
 
-    const removeFile = indexToRemove => {
-        setFiles(prev => prev.filter((_, index) => index !== indexToRemove));
+    const handleRemoveFile = (indexToRemove: number) => {
+        setFiles(currentFiles => currentFiles.filter((_, index) => index !== indexToRemove));
     };
 
-    const handleSubmit = e => {
-        e.preventDefault();
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
         console.log({
             subject,
             ticketCategory,
@@ -53,240 +67,244 @@ export default function CreateSupportInquiry({ isOpen, onClose }) {
             description,
             files,
         });
+
         alert(t('createModal.successAlert'));
         onClose();
     };
 
-    if (!isOpen) return null;
-
     return (
-        <div
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 overflow-y-auto bg-black/40 backdrop-blur-sm transition-all"
-            onClick={onClose}
+        <Modal
+            isOpen={isOpen}
+            onClose={onClose}
+            ariaLabel={t('createModal.title')}
+            overlayClassName="lg:ml-[280px]"
+            className="max-h-[calc(100vh-32px)] w-[calc(100%-24px)] max-w-[900px] overflow-y-auto rounded-[24px] bg-white sm:w-[calc(100%-40px)] 3xl:max-w-[1100px] 4xl:max-w-[1280px]"
         >
-            <div
-                role="dialog"
-                aria-modal="true"
-                onClick={e => e.stopPropagation()}
-                className="relative my-auto w-full max-w-4xl max-h-[calc(100vh-2rem)] overflow-y-auto bg-white rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 font-sans text-gray-800"
-            >
-                {/* Header */}
-                <div className="flex items-start justify-between border-b pb-4 border-gray-100">
-                    <div>
-                        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#100D40]">
+            <div className="flex w-full flex-col gap-6 p-5 sm:p-6 md:p-8 3xl:gap-8 3xl:p-10 4xl:gap-10 4xl:p-12">
+                <div
+                    className={`flex w-full items-start justify-between gap-4 border-b border-[#ECEFF4] pb-5 ${textAlignment}`}
+                >
+                    <div className="min-w-0 flex-1">
+                        <h2 className="text-[24px] font-semibold leading-[30px] text-[#12115C] 3xl:text-[26px] 3xl:leading-8 4xl:text-[28px] 4xl:leading-9">
                             {t('createModal.title')}
-                        </h1>
-                        <p className="text-sm text-gray-400 mt-1">{t('createModal.subtitle')}</p>
+                        </h2>
+                        <p className="mt-2 text-[13px] font-normal leading-5 text-[#7E8492] sm:text-[14px] 3xl:text-[15px] 3xl:leading-[22px] 4xl:text-[16px]">
+                            {t('createModal.subtitle')}
+                        </p>
                     </div>
-                    <button
-                        type="button"
-                        onClick={onClose}
-                        className="p-2 shrink-0 text-gray-400 hover:text-gray-600 transition-colors bg-gray-50 rounded-full hover:bg-gray-100"
-                    >
-                        <X className="w-5 h-5" />
-                    </button>
+
+                    <ModalCloseButton onClick={onClose} ariaLabel={t('createModal.close')} />
                 </div>
 
-                {/* Content */}
-                <div className="space-y-6">
-                    {/* Warranty Banner */}
-                    <div className="border border-emerald-400 bg-[#E8F8F3] rounded-2xl p-4 flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <div className="w-6 h-6 rounded-full bg-emerald-400/20 text-emerald-600 flex items-center justify-center flex-shrink-0">
-                                <Info className="w-4 h-4 stroke-[2.5]" />
-                            </div>
-                            <div>
-                                <p className="text-sm font-bold text-emerald-950">
-                                    {t('createModal.warrantyNotice')}
-                                </p>
-                                <p className="text-xs text-emerald-700 font-medium mt-0.5">
-                                    {t('createModal.warrantyDetails')}
-                                </p>
-                            </div>
-                        </div>
-                        <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 hidden sm:block" />
-                    </div>
+                <div
+                    className={`rounded-[16px] border border-[#39E1D7] bg-[#39E1D71A] p-4 sm:p-5 3xl:p-6 ${textAlignment}`}
+                >
+                    <p className="text-[14px] font-semibold leading-5 text-[#12115C] 3xl:text-[15px] 4xl:text-[16px]">
+                        {t('createModal.warrantyNotice')}
+                    </p>
+                    <p className="mt-1 text-[12px] font-normal leading-[18px] text-[#5C5B94] 3xl:text-[13px] 3xl:leading-5 4xl:text-[14px]">
+                        {t('createModal.warrantyDetails')}
+                    </p>
+                </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        {/* Header Inputs */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            {/* Subject */}
-                            <div>
-                                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                    {t('createModal.fields.subject.label')}{' '}
-                                    <span className="text-red-500">*</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    required
-                                    value={subject}
-                                    placeholder={t('createModal.fields.subject.placeholder')}
-                                    onChange={e => setSubject(e.target.value)}
-                                    className="w-full bg-[#F3F4F8] border border-transparent rounded-xl px-4 py-3 text-sm text-gray-800 focus:bg-white focus:border-gray-200 focus:outline-none transition-all"
-                                />
-                            </div>
-
-                            {/* Ticket Category */}
-                            <div>
-                                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                    {t('createModal.fields.category.label')}{' '}
-                                    <span className="text-red-500">*</span>
-                                </label>
-                                <div className="relative">
-                                    <select
-                                        value={ticketCategory}
-                                        onChange={e => setTicketCategory(e.target.value)}
-                                        className={`w-full bg-[#F3F4F8] border border-transparent rounded-xl py-3 text-sm text-gray-800 appearance-none focus:bg-white focus:border-gray-200 focus:outline-none transition-all cursor-pointer ${
-                                            isRtl ? 'pr-4 pl-10' : 'pl-4 pr-10'
-                                        }`}
-                                    >
-                                        <option value="technical">
-                                            {t('createModal.categories.technical')}
-                                        </option>
-                                        <option value="design">
-                                            {t('createModal.categories.design')}
-                                        </option>
-                                        <option value="billing">
-                                            {t('createModal.categories.billing')}
-                                        </option>
-                                    </select>
-                                    <ChevronDown
-                                        className={`w-4 h-4 text-gray-500 absolute top-1/2 -translate-y-1/2 pointer-events-none ${
-                                            isRtl ? 'left-3.5' : 'right-3.5'
-                                        }`}
-                                    />
-                                </div>
-                            </div>
-
-                            {/* Issue Type */}
-                            <div>
-                                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                    {t('createModal.fields.issueType.label')}
-                                </label>
-                                <div className="relative">
-                                    <select
-                                        value={issueType}
-                                        onChange={e => setIssueType(e.target.value)}
-                                        className={`w-full bg-[#F3F4F8] border border-transparent rounded-xl py-3 text-sm text-gray-800 appearance-none focus:bg-white focus:border-gray-200 focus:outline-none transition-all cursor-pointer ${
-                                            isRtl ? 'pr-4 pl-10' : 'pl-4 pr-10'
-                                        }`}
-                                    >
-                                        <option value="bug">
-                                            {t('createModal.issueTypes.bug')}
-                                        </option>
-                                        <option value="feature">
-                                            {t('createModal.issueTypes.feature')}
-                                        </option>
-                                        <option value="question">
-                                            {t('createModal.issueTypes.question')}
-                                        </option>
-                                    </select>
-                                    <ChevronDown
-                                        className={`w-4 h-4 text-gray-500 absolute top-1/2 -translate-y-1/2 pointer-events-none ${
-                                            isRtl ? 'left-3.5' : 'right-3.5'
-                                        }`}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Description */}
-                        <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                {t('createModal.fields.description.label')}{' '}
-                                <span className="text-red-500">*</span>
+                <form
+                    onSubmit={handleSubmit}
+                    className="flex w-full flex-col gap-6 3xl:gap-7 4xl:gap-8"
+                >
+                    <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-3 3xl:gap-5 4xl:gap-6">
+                        <div className={`flex min-w-0 flex-col gap-2 ${textAlignment}`}>
+                            <label
+                                htmlFor="support-subject"
+                                className="text-[14px] font-semibold leading-5 text-[#2E2C34] 3xl:text-[15px] 4xl:text-[16px]"
+                            >
+                                {t('createModal.fields.subject.label')}{' '}
+                                <span className="text-[#FF3B30]">*</span>
                             </label>
-                            <textarea
-                                rows={5}
+                            <input
+                                id="support-subject"
+                                type="text"
                                 required
-                                value={description}
-                                placeholder={t('createModal.fields.description.placeholder')}
-                                onChange={e => setDescription(e.target.value)}
-                                className="w-full bg-[#F3F4F8] border border-transparent rounded-xl p-4 text-sm text-gray-800 focus:bg-white focus:border-gray-200 focus:outline-none transition-all resize-none"
+                                value={subject}
+                                onChange={event => setSubject(event.target.value)}
+                                placeholder={t('createModal.fields.subject.placeholder')}
+                                className={`h-[48px] w-full rounded-[12px] border border-transparent bg-[#F3F4F8] px-4 text-[14px] font-normal text-[#2E2C34] outline-none transition-colors placeholder:text-[#A0A3AD] focus:border-[#39E1D7] focus:bg-white 3xl:h-[52px] 3xl:text-[15px] 4xl:h-[56px] 4xl:text-[16px] ${textAlignment}`}
                             />
                         </div>
 
-                        {/* File Upload Dropzone */}
-                        <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                {t('createModal.fields.upload.label')}{' '}
-                                <span className="text-gray-400 font-normal">
-                                    ({t('createModal.fields.upload.optional')})
-                                </span>
+                        <div className={`flex min-w-0 flex-col gap-2 ${textAlignment}`}>
+                            <label
+                                htmlFor="support-category"
+                                className="text-[14px] font-semibold leading-5 text-[#2E2C34] 3xl:text-[15px] 4xl:text-[16px]"
+                            >
+                                {t('createModal.fields.category.label')}{' '}
+                                <span className="text-[#FF3B30]">*</span>
                             </label>
 
-                            <div
-                                onDragOver={handleDragOver}
-                                onDragLeave={handleDragLeave}
-                                onDrop={handleDrop}
-                                className={`border-2 border-dashed rounded-2xl p-8 text-center transition-all flex flex-col items-center justify-center cursor-pointer ${
-                                    isDragging
-                                        ? 'border-cyan-400 bg-sky-50/50'
-                                        : 'border-slate-200 bg-white hover:border-slate-300'
-                                }`}
-                            >
-                                <input
-                                    type="file"
-                                    id="file-input"
-                                    multiple
-                                    onChange={handleFileChange}
-                                    className="hidden"
-                                />
-                                <label
-                                    htmlFor="file-input"
-                                    className="flex flex-col items-center cursor-pointer"
+                            <div className="relative">
+                                <select
+                                    id="support-category"
+                                    value={ticketCategory}
+                                    onChange={event => setTicketCategory(event.target.value)}
+                                    className={`h-[48px] w-full cursor-pointer appearance-none rounded-[12px] border border-transparent bg-[#F3F4F8] text-[14px] font-normal text-[#2E2C34] outline-none transition-colors focus:border-[#39E1D7] focus:bg-white 3xl:h-[52px] 3xl:text-[15px] 4xl:h-[56px] 4xl:text-[16px] ${
+                                        isArabic ? 'pl-11 pr-4 text-right' : 'pl-4 pr-11 text-left'
+                                    }`}
                                 >
-                                    <FolderUpload />
-                                    <p className="text-base font-bold text-[#100D40]">
-                                        {t('createModal.dropzone.title')}
-                                    </p>
-                                    <p className="text-xs text-gray-400 mt-1">
-                                        {t('createModal.dropzone.hint')}
-                                    </p>
-                                </label>
+                                    <option value="technical">
+                                        {t('createModal.categories.technical')}
+                                    </option>
+                                    <option value="design">
+                                        {t('createModal.categories.design')}
+                                    </option>
+                                    <option value="billing">
+                                        {t('createModal.categories.billing')}
+                                    </option>
+                                </select>
+
+                                <SupportTicketFilterArrowIcon
+                                    className={`pointer-events-none absolute top-1/2 h-[14px] w-[14px] -translate-y-1/2 -rotate-90 ${
+                                        isArabic ? 'left-4' : 'right-4'
+                                    }`}
+                                />
                             </div>
-
-                            {/* Files List */}
-                            {files.length > 0 && (
-                                <div className="mt-3 space-y-2">
-                                    {files.map((file, idx) => (
-                                        <div
-                                            key={idx}
-                                            className="flex items-center justify-between p-3 bg-[#F3F4F8] rounded-xl text-xs"
-                                        >
-                                            <span className="font-medium text-gray-700 truncate max-w-sm">
-                                                {file.name}
-                                            </span>
-                                            <button
-                                                type="button"
-                                                onClick={() => removeFile(idx)}
-                                                className="text-gray-400 hover:text-red-500 transition-colors"
-                                            >
-                                                <X className="w-4 h-4" />
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
                         </div>
 
-                        {/* Submit Button */}
-                        <div className="flex justify-end pt-2">
-                            <button
-                                type="submit"
-                                className="w-full sm:w-auto px-8 py-3.5 bg-[#100D40] hover:bg-[#1a1758] text-white font-semibold text-sm rounded-2xl flex items-center justify-center gap-2 transition-all shadow-sm"
+                        <div className={`flex min-w-0 flex-col gap-2 ${textAlignment}`}>
+                            <label
+                                htmlFor="support-issue-type"
+                                className="text-[14px] font-semibold leading-5 text-[#2E2C34] 3xl:text-[15px] 4xl:text-[16px]"
                             >
-                                <span>{t('createModal.submitBtn')}</span>
-                                {isRtl ? (
-                                    <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
-                                ) : (
-                                    <ChevronRight className="w-4 h-4 stroke-[2.5]" />
-                                )}
-                            </button>
+                                {t('createModal.fields.issueType.label')}
+                            </label>
+
+                            <div className="relative">
+                                <select
+                                    id="support-issue-type"
+                                    value={issueType}
+                                    onChange={event => setIssueType(event.target.value)}
+                                    className={`h-[48px] w-full cursor-pointer appearance-none rounded-[12px] border border-transparent bg-[#F3F4F8] text-[14px] font-normal text-[#2E2C34] outline-none transition-colors focus:border-[#39E1D7] focus:bg-white 3xl:h-[52px] 3xl:text-[15px] 4xl:h-[56px] 4xl:text-[16px] ${
+                                        isArabic ? 'pl-11 pr-4 text-right' : 'pl-4 pr-11 text-left'
+                                    }`}
+                                >
+                                    <option value="bug">{t('createModal.issueTypes.bug')}</option>
+                                    <option value="feature">
+                                        {t('createModal.issueTypes.feature')}
+                                    </option>
+                                    <option value="question">
+                                        {t('createModal.issueTypes.question')}
+                                    </option>
+                                </select>
+
+                                <SupportTicketFilterArrowIcon
+                                    className={`pointer-events-none absolute top-1/2 h-[14px] w-[14px] -translate-y-1/2 -rotate-90 ${
+                                        isArabic ? 'left-4' : 'right-4'
+                                    }`}
+                                />
+                            </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+
+                    <div className={`flex w-full flex-col gap-2 ${textAlignment}`}>
+                        <label
+                            htmlFor="support-description"
+                            className="text-[14px] font-semibold leading-5 text-[#2E2C34] 3xl:text-[15px] 4xl:text-[16px]"
+                        >
+                            {t('createModal.fields.description.label')}{' '}
+                            <span className="text-[#FF3B30]">*</span>
+                        </label>
+
+                        <textarea
+                            id="support-description"
+                            required
+                            rows={5}
+                            value={description}
+                            onChange={event => setDescription(event.target.value)}
+                            placeholder={t('createModal.fields.description.placeholder')}
+                            className={`min-h-[130px] w-full resize-none rounded-[12px] border border-transparent bg-[#F3F4F8] p-4 text-[14px] font-normal leading-6 text-[#2E2C34] outline-none transition-colors placeholder:text-[#A0A3AD] focus:border-[#39E1D7] focus:bg-white 3xl:min-h-[150px] 3xl:text-[15px] 4xl:min-h-[170px] 4xl:text-[16px] ${textAlignment}`}
+                        />
+                    </div>
+
+                    <div className={`flex w-full flex-col gap-2 ${textAlignment}`}>
+                        <label className="text-[14px] font-semibold leading-5 text-[#2E2C34] 3xl:text-[15px] 4xl:text-[16px]">
+                            {t('createModal.fields.upload.label')}{' '}
+                            <span className="font-normal text-[#8C8C9A]">
+                                ({t('createModal.fields.upload.optional')})
+                            </span>
+                        </label>
+
+                        <div
+                            onDragOver={handleDragOver}
+                            onDragLeave={handleDragLeave}
+                            onDrop={handleDrop}
+                            className={`flex min-h-[150px] w-full items-center justify-center rounded-[16px] border-2 border-dashed px-4 py-6 transition-colors 3xl:min-h-[170px] 4xl:min-h-[190px] ${
+                                isDragging
+                                    ? 'border-[#39E1D7] bg-[#39E1D70D]'
+                                    : 'border-[#DDE0E8] bg-white'
+                            }`}
+                        >
+                            <input
+                                id="support-file-input"
+                                type="file"
+                                multiple
+                                onChange={handleFileChange}
+                                className="hidden"
+                            />
+
+                            <label
+                                htmlFor="support-file-input"
+                                className="flex cursor-pointer flex-col items-center justify-center gap-2 text-center"
+                            >
+                                <Upload className="h-8 w-8 shrink-0 3xl:h-9 3xl:w-9 4xl:h-10 4xl:w-10" />
+                                <span className="text-[14px] font-semibold leading-5 text-[#12115C] 3xl:text-[15px] 4xl:text-[16px]">
+                                    {t('createModal.dropzone.title')}
+                                </span>
+                                <span className="text-[12px] font-normal leading-[18px] text-[#8C8C9A] 3xl:text-[13px] 4xl:text-[14px]">
+                                    {t('createModal.dropzone.hint')}
+                                </span>
+                            </label>
+                        </div>
+
+                        {files.length > 0 && (
+                            <div className="mt-2 flex w-full flex-col gap-2">
+                                {files.map((file, index) => (
+                                    <div
+                                        key={`${file.name}-${file.lastModified}-${index}`}
+                                        className="flex min-h-[44px] w-full items-center justify-between gap-3 rounded-[12px] bg-[#F3F4F8] px-4 py-2 3xl:min-h-[48px]"
+                                    >
+                                        <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-[#2E2C34] 3xl:text-[14px] 4xl:text-[15px]">
+                                            {file.name}
+                                        </span>
+
+                                        <button
+                                            type="button"
+                                            onClick={() => handleRemoveFile(index)}
+                                            aria-label={t('createModal.removeAttachment')}
+                                            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-[#E7E8EE]"
+                                        >
+                                            <ModalCloseIcon className="h-4 w-4" />
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="flex w-full justify-end">
+                        <ActionButton
+                            type="submit"
+                            trailingIcon={
+                                <SupportTicketViewArrowIcon
+                                    className={`h-4 w-4 shrink-0 ${isArabic ? 'rotate-180' : ''}`}
+                                />
+                            }
+                            className="!h-[44px] !w-full !rounded-[16px] !px-6 !text-[16px] !font-normal sm:!w-auto sm:!min-w-[190px] 3xl:!h-[48px] 3xl:!min-w-[210px] 3xl:!text-[17px] 4xl:!h-[52px] 4xl:!min-w-[230px] 4xl:!text-[18px]"
+                        >
+                            {t('createModal.submitBtn')}
+                        </ActionButton>
+                    </div>
+                </form>
             </div>
-        </div>
+        </Modal>
     );
-}
+};
+
+export default CreateSupportInquiry;
