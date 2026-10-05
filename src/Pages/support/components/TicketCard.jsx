@@ -54,6 +54,7 @@ export default function TicketCard({ ticket }) {
                     <span>{t('card.viewTicket')}</span>
                     {isRtl ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
                 </button>
+                
             </div>
         </div>
     );
