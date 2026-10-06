@@ -77,11 +77,13 @@ export const ChatArea = ({
                                     message.isMe ? 'flex-row-reverse' : 'flex-row'
                                 }`}
                             >
-                                <img
-                                    src={message.senderAvatar}
-                                    alt={message.senderName}
-                                    className="h-10 w-10 shrink-0 rounded-full object-cover 3xl:h-[44px] 3xl:w-[44px] 4xl:h-[48px] 4xl:w-[48px]"
-                                />
+                              <div className="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[32px] bg-[#12115C] p-[8px] 3xl:h-[44px] 3xl:w-[44px] 3xl:p-[9px] 4xl:h-[48px] 4xl:w-[48px] 4xl:p-[10px]">
+                    <img
+                        src={message.senderAvatar}
+                        alt={message.senderName}
+                        className="h-full w-full object-contain"
+                    />
+                </div>
 
                                 <div
                                     className={`flex min-w-0 flex-col ${
@@ -89,15 +91,15 @@ export const ChatArea = ({
                                     }`}
                                 >
                                     <div className="mb-[6px] flex items-center gap-2">
-                                        <span className="text-[12px] font-semibold text-[#17164C] 3xl:text-[13px] 4xl:text-[14px]">
+                                        <span className="text-[14px] font-semibold text-[#12115C] ">
                                             {message.senderName}
                                         </span>
 
-                                        <span className="text-[11px] font-normal text-[#98A2B3] 3xl:text-[12px]">
+                                        <span className="text-[12px]  text-[#6B7280] ">
                                             {message.time}
                                         </span>
                                     </div>
-
+{/* 
                                     <div
                                         className={`w-fit rounded-[100px] px-4 py-[11px] text-[12px] leading-[18px] max-md:max-w-[85%] max-md:whitespace-normal md:max-w-none md:whitespace-nowrap 3xl:px-5 3xl:py-3 3xl:text-[13px] 4xl:px-6 4xl:py-[14px] 4xl:text-[14px] ${
                                             message.isMe
@@ -106,7 +108,45 @@ export const ChatArea = ({
                                         }`}
                                     >
                                         {getMessageText(message)}
-                                    </div>
+                                    </div> */}
+
+                                <div
+                                    className={`relative w-fit rounded-[100px] px-4 py-[11px] text-[13px] leading-[18px]
+                                        max-md:max-w-[85%]
+                                        max-md:whitespace-normal
+                                        md:max-w-none
+                                        md:whitespace-nowrap
+                                       
+                        
+
+                                        ${
+                                            message.isMe
+                                                ? `
+                                                    bg-[#12115C]
+                                                    text-[#F7F6F7]
+                                                    after:absolute
+                                                    after:bottom-[-5px]
+                                                    after:right-[12px]
+                                                    after:h-[7px]
+                                                    after:w-[14px]
+                                                    after:bg-[#12115C]
+                                                    after:[clip-path:polygon(0_0,100%_0,100%_100%)]
+                                                `
+                                                : `
+                                                    bg-[#2F1ABD10]
+                                                    text-[#1E293B]
+                                                    after:absolute
+                                                    after:bottom-[-5px]
+                                                    after:left-[12px]
+                                                    after:h-[7px]
+                                                    after:w-[14px]
+                                                    after:bg-[#2F1ABD10]
+                                                    after:[clip-path:polygon(0_0,0_100%,100%_0)]
+                                                `
+                                        }`}
+                                >
+                                    {getMessageText(message)}
+                                </div>
                                 </div>
                             </div>
                         ))}
@@ -120,7 +160,7 @@ export const ChatArea = ({
                             aria-label={t('addAttachment')}
                             className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#EBF2FF] transition hover:bg-[#E2EAFF] 3xl:h-[52px] 3xl:w-[52px] 4xl:h-14 4xl:w-14"
                         >
-                            <MessagesPlusIcon className="h-5 w-5 3xl:h-[22px] 3xl:w-[22px]" />
+                            <MessagesPlusIcon className="h-5 w-5 " />
                         </button>
 
                         <div className="flex h-12 min-w-0 flex-1 items-center rounded-[100px] bg-[#F0FEFC] py-2 ps-4 pe-2 shadow-[0_2px_15px_rgba(0,0,0,0.05)] 3xl:h-[52px] 4xl:h-14">
@@ -129,7 +169,7 @@ export const ChatArea = ({
                                 value={inputText}
                                 onChange={event => onInputChange(event.target.value)}
                                 placeholder={t('typeMessagePlaceholder')}
-                                className="min-w-0 flex-1 bg-transparent text-[12px] text-[#344054] outline-none placeholder:text-[#98A2B3] 3xl:text-[13px] 4xl:text-[14px]"
+                                className="min-w-0 flex-1 bg-transparent text-[12px] text-[#0F1113] outline-none  "
                             />
 
                             <button
