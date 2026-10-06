@@ -1,19 +1,14 @@
-﻿import { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
 import { DropDown, MoreVertical, Search } from '@/assets';
-
-import type { UserRole, UsersTableProps } from '../../../utils/types/users.types';
+import type { UserRole, UsersTableProps } from '../../../../utils/types/users.types';
 
 export default function UsersTable({ users }: UsersTableProps) {
     const { t, i18n } = useTranslation('usersPage');
-
     const isArabic = i18n.language.startsWith('ar');
 
     const [searchValue, setSearchValue] = useState('');
-
     const [isRoleOpen, setIsRoleOpen] = useState(false);
-
     const [selectedRole, setSelectedRole] = useState<UserRole | null>(null);
 
     const roles = useMemo(() => Array.from(new Set(users.map(user => user.role))), [users]);
@@ -44,8 +39,8 @@ export default function UsersTable({ users }: UsersTableProps) {
                     {t('title')}
                 </h2>
 
-                <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
-                    <div className="relative w-full sm:w-[280px] min-[1920px]:w-[340px] min-[2500px]:w-[400px]">
+                <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center sm:shrink-0">
+                    <div className="relative flex h-[38px] w-full min-w-0 items-center sm:w-[280px] sm:min-w-[280px] sm:max-w-[280px] sm:flex-none sm:shrink-0">
                         <Search
                             className={`pointer-events-none absolute top-1/2 h-4 w-4 -translate-y-1/2 ${
                                 isArabic ? 'right-4' : 'left-4'
@@ -63,14 +58,14 @@ export default function UsersTable({ users }: UsersTableProps) {
                         />
                     </div>
 
-                    <div className="relative w-full sm:w-[89px] min-[1920px]:w-[110px] min-[2500px]:w-[125px]">
+                    <div className="relative w-full sm:w-[89px] sm:min-w-[89px] sm:max-w-[89px] sm:flex-none sm:shrink-0">
                         <button
                             type="button"
                             aria-expanded={isRoleOpen}
                             onClick={() => setIsRoleOpen(current => !current)}
                             className="flex h-[38px] w-full items-center justify-between gap-2 rounded-[12px] border border-[#ECEFF4] bg-white px-4 text-[14px] font-semibold leading-[18px] text-[#12115C] transition-colors hover:border-[#12115C] min-[1920px]:h-[42px] min-[1920px]:text-[15px] min-[2500px]:h-[46px] min-[2500px]:text-[16px]"
                         >
-                            <span className="truncate">
+                            <span className="whitespace-nowrap">
                                 {selectedRole ? t(`roles.${selectedRole}`) : t('role')}
                             </span>
 
@@ -90,18 +85,14 @@ export default function UsersTable({ users }: UsersTableProps) {
                                     onClick={() => setIsRoleOpen(false)}
                                 />
 
-                                <div
-                                    className={`absolute top-[calc(100%+6px)] z-20 max-h-[220px] min-w-[150px] overflow-y-auto rounded-[12px] border border-[#ECEFF4] bg-white py-1 shadow-lg ${
-                                        isArabic ? 'left-0' : 'right-0'
-                                    }`}
-                                >
+                                <div className="absolute right-0 top-[calc(100%+6px)] z-30 max-h-[220px] w-full min-w-0 overflow-y-auto rounded-[12px] border border-[#ECEFF4] bg-white py-1 shadow-lg sm:w-[180px]">
                                     <button
                                         type="button"
                                         onClick={() => {
                                             setSelectedRole(null);
                                             setIsRoleOpen(false);
                                         }}
-                                        className={`w-full px-4 py-2.5 text-[14px] transition-colors hover:bg-[#F8F9FB] ${
+                                        className={`w-full whitespace-nowrap px-4 py-2.5 text-[14px] transition-colors hover:bg-[#F8F9FB] ${
                                             isArabic ? 'text-right' : 'text-left'
                                         } ${
                                             !selectedRole
@@ -120,7 +111,7 @@ export default function UsersTable({ users }: UsersTableProps) {
                                                 setSelectedRole(role);
                                                 setIsRoleOpen(false);
                                             }}
-                                            className={`w-full px-4 py-2.5 text-[14px] transition-colors hover:bg-[#F8F9FB] ${
+                                            className={`w-full whitespace-nowrap px-4 py-2.5 text-[14px] transition-colors hover:bg-[#F8F9FB] ${
                                                 isArabic ? 'text-right' : 'text-left'
                                             } ${
                                                 selectedRole === role
@@ -292,4 +283,3 @@ export default function UsersTable({ users }: UsersTableProps) {
         </section>
     );
 }
-

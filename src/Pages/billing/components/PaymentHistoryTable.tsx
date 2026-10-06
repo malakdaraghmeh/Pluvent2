@@ -1,18 +1,8 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
-import {
-    Apple,
-    DownloadBilling,
-    Instapay,
-    Paypal,
-    SearchBilling,
-    Visa,
-} from '@/assets';
+import { Apple, DownloadBilling, Instapay, Paypal, SearchBilling, Visa } from '@/assets';
 import InvoiceModal from '@/Pages/InvoiceModal/invoiceModalPage';
-
 import type { PaymentHistoryItem } from '../../../../utils/types/billing.types';
-
 import { paymentHistoryList } from '../data/paymentHistory';
 
 const ALL_PROJECTS = 'all';
@@ -24,7 +14,10 @@ const PaymentMethodBadge = ({ item }: { item: PaymentHistoryItem }) => {
             return (
                 <div className="flex items-center gap-2 whitespace-nowrap text-[13px] font-medium text-[#12115C]">
                     <Visa className="h-auto shrink-0" />
-                    <span className="[direction:ltr] [unicode-bidi:isolate]">{item.methodText}</span>
+
+                    <span className="[direction:ltr] [unicode-bidi:isolate]">
+                        {item.methodText}
+                    </span>
                 </div>
             );
 
@@ -32,7 +25,10 @@ const PaymentMethodBadge = ({ item }: { item: PaymentHistoryItem }) => {
             return (
                 <div className="flex items-center gap-1.5 whitespace-nowrap text-[13px] font-medium text-[#0088FF]">
                     <Paypal className="h-auto shrink-0" />
-                    <span className="[direction:ltr] [unicode-bidi:isolate]">{item.methodText}</span>
+
+                    <span className="[direction:ltr] [unicode-bidi:isolate]">
+                        {item.methodText}
+                    </span>
                 </div>
             );
 
@@ -40,7 +36,10 @@ const PaymentMethodBadge = ({ item }: { item: PaymentHistoryItem }) => {
             return (
                 <div className="flex items-center gap-1.5 whitespace-nowrap text-[13px] font-medium text-[#111827]">
                     <Apple className="h-auto shrink-0" />
-                    <span className="[direction:ltr] [unicode-bidi:isolate]">{item.methodText}</span>
+
+                    <span className="[direction:ltr] [unicode-bidi:isolate]">
+                        {item.methodText}
+                    </span>
                 </div>
             );
 
@@ -48,6 +47,7 @@ const PaymentMethodBadge = ({ item }: { item: PaymentHistoryItem }) => {
             return (
                 <div className="flex items-center gap-2 whitespace-nowrap text-[13px] font-medium">
                     <Instapay className="h-auto shrink-0" />
+
                     <span className="[direction:ltr] [unicode-bidi:isolate] text-[#4B5563]">
                         {item.methodText}
                     </span>
@@ -65,15 +65,17 @@ const PaymentMethodBadge = ({ item }: { item: PaymentHistoryItem }) => {
 
 export default function PaymentHistoryTable() {
     const { t, i18n } = useTranslation('paymentHistory');
+    const { t: paymentsT } = useTranslation('upcomingPayments');
 
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedProject, setSelectedProject] = useState(ALL_PROJECTS);
     const [isInvoiceOpen, setIsInvoiceOpen] = useState(false);
 
     const isRtl = i18n.language.startsWith('ar');
+
     const getProjectName = (project: string) => {
         if (project === WEBSITE_REDESIGN) {
-            return t('projectNames.companyWebsiteRedesign');
+            return paymentsT('projectNames.companyWebsiteRedesign');
         }
 
         return project;
@@ -82,7 +84,7 @@ export default function PaymentHistoryTable() {
     const getAmount = (amount: string) => {
         const numericAmount = amount.replace(/^EGP\s*/i, '');
 
-        return t('amountValue', {
+        return paymentsT('amountValue', {
             amount: numericAmount,
         });
     };
@@ -90,29 +92,27 @@ export default function PaymentHistoryTable() {
     const getDate = (date: string) => {
         const parsedDate = new Date(date);
 
-        if (Number.isNaN(parsedDate.getTime())) return date;
+        if (Number.isNaN(parsedDate.getTime())) {
+            return date;
+        }
 
-        return new Intl.DateTimeFormat(
-            isRtl ? 'ar-EG-u-nu-latn' : 'en-US',
-            {
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric',
-            }
-        ).format(parsedDate);
+        return new Intl.DateTimeFormat(isRtl ? 'ar-EG-u-nu-latn' : 'en-US', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+        }).format(parsedDate);
     };
 
     const filteredData = paymentHistoryList.filter(item => {
         const normalizedSearch = searchTerm.trim().toLowerCase();
+
         const localizedProject = getProjectName(item.project);
 
         const matchesSearch =
             localizedProject.toLowerCase().includes(normalizedSearch) ||
             item.invoice.toLowerCase().includes(normalizedSearch);
 
-        const matchesFilter =
-            selectedProject === ALL_PROJECTS ||
-            item.project === selectedProject;
+        const matchesFilter = selectedProject === ALL_PROJECTS || item.project === selectedProject;
 
         return matchesSearch && matchesFilter;
     });
@@ -141,13 +141,9 @@ export default function PaymentHistoryTable() {
                                 type="text"
                                 placeholder={t('searchPlaceholder')}
                                 value={searchTerm}
-                                onChange={event =>
-                                    setSearchTerm(event.target.value)
-                                }
+                                onChange={event => setSearchTerm(event.target.value)}
                                 className={`h-[38px] w-full rounded-[12px] border border-[#ECEFF4] bg-white text-[14px] text-[#111827] placeholder:text-[#9CA3AF] focus:outline-none ${
-                                    isRtl
-                                        ? 'pl-4 pr-9 text-right'
-                                        : 'pl-9 pr-4 text-left'
+                                    isRtl ? 'pl-4 pr-9 text-right' : 'pl-9 pr-4 text-left'
                                 }`}
                             />
                         </div>
@@ -155,26 +151,22 @@ export default function PaymentHistoryTable() {
                         <div className="w-full shrink-0 sm:w-[170px] 3xl:w-[190px] 4xl:w-[210px]">
                             <select
                                 value={selectedProject}
-                                onChange={event =>
-                                    setSelectedProject(event.target.value)
-                                }
+                                onChange={event => setSelectedProject(event.target.value)}
                                 className={`h-[38px] w-full rounded-[12px] border border-[#ECEFF4] bg-white px-4 text-[14px] font-semibold text-[#12115C] focus:outline-none ${
                                     isRtl ? 'text-right' : 'text-left'
                                 }`}
                             >
-                                <option value={ALL_PROJECTS}>
-                                    {t('allProjects')}
-                                </option>
+                                <option value={ALL_PROJECTS}>{t('allProjects')}</option>
 
                                 <option value={WEBSITE_REDESIGN}>
-                                    {t('projectNames.companyWebsiteRedesign')}
+                                    {paymentsT('projectNames.companyWebsiteRedesign')}
                                 </option>
                             </select>
                         </div>
                     </div>
                 </div>
 
-                <div className="w-full min-w-0 overflow-x-auto rounded-[8px] border border-[#00E5C820]">
+                <div className="w-full min-w-0 overflow-x-auto rounded-[8px] border border-[#00E5C820] [scrollbar-width:thin] [scrollbar-color:#CBD5E1_transparent] [&::-webkit-scrollbar]:h-[4px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#CBD5E1]">
                     <table className="w-full min-w-[980px] table-auto border-collapse text-left xl:min-w-full">
                         <thead>
                             <tr className="h-[48px] border-b border-[#00E5C820] text-[14px] font-semibold text-[#12115C]">
@@ -207,9 +199,7 @@ export default function PaymentHistoryTable() {
                                 <tr
                                     key={row.id}
                                     className={`h-[62px] border-b border-[#00E5C815] last:border-none ${
-                                        index % 2 === 0
-                                            ? 'bg-[#00E5C805]'
-                                            : 'bg-white'
+                                        index % 2 === 0 ? 'bg-[#00E5C805]' : 'bg-white'
                                     }`}
                                 >
                                     <td className="whitespace-nowrap px-6 py-4 font-semibold text-[#12115C]">
@@ -237,9 +227,7 @@ export default function PaymentHistoryTable() {
                                             type="button"
                                             title={t('downloadInvoice')}
                                             aria-label={t('downloadInvoice')}
-                                            onClick={() =>
-                                                setIsInvoiceOpen(true)
-                                            }
+                                            onClick={() => setIsInvoiceOpen(true)}
                                             className="inline-flex items-center justify-center rounded-lg p-1.5 text-[#12115C] transition-colors hover:text-[#00E5C8]"
                                         >
                                             <DownloadBilling className="h-5 w-5 shrink-0" />
@@ -250,10 +238,7 @@ export default function PaymentHistoryTable() {
 
                             {filteredData.length === 0 && (
                                 <tr>
-                                    <td
-                                        colSpan={6}
-                                        className="py-8 text-center text-[#8C94A3]"
-                                    >
+                                    <td colSpan={6} className="py-8 text-center text-[#8C94A3]">
                                         {t('noResults')}
                                     </td>
                                 </tr>
@@ -263,10 +248,7 @@ export default function PaymentHistoryTable() {
                 </div>
             </div>
 
-            <InvoiceModal
-                isOpen={isInvoiceOpen}
-                onClose={() => setIsInvoiceOpen(false)}
-            />
+            <InvoiceModal isOpen={isInvoiceOpen} onClose={() => setIsInvoiceOpen(false)} />
         </>
     );
 }

@@ -1,0 +1,119 @@
+import type { GetSupportPlansData } from '../../../../utils/types/support-plans.types';
+
+export const getSupportPlansData: GetSupportPlansData = (
+    t,
+    currentLang,
+) => ({
+    pageTitle: t('pageTitle', {
+        defaultValue: 'Support Plans',
+        lng: currentLang,
+    }),
+    plans: [
+        {
+            key: 'essential',
+            title: t('essential.title', {
+                defaultValue: 'Essential Support',
+                lng: currentLang,
+            }),
+            buttonText: t('essential.button', {
+                defaultValue: 'Request Now',
+                lng: currentLang,
+            }),
+            popular: false,
+            features: t('essential.features', {
+                returnObjects: true,
+                lng: currentLang,
+                defaultValue: [
+                    'Bug Fixing & Troubleshooting',
+                    'System Health Checks',
+                    'Minor Configuration',
+                    'Email / Ticket Support',
+                    'Monthly Review',
+                    'Backup Verification',
+                ],
+            }) as string[],
+        },
+        {
+            key: 'professional',
+            title: t('professional.title', {
+                defaultValue: 'Professional Support',
+                lng: currentLang,
+            }),
+            buttonText: t('professional.button', {
+                defaultValue: 'Request Now',
+                lng: currentLang,
+            }),
+            popular: true,
+            features: t('professional.features', {
+                returnObjects: true,
+                lng: currentLang,
+                defaultValue: [
+                    'Priority Support',
+                    'Application & Server Monitoring',
+                    'Database & Backup Monitoring',
+                    'Performance & Security Checks',
+                    'API & Integration Monitoring',
+                    'Minor Modifications',
+                    'Monthly Maintenance & Reports',
+                    'Deployment & Release Support',
+                ],
+            }) as string[],
+        },
+        {
+            key: 'businessCritical',
+            title: t('businessCritical.title', {
+                defaultValue: 'Business Critical Support',
+                lng: currentLang,
+            }),
+            buttonText: t('businessCritical.button', {
+                defaultValue: 'Request Now',
+                lng: currentLang,
+            }),
+            popular: false,
+            features: t('businessCritical.features', {
+                returnObjects: true,
+                lng: currentLang,
+                defaultValue: [
+                    'High-Priority Incident Handling',
+                    'Proactive Monitoring',
+                    'Database & Performance Optimization',
+                    'Security & Integration Monitoring',
+                    'Backup & Recovery',
+                    'Production Deployment Support',
+                    'Priority Bug Fixing',
+                    'Dedicated Technical Contact',
+                    'Monthly Optimization Review',
+                ],
+            }) as string[],
+        },
+        {
+            key: 'enterprise',
+            title: t('enterprise.title', {
+                defaultValue: 'Enterprise Support',
+                lng: currentLang,
+            }),
+            buttonText: t('enterprise.button', {
+                defaultValue: 'Request Now',
+                lng: currentLang,
+            }),
+            popular: false,
+            features: t('enterprise.features', {
+                returnObjects: true,
+                lng: currentLang,
+                defaultValue: [
+                    '24/7 Critical Support',
+                    'Dedicated Support Engineer',
+                    'Account Manager',
+                    'DevOps & Cloud Management',
+                    'Cybersecurity Monitoring',
+                    'Disaster Recovery',
+                    'SLA-based Support',
+                    'Penetration & Security Reviews',
+                    'Release Management',
+                    'Dedicated Development Hours',
+                    'On-site Support',
+                ],
+            }) as string[],
+        },
+    ],
+});

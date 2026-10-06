@@ -1,4 +1,4 @@
-import type { UserTableItem } from '../../../utils/types/users.types';
+import type { UserTableItem } from '../../../../utils/types/users.types';
 
 export const usersTableData: UserTableItem[] = [
     {

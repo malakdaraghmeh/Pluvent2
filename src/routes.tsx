@@ -1,31 +1,27 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
-
 import Layout from './components/Layout/Layout';
 import i18n from './i18n/i18n';
 import About from './Pages/About/About';
-import BillingPage from './Pages/billing/page';
-import CompletedChangeRequestPage from './Pages/change-request-details/completed/page';
-import InProgressPage from './Pages/change-request-details/in-progress/page';
-import ChangeRequestReviewDetails from './Pages/change-request-details/page';
-import PendingPaymentPage from './Pages/change-request-details/payment/page';
-import WaitingUserInputPage from './Pages/change-request-details/waiting/page';
+import BillingPage from './Pages/billing/BillingPage';
+import CompletedChangeRequestPage from './Pages/change-request-details/completed/CompletedChangeRequestPage';
+import InProgressPage from './Pages/change-request-details/in-progress/InProgressPage';
+import ChangeRequestReviewDetails from './Pages/change-request-details/ChangeRequestDetailsPage';
+import PendingPaymentPage from './Pages/change-request-details/payment/PendingPaymentPage';
+import WaitingUserInputPage from './Pages/change-request-details/waiting/WaitingUserInputPage';
 import Contact from './Pages/Contact/Contact';
-import DashboardPage from './Pages/dashboard/page';
-import FileAndDocumentPage from './Pages/file-and-document/page';
-import MessagesPage from './Pages/messages/page';
+import DashboardPage from './Pages/dashboard/DashboardPage';
+import FileAndDocumentPage from './Pages/file-and-document/FileAndDocumentPage';
+import MessagesPage from './Pages/messages/MessagesPage';
 import NotFound from './Pages/NotFound/NotFound';
-import ProjectDetails from './Pages/projectDetails/ProjectDetails';
-import { projectDetailsData } from './Pages/projects/data/projectDetails';
-import ChangeRequestDetailsPage from './Pages/projects/[id]/change-requests/[requestId]/page';
-import ProjectFileAndDocumentPage from './Pages/projects/[id]/files/page';
-import CompletedProjectPage from './Pages/projects/[id]/completed/page';
-import ProjectDetailsPage from './Pages/projects/[id]/page';
-import ProjectPage from './Pages/projects/page';
-import Services from './Pages/Services/Services';
+import ChangeRequestDetailsPage from './Pages/projects/details/change-requests/ChangeRequestDetailsPage';
+import CompletedProjectPage from './Pages/projects/details/completed/CompletedProjectPage';
+import ProjectFileAndDocumentPage from './Pages/projects/details/files/ProjectFilesPage';
+import ProjectDetailsPage from './Pages/projects/details/ProjectDetailsPage';
+import ProjectPage from './Pages/projects/ProjectsPage';
 import SupportTicketsPage from './Pages/support/SupportTicketsPage';
-import TicketDetails from './Pages/support/TicketDetails/page';
-import UsersPage from './Pages/users/page';
+import CreateSupportInquiryPage from './Pages/support/create-support-inquiry/CreateSupportInquiryPage';
+import TicketDetails from './Pages/support/TicketDetails/TicketDetailsPage';
 import SupportPlans from './Pages/supportPlans/SupportPlans';
 import InvoiceModal from './Pages/InvoiceModal/invoiceModalPage';
 import SelectProjectModal from './Pages/support/selectProject/selectProject';
@@ -37,14 +33,13 @@ function LocaleWrapper() {
         if (!locale) return;
 
         i18n.changeLanguage(locale);
-}, [locale]);
+    }, [locale]);
 
     return (
         <Routes>
             <Route element={<Layout />}>
                 <Route index element={<DashboardPage />} />
 
-                <Route path="/services" element={<Services />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
 
@@ -54,40 +49,38 @@ function LocaleWrapper() {
                 <Route path="/projects/:id/files" element={<ProjectFileAndDocumentPage />} />
 
                 <Route
-                    path="/projects/:projectId/change-requests/:requestId/payment"
-                    element={<PendingPaymentPage />}
-                />
-                <Route
                     path="/projects/:projectId/change-requests/:requestId"
                     element={<ChangeRequestDetailsPage />}
                 />
-                <Route path="/change-request-details" element={<ChangeRequestReviewDetails />} />
-                <Route path="/messages" element={<MessagesPage />} />
-                <Route path="/support" element={<SupportTicketsPage />} />
-                <Route path="/support/:id" element={<TicketDetails />} />
-                <Route path="/file-and-document" element={<FileAndDocumentPage />} />
-                <Route path="/billing" element={<BillingPage />} />
-                <Route path="/users" element={<UsersPage />} />
-                <Route path="/invoice" element={<InvoiceModal onClose={undefined} />} />
+
+                <Route
+                    path="/projects/:projectId/change-requests/:requestId/payment"
+                    element={<PendingPaymentPage />}
+                />
 
                 <Route
                     path="/projects/:projectId/change-requests/:requestId/completed"
                     element={<CompletedChangeRequestPage />}
                 />
+
                 <Route
                     path="/projects/:projectId/change-requests/:requestId/in-progress"
                     element={<InProgressPage />}
                 />
+
                 <Route
                     path="/projects/:projectId/change-requests/:requestId/waiting"
                     element={<WaitingUserInputPage />}
                 />
 
                 <Route path="/change-request-details" element={<ChangeRequestReviewDetails />} />
-
                 <Route path="/messages" element={<MessagesPage />} />
+
                 <Route path="/support" element={<SupportTicketsPage />} />
+                <Route path="/support/create" element={<CreateSupportInquiryPage />} />
                 <Route path="/support/:id" element={<TicketDetails />} />
+                <Route path="/support-plans" element={<SupportPlans />} />
+
                 <Route path="/file-and-document" element={<FileAndDocumentPage />} />
                 <Route path="/billing" element={<BillingPage />} />
                 <Route path="/users" element={<UsersPage />} />
@@ -113,12 +106,9 @@ const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<Navigate to="/en" replace />} />
-
             <Route path="/:locale/*" element={<LocaleWrapper />} />
         </Routes>
     );
 };
 
 export default AppRoutes;
-
-

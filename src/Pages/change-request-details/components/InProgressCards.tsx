@@ -1,4 +1,5 @@
-﻿import ClockIcon from '@icons/clock(10).svg?react';
+import { useTranslation } from 'react-i18next';
+import ClockIcon from '@icons/clock(10).svg?react';
 import type {
     InProgressInfoCardProps,
     InProgressWorkCardProps,
@@ -31,9 +32,13 @@ export function InProgressInfoCard({
     value,
     valueClassName = 'text-[#111827]',
 }: InProgressInfoCardProps) {
+    
+    const { i18n } = useTranslation();
+    const isArabic = i18n.language.startsWith('ar');
+
     return (
-        <div className="flex min-h-[86px] min-w-0 flex-1 flex-col justify-center gap-2 rounded-[16px] border border-[#E8EAEF] bg-white p-5">
-            <span className="font-['Sora'] text-[12px] font-semibold leading-none text-[#6B7280]">
+        <div className={`flex min-h-[86px] min-w-0 flex-1 flex-col justify-center gap-2 rounded-[16px] border border-[#E8EAEF] bg-white p-5 ${isArabic ? 'text-right' : 'text-left'}`}>
+            <span className={`font-['Sora'] text-[12px] font-semibold leading-none text-[#6B7280] ${isArabic ? 'text-right' : 'text-left'}`}>
                 {label}
             </span>
             <strong className={`break-words font-['Sora'] text-[18px] font-semibold leading-none ${valueClassName}`}>
@@ -47,9 +52,13 @@ export function WorkingSinceCard({
     title,
     value,
 }: WorkingSinceCardProps) {
+    
+    const { i18n } = useTranslation();
+    const isArabic = i18n.language.startsWith('ar');
+
     return (
-        <section className="flex min-h-[78px] w-full items-center gap-3 rounded-[16px] border border-[#E8EAEF] bg-white p-4">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] bg-[#0066FF]/[0.06]">
+        <section className={`flex min-h-[78px] w-full items-center gap-3 rounded-[16px] border border-[#E8EAEF] bg-white p-4 ${isArabic ? 'flex-row-reverse text-right' : 'flex-row text-left'}`}>
+            <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] bg-[#0066FF]/[0.06] ${isArabic ? 'flex-row-reverse text-right' : 'flex-row text-left'}`}>
                 <ClockIcon className="h-[18px] w-[18px]" />
             </div>
             <div className="min-w-0">

@@ -924,5 +924,129 @@
         },
         "close": "Close",
         "removeAttachment": "Remove attachment"
+    },
+    "supportPlans": {
+    "pageTitle": "Support Plans",
+    "breadcrumb": {
+        "requestPaid": "Request Paid"
+    },
+    "essential": {
+        "title": "Essential Support",
+        "button": "Request Now",
+        "features": [
+            "Bug Fixing & Troubleshooting",
+            "System Health Checks",
+            "Minor Configuration",
+            "Email / Ticket Support",
+            "Monthly Review",
+            "Backup Verification"
+        ]
+    },
+    "professional": {
+        "title": "Professional Support",
+        "button": "Request Now",
+        "features": [
+            "Priority Support",
+            "Application & Server Monitoring",
+            "Database & Backup Monitoring",
+            "Performance & Security Checks",
+            "API & Integration Monitoring",
+            "Minor Modifications",
+            "Monthly Maintenance & Reports",
+            "Deployment & Release Support"
+        ]
+    },
+    "businessCritical": {
+        "title": "Business Critical Support",
+        "button": "Request Now",
+        "features": [
+            "High-Priority Incident Handling",
+            "Proactive Monitoring",
+            "Database & Performance Optimization",
+            "Security & Integration Monitoring",
+            "Backup & Recovery",
+            "Production Deployment Support",
+            "Priority Bug Fixing",
+            "Dedicated Technical Contact",
+            "Monthly Optimization Review"
+        ]
+    },
+    "enterprise": {
+        "title": "Enterprise Support",
+        "button": "Request Now",
+        "features": [
+            "24/7 Critical Support",
+            "Dedicated Support Engineer",
+            "Account Manager",
+            "DevOps & Cloud Management",
+            "Cybersecurity Monitoring",
+            "Disaster Recovery",
+            "SLA-based Support",
+            "Penetration & Security Reviews",
+            "Release Management",
+            "Dedicated Development Hours",
+            "On-site Support"
+        ]
     }
+},"notifications": {
+  "title": "Notifications",
+  "subtitle": "Stay updated on projects, payments, support, and approvals.",
+  "markAllAsRead": "Mark all as read",
+  "empty": "No notifications to show.",
+  "tabs": {
+    "all": "All ({{count}})",
+    "unread": "Unread ({{count}})",
+    "actionRequired": "Action Required ({{count}})"
+  },
+  "items": {
+    "payment": {
+      "category": "Payments",
+      "title": "Payment due in 1 day",
+      "description": "Final payment for Website Redesign is due on May 25, 2025.",
+      "reference": "Website Redesign · INV-2025-045",
+      "time": "10m ago",
+      "action": "Pay Now"
+    },
+    "changeRequest": {
+      "category": "Change Requests",
+      "title": "CR-004 awaiting your approval",
+      "description": "Pulvent has submitted the final proposal for your review and approval.",
+      "reference": "Website Redesign · CR-004",
+      "time": "25m ago",
+      "action": "Review Request"
+    },
+    "support": {
+      "category": "Support",
+      "title": "Pulvent replied to Ticket TKT-0042",
+      "description": "Logo file format issue requires your response.",
+      "reference": "TKT-0042 · In Progress",
+      "time": "1h ago",
+      "action": "View Ticket"
+    },
+    "files": {
+      "category": "Files & Documents",
+      "title": "New project document uploaded",
+      "description": "Pulvent uploaded the final proposal document for Website Redesign.",
+      "reference": "Website Redesign · Proposal_v2.pdf",
+      "time": "3h ago",
+      "action": "Open File"
+    },
+    "warranty": {
+      "category": "Warranty",
+      "title": "Warranty expires in 12 days",
+      "description": "Your warranty for Website Redesign expires on Jun 4, 2025.",
+      "reference": "Website Redesign · Warranty",
+      "time": "1d ago",
+      "action": "Explore Plans"
+    },
+    "messages": {
+      "category": "Messages",
+      "title": "New message from Pulvent",
+      "description": "You have a new message regarding Website Redesign.",
+      "reference": "Website Redesign · Chat",
+      "time": "2d ago",
+      "action": "Open Chat"
+    }
+  }
+}
 }

@@ -1,9 +1,7 @@
-﻿import { useTranslation } from 'react-i18next';
-
+import { useTranslation } from 'react-i18next';
 import { Delivery, StartDate } from '@/assets';
 import clockBg from '@/assets/images/clock-bg.png';
 import cover from '@/assets/images/cover.png';
-
 import type { ProjectDetailsProps } from '../../../../utils/types/project-details.types';
 
 export default function ProjectDetails({
@@ -23,7 +21,6 @@ export default function ProjectDetails({
 
     const displayedDaysLeft = daysLeft ?? project.daysLeft;
     const displayedLastUpdated = lastUpdated ?? project.lastUpdated;
-
     const locale = i18n.language.startsWith('ar') ? 'ar-EG' : 'en-US';
 
     const formatDate = (value: string) => {
@@ -71,25 +68,21 @@ export default function ProjectDetails({
             : Math.round((Math.min(100, Math.max(0, progressPercent)) / 100) * 46);
 
     return (
-        <div className="flex w-full min-w-0 flex-col items-stretch gap-6 lg:flex-row">
-            <div className="flex min-w-0 flex-1 flex-col gap-6 rounded-[24px] border-[0.5px] border-[#ECEFF4] bg-white p-6 shadow-[0px_1px_3px_3px_#0000001A]">
-                <div className="flex items-start justify-between">
-                    <div className="min-w-0 flex-1">
-                        <h1 className="text-[28px] font-semibold text-[#3634C7]">
-                            {t('projectName')}
-                        </h1>
-
-                        <p className="mt-1 w-full text-[14px] leading-[22px] text-[#12115C]">
-                            {t('description')}
-                        </p>
-                    </div>
+        <div className="grid w-full min-w-0 grid-cols-1 items-start gap-4 xl:grid-cols-[minmax(0,1fr)_362px] min-[1920px]:grid-cols-[minmax(0,1fr)_466px] min-[2500px]:grid-cols-[minmax(0,1fr)_593px]">
+            <div className="flex w-full min-w-0 flex-col rounded-[24px] border-[0.5px] border-[#ECEFF4] bg-white p-6 shadow-[0px_1px_3px_3px_#0000001A] xl:min-h-[258px]">
+                <div className="flex w-full min-w-0 items-start justify-between gap-4">
+                    <h1 className="min-w-0 text-[28px] font-semibold leading-[34px] text-[#3634C7]">
+                        {t('projectName')}
+                    </h1>
 
                     <span
                         className="flex h-[26px] w-[101px] shrink-0 items-center justify-center rounded-[6px] px-[10px] py-1 text-[12px] font-medium"
                         style={{
                             backgroundColor:
                                 statusBackgroundColor ??
-                                (project.status === 'In Progress' ? '#007AFF0D' : '#007AFF0D'),
+                                (project.status === 'In Progress'
+                                    ? '#007AFF0D'
+                                    : '#007AFF0D'),
                             color: statusTextColor ?? '#007AFF',
                         }}
                     >
@@ -97,14 +90,18 @@ export default function ProjectDetails({
                             t(
                                 project.status === 'In Progress'
                                     ? 'status.inProgress'
-                                    : 'status.completed'
+                                    : 'status.completed',
                             )}
                     </span>
                 </div>
 
-                <div className="flex flex-col gap-3 sm:flex-row">
+                <p className="mt-2 w-full text-[14px] font-normal leading-[22px] text-[#12115C] xl:min-h-[76px]">
+                    {t('description')}
+                </p>
+
+                <div className="mt-auto grid w-full grid-cols-1 gap-3 sm:grid-cols-2">
                     <div
-                        className="flex min-w-0 flex-1 items-center gap-2 rounded-[16px] border border-[#00E5C810] px-2 py-2"
+                        className="flex h-[48px] min-w-0 items-center gap-2 rounded-[16px] border border-[#00E5C810] px-3"
                         style={{
                             background:
                                 'linear-gradient(146deg, #F1F1F1 0%, #FFFFFF 30.72%, #EEEBEB 100%)',
@@ -123,7 +120,7 @@ export default function ProjectDetails({
                     </div>
 
                     <div
-                        className="flex min-w-0 flex-1 items-center gap-2 rounded-[16px] border border-[#00E5C810] px-2 py-2"
+                        className="flex h-[48px] min-w-0 items-center gap-2 rounded-[16px] border border-[#00E5C810] px-3"
                         style={{
                             background:
                                 'linear-gradient(146deg, #F1F1F1 0%, #FFFFFF 30.72%, #EEEBEB 100%)',
@@ -144,7 +141,7 @@ export default function ProjectDetails({
             </div>
 
             <div
-                className="relative flex w-full flex-col items-center gap-6 overflow-hidden rounded-[24px] border-[0.5px] border-[#39E1D7] bg-[#12115C] p-6 shadow-[0px_1px_3px_3px_#0000001A] lg:w-[362px] lg:shrink-0"
+                className="relative flex h-[258px] w-full flex-col items-center gap-6 overflow-hidden rounded-[24px] border-[0.5px] border-[#39E1D7] bg-[#12115C] p-6 shadow-[0px_1px_3px_3px_#0000001A] xl:w-full"
                 style={{
                     backgroundImage: `url(${cover})`,
                     backgroundSize: 'cover',
@@ -153,25 +150,27 @@ export default function ProjectDetails({
                 }}
             >
                 <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-70"
                     style={{
                         backgroundImage: `url(${clockBg})`,
                     }}
                 />
 
                 <div className="relative z-10 flex h-full w-full flex-col items-center">
-                    <div className="mt-2 flex flex-col items-center">
-                        <p className="text-[40px] font-semibold text-[#39E1D7]">
+                    <div className="flex flex-col items-center">
+                        <p className="text-[40px] font-semibold leading-[48px] text-[#39E1D7]">
                             {displayedDaysLeft}
                         </p>
 
-                        <p className="text-center text-[16px] font-bold text-white">
+                        <p className="text-center text-[16px] font-bold leading-[24px] text-white">
                             {displayedDaysLeft > 0 ? t('daysLeft') : t('completed')}
                         </p>
 
-                        <p className="mt-1 text-center text-[16px] text-[#39E1D7]">
+                        <p className="mt-1 text-center text-[16px] leading-[24px] text-[#39E1D7]">
                             {daysSubtitle ??
-                                (displayedDaysLeft > 0 ? t('toDeliver') : t('projectDelivered'))}
+                                (displayedDaysLeft > 0
+                                    ? t('toDeliver')
+                                    : t('projectDelivered'))}
                         </p>
                     </div>
 
@@ -192,27 +191,27 @@ export default function ProjectDetails({
 
                     {noticeTitle && noticeMessage ? (
                         <div className="mt-6 flex w-full flex-col items-center overflow-hidden rounded-[16px] border border-[#39E1D7] bg-[#39E1D71A]">
-                            <div className="flex w-full items-center justify-center rounded-t-[16px] bg-[#39E1D7] px-4 py-1">
+                            <div className="flex h-[25px] w-full items-center justify-center rounded-t-[16px] bg-[#39E1D7] px-4">
                                 <p className="text-center text-[16px] font-semibold text-[#12115C]">
                                     {noticeTitle}
                                 </p>
                             </div>
 
-                            <div className="flex w-full items-center justify-center px-4 py-2">
-                                <p className="text-center text-[14px] leading-[20px] text-white">
+                            <div className="flex min-h-[42px] w-full items-center justify-center px-4 py-1">
+                                <p className="text-center text-[14px] leading-[18px] text-white">
                                     {noticeMessage}
                                 </p>
                             </div>
                         </div>
                     ) : (
                         <div className="mt-6 flex w-full flex-col items-center overflow-hidden rounded-[16px] border border-[#39E1D7] bg-[#39E1D71A]">
-                            <div className="flex w-full items-center justify-center rounded-t-[16px] bg-[#39E1D7] px-4 py-1">
+                            <div className="flex h-[25px] w-full items-center justify-center rounded-t-[16px] bg-[#39E1D7] px-4">
                                 <p className="text-[12px] font-semibold text-[#12115C]">
                                     {t('lastUpdated')}
                                 </p>
                             </div>
 
-                            <div className="flex w-full items-center justify-center px-4 py-2">
+                            <div className="flex min-h-[42px] w-full items-center justify-center px-4 py-1">
                                 <p className="text-[16px] font-bold text-white">
                                     {formatRelativeTime(displayedLastUpdated)}
                                 </p>

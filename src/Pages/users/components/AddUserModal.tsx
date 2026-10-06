@@ -1,9 +1,9 @@
-﻿import { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { AddUser, Arrow } from '@/assets';
+import { AddUser, Arrow, DropDown } from '@/assets';
 import ActionButton from '@/components/ui/ActionButton';
 import Modal from '@/components/ui/modal';
 import ModalCloseButton from '@/components/ui/ModalCloseButton';
@@ -12,7 +12,7 @@ import type {
     AddUserFormData,
     AddUserModalProps,
     UserRole,
-} from '../../../utils/types/users.types';
+} from '../../../../utils/types/users.types';
 import { createAddUserSchema } from '../../../utils/validation/users.validation';
 
 const USER_ROLES: UserRole[] = ['Admin', 'Employee'];
@@ -21,6 +21,9 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
     const { t, i18n } = useTranslation('usersPage');
     const isArabic = i18n.language.startsWith('ar');
     const textAlignment = isArabic ? 'text-right' : 'text-left';
+    const placeholderText = isArabic
+        ? `${t('addUserModal.placeholder').replace(/[.…]+$/u, '')}...\u200F`
+        : t('addUserModal.placeholder');
 
     const schema = useMemo(() => createAddUserSchema(t), [t]);
 
@@ -111,7 +114,7 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
                             <input
                                 id="add-user-full-name"
                                 type="text"
-                                placeholder={t('addUserModal.placeholder')}
+                                placeholder={placeholderText}
                                 {...register('fullName')}
                                 className={`${inputClassName} ${textAlignment}`}
                             />
@@ -134,7 +137,7 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
                             <input
                                 id="add-user-email"
                                 type="email"
-                                placeholder={t('addUserModal.placeholder')}
+                                placeholder={placeholderText}
                                 {...register('email')}
                                 className={`${inputClassName} ${textAlignment}`}
                             />
@@ -157,7 +160,7 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
                             <input
                                 id="add-user-phone"
                                 type="tel"
-                                placeholder={t('addUserModal.placeholder')}
+                                placeholder={placeholderText}
                                 {...register('phone')}
                                 className={`${inputClassName} ${textAlignment}`}
                             />
@@ -180,7 +183,7 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
                             <input
                                 id="add-user-password"
                                 type="password"
-                                placeholder={t('addUserModal.placeholder')}
+                                placeholder={placeholderText}
                                 {...register('password')}
                                 className={`${inputClassName} ${textAlignment}`}
                             />
@@ -203,7 +206,7 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
                             <input
                                 id="add-user-confirm-password"
                                 type="password"
-                                placeholder={t('addUserModal.placeholder')}
+                                placeholder={placeholderText}
                                 {...register('confirmPassword')}
                                 className={`${inputClassName} ${textAlignment}`}
                             />
@@ -223,21 +226,36 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
                                 {t('addUserModal.role')}
                             </label>
 
-                            <select
-                                id="add-user-role"
-                                {...register('role')}
-                                className={`${inputClassName} ${textAlignment}`}
-                            >
-                                <option value="" disabled>
-                                    {t('addUserModal.placeholder')}
-                                </option>
-
-                                {USER_ROLES.map(role => (
-                                    <option key={role} value={role}>
-                                        {t(`roles.${role}`)}
+                            <div className="relative w-full">
+                                <select
+                                    id="add-user-role"
+                                    {...register('role')}
+                                    className={`${inputClassName} appearance-none ${textAlignment} ${
+                                        isArabic
+                                            ? 'pl-12 pr-[14px] min-[1920px]:pl-14 min-[1920px]:pr-4 min-[2500px]:pl-16 min-[2500px]:pr-[18px]'
+                                            : 'pl-[14px] pr-12 min-[1920px]:pl-4 min-[1920px]:pr-14 min-[2500px]:pl-[18px] min-[2500px]:pr-16'
+                                    }`}
+                                >
+                                    <option value="" disabled>
+                                        {placeholderText}
                                     </option>
-                                ))}
-                            </select>
+
+                                    {USER_ROLES.map(role => (
+                                        <option key={role} value={role}>
+                                            {t(`roles.${role}`)}
+                                        </option>
+                                    ))}
+                                </select>
+
+                                <DropDown
+                                    aria-hidden="true"
+                                    className={`pointer-events-none absolute top-1/2 h-4 w-4 -translate-y-1/2 text-[#12115C] min-[1920px]:h-[18px] min-[1920px]:w-[18px] min-[2500px]:h-5 min-[2500px]:w-5 ${
+                                        isArabic
+                                            ? 'left-4 min-[1920px]:left-5'
+                                            : 'right-4 min-[1920px]:right-5'
+                                    }`}
+                                />
+                            </div>
 
                             {errors.role && (
                                 <p className={`${errorClassName} ${textAlignment}`}>
@@ -249,15 +267,17 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
                         <ActionButton
                             type="submit"
                             disabled={isSubmitting}
-                            trailingIcon={
-                                <Arrow
-                                    aria-hidden="true"
-                                    className={`h-4 w-4 shrink-0 min-[1920px]:h-[18px] min-[1920px]:w-[18px] min-[2500px]:h-5 min-[2500px]:w-5 ${isArabic ? 'rotate-180' : ''}`}
-                                />
-                            }
                             className="!mt-[6px] !h-12 !w-full !rounded-[8px] !bg-[#12115C] !px-5 !py-4 !text-[16px] !font-normal !leading-4 !text-white min-[1920px]:!h-[52px] min-[1920px]:!px-[22px] min-[1920px]:!text-[17px] min-[2500px]:!h-14 min-[2500px]:!px-6 min-[2500px]:!text-[18px]"
                         >
-                            {t('addUserModal.submit')}
+                            <span className={`flex items-center justify-center gap-2 ${isArabic ? 'flex-row-reverse' : 'flex-row'}`}>
+                                <span>{t('addUserModal.submit')}</span>
+                                <Arrow
+                                    aria-hidden="true"
+                                    className={`h-4 w-4 shrink-0 min-[1920px]:h-[18px] min-[1920px]:w-[18px] min-[2500px]:h-5 min-[2500px]:w-5 ${
+                                        isArabic ? 'rotate-180' : ''
+                                    }`}
+                                />
+                            </span>
                         </ActionButton>
                     </form>
                 </div>
