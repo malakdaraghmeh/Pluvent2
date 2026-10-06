@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
 import i18n from './i18n/i18n';
 import About from './Pages/About/About';
 import BillingPage from './Pages/billing/BillingPage';
@@ -23,8 +22,11 @@ import SupportTicketsPage from './Pages/support/SupportTicketsPage';
 import CreateSupportInquiryPage from './Pages/support/create-support-inquiry/CreateSupportInquiryPage';
 import TicketDetails from './Pages/support/TicketDetails/TicketDetailsPage';
 import SupportPlans from './Pages/supportPlans/SupportPlans';
-import InvoiceModal from './Pages/InvoiceModal/invoiceModalPage';
-import SelectProjectModal from './Pages/support/selectProject/selectProject';
+import UsersPage from './Pages/users/UsersPage';
+import ProjectDetails from './Pages/projects/components/ProjectDetails';
+import SelectProjectModal from './Pages/support/selectProject/SelectProject';
+import { Layout } from 'lucide-react';
+
 
 function LocaleWrapper() {
     const { locale } = useParams();
