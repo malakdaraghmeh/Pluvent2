@@ -27,9 +27,6 @@ import ProjectDetails from './Pages/projects/components/ProjectDetails';
 import SelectProjectModal from './Pages/support/selectProject/SelectProject';
 import { Layout } from 'lucide-react';
 
-import Layout from './components/Layout/Layout';
-import TicketCard from './Pages/support/components/TicketCard';
-
 function LocaleWrapper() {
     const { locale } = useParams();
 
@@ -65,7 +62,6 @@ function LocaleWrapper() {
                 <Route path="/file-and-document" element={<FileAndDocumentPage />} />
                 <Route path="/billing" element={<BillingPage />} />
                 <Route path="/users" element={<UsersPage />} />
-                <Route path="/invoice"    element={ <InvoiceModal   isOpen={true} onClose={() => {}}/> } />
 
                 <Route
                     path="/projects/:projectId/change-requests/:requestId/payment"
