@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
     Arrow,
@@ -25,7 +25,6 @@ const PaymentMethodModal = ({ isOpen, onClose, onBack, onContinue }: PaymentMeth
     const { t, i18n } = useTranslation('paymentMethodModal');
 
     const isArabic = i18n.language.startsWith('ar');
-
     const textAlignment = isArabic ? 'text-right' : 'text-left';
 
     const [selectedMethod, setSelectedMethod] = useState<PaymentMethodId>(DEFAULT_PAYMENT_METHOD);
@@ -86,11 +85,19 @@ const PaymentMethodModal = ({ isOpen, onClose, onBack, onContinue }: PaymentMeth
             isOpen={isOpen}
             onClose={onClose}
             ariaLabel={t('title')}
-            overlayClassName="!overflow-hidden p-3 sm:p-4 lg:pl-[280px]"
+            overlayClassName={
+                isArabic
+                    ? '!overflow-hidden p-3 sm:p-4 lg:pr-[280px]'
+                    : '!overflow-hidden p-3 sm:p-4 lg:pl-[280px]'
+            }
             className="!h-[calc(100vh-24px)] !max-h-[786px] !w-[calc(100vw-24px)] !max-w-[700px] overflow-hidden rounded-[8px] border-[0.5px] border-[#D9D9D9] bg-white shadow-none sm:!h-[calc(100vh-32px)] sm:!w-[calc(100vw-32px)] md:!w-[700px]"
         >
             <div className="flex h-full min-h-0 w-full flex-col overflow-hidden px-4 py-5 sm:px-6 sm:py-6">
-                <div className={`flex w-full shrink-0 items-start justify-between gap-4 ${isArabic ? 'flex-row-reverse' : ''}`}>
+                <div
+                    className={`flex w-full shrink-0 items-start justify-between gap-4 ${
+                        isArabic ? 'flex-row-reverse' : ''
+                    }`}
+                >
                     <div className={`min-w-0 flex-1 ${textAlignment}`}>
                         <h2 className="text-[20px] font-semibold leading-[28px] text-[#12115C] sm:text-[22px]">
                             {t('title')}
@@ -102,7 +109,13 @@ const PaymentMethodModal = ({ isOpen, onClose, onBack, onContinue }: PaymentMeth
                     </div>
 
                     <div className={isArabic ? 'order-first' : 'order-last'}>
-                        <div className={isArabic ? 'absolute left-6 top-6' : 'absolute right-6 top-6'}><ModalCloseButton ariaLabel={t('close')} onClick={onClose} /></div>
+                        <div
+                            className={
+                                isArabic ? 'absolute left-6 top-6' : 'absolute right-6 top-6'
+                            }
+                        >
+                            <ModalCloseButton ariaLabel={t('close')} onClick={onClose} />
+                        </div>
                     </div>
                 </div>
 
@@ -144,15 +157,8 @@ const PaymentMethodModal = ({ isOpen, onClose, onBack, onContinue }: PaymentMeth
                         <ActionButton
                             type="button"
                             onClick={() => onContinue(selectedMethod)}
-                            trailingIcon={
-                                <Arrow
-                                    aria-hidden="true"
-                                    className={`h-5 w-5 shrink-0 ${isArabic ? 'rotate-180' : ''}`}
-                                />
-                            }
-                            className={`!h-[44px] !min-h-[44px] !max-h-[44px] !w-full !min-w-0 !shrink-0 !justify-center !rounded-[16px] !px-5 !text-[18px] !font-normal !leading-[28px] sm:!flex-1 ${
-                                isArabic ? '!flex-row-reverse' : ''
-                            }`}
+                            trailingIcon={<Arrow aria-hidden="true" className="h-5 w-5 shrink-0" />}
+                            className="!h-[44px] !min-h-[44px] !max-h-[44px] !w-full !min-w-0 !shrink-0 !justify-center !rounded-[16px] !px-5 !text-[18px] !font-normal !leading-[28px] sm:!flex-1"
                         >
                             {t('continueToPayment')}
                         </ActionButton>

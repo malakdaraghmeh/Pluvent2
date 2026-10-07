@@ -159,7 +159,7 @@ export default function PaymentHistoryTable() {
                 </div>
 
                 <div className="w-full min-w-0 overflow-x-auto rounded-[8px] border border-[#00E5C820] [scrollbar-color:#CBD5E1_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar]:h-[4px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#CBD5E1]">
-                    <table className="w-full min-w-[820px] table-fixed lg:min-w-[900px] xl:min-w-full border-collapse xl:min-w-full">
+                    <table style={isRtl ? { minWidth: '1180px', tableLayout: 'auto' } : undefined} className="w-full min-w-[820px] table-fixed lg:min-w-[900px] xl:min-w-full border-collapse xl:min-w-full">
                         <colgroup>
                             <col className="w-[18%]" />
                             <col className="w-[26%]" />

@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-
 import type { TabNavigationProps } from '../../../../utils/types/support-tickets.types';
 
 const TabNavigation = ({ tabs, activeTab, onSelectTab }: TabNavigationProps) => {

@@ -1,4 +1,4 @@
-﻿import { useRef, useState, type DragEvent } from 'react';
+import { useRef, useState, type DragEvent } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { File, LogoPulvent, Upload } from '@/assets';
@@ -157,11 +157,11 @@ const FileDocuments = ({
                         </div>
 
                         <div className={`min-w-0 flex-1 ${textAlignment}`}>
-                            <p className="truncate text-[14px] font-semibold leading-5 text-[#12115C] sm:text-[15px]">
+                            <p className={`truncate text-[14px] font-semibold leading-5 text-[#12115C] sm:text-[15px] ${isArabic ? 'text-right' : 'text-left'}`}>
                                 {file.fileName}
                             </p>
 
-                            <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-normal leading-[18px] text-[#7E8492] sm:text-[12px]">
+                            <p className={`mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-normal leading-[18px] text-[#7E8492] sm:text-[12px] ${isArabic ? 'justify-end text-right' : 'justify-start text-left'}`}>
                                 <span>
                                     {t('uploadedBy')} : {file.uploadedBy}
                                 </span>

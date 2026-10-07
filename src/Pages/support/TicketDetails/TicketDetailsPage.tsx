@@ -376,13 +376,9 @@ export default function TicketDetails() {
                                     <ActionButton
                                         type="submit"
                                         trailingIcon={
-                                            <SupportTicketViewArrowIcon
-                                                className={`h-4 w-4 shrink-0 ${
-                                                    isArabic ? 'rotate-180' : ''
-                                                }`}
-                                            />
+                                            <SupportTicketViewArrowIcon className="h-4 w-4 shrink-0" />
                                         }
-                                        className={`!h-[44px] !w-full !gap-2 !rounded-[16px] !bg-[#12115C] !px-5 !font-['Sora',sans-serif] !text-[18px] !font-normal !leading-[28px] !text-white sm:!w-[240px] 3xl:!h-[44px] 3xl:!w-[240px] 3xl:!rounded-[16px] 3xl:!px-5 3xl:!text-[18px] 4xl:!h-[44px] 4xl:!w-[240px] 4xl:!rounded-[16px] 4xl:!px-5 4xl:!text-[18px] ${isArabic ? '!flex-row-reverse' : ''}`}
+                                        className="!h-[44px] !w-full !gap-2 !rounded-[16px] !bg-[#12115C] !px-5 !font-['Sora',sans-serif] !text-[18px] !font-normal !leading-[28px] !text-white sm:!w-[240px] 3xl:!h-[44px] 3xl:!w-[240px] 3xl:!rounded-[16px] 3xl:!px-5 3xl:!text-[18px] 4xl:!h-[44px] 4xl:!w-[240px] 4xl:!rounded-[16px] 4xl:!px-5 4xl:!text-[18px]"
                                     >
                                         {t('details.form.submitTicket')}
                                     </ActionButton>
@@ -395,5 +391,3 @@ export default function TicketDetails() {
         </main>
     );
 }
-
-

@@ -1,14 +1,10 @@
-﻿import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ChatDecorationIcon, ChatIcon } from '@/assets';
-import AskAi from '@/Pages/askAi/AskAi';
 import { supportTickets } from '../data/supportTickets';
 
 const SupportTickets = () => {
     const { t } = useTranslation('supportTickets');
     const { locale = 'en' } = useParams();
-    const [isAskAiOpen, setIsAskAiOpen] = useState(false);
     const isArabic = locale.startsWith('ar');
 
     return (
@@ -52,21 +48,6 @@ const SupportTickets = () => {
                     );
                 })}
             </div>
-            <button
-                type="button"
-                onClick={() => setIsAskAiOpen(true)}
-                aria-label={t('chat')}
-                className="isolate absolute bottom-[-8px] end-[8px] z-30 h-[65px] w-[77px] cursor-pointer border-0 bg-transparent p-0"
-            >
-                <ChatDecorationIcon className="pointer-events-none absolute end-[-2px] top-0 z-0 h-8 w-8" />
-                <span className="absolute bottom-0 end-0 z-10 flex h-[52px] w-[52px] flex-col items-center justify-center rounded-full bg-[#12115C] shadow-[0_4px_12px_rgba(18,17,92,0.25)]">
-                    <ChatIcon className="h-8 w-8 shrink-0 fill-white text-white" />
-                    <span className="-mt-1 text-[10px] font-semibold leading-none text-white">
-                        {t('chat')}
-                    </span>
-                </span>
-            </button>
-            <AskAi isOpen={isAskAiOpen} onClose={() => setIsAskAiOpen(false)} />
         </section>
     );
 };

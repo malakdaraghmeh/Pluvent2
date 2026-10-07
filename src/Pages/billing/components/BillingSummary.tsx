@@ -1,7 +1,5 @@
 import { useTranslation } from 'react-i18next';
-
 import { Billing1, Billing2, Billing3, Billing4 } from '@/assets';
-
 import { billingSummaryData } from '../data/billing';
 
 const billingIcons = [Billing1, Billing2, Billing3, Billing4];
@@ -27,11 +25,7 @@ const BillingSummary = () => {
                             <Icon className="size-6" />
                         </div>
 
-                        <div
-                            className={`min-w-0 flex-1 ${
-                                isArabic ? 'text-right' : 'text-left'
-                            }`}
-                        >
+                        <div className={`min-w-0 flex-1 ${isArabic ? 'text-right' : 'text-left'}`}>
                             <p className="whitespace-nowrap text-[12px] font-semibold leading-[18px] text-[#64748B]">
                                 {t(`summary.${item.translationKey}.title`)}
                             </p>

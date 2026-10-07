@@ -1,15 +1,13 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
 import ProjectCard from './components/ProjectCard';
 import ProjectsToolbar from './components/ProjectsToolbar';
-
 import { projectsData } from './data/projects';
-
 import type { ProjectFilter } from '../../../utils/types/projects.types';
 
 const ProjectPage = () => {
-    const { t } = useTranslation('projectsPage');
+    const { t, i18n } = useTranslation('projectsPage');
+    const isArabic = i18n.language.startsWith('ar');
 
     const [searchValue, setSearchValue] = useState('');
     const [filter, setFilter] = useState<ProjectFilter>('all');
@@ -34,12 +32,12 @@ const ProjectPage = () => {
 
     return (
         <main className="custom-container flex min-h-screen w-full min-w-0 flex-col gap-5 pb-8">
-            <div className="flex flex-col gap-1">
-                <h1 className="text-start text-[24px] font-semibold leading-[30px] text-black">
+            <div className={`flex w-full flex-col gap-1 ${isArabic ? 'text-right' : 'text-left'}`}>
+                <h1 className="text-[24px] font-semibold leading-[30px] text-black">
                     {t('title')}
                 </h1>
 
-                <p className="break-words text-start text-[12px] font-normal leading-[18px] text-[#7E8492]">
+                <p className="break-words text-[12px] font-normal leading-[18px] text-[#7E8492]">
                     {t('description')}
                 </p>
             </div>

@@ -1,9 +1,10 @@
-import { useState, type ChangeEvent, type DragEvent, type FormEvent } from 'react';
+﻿import { useState, type ChangeEvent, type DragEvent, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { DownArrow, ModalCloseIcon, SupportTicketViewArrowIcon, Upload } from '@/assets';
+import { ModalCloseIcon, SupportTicketViewArrowIcon, Upload } from '@/assets';
 import { SupportInquiryCheckCircleIcon as checkCircleIcon } from '@/assets';
 import { SupportInquiryInfoIcon as infoIcon } from '@/assets';
 import ActionButton from '@/components/ui/ActionButton';
+import GeneralSelect from '@/components/ui/GeneralSelect';
 import type { CreateSupportInquiryFormProps } from '../../../../../utils/types/create-support-inquiry.types';
 
 export default function CreateSupportInquiryForm({
@@ -14,7 +15,6 @@ export default function CreateSupportInquiryForm({
     const { t, i18n } = useTranslation('tickets');
 
     const isArabic = i18n.language.startsWith('ar');
-
     const textAlignment = isArabic ? 'text-right' : 'text-left';
 
     const [subject, setSubject] = useState(() => t('createModal.fields.subject.placeholder'));
@@ -26,7 +26,6 @@ export default function CreateSupportInquiryForm({
     );
 
     const [files, setFiles] = useState<File[]>([]);
-
     const [isDragging, setIsDragging] = useState(false);
 
     const addFiles = (selectedFiles: FileList | File[]) => {
@@ -39,7 +38,6 @@ export default function CreateSupportInquiryForm({
         }
 
         addFiles(event.target.files);
-
         event.target.value = '';
     };
 
@@ -144,34 +142,27 @@ export default function CreateSupportInquiryForm({
                             <span className="text-[#FF3B30]">*</span>
                         </label>
 
-                        <div className="relative">
-                            <select
-                                id="support-category"
-                                required
-                                value={ticketCategory}
-                                onChange={event => setTicketCategory(event.target.value)}
-                                className={`h-[48px] w-full cursor-pointer appearance-none rounded-[12px] border border-transparent bg-[#F3F4F8] text-[14px] font-normal text-[#2E2C34] outline-none transition-colors focus:border-[#39E1D7] focus:bg-white 3xl:h-[54px] 3xl:text-[15px] 4xl:h-[60px] 4xl:text-[16px] ${
-                                    isArabic ? 'pl-11 pr-4 text-right' : 'pl-4 pr-11 text-left'
-                                }`}
-                            >
-                                <option value="technical">
-                                    {t('createModal.categories.technical')}
-                                </option>
-
-                                <option value="design">{t('createModal.categories.design')}</option>
-
-                                <option value="billing">
-                                    {t('createModal.categories.billing')}
-                                </option>
-                            </select>
-
-                            <DownArrow
-                                aria-hidden="true"
-                                className={`pointer-events-none absolute top-1/2 h-[14px] w-[14px] -translate-y-1/2 3xl:h-4 3xl:w-4 ${
-                                    isArabic ? 'left-4' : 'right-4'
-                                }`}
-                            />
-                        </div>
+                        <GeneralSelect
+                            id="support-category"
+                            value={ticketCategory}
+                            placeholder={t('createModal.categories.technical')}
+                            options={[
+                                {
+                                    label: t('createModal.categories.technical'),
+                                    value: 'technical',
+                                },
+                                {
+                                    label: t('createModal.categories.design'),
+                                    value: 'design',
+                                },
+                                {
+                                    label: t('createModal.categories.billing'),
+                                    value: 'billing',
+                                },
+                            ]}
+                            isArabic={isArabic}
+                            onChange={setTicketCategory}
+                        />
                     </div>
                 </div>
 

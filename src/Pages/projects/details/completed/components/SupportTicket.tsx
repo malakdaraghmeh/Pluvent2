@@ -7,7 +7,8 @@ import { WarrantyBackgroundImage as warrantyBg } from '@/assets';
 import ProjectSupportSection from './ProjectSupportSection';
 
 const SupportTicket = () => {
-    const { t } = useTranslation('supportTickets');
+    const { t, i18n } = useTranslation('supportTickets');
+    const isArabic = i18n.language.startsWith('ar');
     const { locale = 'en', id } = useParams();
 
     const features = t('features', {
@@ -34,7 +35,11 @@ const SupportTicket = () => {
                     />
                 </div>
 
-                <div className="flex min-w-0 flex-col gap-3">
+                <div
+                    className={`flex min-w-0 flex-col gap-3 ${
+                        isArabic ? 'items-end text-right' : 'items-start text-left'
+                    }`}
+                >
                     <h3 className="break-words text-[20px] font-bold text-[#12115C]">
                         {t('warrantySupport')}
                     </h3>
@@ -47,7 +52,9 @@ const SupportTicket = () => {
                         {features.map(feature => (
                             <div
                                 key={feature}
-                                className="flex min-w-0 items-start gap-2"
+                                className={`flex min-w-0 items-start gap-2 ${
+                                    isArabic ? 'flex-row-reverse text-right' : 'flex-row text-left'
+                                }`}
                             >
                                 <span className="mt-[1px] flex h-[24px] w-[24px] shrink-0 items-center justify-center rounded-full bg-[#39E1D7] text-[8px] font-bold text-white">
                                     <True />
@@ -84,18 +91,27 @@ const SupportTicket = () => {
                     <p className="min-w-0 break-words text-[16px] leading-[1.6] text-[#12115C]">
                         {t('status.description')}
                     </p>
-
                     <Link
                         to={warrantyTicketUrl}
-                        className="mt-auto flex min-h-[40px] w-full min-w-0 items-center justify-center gap-2 rounded-[10px] bg-[#12115C] px-4 py-2 text-center text-[16px] text-white transition hover:opacity-90 3xl:text-[18px]"
+                        className="mt-auto flex min-h-[40px] w-full min-w-0 items-center justify-center rounded-[10px] bg-[#12115C] px-3 py-2 text-center text-white transition hover:opacity-90"
                     >
-                        <span className="min-w-0 break-words">
-                            {t('status.buttonText')}
-                        </span>
+                        {isArabic ? (
+                            <span className="relative inline-flex items-center justify-center whitespace-nowrap text-[14px] min-[1600px]:text-[15px] 3xl:text-[16px]">
+                                <span>{t('status.buttonText')}</span>
 
-                        <span className="flex shrink-0 items-center rtl:rotate-180">
-                            <Arrow />
-                        </span>
+                                <span className="absolute -left-5 top-1/2 flex -translate-y-1/2 rotate-180 items-center">
+                                    <Arrow />
+                                </span>
+                            </span>
+                        ) : (
+                            <span className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-[14px] min-[1600px]:text-[15px] 3xl:text-[16px]">
+                                <span>{t('status.buttonText')}</span>
+
+                                <span className="flex shrink-0 items-center">
+                                    <Arrow />
+                                </span>
+                            </span>
+                        )}
                     </Link>
                 </div>
             </div>

@@ -57,7 +57,7 @@ const ChangeRequestsTable = () => {
     const getDetailsPath = (status: ChangeRequestStatus, requestId: string) => {
         switch (status) {
             case 'InReview':
-                return `/${locale}/change-request-details`;
+                return `/${locale}/change-request-details?projectId=${projectId}`;
 
             case 'Waiting User Input':
                 return `/${locale}/projects/${projectId}/change-requests/${requestId}/waiting`;
@@ -89,7 +89,7 @@ const ChangeRequestsTable = () => {
                 <button
                     type="button"
                     onClick={() => setIsAddChangeRequestOpen(true)}
-                    className="flex h-[44px] w-full items-center justify-between rounded-[16px] bg-[#12115C] px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90 sm:w-[283px]"
+                    className={`flex h-[44px] w-full items-center justify-between rounded-[16px] bg-[#12115C] px-5 text-[14px] font-medium text-white transition-opacity hover:opacity-90 sm:w-[283px] ${isArabic ? 'flex-row-reverse' : ''}`}
                 >
                     <span className="flex shrink-0 items-center">
                         <Add />

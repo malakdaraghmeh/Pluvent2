@@ -1,14 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
 import { SupportTicketViewArrowIcon } from '@/assets';
 import ActionButton from '@/components/ui/ActionButton';
-
 import type {
     TicketCardProps,
     TicketDetailsLocationState,
 } from '../../../../utils/types/support-tickets.types';
-
 import TicketReplyStatus from './TicketReplyStatus';
 
 export default function TicketCard({ ticket }: TicketCardProps) {
@@ -58,9 +55,7 @@ export default function TicketCard({ ticket }: TicketCardProps) {
 
                             <span
                                 className={`flex h-[30px] w-fit shrink-0 items-center justify-center rounded-[4px] px-2 text-[14px] font-semibold leading-[18px] tracking-normal ${
-                                    ticket.status === 'pendingReply'
-                                        ? 'min-w-[120px]'
-                                        : ''
+                                    ticket.status === 'pendingReply' ? 'min-w-[120px]' : ''
                                 } ${getStatusClassName()}`}
                             >
                                 {t(`status.${ticket.status}`)}
@@ -76,9 +71,7 @@ export default function TicketCard({ ticket }: TicketCardProps) {
 
                     <div
                         className={`flex shrink-0 flex-col gap-2 ${
-                            isArabic
-                                ? 'items-start text-left'
-                                : 'items-end text-right'
+                            isArabic ? 'items-start text-left' : 'items-end text-right'
                         }`}
                     >
                         <p className="text-[18px] font-bold leading-[20px] tracking-normal text-[#12115C]">
@@ -103,21 +96,11 @@ export default function TicketCard({ ticket }: TicketCardProps) {
 
                 <TicketReplyStatus replyStatus={ticket.replyStatus} />
 
-                <div
-                    className={`flex w-full ${
-                        isArabic ? 'justify-start' : 'justify-end'
-                    }`}
-                >
+                <div className={`flex w-full ${isArabic ? 'justify-start' : 'justify-end'}`}>
                     <ActionButton
                         type="button"
                         onClick={handleViewTicket}
-                        trailingIcon={
-                            <SupportTicketViewArrowIcon
-                                className={`h-4 w-4 shrink-0 ${
-                                    isArabic ? 'rotate-180' : ''
-                                }`}
-                            />
-                        }
+                        trailingIcon={<SupportTicketViewArrowIcon className="h-4 w-4 shrink-0" />}
                         className={`!h-[44px] !w-full !shrink-0 !gap-2 !rounded-[16px] !px-5 !font-['Sora',sans-serif] !text-[18px] !font-normal !leading-[28px] sm:!w-[191px] ${isArabic ? '!flex-row-reverse' : ''}`}
                     >
                         {t('card.viewTicket')}

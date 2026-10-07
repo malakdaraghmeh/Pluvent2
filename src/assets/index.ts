@@ -177,3 +177,4 @@ export { default as SupportInquiryInfoSvgIcon } from './icons/info.svg?react';
 export { default as TicketTypeGeneralIcon } from './icons/Icon-message-square.svg?react';
 export { default as TicketTypeProjectIcon } from './icons/folder.svg?react';
 export { default as TicketTypeIllustration } from './icons/general-ticket.svg?react';
+export { default as MessagesPrivateChatIcon } from './icons/messages-private-chat.svg?react';

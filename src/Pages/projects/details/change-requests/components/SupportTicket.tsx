@@ -1,14 +1,16 @@
 import { useTranslation } from 'react-i18next';
-
 import { Arrow, True } from '@/assets';
-import { SupportBackgroundImage as bgSupport } from '@/assets';
-import { SupportTicketImage as supportTicket } from '@/assets';
-import { WarrantyBackgroundImage as warrantyBg } from '@/assets';
+import bgSupport from '@/assets/images/bg-support.png';
+import supportTicket from '@/assets/images/support-ticket.png';
+import warrantyBg from '@/assets/images/warranty-bg.png';
 
 const SupportTicket = () => {
-    const { t } = useTranslation('supportTickets');
+    const { t, i18n } = useTranslation('supportTickets');
+    const isArabic = i18n.language.startsWith('ar');
 
-    const features = t('features', { returnObjects: true }) as string[];
+    const features = t('features', {
+        returnObjects: true,
+    }) as string[];
 
     return (
         <section className="flex w-full min-w-0 flex-col gap-4 rounded-[24px] bg-white p-4 shadow-[0px_4px_20px_0px_#00000008] sm:p-5 md:p-6">
@@ -68,21 +70,25 @@ const SupportTicket = () => {
                             {t('status.title')}
                         </h3>
                     </div>
-
                     <p className="min-w-0 break-words text-[16px] leading-[1.6] text-[#12115C]">
                         {t('status.description')}
                     </p>
-
                     <button
                         type="button"
-                        className="mt-auto flex min-h-[40px] w-full min-w-0 items-center justify-center gap-2 rounded-[10px] bg-[#12115C] px-4 py-2 text-center text-[16px] text-white transition hover:opacity-90 3xl:text-[18px]"
+                        className="mt-auto flex min-h-[40px] w-full min-w-0 items-center justify-center rounded-[10px] bg-[#12115C] px-4 py-2 text-center text-[16px] text-white transition hover:opacity-90 3xl:text-[18px]"
                     >
-                        <span className="min-w-0 break-words">{t('status.buttonText')}</span>
+                        <span className="relative inline-flex items-center justify-center">
+                            <span className="min-w-0 break-words">{t('status.buttonText')}</span>
 
-                        <span className="flex shrink-0 items-center rtl:rotate-180">
-                            <Arrow />
+                            <span
+                                className={`absolute top-1/2 flex -translate-y-1/2 items-center ${
+                                    isArabic ? '-left-6 rotate-180' : '-right-6'
+                                }`}
+                            >
+                                <Arrow />
+                            </span>
                         </span>
-                    </button>
+                    </button>{' '}
                 </div>
             </div>
         </section>

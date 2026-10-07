@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+﻿import { useTranslation } from 'react-i18next';
 
 import {
     Arrow,
@@ -76,7 +76,7 @@ export default function PaymentDetailsModal({
             isOpen={isOpen}
             onClose={onClose}
             ariaLabel={t('title')}
-            overlayClassName="p-3 sm:p-4 lg:pl-[280px]"
+            overlayClassName={isArabic ? 'p-3 sm:p-4 lg:pr-[280px]' : 'p-3 sm:p-4 lg:pl-[280px]'}
             className="max-h-[calc(100vh-24px)] w-[calc(100%-24px)] max-w-[700px] overflow-y-auto rounded-[20px] bg-white sm:w-[calc(100%-32px)] sm:rounded-[24px] md:h-[519px] md:w-[700px] md:overflow-hidden 3xl:h-[563px] 3xl:w-[760px] 3xl:max-w-[760px] 4xl:h-[608px] 4xl:w-[820px] 4xl:max-w-[820px]"
         >
             <div className="flex h-full w-full flex-col gap-5 p-5 sm:gap-6 sm:p-6 md:gap-7 md:p-8 3xl:gap-[30px] 3xl:p-9 4xl:gap-[33px] 4xl:p-[38px]">
@@ -173,14 +173,10 @@ export default function PaymentDetailsModal({
                         trailingIcon={
                             <Arrow
                                 aria-hidden="true"
-                                className={`h-4 w-4 shrink-0 sm:h-5 sm:w-5 3xl:h-[22px] 3xl:w-[22px] 4xl:h-[23px] 4xl:w-[23px] ${
-                                    isArabic ? 'rotate-180' : ''
-                                }`}
+                                className={`h-4 w-4 shrink-0 sm:h-5 sm:w-5 3xl:h-[22px] 3xl:w-[22px] 4xl:h-[23px] 4xl:w-[23px] `}
                             />
                         }
-                        className={`!h-11 !min-h-0 !min-w-0 !flex-1 !rounded-[16px] !px-2 !text-[14px] !font-normal !leading-7 sm:!px-5 sm:!text-[18px] 3xl:!h-12 3xl:!rounded-[17px] 3xl:!px-[22px] 3xl:!text-[20px] 4xl:!h-[52px] 4xl:!rounded-[19px] 4xl:!px-6 4xl:!text-[21px] ${
-                            isArabic ? '!flex-row-reverse' : ''
-                        }`}
+                        className={`!h-11 !min-h-0 !min-w-0 !flex-1 !rounded-[16px] !px-2 !text-[14px] !font-normal !leading-7 sm:!px-5 sm:!text-[18px] 3xl:!h-12 3xl:!rounded-[17px] 3xl:!px-[22px] 3xl:!text-[20px] 4xl:!h-[52px] 4xl:!rounded-[19px] 4xl:!px-6 4xl:!text-[21px] `}
                     >
                         {t('continueButton')}
                     </ActionButton>
@@ -189,3 +185,4 @@ export default function PaymentDetailsModal({
         </Modal>
     );
 }
+

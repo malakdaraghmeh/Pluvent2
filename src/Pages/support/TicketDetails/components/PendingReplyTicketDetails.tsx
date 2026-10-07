@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next';
-
 import { SupportTicketRemindIcon } from '@/assets';
 import ActionButton from '@/components/ui/ActionButton';
-
 import type { PendingReplyTicketDetailsProps } from '../../../../../utils/types/support-tickets.types';
 
 export default function PendingReplyTicketDetails({

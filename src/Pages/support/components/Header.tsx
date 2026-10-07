@@ -1,10 +1,5 @@
 import { useTranslation } from 'react-i18next';
-
-import {
-    Add,
-    SupportTicketViewArrowIcon,
-} from '@/assets';
-
+import { Add, SupportTicketViewArrowIcon } from '@/assets';
 import type { HeaderProps } from '../../../../utils/types/support-tickets.types';
 
 const Header = ({ onNewTicket }: HeaderProps) => {
@@ -40,21 +35,13 @@ const Header = ({ onNewTicket }: HeaderProps) => {
                     buttonDirection
                 }
             >
-                <Add
-                    aria-hidden="true"
-                    className="h-5 w-5 shrink-0"
-                />
+                <Add aria-hidden="true" className="h-5 w-5 shrink-0" />
 
-                <span className="shrink-0 whitespace-nowrap">
-                    {t('header.newTicket')}
-                </span>
+                <span className="shrink-0 whitespace-nowrap">{t('header.newTicket')}</span>
 
                 <SupportTicketViewArrowIcon
                     aria-hidden="true"
-                    className={
-                        'h-4 w-4 shrink-0 ' +
-                        (isArabic ? 'rotate-180' : '')
-                    }
+                    className={'h-4 w-4 shrink-0 ' + (isArabic ? 'rotate-180' : '')}
                 />
             </button>
         </div>

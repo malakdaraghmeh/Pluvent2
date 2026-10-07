@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+﻿import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DropDown, MoreVertical, Search } from '@/assets';
 import Modal from '@/components/ui/modal';
@@ -88,7 +88,7 @@ export default function UsersTable({
                     />
 
                     <div
-                        className={`absolute right-0 top-[calc(100%+6px)] z-50 w-[140px] overflow-hidden rounded-[10px] border border-[#ECEFF4] bg-white py-1 shadow-lg min-[1920px]:w-[150px] min-[2500px]:w-[160px] ${
+                        className={`absolute end-0 top-[calc(100%+6px)] z-50 w-[140px] overflow-hidden rounded-[10px] border border-[#ECEFF4] bg-white py-1 shadow-lg min-[1920px]:w-[150px] min-[2500px]:w-[160px] ${
                             isArabic ? 'text-right' : 'text-left'
                         }`}
                     >
@@ -213,7 +213,7 @@ export default function UsersTable({
                         />
                     </div>
 
-                    <div className="relative w-full sm:w-[89px] sm:min-w-[89px] sm:max-w-[89px] sm:flex-none sm:shrink-0">
+                    <div className="relative w-full sm:w-[130px] sm:min-w-[130px] sm:max-w-[130px] sm:flex-none sm:shrink-0">
                         <button
                             type="button"
                             aria-expanded={isRoleOpen}
@@ -451,3 +451,4 @@ export default function UsersTable({
         </>
     );
 }
+

@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+﻿import { useTranslation } from 'react-i18next';
 import { Delivery, StartDate } from '@/assets';
 import { ProjectClockBgImage as clockBg } from '@/assets';
 import { ProjectCoverImage as cover } from '@/assets';
@@ -19,9 +19,10 @@ export default function ProjectDetails({
 }: ProjectDetailsProps) {
     const { t, i18n } = useTranslation('projectDetails');
 
+    const isArabic = i18n.language.startsWith('ar');
     const displayedDaysLeft = daysLeft ?? project.daysLeft;
     const displayedLastUpdated = lastUpdated ?? project.lastUpdated;
-    const locale = i18n.language.startsWith('ar') ? 'ar-EG' : 'en-US';
+    const locale = isArabic ? 'ar-EG' : 'en-US';
 
     const formatDate = (value: string) => {
         const date = new Date(value);
@@ -80,9 +81,7 @@ export default function ProjectDetails({
                         style={{
                             backgroundColor:
                                 statusBackgroundColor ??
-                                (project.status === 'In Progress'
-                                    ? '#007AFF0D'
-                                    : '#007AFF0D'),
+                                (project.status === 'In Progress' ? '#007AFF0D' : '#007AFF0D'),
                             color: statusTextColor ?? '#007AFF',
                         }}
                     >
@@ -90,7 +89,7 @@ export default function ProjectDetails({
                             t(
                                 project.status === 'In Progress'
                                     ? 'status.inProgress'
-                                    : 'status.completed',
+                                    : 'status.completed'
                             )}
                     </span>
                 </div>
@@ -101,17 +100,25 @@ export default function ProjectDetails({
 
                 <div className="mt-auto grid w-full grid-cols-1 gap-3 sm:grid-cols-2">
                     <div
-                        className="flex h-[48px] min-w-0 items-center gap-2 rounded-[16px] border border-[#00E5C810] px-3"
+                        className="relative flex h-[48px] min-w-0 items-center rounded-[16px] border border-[#00E5C810] px-3"
                         style={{
                             background:
                                 'linear-gradient(146deg, #F1F1F1 0%, #FFFFFF 30.72%, #EEEBEB 100%)',
                         }}
                     >
-                        <span className="shrink-0 text-[#3634C7]">
+                        <span
+                            className={`absolute top-1/2 flex -translate-y-1/2 items-center text-[#3634C7] ${
+                                isArabic ? 'right-3' : 'left-3'
+                            }`}
+                        >
                             <StartDate />
                         </span>
 
-                        <p className="min-w-0 whitespace-nowrap text-[11px] font-normal leading-[16px] text-[#3634C7] min-[1450px]:text-[12px] min-[1700px]:text-[13px] min-[1920px]:text-[14px]">
+                        <p
+                            className={`w-full min-w-0 whitespace-nowrap text-[11px] font-normal leading-[16px] text-[#3634C7] min-[1450px]:text-[12px] min-[1700px]:text-[13px] min-[1920px]:text-[14px] ${
+                                isArabic ? 'pr-8 text-right' : 'pl-8 text-left'
+                            }`}
+                        >
                             <span className="text-[#12115C]">{t('startDate')}:</span>{' '}
                             <span className="[unicode-bidi:isolate]">
                                 {formatDate(project.startDate)}
@@ -120,17 +127,25 @@ export default function ProjectDetails({
                     </div>
 
                     <div
-                        className="flex h-[48px] min-w-0 items-center gap-2 rounded-[16px] border border-[#00E5C810] px-3"
+                        className="relative flex h-[48px] min-w-0 items-center rounded-[16px] border border-[#00E5C810] px-3"
                         style={{
                             background:
                                 'linear-gradient(146deg, #F1F1F1 0%, #FFFFFF 30.72%, #EEEBEB 100%)',
                         }}
                     >
-                        <span className="shrink-0 text-[#3634C7]">
+                        <span
+                            className={`absolute top-1/2 flex -translate-y-1/2 items-center text-[#3634C7] ${
+                                isArabic ? 'right-3' : 'left-3'
+                            }`}
+                        >
                             <Delivery />
                         </span>
 
-                        <p className="min-w-0 whitespace-nowrap text-[10px] font-normal leading-[16px] text-[#3634C7] min-[1450px]:text-[11px] min-[1700px]:text-[12px] min-[1920px]:text-[14px]">
+                        <p
+                            className={`w-full min-w-0 whitespace-nowrap text-[10px] font-normal leading-[16px] text-[#3634C7] min-[1450px]:text-[11px] min-[1700px]:text-[12px] min-[1920px]:text-[14px] ${
+                                isArabic ? 'pr-8 text-right' : 'pl-8 text-left'
+                            }`}
+                        >
                             <span className="text-[#12115C]">{t('delivery')}:</span>{' '}
                             <span className="[unicode-bidi:isolate]">
                                 {formatDate(project.deliveryDate)}
@@ -168,9 +183,7 @@ export default function ProjectDetails({
 
                         <p className="mt-1 text-center text-[16px] leading-[24px] text-[#39E1D7]">
                             {daysSubtitle ??
-                                (displayedDaysLeft > 0
-                                    ? t('toDeliver')
-                                    : t('projectDelivered'))}
+                                (displayedDaysLeft > 0 ? t('toDeliver') : t('projectDelivered'))}
                         </p>
                     </div>
 

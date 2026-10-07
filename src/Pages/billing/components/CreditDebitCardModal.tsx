@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Arrow, CloseIcons, FilesIcons } from '@/assets';
 import ActionButton from '@/components/ui/ActionButton';
@@ -63,11 +63,17 @@ const CreditDebitCardModal = ({ isOpen, onClose, onBack }: CreditDebitCardModalP
                 isOpen={isOpen && !isPaymentSuccessOpen && !isInvoiceOpen}
                 onClose={onClose}
                 ariaLabel={t('title')}
-                overlayClassName="!overflow-hidden p-3 sm:p-4 lg:pl-[280px]"
+                overlayClassName={
+                    isArabic
+                        ? '!overflow-hidden p-3 sm:p-4 lg:pr-[280px]'
+                        : '!overflow-hidden p-3 sm:p-4 lg:pl-[280px]'
+                }
                 className="!h-[calc(100vh-24px)] !max-h-[786px] !w-[calc(100vw-24px)] !max-w-[700px] overflow-hidden rounded-[8px] border-[0.5px] border-[#D9D9D9] bg-white shadow-none sm:!h-[calc(100vh-32px)] sm:!w-[calc(100vw-32px)] md:!w-[700px]"
             >
                 <div className="flex h-full min-h-0 w-full flex-col overflow-hidden px-4 py-5 sm:px-6 sm:py-6">
-                    <div className={`flex w-full shrink-0 items-start justify-between gap-4 ${isArabic ? 'flex-row-reverse' : ''}`}>
+                    <div
+                        className={`flex w-full shrink-0 items-start justify-between gap-4 ${isArabic ? 'flex-row-reverse' : ''}`}
+                    >
                         <div className={`min-w-0 flex-1 ${textAlignment}`}>
                             <h2 className="text-[20px] font-semibold leading-7 text-[#12115C] sm:text-[22px]">
                                 {t('title')}
@@ -79,7 +85,13 @@ const CreditDebitCardModal = ({ isOpen, onClose, onBack }: CreditDebitCardModalP
                         </div>
 
                         <div className={isArabic ? 'order-first' : 'order-last'}>
-                            <div className={isArabic ? 'absolute left-6 top-6' : 'absolute right-6 top-6'}><ModalCloseButton ariaLabel={t('close')} onClick={onClose} /></div>
+                            <div
+                                className={
+                                    isArabic ? 'absolute left-6 top-6' : 'absolute right-6 top-6'
+                                }
+                            >
+                                <ModalCloseButton ariaLabel={t('close')} onClick={onClose} />
+                            </div>
                         </div>
                     </div>
 
@@ -222,7 +234,7 @@ const CreditDebitCardModal = ({ isOpen, onClose, onBack }: CreditDebitCardModalP
                         </div>
                     </div>
 
-                    <div className="mt-5 w-full shrink-0 bg-white sm:mt-6">
+                    <div className="mt-8 w-full shrink-0 bg-white">
                         <div className="flex w-full flex-col-reverse gap-2 sm:h-[44px] sm:flex-row sm:items-center">
                             <ActionButton
                                 type="button"
@@ -236,16 +248,9 @@ const CreditDebitCardModal = ({ isOpen, onClose, onBack }: CreditDebitCardModalP
                                 type="button"
                                 onClick={() => setIsPaymentSuccessOpen(true)}
                                 trailingIcon={
-                                    <Arrow
-                                        aria-hidden="true"
-                                        className={`h-5 w-5 shrink-0 ${
-                                            isArabic ? 'rotate-180' : ''
-                                        }`}
-                                    />
+                                    <Arrow aria-hidden="true" className="h-5 w-5 shrink-0" />
                                 }
-                                className={`!h-[44px] !min-h-[44px] !max-h-[44px] !w-full !min-w-0 !shrink-0 !justify-center !rounded-[16px] !px-5 !text-[18px] !font-normal !leading-7 sm:!flex-1 ${
-                                    isArabic ? '!flex-row-reverse' : ''
-                                }`}
+                                className="!h-[44px] !min-h-[44px] !max-h-[44px] !w-full !min-w-0 !shrink-0 !justify-center !rounded-[16px] !px-5 !text-[18px] !font-normal !leading-7 sm:!flex-1"
                             >
                                 {t('continueToPayment')}
                             </ActionButton>

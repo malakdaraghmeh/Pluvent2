@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+﻿import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ProjectProgressArrow } from '@/assets';
 import type { ProjectProgress } from '../../../../utils/types/dashboard.types';
@@ -21,23 +21,14 @@ const ProjectProgressCard = ({
 }: ProjectProgress) => {
     const { t } = useTranslation('projectsPage');
     const { locale = 'en' } = useParams();
+
     const isArabic = locale.startsWith('ar');
     const textAlignment = isArabic ? 'text-right' : 'text-left';
 
     return (
         <article className="box-border w-full min-w-0 shrink-0 rounded-[24px] border border-[#00E5C810] bg-white p-4 sm:p-5 xl:h-[231px] xl:overflow-hidden xl:p-4 min-[1400px]:p-6">
-            <div
-                className={`grid w-full min-w-0 grid-cols-1 items-center gap-4 xl:h-[199px] xl:grid-cols-[140px_minmax(0,1fr)] min-[1400px]:h-[183px] min-[1400px]:grid-cols-[165px_minmax(0,1fr)] min-[1400px]:gap-5 ${
-                    isArabic
-                        ? 'xl:grid-cols-[minmax(0,1fr)_140px] min-[1400px]:grid-cols-[minmax(0,1fr)_165px]'
-                        : ''
-                }`}
-            >
-                <div
-                    className={`flex h-[130px] w-[130px] items-center justify-center justify-self-center sm:h-[140px] sm:w-[140px] xl:h-[140px] xl:w-[140px] min-[1400px]:h-[165px] min-[1400px]:w-[165px] ${
-                        isArabic ? 'xl:col-start-2 xl:row-start-1' : 'xl:col-start-1 xl:row-start-1'
-                    }`}
-                >
+            <div className="grid w-full min-w-0 grid-cols-1 items-center gap-4 xl:h-[199px] xl:grid-cols-[140px_minmax(0,1fr)] min-[1400px]:h-[183px] min-[1400px]:grid-cols-[165px_minmax(0,1fr)] min-[1400px]:gap-5">
+                <div className="flex h-[130px] w-[130px] items-center justify-center justify-self-center sm:h-[140px] sm:w-[140px] xl:col-start-1 xl:row-start-1 xl:h-[140px] xl:w-[140px] xl:justify-self-start min-[1400px]:h-[165px] min-[1400px]:w-[165px]">
                     <div className="origin-center scale-[0.84] sm:scale-[0.9] min-[1400px]:scale-100">
                         <ProgressDonutChart
                             progress={progress}
@@ -47,14 +38,10 @@ const ProjectProgressCard = ({
                     </div>
                 </div>
 
-                <div
-                    className={`flex w-full min-w-0 flex-col gap-4 xl:h-[183px] xl:justify-between xl:gap-0 ${
-                        isArabic ? 'xl:col-start-1 xl:row-start-1' : 'xl:col-start-2 xl:row-start-1'
-                    }`}
-                >
+                <div className="flex w-full min-w-0 flex-col gap-4 xl:col-start-2 xl:row-start-1 xl:h-[183px] xl:justify-between xl:gap-0">
                     <div
                         className={`flex w-full min-w-0 items-start justify-between gap-3 ${
-                            isArabic ? 'flex-row-reverse' : ''
+                            isArabic ? 'flex-row-reverse' : 'flex-row'
                         }`}
                     >
                         <h3
@@ -84,7 +71,7 @@ const ProjectProgressCard = ({
 
                     <div
                         className={`flex w-full min-w-0 items-center justify-between gap-3 xl:h-[24px] ${
-                            isArabic ? 'flex-row-reverse' : ''
+                            isArabic ? 'flex-row-reverse' : 'flex-row'
                         }`}
                     >
                         <span
@@ -109,9 +96,7 @@ const ProjectProgressCard = ({
                             <span className="whitespace-nowrap text-[#53627A]">
                                 {t('statusLabel.projectStatus')}
                             </span>
-
                             <span className="text-[#53627A]">:</span>
-
                             <span className="whitespace-nowrap text-[#00BF78]">
                                 {t(`warranty.${warrantyKeyMap[warranty]}`)}
                             </span>
@@ -126,7 +111,6 @@ const ProjectProgressCard = ({
                             }`}
                         >
                             <span>{t('action.openProject')}</span>
-
                             <ProjectProgressArrow
                                 className={`h-4 w-4 shrink-0 ${isArabic ? 'rotate-180' : ''}`}
                             />
@@ -139,3 +123,5 @@ const ProjectProgressCard = ({
 };
 
 export default ProjectProgressCard;
+
+

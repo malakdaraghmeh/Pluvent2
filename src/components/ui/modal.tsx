@@ -1,6 +1,6 @@
-﻿import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-
+import { useTranslation } from 'react-i18next';
 import type { ModalProps } from '../../../utils/types/modal.types';
 
 export default function Modal({
@@ -13,6 +13,9 @@ export default function Modal({
     closeOnOverlayClick = true,
     closeOnEscape = true,
 }: ModalProps) {
+    const { i18n } = useTranslation();
+    const isArabic = i18n.language.startsWith('ar');
+
     useEffect(() => {
         if (!isOpen) return;
 
@@ -20,7 +23,8 @@ export default function Modal({
         const previousHtmlOverflow = document.documentElement.style.overflow;
         const previousBodyPaddingRight = document.body.style.paddingRight;
 
-        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        const scrollbarWidth =
+            window.innerWidth - document.documentElement.clientWidth;
 
         const handleKeyDown = (event: KeyboardEvent) => {
             if (closeOnEscape && event.key === 'Escape') {
@@ -52,9 +56,14 @@ export default function Modal({
 
     return createPortal(
         <div
-            className={`fixed inset-0 z-[9999] flex items-center justify-center overflow-y-auto overscroll-contain bg-black/30 p-3 sm:p-4 md:p-5 lg:p-6 3xl:p-8 4xl:p-10 ${overlayClassName}`}
+            className={`fixed inset-0 z-[9999] flex items-center justify-center overflow-y-auto overscroll-contain bg-black/30 p-3 sm:p-4 md:p-5 lg:p-6 3xl:p-8 4xl:p-10 ${overlayClassName} ${
+                isArabic ? 'lg:!px-6 3xl:!px-8 4xl:!px-10' : ''
+            }`}
             onMouseDown={event => {
-                if (closeOnOverlayClick && event.target === event.currentTarget) {
+                if (
+                    closeOnOverlayClick &&
+                    event.target === event.currentTarget
+                ) {
                     onClose();
                 }
             }}
@@ -64,7 +73,6 @@ export default function Modal({
                 aria-modal="true"
                 aria-label={ariaLabel}
                 className={`relative w-full bg-white shadow-[0_24px_80px_rgba(15,23,42,0.18)] ${className}`}
-                onMouseDown={event => event.stopPropagation()}
             >
                 {children}
             </div>

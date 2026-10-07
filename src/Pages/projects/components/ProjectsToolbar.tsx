@@ -11,7 +11,8 @@ const ProjectsToolbar = ({
     onSearchChange,
     onFilterChange,
 }: ProjectsToolbarProps) => {
-    const { t } = useTranslation('projectsPage');
+    const { t, i18n } = useTranslation('projectsPage');
+    const isArabic = i18n.language.startsWith('ar');
     const [isOpen, setIsOpen] = useState(false);
     const filterRef = useRef<HTMLDivElement>(null);
 
@@ -44,7 +45,7 @@ const ProjectsToolbar = ({
                     value={searchValue}
                     onChange={event => onSearchChange(event.target.value)}
                     placeholder={t('searchPlaceholder')}
-                    className="w-full min-w-0 bg-transparent text-start text-[14px] text-[#888282] outline-none placeholder:text-[#888282]"
+                    className={`w-full min-w-0 bg-transparent text-[14px] text-[#888282] outline-none placeholder:text-[#888282] ${isArabic ? 'text-right' : 'text-left'}`}
                 />
             </div>
 
