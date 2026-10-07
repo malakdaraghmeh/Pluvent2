@@ -9,6 +9,10 @@ const UpcomingPaymentsTable = () => {
     const { t, i18n } = useTranslation('upcomingPayments');
     const isArabic = i18n.language.startsWith('ar');
 
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedProject, setSelectedProject] = useState('all');
+    const [isPaymentFlowOpen, setIsPaymentFlowOpen] = useState(false);
+
     const getProjectName = (project: string) => {
         if (project === 'Company Website Redesign') {
             return t('projectNames.companyWebsiteRedesign');
@@ -39,7 +43,9 @@ const UpcomingPaymentsTable = () => {
     const getDate = (date: string) => {
         const parsedDate = new Date(date);
 
-        if (Number.isNaN(parsedDate.getTime())) return date;
+        if (Number.isNaN(parsedDate.getTime())) {
+            return date;
+        }
 
         return new Intl.DateTimeFormat(isArabic ? 'ar-EG-u-nu-latn' : 'en-US', {
             day: 'numeric',
@@ -48,15 +54,13 @@ const UpcomingPaymentsTable = () => {
         }).format(parsedDate);
     };
 
-    const [searchTerm, setSearchTerm] = useState('');
-    const [selectedProject, setSelectedProject] = useState('all');
-    const [isPaymentFlowOpen, setIsPaymentFlowOpen] = useState(false);
-
     const projects = [...new Set(upcomingPaymentsList.map(item => getProjectName(item.project)))];
 
     const filteredData = upcomingPaymentsList.filter(item => {
         const normalizedSearch = searchTerm.trim().toLowerCase();
+
         const localizedProject = getProjectName(item.project);
+
         const localizedInstallment = getInstallment(item.installment);
 
         const matchesSearch =
@@ -68,17 +72,11 @@ const UpcomingPaymentsTable = () => {
         return matchesSearch && matchesProject;
     });
 
-    const handleOpenPaymentFlow = () => {
-        setIsPaymentFlowOpen(true);
-    };
-
-    const handleClosePaymentFlow = () => {
-        setIsPaymentFlowOpen(false);
-    };
+    const alignmentClass = isArabic ? 'text-right' : 'text-left';
 
     return (
         <>
-            <section className="flex w-full flex-col gap-6 rounded-[16px] bg-white p-4 shadow-sm sm:p-6">
+            <section className="flex w-full min-w-0 flex-col gap-6 rounded-[16px] bg-white p-4 shadow-sm sm:p-6">
                 <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
                     <h2 className="text-[22px] font-semibold leading-[28px] text-[#12115C]">
                         {t('title')}
@@ -112,53 +110,40 @@ const UpcomingPaymentsTable = () => {
                     </div>
                 </div>
 
-                <div className="w-full overflow-x-auto rounded-[8px] border border-[#00E5C820] bg-white [scrollbar-width:thin] [scrollbar-color:#CBD5E1_transparent] [&::-webkit-scrollbar]:h-[4px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#CBD5E1]">
-                    <table className="w-full min-w-[760px] border-collapse sm:min-w-[900px]">
+                <div className="w-full min-w-0 overflow-x-auto rounded-[8px] border border-[#00E5C820] bg-white [scrollbar-color:#CBD5E1_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar]:h-[4px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#CBD5E1]">
+                    <table className="w-full min-w-[1180px] table-fixed border-collapse xl:min-w-full">
+                        <colgroup>
+                            <col className="w-[19%]" />
+                            <col className="w-[18%]" />
+                            <col className="w-[17%]" />
+                            <col className="w-[15%]" />
+                            <col className="w-[17%]" />
+                            <col className="w-[14%]" />
+                        </colgroup>
+
                         <thead>
                             <tr className="h-[48px] border-b border-[#00E5C820] bg-white text-[14px] font-semibold text-[#12115C]">
-                                <th
-                                    className={`px-6 py-3 ${isArabic ? 'text-right' : 'text-left'}`}
-                                >
-                                    {t('project')}
-                                </th>
+                                <th className={`px-5 py-3 ${alignmentClass}`}>{t('project')}</th>
 
-                                <th
-                                    className={`whitespace-nowrap px-4 py-3 ${
-                                        isArabic ? 'text-right' : 'text-left'
-                                    }`}
-                                >
+                                <th className={`whitespace-nowrap px-5 py-3 ${alignmentClass}`}>
                                     {t('installment')}
                                 </th>
 
-                                <th
-                                    className={`whitespace-nowrap px-4 py-3 ${
-                                        isArabic ? 'text-right' : 'text-left'
-                                    }`}
-                                >
+                                <th className={`whitespace-nowrap px-5 py-3 ${alignmentClass}`}>
                                     {t('amount')}
                                 </th>
 
-                                <th
-                                    className={`whitespace-nowrap px-4 py-3 ${
-                                        isArabic ? 'text-right' : 'text-left'
-                                    }`}
-                                >
+                                <th className={`whitespace-nowrap px-5 py-3 ${alignmentClass}`}>
                                     {t('dueDate')}
                                 </th>
 
                                 <th
-                                    className={`whitespace-nowrap px-4 py-3 ${
-                                        isArabic ? 'text-right' : 'text-left'
-                                    }`}
+                                    className={`whitespace-nowrap py-3 pl-4 pr-10 ${alignmentClass}`}
                                 >
                                     {t('daysLeftLabel')}
                                 </th>
 
-                                <th
-                                    className={`whitespace-nowrap px-6 py-3 ${
-                                        isArabic ? 'text-right' : 'text-left'
-                                    }`}
-                                >
+                                <th className="whitespace-nowrap px-4 py-3 text-right">
                                     {t('pay')}
                                 </th>
                             </tr>
@@ -172,23 +157,33 @@ const UpcomingPaymentsTable = () => {
                                         index % 2 === 0 ? 'bg-[#00E5C805]' : 'bg-white'
                                     }`}
                                 >
-                                    <td className="px-6 py-4 font-semibold text-[#1F2937]">
+                                    <td
+                                        className={`px-5 py-4 text-[14px] font-semibold leading-[20px] text-[#1F2937] ${alignmentClass}`}
+                                    >
                                         {getProjectName(row.project)}
                                     </td>
 
-                                    <td className="whitespace-nowrap px-4 py-4 text-[#8C94A3]">
+                                    <td
+                                        className={`whitespace-nowrap px-5 py-4 text-[#8C94A3] ${alignmentClass}`}
+                                    >
                                         {getInstallment(row.installment)}
                                     </td>
 
-                                    <td className="whitespace-nowrap px-4 py-4 font-bold text-[#12115C]">
+                                    <td
+                                        className={`whitespace-nowrap px-5 py-4 font-bold text-[#12115C] ${alignmentClass}`}
+                                    >
                                         {getAmount(row.amount)}
                                     </td>
 
-                                    <td className="whitespace-nowrap px-4 py-4 text-[#8C94A3]">
+                                    <td
+                                        className={`whitespace-nowrap px-5 py-4 text-[#8C94A3] ${alignmentClass}`}
+                                    >
                                         {getDate(row.dueDate)}
                                     </td>
 
-                                    <td className="px-4 py-4 font-semibold">
+                                    <td
+                                        className={`whitespace-nowrap py-4 pl-4 pr-10 font-semibold ${alignmentClass}`}
+                                    >
                                         <span
                                             className={
                                                 row.daysLeft <= 3
@@ -202,24 +197,26 @@ const UpcomingPaymentsTable = () => {
                                         </span>
                                     </td>
 
-                                    <td className="whitespace-nowrap px-6 py-4">
-                                        <button
-                                            type="button"
-                                            onClick={handleOpenPaymentFlow}
-                                            className={`inline-flex h-[40px] items-center justify-center gap-2 rounded-full bg-[#0F0C41] px-5 text-[14px] font-medium text-white transition-colors duration-200 hover:bg-[#1A165C] ${
-                                                isArabic ? 'flex-row-reverse' : 'flex-row'
-                                            }`}
-                                        >
-                                            <span>{t('payNow')}</span>
-
-                                            <span
-                                                className={`flex shrink-0 items-center ${
-                                                    isArabic ? 'rotate-180' : ''
+                                    <td className="whitespace-nowrap px-4 py-4">
+                                        <div className="flex w-full justify-end">
+                                            <button
+                                                type="button"
+                                                onClick={() => setIsPaymentFlowOpen(true)}
+                                                className={`inline-flex h-[40px] items-center justify-center gap-2 rounded-full bg-[#0F0C41] px-4 text-[13px] font-medium text-white transition-colors duration-200 hover:bg-[#1A165C] ${
+                                                    isArabic ? 'flex-row-reverse' : 'flex-row'
                                                 }`}
                                             >
-                                                <Arrow />
-                                            </span>
-                                        </button>
+                                                <span>{t('payNow')}</span>
+
+                                                <span
+                                                    className={`flex shrink-0 items-center ${
+                                                        isArabic ? 'rotate-180' : ''
+                                                    }`}
+                                                >
+                                                    <Arrow />
+                                                </span>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             ))}
@@ -239,7 +236,7 @@ const UpcomingPaymentsTable = () => {
                 </div>
             </section>
 
-            <PaymentFlow isOpen={isPaymentFlowOpen} onClose={handleClosePaymentFlow} />
+            <PaymentFlow isOpen={isPaymentFlowOpen} onClose={() => setIsPaymentFlowOpen(false)} />
         </>
     );
 };

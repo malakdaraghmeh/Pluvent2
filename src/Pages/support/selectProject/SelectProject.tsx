@@ -1,73 +1,94 @@
-import React, { useState } from 'react';
+import type { MouseEvent } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, X, ShieldCheck, Smartphone, ChevronRight } from 'lucide-react';
-import Palette from '@icons/pencil-ruler.svg?react';
-import Info from '@icons/info.svg?react';
+import {
+    ModalCloseIcon,
+    SelectProjectBackIcon,
+    SelectProjectChevronIcon,
+    SelectProjectBrandIcon,
+    SelectProjectInfoIcon,
+    SelectProjectShieldIcon,
+    SelectProjectSmartphoneIcon,
+} from '@/assets';
 
-export default function SelectProjectModal() {
+interface SelectProjectModalProps {
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
+    onBack: () => void;
+    onSelectProject: () => void;
+    onGeneralInquiry: () => void;
+}
+
+export default function SelectProjectModal({
+    open,
+    onOpenChange,
+    onBack,
+    onSelectProject,
+    onGeneralInquiry,
+}: SelectProjectModalProps) {
     const { t, i18n } = useTranslation('SelectProject');
-    const [searchQuery, setSearchQuery] = useState('');
+
+    const navigate = useNavigate();
+    const { locale } = useParams();
+
+    const currentLocale = locale || 'en';
+
     const isArabic = i18n.language.startsWith('ar');
+
     const textAlign = isArabic ? 'text-right' : 'text-left';
 
-    const [isOpen, setIsOpen] = useState(true);
-    const [selectedProject, setSelectedProject] = useState(null);
+    const handleSupportPlans = (event: MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation();
 
-    if (!isOpen) {
-        return (
-            <div
-                className={`flex h-screen w-full items-center justify-center bg-gray-100 p-4 ${
-                    isArabic ? 'rtl' : 'ltr'
-                }`}
-                dir={isArabic ? 'rtl' : 'ltr'}
-            >
-                <button
-                    onClick={() => setIsOpen(true)}
-                    className="rounded-xl bg-[#0F1438] px-6 py-3 font-semibold text-white shadow-md transition hover:bg-indigo-900"
-                >
-                    {t('openProjectSelectionModal', 'Open Project Selection Modal')}
-                </button>
-            </div>
-        );
+        onOpenChange(false);
+
+        navigate(`/${currentLocale}/support-plans`);
+    };
+
+    if (!open) {
+        return null;
     }
 
     return (
-        <div
-            className={`fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 font-sans ${
-                isArabic ? 'rtl' : 'ltr'
-            }`}
-            dir={isArabic ? 'rtl' : 'ltr'}
-        >
-            {/* Modal Container */}
-            <div className="relative w-full max-w-[620px] rounded-[32px] bg-white p-8 shadow-2xl transition-all">
-                {/* Top Navigation / Header */}
-                <div className="flex items-center justify-between">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-4 backdrop-blur-[1px]">
+            <div className="relative w-full max-w-[620px] rounded-[28px] bg-white p-6 shadow-xl sm:p-8">
+                <div
+                    className={`flex items-center justify-between ${
+                        isArabic ? 'flex-row-reverse' : ''
+                    }`}
+                >
                     <button
-                        onClick={() => console.log('Back clicked')}
-                        className={`flex items-center gap-2 text-[15px] font-semibold text-[#12115C] transition hover:opacity-80 ${
+                        type="button"
+                        onClick={onBack}
+                        className={`flex items-center gap-2 text-[15px] font-semibold text-[#12115C] transition-opacity hover:opacity-80 ${
                             isArabic ? 'flex-row-reverse' : ''
                         }`}
                     >
-                        <ArrowLeft
-                            className={`h-4 w-4 stroke-[2.5] ${isArabic ? 'rotate-180' : ''}`}
+                        <SelectProjectBackIcon
+                            className={`h-4 w-4 shrink-0 stroke-[2.5] ${
+                                isArabic ? 'rotate-180' : ''
+                            }`}
                         />
-                        {t('back', 'Back')}
+
+                        <span>{t('back', 'Back')}</span>
                     </button>
 
                     <button
-                        onClick={() => setIsOpen(false)}
-                        className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#12115C] text-white transition hover:bg-slate-800"
+                        type="button"
+                        onClick={() => onOpenChange(false)}
+                        className="flex h-9 w-9 items-center justify-center rounded-[8px] bg-[#12115C] text-white transition-opacity hover:opacity-90"
+                        aria-label="Close"
                     >
-                        <X className="h-5 w-5 stroke-[2.5]" />
+                        <ModalCloseIcon className="h-4 w-4" />
                     </button>
                 </div>
 
-                {/* Modal Title & Subtitle */}
-                <div className={`mt-6 mb-6 ${textAlign}`}>
-                    <h2 className="text-[26px] font-bold text-[#12115C] tracking-tight">
+                <div className={`mb-6 mt-6 ${textAlign}`}>
+                    <h2 className="text-[24px] font-bold leading-[30px] text-[#12115C]">
                         {t('whichProjectDoYouNeedHelpWith', 'Which project do you need help with?')}
                     </h2>
-                    <p className="mt-1 text-[15px] text-gray-500 font-normal">
+
+                    <p className="mt-1 text-[14px] font-normal leading-5 text-[#7E8492]">
                         {t(
                             'selectAProjectToContinue',
                             'Select a project to continue with your request.'
@@ -75,124 +96,112 @@ export default function SelectProjectModal() {
                     </p>
                 </div>
 
-                {/* Project Options List */}
-                <div className="space-y-4">
-                    {/* Card 1: Brand Identity & Visual Design */}
-                    <div
-                        onClick={() => setSelectedProject('brand')}
-                        className={`group relative flex cursor-pointer items-start justify-between rounded-2xl border p-5 transition-all ${
-                            selectedProject === 'brand'
-                                ? 'border-emerald-500 bg-emerald-50/10 ring-2 ring-emerald-500/20'
-                                : 'border-gray-200/80 hover:border-gray-300 hover:shadow-sm'
+                <div className="flex flex-col gap-4">
+                    <button
+                        type="button"
+                        onClick={onSelectProject}
+                        className={`flex w-full items-start justify-between gap-4 rounded-[16px] border border-[#E8E8EE] bg-white p-4 transition hover:border-[#39E1D7] ${
+                            isArabic ? 'flex-row-reverse' : ''
                         }`}
                     >
-                        {/* Stable LTR Flex Order for Content Block */}
-                        <div className="flex items-center gap-4 text-left">
-                            {/* Icon Container */}
-                            <div className="flex h-13 w-13 shrink-0 items-center justify-center p-2 rounded-lg bg-[#39E1D7] text-white shadow-sm">
-                                <Palette />
+                        <div
+                            className={`flex min-w-0 items-center gap-3 ${
+                                isArabic ? 'flex-row-reverse' : ''
+                            }`}
+                        >
+                            <div className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-[9px] bg-[#39E1D7] text-white">
+                                <SelectProjectBrandIcon className="h-6 w-6" />
                             </div>
 
-                            {/* Text Info */}
-                            <div className={textAlign}>
-                                <h3 className="text-[17px] font-bold text-[#0F1438]">
+                            <div className={`min-w-0 ${textAlign}`}>
+                                <h3 className="text-[15px] font-bold leading-5 text-[#12115C]">
                                     {t(
                                         'brandIdentityVisualDesign',
                                         'Brand Identity & Visual Design'
                                     )}
                                 </h3>
-                                <p className="mt-0.5 text-[14px] text-gray-400 font-normal">
+
+                                <p className="mt-[2px] text-[12px] font-normal leading-[18px] text-[#A0A3AD]">
                                     {t('designDigitalExperience', 'Design & Digital Experience')}
                                 </p>
 
-                                {/* Active Warranty Badge */}
                                 <div
-                                    className={`mt-1 flex items-center gap-1.5 text-[13.5px] font-medium text-[#10B981] ${
+                                    className={`mt-1 flex items-center gap-1 text-[12px] font-medium text-[#10B981] ${
                                         isArabic ? 'flex-row-reverse' : ''
                                     }`}
                                 >
-                                    <ShieldCheck className="h-4 w-4 stroke-[2.5]" />
+                                    <SelectProjectShieldIcon className="h-[14px] w-[14px] shrink-0" />
+
                                     <span>
-                                        {t('warrantyActive', 'Warranty Active')}{' '}
-                                        <span className="mx-0.5">•</span> 315{' '}
-                                        {t('daysLeft', 'Days Left')}
+                                        {t('warrantyActive', 'Warranty Active')}
+                                        <span className="mx-1">•</span>
+                                        315 {t('daysLeft', 'Days Left')}
                                     </span>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Completed Tag */}
-                        <span className="rounded-md bg-[#34C7590D] px-3 py-1 text-[13px] font-medium text-[#34C759]">
+                        <span className="shrink-0 rounded-[5px] bg-[#34C7590D] px-3 py-[5px] text-[12px] font-medium text-[#34C759]">
                             {t('completed', 'Completed')}
                         </span>
-                    </div>
+                    </button>
 
-                    {/* Card 2: Mobile Application */}
                     <div
-                        onClick={() => setSelectedProject('mobile')}
-                        className={`group relative flex cursor-pointer flex-col justify-between rounded-2xl border p-5 transition-all sm:flex-row sm:items-center ${
-                            selectedProject === 'mobile'
-                                ? 'border-indigo-500 bg-indigo-50/10 ring-2 ring-indigo-500/20'
-                                : 'border-gray-200/80 hover:border-gray-300 hover:shadow-sm'
+                        className={`flex w-full flex-col justify-between gap-4 rounded-[16px] border border-[#E8E8EE] bg-white p-4 sm:flex-row sm:items-center ${
+                            isArabic ? 'sm:flex-row-reverse' : ''
                         }`}
                     >
-                        {/* Stable LTR Flex Order for Content Block */}
-                        <div className="flex items-center gap-4 text-left">
-                            {/* Icon Container */}
-                            <div className="flex h-13 w-13 shrink-0 items-center justify-center p-2 rounded-lg bg-[#13192B] text-white shadow-sm">
-                                <Smartphone className="h-6 w-6 stroke-[2]" />
+                        <div
+                            className={`flex min-w-0 items-center gap-3 ${
+                                isArabic ? 'flex-row-reverse' : ''
+                            }`}
+                        >
+                            <div className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-[9px] bg-[#13192B] text-white">
+                                <SelectProjectSmartphoneIcon className="h-5 w-5" />
                             </div>
 
-                            {/* Text Info */}
-                            <div className={textAlign}>
-                                <h3 className="text-[17px] font-bold text-[#0F1438]">
+                            <div className={`min-w-0 ${textAlign}`}>
+                                <h3 className="text-[15px] font-bold leading-5 text-[#12115C]">
                                     {t('mobileApplication', 'Mobile Application')}
                                 </h3>
 
-                                <p className="mt-0.5 text-[14px] text-gray-400 font-normal">
+                                <p className="mt-[2px] text-[12px] font-normal leading-[18px] text-[#A0A3AD]">
                                     {t('development', 'Development')}
                                 </p>
 
-                                {/* Expired Warranty Tag */}
-                                <div
-                                    className={`mt-1 text-[13.5px] font-medium text-[#EF4444] ${
-                                        isArabic ? 'flex-row-reverse' : ''
-                                    }`}
-                                >
-                                    {t('warrantyExpired', 'Warranty Expired')}{' '}
-                                    <span className="mx-0.5 text-gray-400">•</span>{' '}
+                                <p className="mt-1 text-[12px] font-medium leading-[18px] text-[#FF3B30]">
+                                    {t('warrantyExpired', 'Warranty Expired')}
+
+                                    <span className="mx-1 text-[#A0A3AD]">•</span>
+
                                     {t('supportUnavailable', 'Support Unavailable')}
-                                </div>
+                                </p>
                             </div>
                         </div>
 
-                        {/* Right Side: Completed Tag + CTA Link */}
-                        <div className="mt-4 flex flex-col items-start justify-center gap-3 sm:mt-0 sm:items-center">
-                            <span className="rounded-md bg-[#F7F6F7] px-3 py-1 text-[13px] font-medium text-[#6B7280]">
+                        <div
+                            className={`flex shrink-0 flex-col gap-3 ${
+                                isArabic ? 'items-start' : 'items-end'
+                            }`}
+                        >
+                            <span className="rounded-[5px] bg-[#F7F6F7] px-3 py-[5px] text-[12px] font-medium text-[#7E8492]">
                                 {t('completed', 'Completed')}
                             </span>
 
-                            {/* Explore Warranty Link */}
                             <button
-                                onClick={e => {
-                                    e.stopPropagation();
-                                    alert(
-                                        t(
-                                            'navigatingToPaidWarrantyPlans',
-                                            'Navigating to Paid Warranty Plans...'
-                                        )
-                                    );
-                                }}
-                                className={`group/btn flex items-center gap-1 text-[14px] font-bold text-[#FF3B30] hover:underline ${
+                                type="button"
+                                onClick={handleSupportPlans}
+                                className={`flex items-center gap-1 text-[13px] font-bold text-[#FF3B30] hover:underline ${
                                     isArabic ? 'flex-row-reverse' : ''
                                 }`}
                             >
-                                {t('explorePaidWarrantyPlans', 'Explore Paid Warranty Plans')}
-                                <ChevronRight
-                                    className={`h-4 w-4 stroke-[3] transition-transform group-hover/btn:translate-x-0.5 ${
-                                        isArabic
-                                            ? 'rotate-180 group-hover/btn:-translate-x-0.5'
-                                            : ''
+                                <span>
+                                    {t('explorePaidWarrantyPlans', 'Explore Paid Warranty Plans')}
+                                </span>
+
+                                <SelectProjectChevronIcon
+                                    className={`h-4 w-4 shrink-0 stroke-[3] ${
+                                        isArabic ? 'rotate-180' : ''
                                     }`}
                                 />
                             </button>
@@ -200,26 +209,20 @@ export default function SelectProjectModal() {
                     </div>
                 </div>
 
-                {/* Footer Info Box */}
                 <div
-                    className={`mt-6 flex items-center gap-3 rounded-2xl bg-[#00E5C810] p-4 text-[14px] text-[#12115C] ${
+                    className={`mt-5 flex items-center gap-2 rounded-[12px] bg-[#00E5C810] px-4 py-3 ${
                         isArabic ? 'flex-row-reverse' : ''
                     }`}
                 >
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center text-white">
-                        <Info />
+                    <div className="flex h-5 w-5 shrink-0 items-center justify-center">
+                        <SelectProjectInfoIcon />
                     </div>
-                    <p className={`font-medium ${textAlign}`}>
+
+                    <p className={`text-[12px] font-medium leading-5 text-[#12115C] ${textAlign}`}>
                         {t('cantFindYourProject', "Can't find your project?")}{' '}
                         <button
-                            onClick={() =>
-                                alert(
-                                    t(
-                                        'creatingGeneralInquiryTicket',
-                                        'Creating General Inquiry Ticket...'
-                                    )
-                                )
-                            }
+                            type="button"
+                            onClick={onGeneralInquiry}
                             className="font-bold text-[#3634C7] hover:underline"
                         >
                             {t('createAGeneralInquiryTicket', 'Create a General Inquiry ticket.')}

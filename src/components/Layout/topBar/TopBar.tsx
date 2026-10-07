@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import BreadcrumbArrow from '@icons/arrow-left-s.svg?react';
-import Bell from '@icons/bell.svg?react';
-import FlagAr from '@icons/egypt-flag.svg?react';
-import FlagEn from '@icons/usa-flag.svg?react';
+import { BreadcrumbArrow } from '@/assets';
+import { TopBarBellIcon as Bell } from '@/assets';
+import { SidebarArabicFlagIcon as FlagAr } from '@/assets';
+import { SidebarEnglishFlagIcon as FlagEn } from '@/assets';
 import { TopBarLanguageChevron } from '@/assets';
 import type { TopBarProps } from '../../../../utils/types/top-bar.types';
 import NotificationsDropdown from '../notifications/NotificationsDropdown';
@@ -30,7 +30,6 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
 
     const currentLocale = pathname.split('/')[1] || 'en';
     const isArabic = currentLocale.startsWith('ar');
-    const breadcrumbRowClass = isArabic ? 'flex-row-reverse' : 'flex-row';
     const rowClass = 'flex-row';
 
     const pathWithoutLocale = `/${pathname
@@ -144,13 +143,11 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
         setIsLanguageOpen(false);
     };
 
-    const breadcrumbArrowClass = `h-4 w-4 shrink-0 transition-transform sm:h-4 sm:w-4 lg:h-5 lg:w-5 ${
-        isArabic ? 'rotate-180' : ''
-    }`;
+    const breadcrumbArrowClass = `h-[9px] w-[9px] shrink-0 transition-transform min-[400px]:h-[10px] min-[400px]:w-[10px] min-[480px]:h-3 min-[480px]:w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 lg:h-5 lg:w-5 ${isArabic ? 'rotate-180' : ''}`;
 
-    const breadcrumbClass = `flex ${rowClass} min-w-0 items-center gap-2 whitespace-nowrap font-['Sora'] text-[12px] font-medium leading-5 sm:gap-2.5 sm:text-[13px] md:text-[14px] lg:gap-3 lg:text-[14px]`;
+    const breadcrumbClass = `flex ${rowClass} min-w-0 max-w-full items-center gap-[4px] whitespace-nowrap font-['Sora'] text-[7px] font-medium leading-3 min-[360px]:text-[7.5px] min-[400px]:gap-[5px] min-[400px]:text-[8px] min-[480px]:gap-[6px] min-[480px]:text-[9px] sm:gap-[8px] sm:text-[10px] md:gap-[10px] md:text-[12px] md:leading-5 lg:text-[14px]`;
 
-    const projectsBreadcrumbClass = `flex ${rowClass} min-w-0 items-center gap-2 whitespace-nowrap font-['Roboto'] text-[12px] font-medium leading-5 sm:gap-2.5 sm:text-[13px] md:text-[14px] lg:gap-3 lg:text-[14px]`;
+    const projectsBreadcrumbClass = `flex ${rowClass} min-w-0 max-w-full items-center gap-[4px] whitespace-nowrap font-['Roboto'] text-[7px] font-medium leading-3 min-[360px]:text-[7.5px] min-[400px]:gap-[5px] min-[400px]:text-[8px] min-[480px]:gap-[6px] min-[480px]:text-[9px] sm:gap-[8px] sm:text-[10px] md:gap-[10px] md:text-[12px] md:leading-5 lg:text-[14px]`;
 
     const breadcrumbContent = () => {
         if (isProjectsPage) {
@@ -379,21 +376,29 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
                 </div>
             );
         }
-
         if (isMessagesPage) {
             return (
                 <div className={breadcrumbClass}>
                     <Link
                         to={`/${currentLocale}`}
-                        className="shrink-0 text-[#868B89] transition-opacity hover:opacity-70"
+                        className="shrink-0 whitespace-nowrap text-[#868B89] transition-opacity hover:opacity-70"
                     >
-                        {sidebarT('portal')}
+                        {ticketsT('breadcrumb.portal')}
+                    </Link>
+
+                    <BreadcrumbArrow className={breadcrumbArrowClass} />
+
+                    <Link
+                        to={`/${currentLocale}/support`}
+                        className="shrink-0 whitespace-nowrap text-[#868B89] transition-opacity hover:opacity-70"
+                    >
+                        {ticketsT('breadcrumb.supportTicket')}
                     </Link>
 
                     <BreadcrumbArrow className={breadcrumbArrowClass} />
 
                     <span className="shrink-0 whitespace-nowrap font-semibold text-[#4F46E5]">
-                        {sidebarT('Messages')}
+                        {ticketsT('breadcrumb.createTicket')}
                     </span>
                 </div>
             );
@@ -493,7 +498,7 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
                     />
                 </button>
 
-                <div className="flex min-w-0 flex-1 justify-start overflow-hidden text-left">
+                <div className="flex min-w-0 flex-1 justify-start overflow-visible text-left">
                     {breadcrumbContent()}
                 </div>
             </div>

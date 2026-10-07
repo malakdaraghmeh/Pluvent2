@@ -1,8 +1,8 @@
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import PulvetPro from '@icons/rafiki.svg?react';
-import CheckCircle from '@icons/checkmark-container.svg?react';
-import UnderWarranty from '@icons/underWarranty.svg?react';
+import { ExpiredWarrantyIllustration as PulvetPro } from '@/assets';
+import { ExpiredWarrantyCheckIcon as CheckCircle } from '@/assets';
+import { ExpiredWarrantyIcon as UnderWarranty } from '@/assets';
 import ProjectSupportSection from './ProjectSupportSection';
 
 export default function ExpiredWarrantySupport() {

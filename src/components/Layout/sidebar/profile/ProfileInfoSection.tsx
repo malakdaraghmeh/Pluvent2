@@ -7,7 +7,6 @@ import type { ProfileInfoSectionProps } from '../../../../../utils/types/profile
 export default function ProfileInfoSection({
     title,
     icon: SectionIcon,
-    isEditing,
     onEdit,
     children,
 }: ProfileInfoSectionProps) {

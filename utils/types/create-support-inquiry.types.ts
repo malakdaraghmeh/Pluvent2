@@ -1,11 +1,16 @@
-export type CreateSupportInquiryFormProps = {
-    projectId?: string | null;
-    requestType?: string | null;
+export type SupportRequestType = 'project' | 'general';
+
+export interface CreateSupportInquiryFormProps {
+    projectId?: string;
+    requestType: SupportRequestType;
     showWarrantyNotice?: boolean;
     onSubmitted?: () => void;
-};
+}
 
-export type CreateSupportInquiryModalProps = {
+export interface CreateSupportInquiryModalProps {
     isOpen: boolean;
     onClose: () => void;
-};
+    projectId?: string;
+    requestType?: SupportRequestType;
+    showWarrantyNotice?: boolean;
+}

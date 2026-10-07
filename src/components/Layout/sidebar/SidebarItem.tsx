@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import Arrow from '@icons/sidebar-arrow.svg?react';
+import { SidebarArrowIcon as Arrow } from '@/assets';
 import { ComponentType, SVGProps } from 'react';
 
 interface SidebarItemProps {

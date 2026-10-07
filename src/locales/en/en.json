@@ -67,6 +67,14 @@
             "designReview": "Design Review Group",
             "developers": "Developers Group"
         },
+        "askAi": {
+            "you": "You",
+            "pulventMessage": "Hi! We've reviewed your latest request and shared the updates with our team.",
+            "userMessage": "Hi! We've reviewed your latest request and shared the updates with our team.",
+            "placeholder": "Ask AI Assistant...",
+            "attachment": "Add attachment",
+            "send": "Send message"
+        },
         "times": {
             "justNow": "Just now",
             "yesterday": "Yesterday",
@@ -152,7 +160,7 @@
             "inProgress": "In Progress",
             "completed": "Completed"
         },
-        "description": "Qorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent",
+        "description": "Track your project progress, key milestones, delivery timeline, and latest updates in one place.",
         "startDate": "Start Date",
         "delivery": "Delivery",
         "daysLeft": "Days Left",
@@ -285,7 +293,7 @@
         "chat": "Chat",
         "tickets": {
             "first": "Logo file format not ...",
-            "second": "Login issue on stagin..."
+            "second": "Login issue on staging..."
         }
     },
     "billingPage": {
@@ -557,6 +565,11 @@
             "accountStatus": "Account Status",
             "action": "Action"
         },
+        "actions": {
+            "edit": "Edit",
+            "delete": "Delete",
+            "close": "Close actions"
+        },
         "roles": {
             "Admin": "Admin",
             "Employee": "Employee"
@@ -566,10 +579,10 @@
             "Disable": "Disable"
         },
         "metrics": {
-            "outstanding": "Total Outstanding ",
+            "outstanding": "Total Outstanding",
             "active": "Active Accounts",
             "pending": "Pending Invitations",
-            "rejected": "regect"
+            "rejected": "Rejected"
         },
         "addUserModal": {
             "title": "Add User",
@@ -603,6 +616,22 @@
         "description": "Sorry, the page you are looking for does not exist.",
         "backToHome": "Back to Home",
         "logoAlt": "Pulvent Logo"
+    },
+    "paymentMethodModal": {
+        "title": "Choose Payment Method",
+        "subtitle": "Select your preferred payment option to continue.",
+        "methods": {
+            "creditDebitCard": "Credit & Debit Card",
+            "paypal": "Pay securely with PayPal",
+            "stripe": "Pay securely with Stripe",
+            "applePay": "Fast & secure payment",
+            "fawry": "Pay through Fawry",
+            "instapay": "Pay instantly with InstaPay",
+            "wallet": "Cash or Digital Wallet"
+        },
+        "back": "Back",
+        "continueToPayment": "Continue to Payment",
+        "close": "Close"
     },
     "creditDebitCardModal": {
         "title": "Credit & Debit Card",
@@ -638,6 +667,30 @@
             "title": "Support Tickets",
             "subtitle": "View and manage your submitted support tickets",
             "newTicket": "New Ticket"
+        },
+        "selectProject": {
+            "back": "Back",
+            "close": "Close",
+            "title": "Which project do you need help with?",
+            "subtitle": "Select a project to continue with your request.",
+            "completed": "Completed",
+            "warrantyActive": "Warranty Active",
+            "daysLeft": "Days Left",
+            "warrantyExpired": "Warranty Expired",
+            "supportUnavailable": "Support Unavailable",
+            "explorePaidWarrantyPlans": "Explore Paid Warranty Plans",
+            "cantFindProject": "Can't find your project?",
+            "createGeneralInquiry": "Create a General Inquiry ticket.",
+            "projects": {
+                "brand": {
+                    "title": "Brand Identity & Visual Design",
+                    "category": "Design & Digital Experience"
+                },
+                "mobile": {
+                    "title": "Mobile Application",
+                    "category": "Development"
+                }
+            }
         },
         "filter": {
             "all": "All Ticket Types",
@@ -685,47 +738,47 @@
         },
         "createModal": {
             "title": "Create Support Inquiry",
-            "subtitle": "Please fill in the details below to help us process your request effectively.",
-            "warrantyNotice": "Technical Support & Warranty",
-            "warrantyDetails": "Free support is available for completed projects within the active warranty period.",
-            "successAlert": "Inquiry submitted successfully!",
-            "submitBtn": "Submit Inquiry",
+            "subtitle": "Submit a ticket and our team will get back to you as soon as possible.",
+            "warrantyNotice": "You are creating a ticket for a project under warranty.",
+            "warrantyDetails": "Brand Identity & Visual Design • Warranty Active • 315 Days Left",
+            "successAlert": "Ticket submitted successfully!",
+            "submitBtn": "Submit Ticket",
             "fields": {
                 "subject": {
                     "label": "Subject",
-                    "placeholder": "Enter a short title for the issue"
+                    "placeholder": "Logo file not displaying correctly in print"
                 },
                 "category": {
                     "label": "Ticket Category"
                 },
-                "issueType": {
-                    "label": "Issue Type"
-                },
                 "description": {
                     "label": "Description",
-                    "placeholder": "Describe your issue or request in detail..."
+                    "placeholder": "The logo file is not displaying correctly in print. Please check the attached file and let me know how we can fix this."
                 },
                 "upload": {
-                    "label": "Attachments",
+                    "label": "Upload any Attachments",
                     "optional": "Optional"
                 }
             },
             "categories": {
-                "technical": "Technical Support",
-                "design": "Design",
+                "technical": "Technical Issue",
+                "design": "Design Issue",
                 "billing": "Billing & Finance"
             },
-            "issueTypes": {
-                "bug": "Bug",
-                "feature": "Feature Request",
-                "question": "General Inquiry"
-            },
             "dropzone": {
-                "title": "Click to upload or drag & drop files here",
-                "hint": "Supports images, documents, and compressed archives"
+                "title": "Drop files here or click to upload",
+                "hint": "PDF, DOCX, XLSX, PNG, JPG, ZIP — up to 50 MB each"
             },
             "close": "Close",
-            "removeAttachment": "Remove attachment"
+            "removeAttachment": "Remove attachment",
+            "generalTitle": "Create General Inquiry",
+            "generalSubtitle": "Submit a ticket and our team will get back to you as soon as possible.",
+            "generalNotice": "This ticket is not linked to a specific project.",
+            "confirm": {
+                "title": "Are you sure you want to open a new support ticket?",
+                "cancel": "Cancel",
+                "submit": "Submit"
+            }
         },
         "details": {
             "title": "Ticket Details",
@@ -764,6 +817,30 @@
             "supportTeamReplied": "Support Team Replied",
             "waiting": "Waiting",
             "previewDescription": "Support team response preview"
+        },
+        "ticketTypeModal": {
+            "title": "What is your ticket about?",
+            "description": "Choose the type of ticket you'd like to create.",
+            "close": "Close",
+            "continue": "Continue",
+            "options": {
+                "project": {
+                    "title": "Project completed",
+                    "descriptionLines": [
+                        "Get help with a specific project,",
+                        "including technical issues, deliverables,",
+                        "updates, or project-related requests."
+                    ]
+                },
+                "general": {
+                    "title": "General Inquiry",
+                    "descriptionLines": [
+                        "Contact Pulvent about a service, ask a",
+                        "general question, request information,",
+                        "or get in touch with our team."
+                    ]
+                }
+            }
         }
     },
     "invoiceModal": {
@@ -776,6 +853,12 @@
         "issuedDate": "ISSUED:",
         "dueDate": "DUE DATE:",
         "description": "DESCRIPTION",
+        "amountDueValue": "EGP 19,570.00",
+        "dateDueHeader": "July 26, 2026",
+        "invoiceIdValue": "N°: 000027",
+        "issuedDateValue": "June 26, 2024",
+        "dueDateValue": "July 26, 2024",
+        "totalAmountValue": "$ 19,570.00",
         "total": "TOTAL",
         "totalAmount": "TOTAL AMOUNT:",
         "totalVat": "TOTAL VAT:1000",
@@ -786,11 +869,11 @@
         "client": {
             "name": "Ahmed Hassan",
             "phone": "(612) 856 - 0989",
-            "address": "Egypt - Cairo 72Stret\nNasir City"
+            "address": "Egypt - Cairo 72 Street\nNasir City"
         },
         "items": [
             {
-                "description": "Ui Ux deigne",
+                "description": "Ui Ux design",
                 "total": "$ 5,250.00"
             },
             {
@@ -827,7 +910,7 @@
         "invoiceTo": "INVOICE TO:",
         "clientName": "Ahmed Hassan",
         "clientPhone": "(612) 856 - 0989",
-        "clientAddress": "Egypt - Cairo 72Stret\nNasir City",
+        "clientAddress": "Egypt - Cairo 72 Street\nNasir City",
         "amountDue": "AMOUNT DUE",
         "amountDueValue": "EGP 19,570.00",
         "vatNumber": "VAT:1000",
@@ -866,7 +949,7 @@
     "projectDetailsTranslations": {
         "projectName": "Project Name",
         "completed": "Completed",
-        "projectDescription": "Qorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent",
+        "projectDescription": "Review the latest project information, current progress, important milestones, delivery timeline, and recent updates in one place.",
         "startDate": "Start Date",
         "startDateValue": "March 15, 2026",
         "deliveryDate": "Delivery",
@@ -926,127 +1009,146 @@
         "removeAttachment": "Remove attachment"
     },
     "supportPlans": {
-    "pageTitle": "Support Plans",
-    "breadcrumb": {
-        "requestPaid": "Request Paid"
+        "pageTitle": "Support Plans",
+        "breadcrumb": {
+            "requestPaid": "Request Paid"
+        },
+        "essential": {
+            "title": "Essential Support",
+            "button": "Request Now",
+            "features": [
+                "Bug Fixing & Troubleshooting",
+                "System Health Checks",
+                "Minor Configuration",
+                "Email / Ticket Support",
+                "Monthly Review",
+                "Backup Verification"
+            ]
+        },
+        "professional": {
+            "title": "Professional Support",
+            "button": "Request Now",
+            "features": [
+                "Priority Support",
+                "Application & Server Monitoring",
+                "Database & Backup Monitoring",
+                "Performance & Security Checks",
+                "API & Integration Monitoring",
+                "Minor Modifications",
+                "Monthly Maintenance & Reports",
+                "Deployment & Release Support"
+            ]
+        },
+        "businessCritical": {
+            "title": "Business Critical Support",
+            "button": "Request Now",
+            "features": [
+                "High-Priority Incident Handling",
+                "Proactive Monitoring",
+                "Database & Performance Optimization",
+                "Security & Integration Monitoring",
+                "Backup & Recovery",
+                "Production Deployment Support",
+                "Priority Bug Fixing",
+                "Dedicated Technical Contact",
+                "Monthly Optimization Review"
+            ]
+        },
+        "enterprise": {
+            "title": "Enterprise Support",
+            "button": "Request Now",
+            "features": [
+                "24/7 Critical Support",
+                "Dedicated Support Engineer",
+                "Account Manager",
+                "DevOps & Cloud Management",
+                "Cybersecurity Monitoring",
+                "Disaster Recovery",
+                "SLA-based Support",
+                "Penetration & Security Reviews",
+                "Release Management",
+                "Dedicated Development Hours",
+                "On-site Support"
+            ]
+        }
     },
-    "essential": {
-        "title": "Essential Support",
-        "button": "Request Now",
-        "features": [
-            "Bug Fixing & Troubleshooting",
-            "System Health Checks",
-            "Minor Configuration",
-            "Email / Ticket Support",
-            "Monthly Review",
-            "Backup Verification"
-        ]
+    "notifications": {
+        "title": "Notifications",
+        "subtitle": "Stay updated on projects, payments, support, and approvals.",
+        "markAllAsRead": "Mark all as read",
+        "empty": "No notifications to show.",
+        "tabs": {
+            "all": "All ({{count}})",
+            "unread": "Unread ({{count}})",
+            "actionRequired": "Action Required ({{count}})"
+        },
+        "items": {
+            "payment": {
+                "category": "Payments",
+                "title": "Payment due in 1 day",
+                "description": "Final payment for Website Redesign is due on May 25, 2025.",
+                "reference": "Website Redesign · INV-2025-045",
+                "time": "10m ago",
+                "action": "Pay Now"
+            },
+            "changeRequest": {
+                "category": "Change Requests",
+                "title": "CR-004 awaiting your approval",
+                "description": "Pulvent has submitted the final proposal for your review and approval.",
+                "reference": "Website Redesign · CR-004",
+                "time": "25m ago",
+                "action": "Review Request"
+            },
+            "support": {
+                "category": "Support",
+                "title": "Pulvent replied to Ticket TKT-0042",
+                "description": "Logo file format issue requires your response.",
+                "reference": "TKT-0042 · In Progress",
+                "time": "1h ago",
+                "action": "View Ticket"
+            },
+            "files": {
+                "category": "Files & Documents",
+                "title": "New project document uploaded",
+                "description": "Pulvent uploaded the final proposal document for Website Redesign.",
+                "reference": "Website Redesign · Proposal_v2.pdf",
+                "time": "3h ago",
+                "action": "Open File"
+            },
+            "warranty": {
+                "category": "Warranty",
+                "title": "Warranty expires in 12 days",
+                "description": "Your warranty for Website Redesign expires on Jun 4, 2025.",
+                "reference": "Website Redesign · Warranty",
+                "time": "1d ago",
+                "action": "Explore Plans"
+            },
+            "messages": {
+                "category": "Messages",
+                "title": "New message from Pulvent",
+                "description": "You have a new message regarding Website Redesign.",
+                "reference": "Website Redesign · Chat",
+                "time": "2d ago",
+                "action": "Open Chat"
+            }
+        }
     },
-    "professional": {
-        "title": "Professional Support",
-        "button": "Request Now",
-        "features": [
-            "Priority Support",
-            "Application & Server Monitoring",
-            "Database & Backup Monitoring",
-            "Performance & Security Checks",
-            "API & Integration Monitoring",
-            "Minor Modifications",
-            "Monthly Maintenance & Reports",
-            "Deployment & Release Support"
-        ]
-    },
-    "businessCritical": {
-        "title": "Business Critical Support",
-        "button": "Request Now",
-        "features": [
-            "High-Priority Incident Handling",
-            "Proactive Monitoring",
-            "Database & Performance Optimization",
-            "Security & Integration Monitoring",
-            "Backup & Recovery",
-            "Production Deployment Support",
-            "Priority Bug Fixing",
-            "Dedicated Technical Contact",
-            "Monthly Optimization Review"
-        ]
-    },
-    "enterprise": {
-        "title": "Enterprise Support",
-        "button": "Request Now",
-        "features": [
-            "24/7 Critical Support",
-            "Dedicated Support Engineer",
-            "Account Manager",
-            "DevOps & Cloud Management",
-            "Cybersecurity Monitoring",
-            "Disaster Recovery",
-            "SLA-based Support",
-            "Penetration & Security Reviews",
-            "Release Management",
-            "Dedicated Development Hours",
-            "On-site Support"
-        ]
+    "SelectProject": {
+        "back": "Back",
+        "openProjectSelectionModal": "Open Project Selection Modal",
+        "whichProjectDoYouNeedHelpWith": "Which project do you need help with?",
+        "selectAProjectToContinue": "Select a project to continue with your request.",
+        "brandIdentityVisualDesign": "Brand Identity & Visual Design",
+        "designDigitalExperience": "Design & Digital Experience",
+        "warrantyActive": "Warranty Active",
+        "daysLeft": "Days Left",
+        "completed": "Completed",
+        "mobileApplication": "Mobile Application",
+        "development": "Development",
+        "warrantyExpired": "Warranty Expired",
+        "supportUnavailable": "Support Unavailable",
+        "explorePaidWarrantyPlans": "Explore Paid Warranty Plans",
+        "cantFindYourProject": "Can't find your project?",
+        "createAGeneralInquiryTicket": "Create a General Inquiry ticket."
     }
-},"notifications": {
-  "title": "Notifications",
-  "subtitle": "Stay updated on projects, payments, support, and approvals.",
-  "markAllAsRead": "Mark all as read",
-  "empty": "No notifications to show.",
-  "tabs": {
-    "all": "All ({{count}})",
-    "unread": "Unread ({{count}})",
-    "actionRequired": "Action Required ({{count}})"
-  },
-  "items": {
-    "payment": {
-      "category": "Payments",
-      "title": "Payment due in 1 day",
-      "description": "Final payment for Website Redesign is due on May 25, 2025.",
-      "reference": "Website Redesign · INV-2025-045",
-      "time": "10m ago",
-      "action": "Pay Now"
-    },
-    "changeRequest": {
-      "category": "Change Requests",
-      "title": "CR-004 awaiting your approval",
-      "description": "Pulvent has submitted the final proposal for your review and approval.",
-      "reference": "Website Redesign · CR-004",
-      "time": "25m ago",
-      "action": "Review Request"
-    },
-    "support": {
-      "category": "Support",
-      "title": "Pulvent replied to Ticket TKT-0042",
-      "description": "Logo file format issue requires your response.",
-      "reference": "TKT-0042 · In Progress",
-      "time": "1h ago",
-      "action": "View Ticket"
-    },
-    "files": {
-      "category": "Files & Documents",
-      "title": "New project document uploaded",
-      "description": "Pulvent uploaded the final proposal document for Website Redesign.",
-      "reference": "Website Redesign · Proposal_v2.pdf",
-      "time": "3h ago",
-      "action": "Open File"
-    },
-    "warranty": {
-      "category": "Warranty",
-      "title": "Warranty expires in 12 days",
-      "description": "Your warranty for Website Redesign expires on Jun 4, 2025.",
-      "reference": "Website Redesign · Warranty",
-      "time": "1d ago",
-      "action": "Explore Plans"
-    },
-    "messages": {
-      "category": "Messages",
-      "title": "New message from Pulvent",
-      "description": "You have a new message regarding Website Redesign.",
-      "reference": "Website Redesign · Chat",
-      "time": "2d ago",
-      "action": "Open Chat"
-    }
-  }
-}
 }

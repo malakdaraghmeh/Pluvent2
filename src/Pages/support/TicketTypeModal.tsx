@@ -1,132 +1,177 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Folder, MessageSquare, ChevronRight, X } from 'lucide-react';
-import TicketIllustration from '@icons/general-ticket.svg?react';
 
-interface TicketTypeModalProps {
-    open: boolean;
-    onOpenChange: (open: boolean) => void;
-    onContinue?: (selectedType: 'project' | 'general') => void;
-}
+import { SupportTicketViewArrowIcon } from '@/assets';
+import ActionButton from '@/components/ui/ActionButton';
+import Modal from '@/components/ui/modal';
+import ModalCloseButton from '@/components/ui/ModalCloseButton';
+import { TicketTypeGeneralIcon as GeneralTicketIcon } from '@/assets';
+import { TicketTypeProjectIcon as ProjectTicketIcon } from '@/assets';
+import { TicketTypeIllustration as TicketIllustration } from '@/assets';
 
-export default function TicketTypeModal({ open, onOpenChange, onContinue }: TicketTypeModalProps) {
-    const { t, i18n } = useTranslation('ticketTypeModal');
+import type {
+    TicketType,
+    TicketTypeModalProps,
+} from '../../../utils/types/support-tickets.types';
+
+export default function TicketTypeModal({
+    open,
+    onOpenChange,
+    onContinue,
+}: TicketTypeModalProps) {
+    const { t, i18n } = useTranslation('tickets');
     const isArabic = i18n.language.startsWith('ar');
-    const textAlign = isArabic ? 'text-right' : 'text-center';
 
-    const [selectedType, setSelectedType] = useState<'project' | 'general'>('general');
+    const [selectedType, setSelectedType] =
+        useState<TicketType | null>(null);
 
-    if (!open) return null;
+    const projectDescriptionLines = t(
+        'ticketTypeModal.options.project.descriptionLines',
+        { returnObjects: true },
+    ) as string[];
+
+    const generalDescriptionLines = t(
+        'ticketTypeModal.options.general.descriptionLines',
+        { returnObjects: true },
+    ) as string[];
+
+    const handleClose = () => {
+        setSelectedType(null);
+        onOpenChange(false);
+    };
 
     const handleContinue = () => {
-        if (onContinue) {
-            onContinue(selectedType);
-        }
+        if (!selectedType) return;
+
+        onContinue?.(selectedType);
+        setSelectedType(null);
     };
 
     return (
-        <div
-            className={`fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 font-sans ${
-                isArabic ? 'rtl' : 'ltr'
-            }`}
-            dir={isArabic ? 'rtl' : 'ltr'}
+        <Modal
+            isOpen={open}
+            onClose={handleClose}
+            ariaLabel={t('ticketTypeModal.title')}
+            overlayClassName="lg:pl-[280px]"
+            className="max-h-[calc(100dvh-24px)] w-[calc(100vw-24px)] max-w-[620px] overflow-y-auto rounded-[20px] bg-white sm:w-[calc(100vw-32px)] sm:rounded-[24px] min-[1440px]:w-[620px] min-[1440px]:max-w-[620px] min-[1920px]:w-[760px] min-[1920px]:max-w-[760px] min-[2500px]:w-[920px] min-[2500px]:max-w-[920px]"
         >
-            {/* Modal Container */}
-            <div className="relative w-full max-w-lg sm:max-w-xl rounded-[32px] bg-white p-8 shadow-2xl transition-all">
-                {/* Custom Close Button in top right/left depending on direction */}
-                <button
-                    onClick={() => onOpenChange(false)}
-                    className={`absolute top-4 ${
-                        isArabic ? 'left-4' : 'right-4'
-                    } w-10 h-10 rounded-xl bg-[#100D40] text-white flex items-center justify-center hover:bg-[#1a1758] transition-colors`}
-                    aria-label={t('close', 'Close')}
-                >
-                    <X className="w-5 h-5 stroke-[2.5]" />
-                </button>
+            <div className="relative flex w-full flex-col p-5 sm:p-6 md:p-8 min-[1920px]:p-10 min-[2500px]:p-12">
+                <ModalCloseButton
+                    ariaLabel={t('ticketTypeModal.close')}
+                    onClick={handleClose}
+                    className={`absolute top-5 ${
+                        isArabic
+                            ? '!left-5 !right-auto'
+                            : '!right-5 !left-auto'
+                    }`}
+                />
 
-                {/* Header Section */}
-                <div className={`flex flex-col items-center ${textAlign} space-y-2 mt-2`}>
-                    {/* Top Illustration graphic */}
-                    <div className="w-full flex justify-center mb-2">
-                        <TicketIllustration />
-                    </div>
+                <div className="flex flex-col items-center text-center">
+                    <TicketIllustration className="h-auto w-[170px] sm:w-[190px] min-[1440px]:w-[200px] min-[1920px]:w-[240px] min-[2500px]:w-[290px]" />
 
-                    <h2 className="text-2xl sm:text-3xl font-extrabold text-[#100D40] tracking-tight">
-                        {t('title', 'What type of ticket do you need?')}
+                    <h2 className="mt-4 text-[22px] font-semibold leading-[28px] text-[#12115C] sm:text-[24px] min-[1920px]:text-[28px] min-[1920px]:leading-[34px] min-[2500px]:text-[32px] min-[2500px]:leading-[40px]">
+                        {t('ticketTypeModal.title')}
                     </h2>
 
-                    <p className="text-gray-400 text-sm font-normal">
-                        {t(
-                            'description',
-                            'Choose an option below to get started with your request.'
-                        )}
+                    <p className="mt-2 text-[13px] font-normal leading-5 text-[#84818A] sm:text-[14px] min-[1920px]:text-[16px] min-[2500px]:text-[18px]">
+                        {t('ticketTypeModal.description')}
                     </p>
                 </div>
 
-                {/* Options Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
-                    {/* Card 1: Project completed */}
+                <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 min-[1920px]:mt-8 min-[1920px]:gap-5 min-[2500px]:mt-10 min-[2500px]:gap-6">
                     <button
                         type="button"
-                        onClick={() => setSelectedType('project')}
-                        className={`p-6 rounded-2xl text-center transition-all flex flex-col items-center justify-center border-2 ${
+                        onClick={() =>
+                            setSelectedType('project')
+                        }
+                        className={`flex min-h-[190px] flex-col items-center justify-center rounded-[16px] border px-4 py-5 text-center transition-colors min-[1920px]:min-h-[220px] min-[1920px]:px-6 min-[1920px]:py-7 min-[2500px]:min-h-[260px] min-[2500px]:px-8 min-[2500px]:py-8 ${
                             selectedType === 'project'
-                                ? 'border-cyan-400 bg-sky-50/40 ring-1 ring-cyan-400'
-                                : 'border-slate-100 bg-white hover:border-slate-200'
+                                ? 'border-[#39E1D7] bg-[#F6FEFD]'
+                                : 'border-[#ECEFF4] bg-white'
                         }`}
                     >
-                        <div className="w-12 h-12 rounded-2xl bg-[#00E5C810] flex items-center justify-center text-[#4F46E5] mb-4">
-                            <Folder className="w-6 h-6 stroke-[2]" />
+                        <div className="flex h-[44px] w-[44px] items-center justify-center rounded-[10px] bg-[#39E1D71A] min-[1920px]:h-[50px] min-[1920px]:w-[50px] min-[2500px]:h-[56px] min-[2500px]:w-[56px]">
+                            <ProjectTicketIcon className="h-5 w-5 min-[1920px]:h-6 min-[1920px]:w-6 min-[2500px]:h-7 min-[2500px]:w-7" />
                         </div>
-                        <h4 className="text-base font-bold text-[#100D40] mb-2">
-                            {t('options.project.title', 'Project Ticket')}
-                        </h4>
-                        <p className="text-xs text-gray-400 leading-relaxed">
+
+                        <h3 className="mt-4 text-[16px] font-semibold leading-6 text-[#12115C] min-[1920px]:text-[18px] min-[2500px]:text-[20px]">
                             {t(
-                                'options.project.description',
-                                'Get help regarding a specific completed project.'
+                                'ticketTypeModal.options.project.title',
+                            )}
+                        </h3>
+
+                        <p className="mt-2 text-center text-[12px] font-normal leading-[18px] text-[#84818A] min-[1920px]:text-[14px] min-[1920px]:leading-[21px] min-[2500px]:text-[16px] min-[2500px]:leading-6">
+                            {projectDescriptionLines.map(
+                                (line, index) => (
+                                    <span
+                                        key={index}
+                                        className="block sm:whitespace-nowrap"
+                                    >
+                                        {line}
+                                    </span>
+                                ),
                             )}
                         </p>
                     </button>
 
-                    {/* Card 2: General Inquiry */}
                     <button
                         type="button"
-                        onClick={() => setSelectedType('general')}
-                        className={`p-6 rounded-2xl text-center transition-all flex flex-col items-center justify-center border-2 ${
+                        onClick={() =>
+                            setSelectedType('general')
+                        }
+                        className={`flex min-h-[190px] flex-col items-center justify-center rounded-[16px] border px-4 py-5 text-center transition-colors min-[1920px]:min-h-[220px] min-[1920px]:px-6 min-[1920px]:py-7 min-[2500px]:min-h-[260px] min-[2500px]:px-8 min-[2500px]:py-8 ${
                             selectedType === 'general'
-                                ? 'border-cyan-400 bg-sky-50/40 ring-1 ring-cyan-400'
-                                : 'border-slate-100 bg-white hover:border-slate-200'
+                                ? 'border-[#39E1D7] bg-[#F6FEFD]'
+                                : 'border-[#ECEFF4] bg-white'
                         }`}
                     >
-                        <div className="w-12 h-12 rounded-2xl bg-[#00E5C810] flex items-center justify-center text-[#4F46E5] mb-4">
-                            <MessageSquare className="w-6 h-6 stroke-[2]" />
+                        <div className="flex h-[44px] w-[44px] items-center justify-center rounded-[10px] bg-[#39E1D71A] min-[1920px]:h-[50px] min-[1920px]:w-[50px] min-[2500px]:h-[56px] min-[2500px]:w-[56px]">
+                            <GeneralTicketIcon className="h-5 w-5 min-[1920px]:h-6 min-[1920px]:w-6 min-[2500px]:h-7 min-[2500px]:w-7" />
                         </div>
-                        <h4 className="text-base font-bold text-[#100D40] mb-2">
-                            {t('options.general.title', 'General Inquiry')}
-                        </h4>
-                        <p className="text-xs text-gray-400 leading-relaxed">
+
+                        <h3 className="mt-4 text-[16px] font-semibold leading-6 text-[#12115C] min-[1920px]:text-[18px] min-[2500px]:text-[20px]">
                             {t(
-                                'options.general.description',
-                                'Ask general questions or request assistance.'
+                                'ticketTypeModal.options.general.title',
+                            )}
+                        </h3>
+
+                        <p className="mt-2 text-center text-[12px] font-normal leading-[18px] text-[#84818A] min-[1920px]:text-[14px] min-[1920px]:leading-[21px] min-[2500px]:text-[16px] min-[2500px]:leading-6">
+                            {generalDescriptionLines.map(
+                                (line, index) => (
+                                    <span
+                                        key={index}
+                                        className="block sm:whitespace-nowrap"
+                                    >
+                                        {line}
+                                    </span>
+                                ),
                             )}
                         </p>
                     </button>
                 </div>
 
-                {/* Continue Button */}
-                <button
+                <ActionButton
+                    type="button"
                     onClick={handleContinue}
-                    className={`w-full py-4 px-6 rounded-2xl bg-[#100D40] hover:bg-[#1a1758] text-white font-medium text-base flex items-center justify-center gap-2 transition-all shadow-md ${
-                        isArabic ? 'flex-row-reverse' : ''
+                    trailingIcon={
+                        <SupportTicketViewArrowIcon
+                            aria-hidden="true"
+                            className={`h-4 w-4 shrink-0 min-[1920px]:h-5 min-[1920px]:w-5 min-[2500px]:h-6 min-[2500px]:w-6 ${
+                                isArabic
+                                    ? 'rotate-180'
+                                    : ''
+                            }`}
+                        />
+                    }
+                    className={`mt-6 !h-[44px] !w-full !justify-center !gap-2 !rounded-[16px] !px-5 !text-[16px] !font-normal min-[1920px]:mt-8 min-[1920px]:!h-[52px] min-[1920px]:!text-[18px] min-[2500px]:mt-10 min-[2500px]:!h-[58px] min-[2500px]:!text-[20px] ${
+                        isArabic
+                            ? '!flex-row-reverse'
+                            : ''
                     }`}
                 >
-                    <span>{t('continue', 'Continue')}</span>
-                    <ChevronRight
-                        className={`w-5 h-5 stroke-[2.5] ${isArabic ? 'rotate-180' : ''}`}
-                    />
-                </button>
+                    {t('ticketTypeModal.continue')}
+                </ActionButton>
             </div>
-        </div>
+        </Modal>
     );
 }

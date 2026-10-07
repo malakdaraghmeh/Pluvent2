@@ -1,31 +1,32 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
+import { useForm, type Resolver } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import { AddUser, Arrow, DropDown } from '@/assets';
 import ActionButton from '@/components/ui/ActionButton';
 import Modal from '@/components/ui/modal';
 import ModalCloseButton from '@/components/ui/ModalCloseButton';
-
-import type {
-    AddUserFormData,
-    AddUserModalProps,
-    UserRole,
+import {
+    createAddUserSchema,
+    type AddUserFormData,
+    type AddUserModalProps,
+    type UserRole,
 } from '../../../../utils/types/users.types';
-import { createAddUserSchema } from '../../../utils/validation/users.validation';
 
 const USER_ROLES: UserRole[] = ['Admin', 'Employee'];
 
-export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
+export default function AddUserModal({ isOpen, onClose, onSubmit, userToEdit }: AddUserModalProps) {
     const { t, i18n } = useTranslation('usersPage');
+
     const isArabic = i18n.language.startsWith('ar');
+    const isEditMode = Boolean(userToEdit);
     const textAlignment = isArabic ? 'text-right' : 'text-left';
+
     const placeholderText = isArabic
         ? `${t('addUserModal.placeholder').replace(/[.…]+$/u, '')}...\u200F`
         : t('addUserModal.placeholder');
 
-    const schema = useMemo(() => createAddUserSchema(t), [t]);
+    const schema = useMemo(() => createAddUserSchema(t, isEditMode), [t, isEditMode]);
 
     const {
         register,
@@ -33,7 +34,7 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
         reset,
         formState: { errors, isSubmitting },
     } = useForm<AddUserFormData>({
-        resolver: zodResolver(schema),
+        resolver: zodResolver(schema) as Resolver<AddUserFormData>,
         defaultValues: {
             fullName: '',
             email: '',
@@ -45,13 +46,28 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
         mode: 'onSubmit',
     });
 
+    useEffect(() => {
+        if (!isOpen) {
+            return;
+        }
+
+        reset({
+            fullName: userToEdit?.name ?? '',
+            email: userToEdit?.email ?? '',
+            phone: '',
+            password: '',
+            confirmPassword: '',
+            role: userToEdit?.role ?? '',
+        });
+    }, [isOpen, userToEdit, reset]);
+
     const handleClose = () => {
         reset();
         onClose();
     };
 
-    const onSubmit = (data: AddUserFormData) => {
-        console.log('User Data Submitted:', data);
+    const handleFormSubmit = (data: AddUserFormData) => {
+        onSubmit(data);
         reset();
         onClose();
     };
@@ -65,11 +81,29 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
     const errorClassName =
         'mt-1 text-[11px] font-normal leading-4 text-[#FF3B30] min-[1920px]:text-[12px] min-[2500px]:text-[13px]';
 
+    const modalTitle = isEditMode
+        ? t('editUserModal.title', {
+              defaultValue: 'Edit User',
+          })
+        : t('addUserModal.title');
+
+    const modalDescription = isEditMode
+        ? t('editUserModal.description', {
+              defaultValue: 'Update user information',
+          })
+        : t('addUserModal.description');
+
+    const submitText = isEditMode
+        ? t('editUserModal.submit', {
+              defaultValue: 'Save Changes',
+          })
+        : t('addUserModal.submit');
+
     return (
         <Modal
             isOpen={isOpen}
             onClose={handleClose}
-            ariaLabel={t('addUserModal.title')}
+            ariaLabel={modalTitle}
             overlayClassName="p-3 sm:p-4"
             className="w-[calc(100vw-24px)] max-w-[560px] overflow-hidden rounded-[8px] border-[0.5px] border-[#D9D9D9] bg-white shadow-[0px_2px_15px_0px_#0000000D] sm:w-[calc(100vw-32px)] min-[1440px]:w-[560px] min-[1440px]:max-w-none min-[1920px]:w-[620px] min-[2500px]:w-[680px]"
         >
@@ -83,11 +117,11 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
 
                             <div className={`min-w-0 ${textAlignment}`}>
                                 <h2 className="text-[20px] font-semibold leading-[25px] text-[#12115C] min-[1920px]:text-[22px] min-[1920px]:leading-7 min-[2500px]:text-[24px] min-[2500px]:leading-[30px]">
-                                    {t('addUserModal.title')}
+                                    {modalTitle}
                                 </h2>
 
                                 <p className="mt-1 text-[14px] font-normal leading-[18px] text-[#615E8B] min-[1920px]:text-[15px] min-[1920px]:leading-5 min-[2500px]:text-[16px] min-[2500px]:leading-[22px]">
-                                    {t('addUserModal.description')}
+                                    {modalDescription}
                                 </p>
                             </div>
                         </div>
@@ -99,20 +133,20 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
                     </div>
 
                     <form
-                        onSubmit={handleSubmit(onSubmit)}
+                        onSubmit={handleSubmit(handleFormSubmit)}
                         noValidate
                         className="flex w-full flex-col gap-4 min-[1920px]:gap-[18px] min-[2500px]:gap-5"
                     >
                         <div className="flex w-full flex-col gap-2">
                             <label
-                                htmlFor="add-user-full-name"
+                                htmlFor="user-full-name"
                                 className={`${labelClassName} ${textAlignment}`}
                             >
                                 {t('addUserModal.fullName')}
                             </label>
 
                             <input
-                                id="add-user-full-name"
+                                id="user-full-name"
                                 type="text"
                                 placeholder={placeholderText}
                                 {...register('fullName')}
@@ -128,14 +162,14 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
 
                         <div className="flex w-full flex-col gap-2">
                             <label
-                                htmlFor="add-user-email"
+                                htmlFor="user-email"
                                 className={`${labelClassName} ${textAlignment}`}
                             >
                                 {t('addUserModal.email')}
                             </label>
 
                             <input
-                                id="add-user-email"
+                                id="user-email"
                                 type="email"
                                 placeholder={placeholderText}
                                 {...register('email')}
@@ -149,78 +183,82 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
                             )}
                         </div>
 
+                        {!isEditMode && (
+                            <>
+                                <div className="flex w-full flex-col gap-2">
+                                    <label
+                                        htmlFor="user-phone"
+                                        className={`${labelClassName} ${textAlignment}`}
+                                    >
+                                        {t('addUserModal.phone')}
+                                    </label>
+
+                                    <input
+                                        id="user-phone"
+                                        type="tel"
+                                        placeholder={placeholderText}
+                                        {...register('phone')}
+                                        className={`${inputClassName} ${textAlignment}`}
+                                    />
+
+                                    {errors.phone && (
+                                        <p className={`${errorClassName} ${textAlignment}`}>
+                                            {errors.phone.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="flex w-full flex-col gap-2">
+                                    <label
+                                        htmlFor="user-password"
+                                        className={`${labelClassName} ${textAlignment}`}
+                                    >
+                                        {t('addUserModal.password')}
+                                    </label>
+
+                                    <input
+                                        id="user-password"
+                                        type="password"
+                                        placeholder={placeholderText}
+                                        {...register('password')}
+                                        className={`${inputClassName} ${textAlignment}`}
+                                    />
+
+                                    {errors.password && (
+                                        <p className={`${errorClassName} ${textAlignment}`}>
+                                            {errors.password.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="flex w-full flex-col gap-2">
+                                    <label
+                                        htmlFor="user-confirm-password"
+                                        className={`${labelClassName} ${textAlignment}`}
+                                    >
+                                        {t('addUserModal.confirmPassword')}
+                                    </label>
+
+                                    <input
+                                        id="user-confirm-password"
+                                        type="password"
+                                        placeholder={placeholderText}
+                                        {...register('confirmPassword')}
+                                        className={`${inputClassName} ${textAlignment}`}
+                                    />
+
+                                    {errors.confirmPassword && (
+                                        <p className={`${errorClassName} ${textAlignment}`}>
+                                            {errors.confirmPassword.message}
+                                        </p>
+                                    )}
+                                </div>
+                            </>
+                        )}
+
                         <div className="flex w-full flex-col gap-2">
                             <label
-                                htmlFor="add-user-phone"
-                                className={`${labelClassName} ${textAlignment}`}
-                            >
-                                {t('addUserModal.phone')}
-                            </label>
-
-                            <input
-                                id="add-user-phone"
-                                type="tel"
-                                placeholder={placeholderText}
-                                {...register('phone')}
-                                className={`${inputClassName} ${textAlignment}`}
-                            />
-
-                            {errors.phone && (
-                                <p className={`${errorClassName} ${textAlignment}`}>
-                                    {errors.phone.message}
-                                </p>
-                            )}
-                        </div>
-
-                        <div className="flex w-full flex-col gap-2">
-                            <label
-                                htmlFor="add-user-password"
-                                className={`${labelClassName} ${textAlignment}`}
-                            >
-                                {t('addUserModal.password')}
-                            </label>
-
-                            <input
-                                id="add-user-password"
-                                type="password"
-                                placeholder={placeholderText}
-                                {...register('password')}
-                                className={`${inputClassName} ${textAlignment}`}
-                            />
-
-                            {errors.password && (
-                                <p className={`${errorClassName} ${textAlignment}`}>
-                                    {errors.password.message}
-                                </p>
-                            )}
-                        </div>
-
-                        <div className="flex w-full flex-col gap-2">
-                            <label
-                                htmlFor="add-user-confirm-password"
-                                className={`${labelClassName} ${textAlignment}`}
-                            >
-                                {t('addUserModal.confirmPassword')}
-                            </label>
-
-                            <input
-                                id="add-user-confirm-password"
-                                type="password"
-                                placeholder={placeholderText}
-                                {...register('confirmPassword')}
-                                className={`${inputClassName} ${textAlignment}`}
-                            />
-
-                            {errors.confirmPassword && (
-                                <p className={`${errorClassName} ${textAlignment}`}>
-                                    {errors.confirmPassword.message}
-                                </p>
-                            )}
-                        </div>
-
-                        <div className="flex w-full flex-col gap-2">
-                            <label
-                                htmlFor="add-user-role"
+                                htmlFor="user-role"
                                 className={`${labelClassName} ${textAlignment}`}
                             >
                                 {t('addUserModal.role')}
@@ -228,7 +266,7 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
 
                             <div className="relative w-full">
                                 <select
-                                    id="add-user-role"
+                                    id="user-role"
                                     {...register('role')}
                                     className={`${inputClassName} appearance-none ${textAlignment} ${
                                         isArabic
@@ -269,8 +307,13 @@ export default function AddUserModal({ isOpen, onClose }: AddUserModalProps) {
                             disabled={isSubmitting}
                             className="!mt-[6px] !h-12 !w-full !rounded-[8px] !bg-[#12115C] !px-5 !py-4 !text-[16px] !font-normal !leading-4 !text-white min-[1920px]:!h-[52px] min-[1920px]:!px-[22px] min-[1920px]:!text-[17px] min-[2500px]:!h-14 min-[2500px]:!px-6 min-[2500px]:!text-[18px]"
                         >
-                            <span className={`flex items-center justify-center gap-2 ${isArabic ? 'flex-row-reverse' : 'flex-row'}`}>
-                                <span>{t('addUserModal.submit')}</span>
+                            <span
+                                className={`flex items-center justify-center gap-2 ${
+                                    isArabic ? 'flex-row-reverse' : 'flex-row'
+                                }`}
+                            >
+                                <span>{submitText}</span>
+
                                 <Arrow
                                     aria-hidden="true"
                                     className={`h-4 w-4 shrink-0 min-[1920px]:h-[18px] min-[1920px]:w-[18px] min-[2500px]:h-5 min-[2500px]:w-5 ${

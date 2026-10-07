@@ -1,16 +1,12 @@
 import { useState, type ChangeEvent, type DragEvent, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-    ModalCloseIcon,
-    SupportTicketFilterArrowIcon,
-    SupportTicketViewArrowIcon,
-    Upload,
-} from '@/assets';
+import { DownArrow, ModalCloseIcon, SupportTicketViewArrowIcon, Upload } from '@/assets';
+import { SupportInquiryCheckCircleIcon as checkCircleIcon } from '@/assets';
+import { SupportInquiryInfoIcon as infoIcon } from '@/assets';
 import ActionButton from '@/components/ui/ActionButton';
 import type { CreateSupportInquiryFormProps } from '../../../../../utils/types/create-support-inquiry.types';
 
 export default function CreateSupportInquiryForm({
-    projectId,
     requestType,
     showWarrantyNotice = false,
     onSubmitted,
@@ -18,34 +14,36 @@ export default function CreateSupportInquiryForm({
     const { t, i18n } = useTranslation('tickets');
 
     const isArabic = i18n.language.startsWith('ar');
+
     const textAlignment = isArabic ? 'text-right' : 'text-left';
 
-    const [subject, setSubject] = useState('');
+    const [subject, setSubject] = useState(() => t('createModal.fields.subject.placeholder'));
+
     const [ticketCategory, setTicketCategory] = useState('technical');
-    const [issueType, setIssueType] = useState('bug');
-    const [description, setDescription] = useState('');
+
+    const [description, setDescription] = useState(() =>
+        t('createModal.fields.description.placeholder')
+    );
+
     const [files, setFiles] = useState<File[]>([]);
+
     const [isDragging, setIsDragging] = useState(false);
 
     const addFiles = (selectedFiles: FileList | File[]) => {
-        setFiles(currentFiles => [
-            ...currentFiles,
-            ...Array.from(selectedFiles),
-        ]);
+        setFiles(currentFiles => [...currentFiles, ...Array.from(selectedFiles)]);
     };
 
-    const handleFileChange = (
-        event: ChangeEvent<HTMLInputElement>,
-    ) => {
-        if (!event.target.files?.length) return;
+    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+        if (!event.target.files?.length) {
+            return;
+        }
 
         addFiles(event.target.files);
+
         event.target.value = '';
     };
 
-    const handleDragOver = (
-        event: DragEvent<HTMLDivElement>,
-    ) => {
+    const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
         event.preventDefault();
         setIsDragging(true);
     };
@@ -54,9 +52,7 @@ export default function CreateSupportInquiryForm({
         setIsDragging(false);
     };
 
-    const handleDrop = (
-        event: DragEvent<HTMLDivElement>,
-    ) => {
+    const handleDrop = (event: DragEvent<HTMLDivElement>) => {
         event.preventDefault();
         setIsDragging(false);
 
@@ -66,29 +62,17 @@ export default function CreateSupportInquiryForm({
     };
 
     const handleRemoveFile = (indexToRemove: number) => {
-        setFiles(currentFiles =>
-            currentFiles.filter(
-                (_, index) => index !== indexToRemove,
-            ),
-        );
+        setFiles(currentFiles => currentFiles.filter((_, index) => index !== indexToRemove));
     };
 
-    const handleSubmit = (
-        event: FormEvent<HTMLFormElement>,
-    ) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        console.log({
-            projectId,
-            requestType,
-            subject,
-            ticketCategory,
-            issueType,
-            description,
-            files,
-        });
+        if (requestType === 'general') {
+            onSubmitted?.();
+            return;
+        }
 
-        alert(t('createModal.successAlert'));
         onSubmitted?.();
     };
 
@@ -96,23 +80,41 @@ export default function CreateSupportInquiryForm({
         <>
             {showWarrantyNotice && (
                 <div
-                    className={`rounded-[16px] border border-[#39E1D7] bg-[#39E1D71A] p-4 sm:p-5 3xl:p-6 ${textAlignment}`}
+                    className={`flex w-full items-center justify-between gap-4 rounded-[12px] border border-[#A7F3D0] bg-[#ECFDF5] px-4 py-3 3xl:px-5 3xl:py-4 4xl:px-6 ${
+                        isArabic ? 'flex-row-reverse' : ''
+                    }`}
                 >
-                    <p className="text-[14px] font-semibold leading-5 text-[#12115C] 3xl:text-[15px] 4xl:text-[16px]">
-                        {t('createModal.warrantyNotice')}
-                    </p>
+                    <div
+                        className={`flex min-w-0 flex-1 items-center gap-3 ${
+                            isArabic ? 'flex-row-reverse' : ''
+                        }`}
+                    >
+                        <img src={infoIcon} alt="" className="h-5 w-5 shrink-0 3xl:h-6 3xl:w-6" />
 
-                    <p className="mt-1 text-[12px] font-normal leading-[18px] text-[#5C5B94] 3xl:text-[13px] 3xl:leading-5 4xl:text-[14px]">
-                        {t('createModal.warrantyDetails')}
-                    </p>
+                        <div className={`min-w-0 ${textAlignment}`}>
+                            <p className="text-[14px] font-bold leading-[18px] text-[#065F46] 3xl:text-[15px] 4xl:text-[17px]">
+                                {t('createModal.warrantyNotice')}
+                            </p>
+
+                            <p className="mt-1 text-[12px] font-normal leading-[16px] text-[#047857] 3xl:text-[13px] 4xl:text-[15px]">
+                                {t('createModal.warrantyDetails')}
+                            </p>
+                        </div>
+                    </div>
+
+                    <img
+                        src={checkCircleIcon}
+                        alt=""
+                        className="h-5 w-5 shrink-0 3xl:h-6 3xl:w-6"
+                    />
                 </div>
             )}
 
             <form
                 onSubmit={handleSubmit}
-                className="flex w-full flex-col gap-6 3xl:gap-7 4xl:gap-8"
+                className="flex w-full flex-col gap-5 3xl:gap-6 4xl:gap-8"
             >
-                <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-3 3xl:gap-5 4xl:gap-6">
+                <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 3xl:gap-5 4xl:gap-6">
                     <div className={`flex min-w-0 flex-col gap-2 ${textAlignment}`}>
                         <label
                             htmlFor="support-subject"
@@ -127,13 +129,9 @@ export default function CreateSupportInquiryForm({
                             type="text"
                             required
                             value={subject}
-                            onChange={event =>
-                                setSubject(event.target.value)
-                            }
-                            placeholder={t(
-                                'createModal.fields.subject.placeholder',
-                            )}
-                            className={`h-[48px] w-full rounded-[12px] border border-transparent bg-[#F3F4F8] px-4 text-[14px] font-normal text-[#2E2C34] outline-none transition-colors placeholder:text-[#A0A3AD] focus:border-[#39E1D7] focus:bg-white 3xl:h-[52px] 3xl:text-[15px] 4xl:h-[56px] 4xl:text-[16px] ${textAlignment}`}
+                            onChange={event => setSubject(event.target.value)}
+                            placeholder={t('createModal.fields.subject.placeholder')}
+                            className={`h-[48px] w-full rounded-[12px] border border-transparent bg-[#F3F4F8] px-4 text-[14px] font-normal text-[#2E2C34] outline-none transition-colors placeholder:text-[#A0A3AD] focus:border-[#39E1D7] focus:bg-white 3xl:h-[54px] 3xl:px-5 3xl:text-[15px] 4xl:h-[60px] 4xl:text-[16px] ${textAlignment}`}
                         />
                     </div>
 
@@ -149,73 +147,27 @@ export default function CreateSupportInquiryForm({
                         <div className="relative">
                             <select
                                 id="support-category"
+                                required
                                 value={ticketCategory}
-                                onChange={event =>
-                                    setTicketCategory(event.target.value)
-                                }
-                                className={`h-[48px] w-full cursor-pointer appearance-none rounded-[12px] border border-transparent bg-[#F3F4F8] text-[14px] font-normal text-[#2E2C34] outline-none transition-colors focus:border-[#39E1D7] focus:bg-white 3xl:h-[52px] 3xl:text-[15px] 4xl:h-[56px] 4xl:text-[16px] ${
-                                    isArabic
-                                        ? 'pl-11 pr-4 text-right'
-                                        : 'pl-4 pr-11 text-left'
+                                onChange={event => setTicketCategory(event.target.value)}
+                                className={`h-[48px] w-full cursor-pointer appearance-none rounded-[12px] border border-transparent bg-[#F3F4F8] text-[14px] font-normal text-[#2E2C34] outline-none transition-colors focus:border-[#39E1D7] focus:bg-white 3xl:h-[54px] 3xl:text-[15px] 4xl:h-[60px] 4xl:text-[16px] ${
+                                    isArabic ? 'pl-11 pr-4 text-right' : 'pl-4 pr-11 text-left'
                                 }`}
                             >
                                 <option value="technical">
                                     {t('createModal.categories.technical')}
                                 </option>
 
-                                <option value="design">
-                                    {t('createModal.categories.design')}
-                                </option>
+                                <option value="design">{t('createModal.categories.design')}</option>
 
                                 <option value="billing">
                                     {t('createModal.categories.billing')}
                                 </option>
                             </select>
 
-                            <SupportTicketFilterArrowIcon
-                                className={`pointer-events-none absolute top-1/2 h-[14px] w-[14px] -translate-y-1/2 -rotate-90 ${
-                                    isArabic ? 'left-4' : 'right-4'
-                                }`}
-                            />
-                        </div>
-                    </div>
-
-                    <div className={`flex min-w-0 flex-col gap-2 ${textAlignment}`}>
-                        <label
-                            htmlFor="support-issue-type"
-                            className="text-[14px] font-semibold leading-5 text-[#2E2C34] 3xl:text-[15px] 4xl:text-[16px]"
-                        >
-                            {t('createModal.fields.issueType.label')}
-                        </label>
-
-                        <div className="relative">
-                            <select
-                                id="support-issue-type"
-                                value={issueType}
-                                onChange={event =>
-                                    setIssueType(event.target.value)
-                                }
-                                className={`h-[48px] w-full cursor-pointer appearance-none rounded-[12px] border border-transparent bg-[#F3F4F8] text-[14px] font-normal text-[#2E2C34] outline-none transition-colors focus:border-[#39E1D7] focus:bg-white 3xl:h-[52px] 3xl:text-[15px] 4xl:h-[56px] 4xl:text-[16px] ${
-                                    isArabic
-                                        ? 'pl-11 pr-4 text-right'
-                                        : 'pl-4 pr-11 text-left'
-                                }`}
-                            >
-                                <option value="bug">
-                                    {t('createModal.issueTypes.bug')}
-                                </option>
-
-                                <option value="feature">
-                                    {t('createModal.issueTypes.feature')}
-                                </option>
-
-                                <option value="question">
-                                    {t('createModal.issueTypes.question')}
-                                </option>
-                            </select>
-
-                            <SupportTicketFilterArrowIcon
-                                className={`pointer-events-none absolute top-1/2 h-[14px] w-[14px] -translate-y-1/2 -rotate-90 ${
+                            <DownArrow
+                                aria-hidden="true"
+                                className={`pointer-events-none absolute top-1/2 h-[14px] w-[14px] -translate-y-1/2 3xl:h-4 3xl:w-4 ${
                                     isArabic ? 'left-4' : 'right-4'
                                 }`}
                             />
@@ -237,18 +189,14 @@ export default function CreateSupportInquiryForm({
                         required
                         rows={5}
                         value={description}
-                        onChange={event =>
-                            setDescription(event.target.value)
-                        }
-                        placeholder={t(
-                            'createModal.fields.description.placeholder',
-                        )}
-                        className={`min-h-[130px] w-full resize-none rounded-[12px] border border-transparent bg-[#F3F4F8] p-4 text-[14px] font-normal leading-6 text-[#2E2C34] outline-none transition-colors placeholder:text-[#A0A3AD] focus:border-[#39E1D7] focus:bg-white 3xl:min-h-[150px] 3xl:text-[15px] 4xl:min-h-[170px] 4xl:text-[16px] ${textAlignment}`}
+                        onChange={event => setDescription(event.target.value)}
+                        placeholder={t('createModal.fields.description.placeholder')}
+                        className={`min-h-[130px] w-full resize-none rounded-[12px] border border-transparent bg-[#F3F4F8] p-4 text-[14px] font-normal leading-6 text-[#2E2C34] outline-none transition-colors placeholder:text-[#A0A3AD] focus:border-[#39E1D7] focus:bg-white 3xl:min-h-[160px] 3xl:p-5 3xl:text-[15px] 4xl:min-h-[190px] 4xl:text-[16px] ${textAlignment}`}
                     />
                 </div>
 
                 <div className={`flex w-full flex-col gap-2 ${textAlignment}`}>
-                    <label className="text-[14px] font-semibold leading-5 text-[#2E2C34] 3xl:text-[15px] 4xl:text-[16px]">
+                    <label className="text-[14px] font-normal leading-5 text-[#2E2C34] 3xl:text-[15px] 4xl:text-[16px]">
                         {t('createModal.fields.upload.label')}{' '}
                         <span className="font-normal text-[#8C8C9A]">
                             ({t('createModal.fields.upload.optional')})
@@ -259,7 +207,7 @@ export default function CreateSupportInquiryForm({
                         onDragOver={handleDragOver}
                         onDragLeave={handleDragLeave}
                         onDrop={handleDrop}
-                        className={`flex min-h-[150px] w-full items-center justify-center rounded-[16px] border-2 border-dashed px-4 py-6 transition-colors 3xl:min-h-[170px] 4xl:min-h-[190px] ${
+                        className={`flex min-h-[150px] w-full items-center justify-center rounded-[16px] border-2 border-dashed px-4 py-6 transition-colors 3xl:min-h-[190px] 4xl:min-h-[220px] ${
                             isDragging
                                 ? 'border-[#39E1D7] bg-[#39E1D70D]'
                                 : 'border-[#DDE0E8] bg-white'
@@ -269,6 +217,7 @@ export default function CreateSupportInquiryForm({
                             id="support-file-input"
                             type="file"
                             multiple
+                            accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.zip"
                             onChange={handleFileChange}
                             className="hidden"
                         />
@@ -277,13 +226,13 @@ export default function CreateSupportInquiryForm({
                             htmlFor="support-file-input"
                             className="flex cursor-pointer flex-col items-center justify-center gap-2 text-center"
                         >
-                            <Upload className="h-8 w-8 shrink-0 3xl:h-9 3xl:w-9 4xl:h-10 4xl:w-10" />
+                            <Upload className="h-8 w-8 shrink-0 3xl:h-10 3xl:w-10 4xl:h-12 4xl:w-12" />
 
-                            <span className="text-[14px] font-semibold leading-5 text-[#12115C] 3xl:text-[15px] 4xl:text-[16px]">
+                            <span className="text-[14px] font-semibold leading-5 text-[#12115C] 3xl:text-[15px] 4xl:text-[17px]">
                                 {t('createModal.dropzone.title')}
                             </span>
 
-                            <span className="text-[12px] font-normal leading-[18px] text-[#8C8C9A] 3xl:text-[13px] 4xl:text-[14px]">
+                            <span className="text-[12px] font-normal leading-[18px] text-[#8C8C9A] 3xl:text-[13px] 4xl:text-[15px]">
                                 {t('createModal.dropzone.hint')}
                             </span>
                         </label>
@@ -294,20 +243,22 @@ export default function CreateSupportInquiryForm({
                             {files.map((file, index) => (
                                 <div
                                     key={`${file.name}-${file.lastModified}-${index}`}
-                                    className="flex min-h-[44px] w-full items-center justify-between gap-3 rounded-[12px] bg-[#F3F4F8] px-4 py-2 3xl:min-h-[48px]"
+                                    className={`flex min-h-[44px] w-full items-center justify-between gap-3 rounded-[12px] bg-[#F3F4F8] px-4 py-2 ${
+                                        isArabic ? 'flex-row-reverse' : ''
+                                    }`}
                                 >
-                                    <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-[#2E2C34] 3xl:text-[14px] 4xl:text-[15px]">
+                                    <span
+                                        className={`min-w-0 flex-1 truncate text-[13px] font-medium text-[#2E2C34] ${
+                                            isArabic ? 'text-right' : 'text-left'
+                                        }`}
+                                    >
                                         {file.name}
                                     </span>
 
                                     <button
                                         type="button"
-                                        onClick={() =>
-                                            handleRemoveFile(index)
-                                        }
-                                        aria-label={t(
-                                            'createModal.removeAttachment',
-                                        )}
+                                        onClick={() => handleRemoveFile(index)}
+                                        aria-label={t('createModal.removeAttachment')}
                                         className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-[#E7E8EE]"
                                     >
                                         <ModalCloseIcon className="h-4 w-4" />
@@ -318,17 +269,26 @@ export default function CreateSupportInquiryForm({
                     )}
                 </div>
 
-                <div className="flex w-full justify-end">
+                <div className={`flex w-full ${isArabic ? 'justify-start' : 'justify-end'}`}>
                     <ActionButton
                         type="submit"
-                        trailingIcon={
-                            <SupportTicketViewArrowIcon
-                                className={`h-4 w-4 shrink-0 ${
-                                    isArabic ? 'rotate-180' : ''
-                                }`}
-                            />
+                        leadingIcon={
+                            isArabic ? (
+                                <SupportTicketViewArrowIcon
+                                    aria-hidden="true"
+                                    className="h-4 w-4 shrink-0 rotate-180 3xl:h-[18px] 3xl:w-[18px]"
+                                />
+                            ) : undefined
                         }
-                        className="!h-[44px] !w-full !rounded-[16px] !px-6 !text-[16px] !font-normal sm:!w-auto sm:!min-w-[190px] 3xl:!h-[48px] 3xl:!min-w-[210px] 3xl:!text-[17px] 4xl:!h-[52px] 4xl:!min-w-[230px] 4xl:!text-[18px]"
+                        trailingIcon={
+                            !isArabic ? (
+                                <SupportTicketViewArrowIcon
+                                    aria-hidden="true"
+                                    className="h-4 w-4 shrink-0 3xl:h-[18px] 3xl:w-[18px]"
+                                />
+                            ) : undefined
+                        }
+                        className="!h-[44px] !w-full !rounded-[16px] !px-5 !text-[16px] !font-normal sm:!w-auto sm:!min-w-[150px] 3xl:!h-[50px] 3xl:!min-w-[190px] 3xl:!px-7 3xl:!text-[17px] 4xl:!h-[56px] 4xl:!min-w-[220px] 4xl:!text-[18px]"
                     >
                         {t('createModal.submitBtn')}
                     </ActionButton>

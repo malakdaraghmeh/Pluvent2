@@ -1,150 +1,263 @@
-/* eslint-disable react/prop-types */
+import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { useTranslation } from 'react-i18next';
+import { AskAiSendIcon as Send } from '@/assets';
+import { AskAiLogoIcon as LogoIcon } from '@/assets';
+import { AskAiAttachmentIcon as Attachment } from '@/assets';
 
-import React, { useState } from 'react';
-import  Send  from '@icons/send.svg?react';
-import LogoIcon from '@icons/logo png 2.svg?react';
-import Attachment from '@icons/attachment.svg?react';
+interface AskAiProps {
+    isOpen: boolean;
+    onClose: () => void;
+}
 
-export default function AskAi({ isOpen, onClose }) {
-    const [messages, setMessages] = useState([
-        {
-            id: 1,
-            sender: 'Pulvent',
-            time: '01:08 am',
-            text: "Hi! We've reviewed your latest request and shared the updates with our team.",
-            isUser: false,
-        },
-        {
-            id: 2,
-            sender: 'You',
-            time: '02:08 am',
-            text: "Hi! We've reviewed your latest request and shared the updates with our team.",
-            isUser: true,
-        },
-        {
-            id: 3,
-            sender: 'Pulvent',
-            time: '01:08 am',
-            text: "Hi! We've reviewed your latest request and shared the updates with our team.",
-            isUser: false,
-        },
-        {
-            id: 4,
-            sender: 'You',
-            time: '02:08 am',
-            text: "Hi! We've reviewed your latest request and shared the updates with our team.",
-            isUser: true,
-        },
-    ]);
+interface Message {
+    id: number;
+    sender: 'pulvent' | 'user';
+    time: string;
+    isUser: boolean;
+}
+
+const INITIAL_MESSAGES: Message[] = [
+    {
+        id: 1,
+        sender: 'pulvent',
+        time: '01:08 am',
+        isUser: false,
+    },
+    {
+        id: 2,
+        sender: 'user',
+        time: '02:08 am',
+        isUser: true,
+    },
+    {
+        id: 3,
+        sender: 'pulvent',
+        time: '01:08 am',
+        isUser: false,
+    },
+    {
+        id: 4,
+        sender: 'user',
+        time: '02:08 am',
+        isUser: true,
+    },
+];
+
+export default function AskAi({
+    isOpen,
+    onClose,
+}: AskAiProps) {
+    const { t, i18n } = useTranslation('chat');
+    const isArabic = i18n.language.startsWith('ar');
+    const panelRef = useRef<HTMLDivElement>(null);
+
+    const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES);
 
     const [inputValue, setInputValue] = useState('');
 
-    const handleSend = e => {
-        e.preventDefault();
-        if (!inputValue.trim()) return;
+    useEffect(() => {
+        if (!isOpen) return;
 
-        setMessages([
-            ...messages,
+        const handleClickOutside = (event: PointerEvent) => {
+            if (
+                panelRef.current &&
+                !panelRef.current.contains(event.target as Node)
+            ) {
+                onClose();
+            }
+        };
+
+        document.addEventListener('pointerdown', handleClickOutside, true);
+
+        return () => {
+            document.removeEventListener('pointerdown', handleClickOutside, true);
+        };
+    }, [isOpen, onClose]);
+
+    const handleSend = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const text = inputValue.trim();
+
+        if (!text) return;
+
+        setMessages(current => [
+            ...current,
             {
                 id: Date.now(),
-                sender: 'You',
-                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                text: inputValue,
+                sender: 'user',
+                time: new Date().toLocaleTimeString(isArabic ? 'ar-EG' : 'en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                }),
                 isUser: true,
             },
         ]);
+
         setInputValue('');
     };
 
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-end sm:justify-end bg-black/20  p-0 sm:p-6">
-            <div className="relative flex h-[85vh] sm:h-[680px] w-full sm:max-w-md flex-col overflow-hidden rounded-t-[32px] sm:rounded-[32px] border border-gray-100 bg-white shadow-2xl animate-in slide-in-from-bottom sm:slide-in-from-right duration-300">
-                {/* Header / Close Button */}
-                <div className="flex items-center justify-between  px-6 py-4">
+        <div
+            ref={panelRef}
+            className="
+                fixed
+                bottom-6
+                right-6
+                z-50
+                flex
+                h-[640px]
+                max-h-[calc(100vh-48px)]
+                w-[440px]
+                max-w-[calc(100vw-48px)]
+                flex-col
+                overflow-hidden
+                rounded-[28px]
+                border
+                border-[#EEF0F5]
+                bg-white
+                shadow-[0_12px_40px_rgba(18,17,92,0.12)]
+                max-sm:bottom-3
+                max-sm:right-3
+                max-sm:h-[calc(100vh-24px)]
+                max-sm:w-[calc(100vw-24px)]
+                max-sm:max-w-none
+            "
+        >
+            <div
+                className="
+                    min-h-0
+                    flex-1
+                    space-y-6
+                    overflow-y-auto
+                    px-6
+                    pb-6
+                    pt-12
+                    [scrollbar-color:#B1B4B6_#FCFCFC]
+                    [scrollbar-width:thin]
+                    [&::-webkit-scrollbar]:w-[6px]
+                    [&::-webkit-scrollbar-track]:rounded-full
+                    [&::-webkit-scrollbar-track]:bg-[#FCFCFC]
+                    [&::-webkit-scrollbar-thumb]:rounded-full
+                    [&::-webkit-scrollbar-thumb]:bg-[#B1B4B6]
+                "
+            >
+                {messages.map(message => (
+                    <div key={message.id}>
+                        {message.isUser ? (
+                            <div className="flex flex-col items-end">
+                                <div
+                                    className={`mb-2 flex items-center gap-2 ${
+                                        isArabic ? 'flex-row-reverse' : 'flex-row'
+                                    }`}
+                                >
+                                    <span className="text-[12px] font-normal text-[#8990A3]">
+                                        {message.time}
+                                    </span>
+
+                                    <span className="text-[13px] font-semibold text-[#12115C]">
+                                        {t('askAi.you')}
+                                    </span>
+                                </div>
+
+                                <div
+                                    className={`relative max-w-[85%] rounded-[20px] bg-[#12115C] px-5 py-3 text-[14px] leading-[21px] text-white ${
+                                        isArabic ? 'text-right' : 'text-left'
+                                    }`}
+                                >
+                                    {message.id <= 4 ? t('askAi.userMessage') : inputValue}
+
+                                    <span className="pointer-events-none absolute bottom-[-6px] right-[14px] h-[8px] w-[22px] bg-[#12115C] [clip-path:polygon(0_0,100%_0,100%_100%)]" />
+                                </div>
+                            </div>
+                        ) : (
+                            <div
+                                className={`flex items-start gap-3 ${
+                                    isArabic ? 'flex-row-reverse' : 'flex-row'
+                                }`}
+                            >
+                                <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#12115C]">
+                                    <LogoIcon className="h-6 w-6" />
+                                </div>
+
+                                <div
+                                    className={`min-w-0 flex-1 ${
+                                        isArabic ? 'text-right' : 'text-left'
+                                    }`}
+                                >
+                                    <div
+                                        className={`mb-2 flex items-center gap-2 ${
+                                            isArabic ? 'flex-row-reverse justify-end' : 'flex-row'
+                                        }`}
+                                    >
+                                        <span className="text-[13px] font-semibold text-[#12115C]">
+                                            Pulvent
+                                        </span>
+
+                                        <span className="text-[12px] font-normal text-[#8990A3]">
+                                            {message.time}
+                                        </span>
+                                    </div>
+
+                                    <div className="relative max-w-[88%] rounded-[20px] bg-[#F2F0FC] px-5 py-3 text-[14px] leading-[21px] text-[#25263A]">
+                                        {t('askAi.pulventMessage')}
+
+                                        <span
+                                            className={`pointer-events-none absolute bottom-[-6px] h-[8px] w-[22px] bg-[#F2F0FC] ${
+                                                isArabic
+                                                    ? 'right-[14px] [clip-path:polygon(0_0,100%_0,100%_100%)]'
+                                                    : 'left-[14px] [clip-path:polygon(0_0,100%_0,0_100%)]'
+                                            }`}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
+
+            <div className="shrink-0 bg-white px-5 pb-5 pt-3">
+                <form
+                    onSubmit={handleSend}
+                    className={`flex h-[58px] items-center gap-2 rounded-full border border-[#EEF0F5] bg-white p-1.5 shadow-[0_3px_16px_rgba(18,17,92,0.08)] ${
+                        isArabic ? 'flex-row-reverse' : 'flex-row'
+                    }`}
+                >
                     <button
                         type="button"
-                        onClick={onClose}
-                        className="cursor-pointer border-none bg-transparent text-xl font-bold text-gray-400 hover:text-gray-600"
+                        aria-label={t('askAi.attachment')}
+                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#EEF4FF]"
                     >
-                        &times;
+                        <Attachment className="h-5 w-5" />
                     </button>
-                </div>
 
-                {/* Messages Body Container */}
-                <div className="flex-1 space-y-6 overflow-y-auto p-6">
-                    {messages.map(msg => (
-                        <div key={msg.id} className="flex flex-col">
-                            {msg.isUser ? (
-                                /* User Message Right-aligned */
-                                <div className="flex flex-col items-end">
-                                    <div className="mb-1 flex items-center gap-2">
-                                        <span className="text-[11px] text-gray-400">
-                                            {msg.time}
-                                        </span>
-                                        <span className="text-xs font-bold text-[#102A63]">
-                                            {msg.sender}
-                                        </span>
-                                    </div>
-                                    <div className="max-w-[85%] rounded-2xl rounded-br-xs bg-[#12115C] px-5 py-3.5 text-sm leading-relaxed text-white shadow-sm">
-                                        {msg.text}
-                                    </div>
-                                </div>
-                            ) : (
-                                /* Receiver Message Left-aligned */
-                                <div className="flex items-start gap-3">
-                                    <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#12115C] text-white shadow-xs">
-                                        <LogoIcon className="h-5 w-5" />
-                                    </div>
-                                    <div className="flex flex-col items-start">
-                                        <div className="mb-1 flex items-center gap-2">
-                                            <span className="text-xs font-bold text-[#102A63]">
-                                                {msg.sender}
-                                            </span>
-                                            <span className="text-[11px] text-gray-400">
-                                                {msg.time}
-                                            </span>
-                                        </div>
-                                        <div className="max-w-[85%] rounded-2xl rounded-bl-xs bg-[#F1F3F9] px-5 py-3.5 text-sm leading-relaxed text-[#1A1A1A]">
-                                            {msg.text}
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
-
-                {/* Chat Input Bar Footer */}
-                <div className="border-t border-gray-50 bg-white p-4">
-                    <form
-                        onSubmit={handleSend}
-                        className="flex items-center gap-2 rounded-full border border-gray-100 p-2 shadow-inner"
+                    <div
+                        className={`flex h-full min-w-0 flex-1 items-center rounded-full bg-[#F0FFFC] px-2 ${
+                            isArabic ? 'flex-row-reverse' : 'flex-row'
+                        }`}
                     >
+                        <input
+                            type="text"
+                            value={inputValue}
+                            onChange={event => setInputValue(event.target.value)}
+                            placeholder={t('askAi.placeholder')}
+                            className={`min-w-0 flex-1 bg-transparent px-2 text-[14px] text-[#25263A] outline-none placeholder:text-[#A3A8B7] ${
+                                isArabic ? 'text-right' : 'text-left'
+                            }`}
+                        />
+
                         <button
-                            type="button"
-                            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#EBF2FF] text-[#12115C] transition-colors hover:bg-[#dce6f8]"
+                            type="submit"
+                            aria-label={t('askAi.send')}
+                            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#3634C7]"
                         >
-                            <Attachment className="h-5 w-5 " />
+                            <Send className={`h-[18px] w-[18px] ${isArabic ? 'rotate-180' : ''}`} />
                         </button>
-                        <div className="flex h-12 min-w-0 flex-1 items-center rounded-[100px] bg-[#F0FEFC] py-2 ps-4 pe-2 shadow-[0_2px_15px_rgba(0,0,0,0.05)] 3xl:h-[52px] 4xl:h-14">
-                            <input
-                                type="text"
-                                placeholder="Ask Ai Assissant..."
-                                value={inputValue}
-                                onChange={e => setInputValue(e.target.value)}
-                                className="flex-1 border-none bg-transparent px-2 text-sm text-[#1A1A1A] outline-none placeholder:text-gray-400"
-                            />
-                            <button
-                                type="submit"
-                                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#12115C] text-white shadow-sm transition-colors hover:bg-[#0d0c42]"
-                            >
-                                <Send className="h-4 w-4" />
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     );

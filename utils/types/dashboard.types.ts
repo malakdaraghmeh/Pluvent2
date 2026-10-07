@@ -27,6 +27,7 @@ export type ProgressDonutChartProps = {
 
 export type UpcomingPayment = {
     id: number;
+    projectName: string;
     amount: string;
     dueDays: number;
     dueType: 'danger' | 'warning';

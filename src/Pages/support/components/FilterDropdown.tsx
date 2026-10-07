@@ -5,7 +5,7 @@ import { SupportTicketFilterArrowIcon } from '@/assets';
 import type {
     FilterDropdownProps,
     SupportTicketFilter,
-} from '../../../utils/types/support-tickets.types';
+} from '../../../../utils/types/support-tickets.types';
 
 const FilterDropdown = ({ value, onChange }: FilterDropdownProps) => {
     const { t, i18n } = useTranslation('tickets');

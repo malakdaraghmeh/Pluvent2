@@ -1,4 +1,4 @@
-import type { SupportTab, SupportTicket } from '../../utils/types/support-tickets.types';
+import type { SupportTab, SupportTicket } from '../../../utils/types/support-tickets.types';
 
 export const TABS: SupportTab[] = [
     {

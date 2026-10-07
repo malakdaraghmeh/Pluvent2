@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import ClockIcon from '@icons/clock(10).svg?react';
+import { ChangeRequestClockIcon as ClockIcon } from '@/assets';
 import type {
     InProgressInfoCardProps,
     InProgressWorkCardProps,

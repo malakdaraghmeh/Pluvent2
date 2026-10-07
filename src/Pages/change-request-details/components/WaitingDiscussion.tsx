@@ -1,9 +1,9 @@
 import { type FormEvent, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import ChatIcon from '@icons/bubble-chat.svg?react';
-import SendIcon from '@icons/send.svg?react';
-import PulventLogo from '@/assets/images/messages-pulvent-logo.png';
-import UserAvatar from '@/assets/images/change-request-chat-avatar.png';
+import { WaitingDiscussionChatIcon as ChatIcon } from '@/assets';
+import { WaitingDiscussionSendIcon as SendIcon } from '@/assets';
+import { MessagesPulventLogo as PulventLogo } from '@/assets';
+import { ChangeRequestChatAvatar as UserAvatar } from '@/assets';
 import type { WaitingDiscussionProps } from '../../../../utils/types/change-request-details.types';
 import './WaitingDiscussion.css';
 

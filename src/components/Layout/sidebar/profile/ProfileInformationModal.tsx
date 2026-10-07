@@ -21,9 +21,7 @@ export default function ProfileInformationModal({
     profile,
     onSave,
 }: ProfileInformationModalProps) {
-    const { t, i18n } = useTranslation('profile');
-    const isArabic = i18n.language.startsWith('ar');
-
+    const { t } = useTranslation('profile');
     const [formData, setFormData] = useState<ProfileData>({ ...profile, fullName: 'James Carter' });
     const [isPersonalEditing, setIsPersonalEditing] = useState(false);
     const [isContactEditing, setIsContactEditing] = useState(false);

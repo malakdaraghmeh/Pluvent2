@@ -23,21 +23,17 @@ const DEFAULT_PAYMENT_METHOD: PaymentMethodId = 'creditDebitCard';
 
 const PaymentMethodModal = ({ isOpen, onClose, onBack, onContinue }: PaymentMethodModalProps) => {
     const { t, i18n } = useTranslation('paymentMethodModal');
+
     const isArabic = i18n.language.startsWith('ar');
+
     const textAlignment = isArabic ? 'text-right' : 'text-left';
+
     const [selectedMethod, setSelectedMethod] = useState<PaymentMethodId>(DEFAULT_PAYMENT_METHOD);
 
     useEffect(() => {
-        if (!isOpen) return;
-        setSelectedMethod(DEFAULT_PAYMENT_METHOD);
-        const bodyOverflow = document.body.style.overflow;
-        const htmlOverflow = document.documentElement.style.overflow;
-        document.body.style.overflow = 'hidden';
-        document.documentElement.style.overflow = 'hidden';
-        return () => {
-            document.body.style.overflow = bodyOverflow;
-            document.documentElement.style.overflow = htmlOverflow;
-        };
+        if (isOpen) {
+            setSelectedMethod(DEFAULT_PAYMENT_METHOD);
+        }
     }, [isOpen]);
 
     const paymentMethods = [
@@ -90,33 +86,35 @@ const PaymentMethodModal = ({ isOpen, onClose, onBack, onContinue }: PaymentMeth
             isOpen={isOpen}
             onClose={onClose}
             ariaLabel={t('title')}
-            overlayClassName={
-                isArabic
-                    ? '!overflow-hidden p-3 sm:p-4 lg:pr-[280px]'
-                    : '!overflow-hidden p-3 sm:p-4 lg:pl-[280px]'
-            }
+            overlayClassName="!overflow-hidden p-3 sm:p-4 lg:pl-[280px]"
             className="!h-[calc(100vh-24px)] !max-h-[786px] !w-[calc(100vw-24px)] !max-w-[700px] overflow-hidden rounded-[8px] border-[0.5px] border-[#D9D9D9] bg-white shadow-none sm:!h-[calc(100vh-32px)] sm:!w-[calc(100vw-32px)] md:!w-[700px]"
         >
-            <div className="flex h-full min-h-0 w-full flex-col overflow-hidden px-4 py-5 sm:px-6 sm:py-6 md:px-6 md:py-10">
-                <div className="flex w-full shrink-0 items-start justify-between gap-4">
+            <div className="flex h-full min-h-0 w-full flex-col overflow-hidden px-4 py-5 sm:px-6 sm:py-6">
+                <div className={`flex w-full shrink-0 items-start justify-between gap-4 ${isArabic ? 'flex-row-reverse' : ''}`}>
                     <div className={`min-w-0 flex-1 ${textAlignment}`}>
                         <h2 className="text-[20px] font-semibold leading-[28px] text-[#12115C] sm:text-[22px]">
                             {t('title')}
                         </h2>
+
                         <p className="mt-2 text-[13px] font-normal leading-[18px] text-[#615E8B] sm:text-[14px]">
                             {t('subtitle')}
                         </p>
                     </div>
-                    <ModalCloseButton ariaLabel={t('close')} onClick={onClose} />
+
+                    <div className={isArabic ? 'order-first' : 'order-last'}>
+                        <div className={isArabic ? 'absolute left-6 top-6' : 'absolute right-6 top-6'}><ModalCloseButton ariaLabel={t('close')} onClick={onClose} /></div>
+                    </div>
                 </div>
 
                 <div
                     role="radiogroup"
                     aria-label={t('title')}
-                    className="mt-5 min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-contain pr-1 [direction:ltr] [scrollbar-color:#C7CBD4_transparent] [scrollbar-gutter:stable] [scrollbar-width:thin] sm:mt-6 md:mt-8 [&::-webkit-scrollbar]:w-[5px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#C7CBD4] hover:[&::-webkit-scrollbar-thumb]:bg-[#AEB4C0]"
+                    className="mt-5 min-h-0 flex-1 overflow-x-hidden overflow-y-auto [scrollbar-width:none] sm:mt-6 [&::-webkit-scrollbar]:hidden"
                 >
                     <div
-                        className={`flex w-full flex-col gap-3 pb-1 md:gap-4 ${isArabic ? '[direction:rtl]' : '[direction:ltr]'}`}
+                        className={`flex w-full flex-col gap-3 ${
+                            isArabic ? '[direction:rtl]' : '[direction:ltr]'
+                        }`}
                     >
                         {paymentMethods.map(method => (
                             <PaymentMethodOption
@@ -133,7 +131,7 @@ const PaymentMethodModal = ({ isOpen, onClose, onBack, onContinue }: PaymentMeth
                     </div>
                 </div>
 
-                <div className="mt-5 w-full shrink-0 bg-white sm:mt-6 md:mt-8">
+                <div className="mt-5 w-full shrink-0 bg-white sm:mt-6">
                     <div className="flex w-full flex-col-reverse gap-2 sm:h-[44px] sm:flex-row sm:items-center">
                         <ActionButton
                             type="button"
@@ -142,6 +140,7 @@ const PaymentMethodModal = ({ isOpen, onClose, onBack, onContinue }: PaymentMeth
                         >
                             {t('back')}
                         </ActionButton>
+
                         <ActionButton
                             type="button"
                             onClick={() => onContinue(selectedMethod)}
@@ -151,7 +150,9 @@ const PaymentMethodModal = ({ isOpen, onClose, onBack, onContinue }: PaymentMeth
                                     className={`h-5 w-5 shrink-0 ${isArabic ? 'rotate-180' : ''}`}
                                 />
                             }
-                            className="!h-[44px] !min-h-[44px] !max-h-[44px] !w-full !min-w-0 !shrink-0 !rounded-[16px] !px-5 !text-[18px] !font-normal !leading-[28px] sm:!flex-1"
+                            className={`!h-[44px] !min-h-[44px] !max-h-[44px] !w-full !min-w-0 !shrink-0 !justify-center !rounded-[16px] !px-5 !text-[18px] !font-normal !leading-[28px] sm:!flex-1 ${
+                                isArabic ? '!flex-row-reverse' : ''
+                            }`}
                         >
                             {t('continueToPayment')}
                         </ActionButton>

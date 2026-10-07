@@ -1,4 +1,4 @@
-﻿import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import {
     MessagesCreateGroupPlusIcon,
@@ -81,7 +81,7 @@ export const ChatSidebar = ({
 
     return (
         <aside
-            className={`min-w-0 flex-col overflow-hidden bg-white shadow-sm max-md:h-screen max-md:w-full max-md:p-4 md:h-[calc(100vh-32px)] md:w-[340px] md:flex-none md:rounded-[24px] md:border md:border-[#EEF0F5] md:p-4 3xl:w-[400px] 3xl:p-5 4xl:w-[460px] 4xl:p-6 ${className}`}
+            className={`min-w-0 flex-col overflow-hidden bg-white shadow-sm max-md:h-screen max-md:w-full max-md:p-4 md:h-[761px] 3xl:h-[900px] 4xl:h-[1080px] md:w-[340px] md:flex-none md:rounded-[24px] md:border md:border-[#EEF0F5] md:p-4 3xl:w-[400px] 3xl:p-5 4xl:w-[460px] 4xl:p-6 ${className}`}
         >
             <h1 className="shrink-0 text-[22px] font-semibold text-[#1E293B] ">
                 {t('title')}

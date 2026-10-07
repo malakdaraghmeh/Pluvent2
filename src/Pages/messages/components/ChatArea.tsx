@@ -1,7 +1,11 @@
-﻿import { useTranslation } from 'react-i18next';
-
-import { MessagesBackIcon, MessagesPlusIcon, MessagesSendIcon } from '@/assets';
-
+import { useTranslation } from 'react-i18next';
+import {
+    MessagesBackIcon,
+    MessagesCurrentUserAvatar,
+    MessagesPlusIcon,
+    MessagesPulventLogo,
+    MessagesSendIcon,
+} from '@/assets';
 import type { ChatAreaProps } from '../../../../utils/types/chat.types';
 
 export const ChatArea = ({
@@ -14,175 +18,179 @@ export const ChatArea = ({
     className = '',
 }: ChatAreaProps) => {
     const { t, i18n } = useTranslation('chat');
-    const isArabic = i18n.language.startsWith('ar');
 
-    const getMessageText = (message: ChatAreaProps['messages'][number]) => {
-        if (message.text !== 'sampleMessage') return message.text;
-
-        return t('sampleMessage', {
-            defaultValue: isArabic
-                ? 'مرحبًا! لقد راجعنا طلبك الأخير وشاركنا التحديثات مع فريقنا.'
-                : "Hi! We've reviewed your latest request and shared the updates with our team.",
-        });
-    };
+    const isArabic =
+        i18n.language.startsWith('ar');
 
     return (
-        <section
-            className={`min-w-0 flex-1 overflow-hidden bg-white shadow-sm max-md:h-screen max-md:w-full max-md:p-4 md:h-[calc(100vh-32px)] md:rounded-[24px] md:border md:border-[#EEF0F5] md:p-5 3xl:p-6 4xl:p-8 ${className}`}
+        <div
+            className={`min-w-0 flex-1 flex-col overflow-hidden bg-white shadow-sm max-md:h-screen max-md:w-full max-md:p-4 md:h-[761px] 3xl:h-[900px] 4xl:h-[1080px] md:rounded-[24px] md:border md:border-[#EEF0F5] md:p-5 3xl:p-6 4xl:p-8 ${className}`}
         >
-            <div className="flex h-full min-h-0 flex-col">
-                <div className="mb-3 flex shrink-0 items-center gap-3 border-b border-[#EEF0F5] pb-3 md:hidden">
-                    <button
-                        type="button"
-                        onClick={onBack}
-                        aria-label={t('back')}
-                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
-                    >
-                        <MessagesBackIcon className="h-5 w-5 rtl:rotate-180" />
-                    </button>
+            <div className="mb-4 flex items-center gap-3 border-b border-[#F2F3F7] pb-3 md:hidden">
+                <button
+                    type="button"
+                    onClick={onBack}
+                    aria-label={t('back')}
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#F4F6FA]"
+                >
+                    <MessagesBackIcon
+                        className={`h-5 w-5 ${
+                            isArabic
+                                ? 'rotate-180'
+                                : ''
+                        }`}
+                    />
+                </button>
 
-                    {activeChat && (
-                        <div className="flex min-w-0 items-center gap-3">
-                            {activeChat.avatar && (
-                                <img
-                                    src={activeChat.avatar}
-                                    alt={activeChat.name}
-                                    className="h-9 w-9 shrink-0 rounded-full object-cover"
-                                />
-                            )}
+                {activeChat && (
+                    <div className="flex min-w-0 items-center gap-3">
+                        <img
+                            src={
+                                activeChat.avatar ||
+                                MessagesPulventLogo
+                            }
+                            alt={activeChat.name}
+                            className="h-9 w-9 shrink-0 rounded-full object-cover"
+                        />
 
-                            <div className="min-w-0">
-                                <h2 className="truncate text-sm font-semibold text-[#101828]">
-                                    {activeChat.name}
-                                </h2>
+                        <span className="truncate text-[14px] font-semibold text-[#12115C]">
+                            {activeChat.name}
+                        </span>
+                    </div>
+                )}
+            </div>
 
-                                <p className="truncate text-xs text-[#98A2B3]">
-                                    {activeChat.isPinned
-                                        ? t('pulventTeamMembers', { count: 2 })
-                                        : t('membersCount', {
-                                              count: activeChat.membersCount ?? 0,
-                                          })}
-                                </p>
-                            </div>
-                        </div>
-                    )}
-                </div>
+            <div className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto pe-1 [scrollbar-width:thin] [scrollbar-color:#D9DCEF_transparent] [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#D9DCEF]">
+                <div className="flex w-full flex-col gap-5 pb-4 3xl:gap-6">
+                    {messages.map(message => {
+                        const avatar =
+                            message.senderAvatar ||
+                            (message.isMe
+                                ? MessagesCurrentUserAvatar
+                                : MessagesPulventLogo);
 
-                <div className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto pe-1 [scrollbar-width:thin] [scrollbar-color:#D9DCEF_transparent] [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#D9DCEF]">
-                    <div className="space-y-5 3xl:space-y-6 4xl:space-y-7">
-                        {messages.map(message => (
+                        return (
                             <div
                                 key={message.id}
-                                className={`flex w-full items-start gap-3 ${
-                                    message.isMe ? 'flex-row-reverse' : 'flex-row'
+                                className={`flex w-full items-end gap-2.5 ${
+                                    message.isMe
+                                        ? 'justify-end'
+                                        : 'justify-start'
                                 }`}
                             >
-                              <div className="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[32px] bg-[#12115C] p-[8px] 3xl:h-[44px] 3xl:w-[44px] 3xl:p-[9px] 4xl:h-[48px] 4xl:w-[48px] 4xl:p-[10px]">
-                    <img
-                        src={message.senderAvatar}
-                        alt={message.senderName}
-                        className="h-full w-full object-contain"
-                    />
-                </div>
+                                {!message.isMe && (
+                                    <img
+                                        src={avatar}
+                                        alt={message.senderName}
+                                        className="h-[42px] w-[42px] shrink-0 rounded-full object-cover 3xl:h-[46px] 3xl:w-[46px]"
+                                    />
+                                )}
 
                                 <div
-                                    className={`flex min-w-0 flex-col ${
-                                        message.isMe ? 'items-end' : 'items-start'
+                                    className={`flex min-w-0 max-w-[82%] flex-col ${
+                                        message.isMe
+                                            ? 'items-end'
+                                            : 'items-start'
                                     }`}
                                 >
-                                    <div className="mb-[6px] flex items-center gap-2">
-                                        <span className="text-[14px] font-semibold text-[#12115C] ">
+                                    <div
+                                        className={`mb-[6px] flex items-center gap-2 ${
+                                            message.isMe
+                                                ? 'justify-end'
+                                                : 'justify-start'
+                                        }`}
+                                    >
+                                        <span className="text-[14px] font-semibold text-[#12115C] 3xl:text-[15px]">
                                             {message.senderName}
                                         </span>
 
-                                        <span className="text-[12px]  text-[#6B7280] ">
+                                        <span className="text-[13px] font-normal text-[#8990A3] 3xl:text-[14px]">
                                             {message.time}
                                         </span>
                                     </div>
-{/* 
+
                                     <div
-                                        className={`w-fit rounded-[100px] px-4 py-[11px] text-[12px] leading-[18px] max-md:max-w-[85%] max-md:whitespace-normal md:max-w-none md:whitespace-nowrap 3xl:px-5 3xl:py-3 3xl:text-[13px] 4xl:px-6 4xl:py-[14px] 4xl:text-[14px] ${
+                                        className={`relative max-w-full rounded-[20px] px-5 py-[13px] text-[14px] leading-[20px] 3xl:px-6 3xl:py-[15px] 3xl:text-[15px] ${
                                             message.isMe
                                                 ? 'bg-[#12115C] text-white'
-                                                : 'bg-[#F2F1FA] text-[#27264D]'
+                                                : 'bg-[#F2F0FC] text-[#25263A]'
+                                        } ${
+                                            isArabic
+                                                ? 'text-right'
+                                                : 'text-left'
                                         }`}
                                     >
-                                        {getMessageText(message)}
-                                    </div> */}
+                                        <p className="max-w-full overflow-hidden text-ellipsis whitespace-normal md:whitespace-nowrap">
+                                            {message.text === 'sampleMessage' ? t('sampleMessage') : message.text}
+                                        </p>
 
-                                <div
-                                    className={`relative w-fit rounded-[100px] px-4 py-[11px] text-[13px] leading-[18px]
-                                        max-md:max-w-[85%]
-                                        max-md:whitespace-normal
-                                        md:max-w-none
-                                        md:whitespace-nowrap
-                                       
-                        
+                                        {message.isMe ? (
+                                            <span className="pointer-events-none absolute bottom-[-6px] right-[14px] h-[8px] w-[22px] bg-[#12115C] [clip-path:polygon(0_0,100%_0,100%_100%)]" />
+                                        ) : (
+                                            <span className="pointer-events-none absolute bottom-[-6px] left-[14px] h-[8px] w-[22px] bg-[#F2F0FC] [clip-path:polygon(0_0,100%_0,0_100%)]" />
+                                        )}
+                                    </div>
+                                </div>
 
-                                        ${
-                                            message.isMe
-                                                ? `
-                                                    bg-[#12115C]
-                                                    text-[#F7F6F7]
-                                                    after:absolute
-                                                    after:bottom-[-5px]
-                                                    after:right-[12px]
-                                                    after:h-[7px]
-                                                    after:w-[14px]
-                                                    after:bg-[#12115C]
-                                                    after:[clip-path:polygon(0_0,100%_0,100%_100%)]
-                                                `
-                                                : `
-                                                    bg-[#2F1ABD10]
-                                                    text-[#1E293B]
-                                                    after:absolute
-                                                    after:bottom-[-5px]
-                                                    after:left-[12px]
-                                                    after:h-[7px]
-                                                    after:w-[14px]
-                                                    after:bg-[#2F1ABD10]
-                                                    after:[clip-path:polygon(0_0,0_100%,100%_0)]
-                                                `
-                                        }`}
-                                >
-                                    {getMessageText(message)}
-                                </div>
-                                </div>
+                                {message.isMe && (
+                                    <img
+                                        src={avatar}
+                                        alt={message.senderName}
+                                        className="h-[42px] w-[42px] shrink-0 rounded-full object-cover 3xl:h-[46px] 3xl:w-[46px]"
+                                    />
+                                )}
                             </div>
-                        ))}
-                    </div>
+                        );
+                    })}
                 </div>
-
-                <form onSubmit={onSendMessage} className="mt-4 w-full shrink-0">
-                    <div className="mx-auto flex w-full max-w-[570px] items-center gap-2 3xl:max-w-[760px] 4xl:max-w-[980px]">
-                        <button
-                            type="button"
-                            aria-label={t('addAttachment')}
-                            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#EBF2FF] transition hover:bg-[#E2EAFF] 3xl:h-[52px] 3xl:w-[52px] 4xl:h-14 4xl:w-14"
-                        >
-                            <MessagesPlusIcon className="h-5 w-5 " />
-                        </button>
-
-                        <div className="flex h-12 min-w-0 flex-1 items-center rounded-[100px] bg-[#F0FEFC] py-2 ps-4 pe-2 shadow-[0_2px_15px_rgba(0,0,0,0.05)] 3xl:h-[52px] 4xl:h-14">
-                            <input
-                                type="text"
-                                value={inputText}
-                                onChange={event => onInputChange(event.target.value)}
-                                placeholder={t('typeMessagePlaceholder')}
-                                className="min-w-0 flex-1 bg-transparent text-[12px] text-[#0F1113] outline-none  "
-                            />
-
-                            <button
-                                type="submit"
-                                aria-label={t('sendMessage')}
-                                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#3634C7] transition hover:bg-[#2F2DB0] 3xl:h-10 3xl:w-10 4xl:h-[42px] 4xl:w-[42px]"
-                            >
-                                <MessagesSendIcon className="h-4 w-4 3xl:h-[18px] 3xl:w-[18px] rtl:rotate-180" />
-                            </button>
-                        </div>
-                    </div>
-                </form>
             </div>
-        </section>
+
+            <form
+                onSubmit={onSendMessage}
+                className="mt-4 flex w-full shrink-0 items-center gap-3 3xl:mt-5 3xl:gap-4"
+            >
+                <button
+                    type="button"
+                    aria-label={t('addAttachment')}
+                    className="flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-full bg-[#EEF4FF] text-[#12115C] 3xl:h-[56px] 3xl:w-[56px]"
+                >
+                    <MessagesPlusIcon className="h-6 w-6 3xl:h-7 3xl:w-7" />
+                </button>
+
+                <div className="flex h-[50px] min-w-0 flex-1 items-center rounded-full bg-[#F0FFFC] px-4 3xl:h-[56px] 3xl:px-5">
+                    <input
+                        type="text"
+                        value={inputText}
+                        onChange={event =>
+                            onInputChange(
+                                event.target.value,
+                            )
+                        }
+                        placeholder={t(
+                            'typeMessagePlaceholder',
+                        )}
+                        className={`min-w-0 flex-1 bg-transparent text-[14px] text-[#25263A] outline-none placeholder:text-[#A3A8B7] 3xl:text-[15px] ${
+                            isArabic
+                                ? 'text-right'
+                                : 'text-left'
+                        }`}
+                    />
+
+                    <button
+                        type="submit"
+                        aria-label={t('sendMessage')}
+                        className="flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-full bg-[#3634C7] 3xl:h-[40px] 3xl:w-[40px]"
+                    >
+                        <MessagesSendIcon
+                            className={`h-[18px] w-[18px] ${
+                                isArabic
+                                    ? 'rotate-180'
+                                    : ''
+                            }`}
+                        />
+                    </button>
+                </div>
+            </form>
+        </div>
     );
 };

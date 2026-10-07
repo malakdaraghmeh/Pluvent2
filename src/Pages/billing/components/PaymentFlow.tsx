@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import PaymentDetailsModal from '@/Pages/PaymentDetailsModal/paymentDetailsModal';
+import PaymentDetailsModal from './PaymentDetailsModal';
 import type {
     PaymentFlowProps,
     PaymentFlowStage,

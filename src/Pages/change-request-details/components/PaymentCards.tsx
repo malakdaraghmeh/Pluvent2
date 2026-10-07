@@ -1,6 +1,6 @@
-﻿import { Link } from 'react-router-dom';
-import ClockIcon from '@icons/clock(10).svg?react';
-import PaymentArrow from '@icons/lib-icon-arrow3(10).svg?react';
+import { Link } from 'react-router-dom';
+import { ChangeRequestClockIcon as ClockIcon } from '@/assets';
+import { ChangeRequestPaymentArrowIcon as PaymentArrow } from '@/assets';
 import type {
     PaymentNextStepCardProps,
     WaitingPaymentCardProps,

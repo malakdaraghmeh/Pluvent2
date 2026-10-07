@@ -1,12 +1,12 @@
-import Dashboard from '@icons/dashboard.svg?react';
-import Project from '@icons/project.svg?react';
-import Files from '@icons/files.svg?react';
-import Billing from '@icons/billing.svg?react';
-import Support from '@icons/support.svg?react';
+import { SidebarDashboardIcon as Dashboard } from '@/assets';
+import { SidebarProjectIcon as Project } from '@/assets';
+import { SidebarFilesIcon as Files } from '@/assets';
+import { SidebarBillingIcon as Billing } from '@/assets';
+import { SidebarSupportIcon as Support } from '@/assets';
 
-import Messages from '@icons/messages.svg?react';
-import Users from '@icons/users.svg?react';
-import Settings from '@icons/settings.svg?react';
+import { SidebarMessagesIcon as Messages } from '@/assets';
+import { SidebarUsersIcon as Users } from '@/assets';
+import { SidebarSettingsIcon as Settings } from '@/assets';
 
 export const mainNavigation = [
     {

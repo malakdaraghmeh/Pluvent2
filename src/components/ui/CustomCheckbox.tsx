@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+ 
 import { Checkbox } from 'primereact/checkbox';
 
 export default function CustomCheckbox({ id, checked, onChange, label }) {

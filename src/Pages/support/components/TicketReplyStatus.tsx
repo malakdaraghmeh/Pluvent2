@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { SupportTicketReplyLogo } from '@/assets';
 
-import type { TicketReplyStatusProps } from '../../../utils/types/support-tickets.types';
+import type { TicketReplyStatusProps } from '../../../../utils/types/support-tickets.types';
 
 const TicketReplyStatus = ({ replyStatus }: TicketReplyStatusProps) => {
     const { t } = useTranslation('tickets');

@@ -1,4 +1,4 @@
-import DownloadIcon from '@icons/download(5).svg?react';
+import { ChangeRequestDownloadIcon as DownloadIcon } from '@/assets';
 import { useTranslation } from 'react-i18next';
 import { AttachmentImageIcon, AttachmentPdfIcon, ChangeRequestSubmitterAvatar } from '@/assets';
 import type { ChangeRequestAttachment } from '../../../../utils/types/change-request-details.types';
@@ -141,7 +141,7 @@ export default function InReviewDetails() {
                                     aria-label={attachment.name}
                                     className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center text-[#94A3B8] transition-colors hover:text-[#3634C7]"
                                 >
-                                    <DownloadIcon size={16} />
+                                    <DownloadIcon className="h-4 w-4" />
                                 </button>
                             </div>
                         );

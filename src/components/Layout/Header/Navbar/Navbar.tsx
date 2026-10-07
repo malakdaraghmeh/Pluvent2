@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
-import logo from '@images/logo.png';
+import { Logo as logo } from '@/assets';
 import { useState } from 'react';
 import { Menu as HamburgerIcon, X } from 'lucide-react';
 import { Link } from 'react-router-dom';

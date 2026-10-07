@@ -1,4 +1,4 @@
-import {
+﻿import {
     useEffect,
     useRef,
     useState,
@@ -20,7 +20,7 @@ import type {
     SupportTicket,
     SupportTicketStatus,
     TicketDetailsLocationState,
-} from '../../../utils/types/support-tickets.types';
+} from '../../../../utils/types/support-tickets.types';
 
 import ClosedTicketDetails from './components/ClosedTicketDetails';
 import PendingReplyTicketDetails from './components/PendingReplyTicketDetails';
@@ -382,7 +382,7 @@ export default function TicketDetails() {
                                                 }`}
                                             />
                                         }
-                                        className="!h-[44px] !w-full !gap-2 !rounded-[16px] !bg-[#12115C] !px-5 !font-['Sora',sans-serif] !text-[18px] !font-normal !leading-[28px] !text-white sm:!w-[240px] 3xl:!h-[44px] 3xl:!w-[240px] 3xl:!rounded-[16px] 3xl:!px-5 3xl:!text-[18px] 4xl:!h-[44px] 4xl:!w-[240px] 4xl:!rounded-[16px] 4xl:!px-5 4xl:!text-[18px]"
+                                        className={`!h-[44px] !w-full !gap-2 !rounded-[16px] !bg-[#12115C] !px-5 !font-['Sora',sans-serif] !text-[18px] !font-normal !leading-[28px] !text-white sm:!w-[240px] 3xl:!h-[44px] 3xl:!w-[240px] 3xl:!rounded-[16px] 3xl:!px-5 3xl:!text-[18px] 4xl:!h-[44px] 4xl:!w-[240px] 4xl:!rounded-[16px] 4xl:!px-5 4xl:!text-[18px] ${isArabic ? '!flex-row-reverse' : ''}`}
                                     >
                                         {t('details.form.submitTicket')}
                                     </ActionButton>
@@ -395,3 +395,5 @@ export default function TicketDetails() {
         </main>
     );
 }
+
+

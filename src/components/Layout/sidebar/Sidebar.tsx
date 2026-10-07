@@ -1,13 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type SVGProps } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { ChevronDown, ChevronLeft, ChevronRight, Moon, Sun, X } from 'lucide-react';
+import { X } from 'lucide-react';
+import {
+    SidebarMenuArrowIcon,
+    SidebarMoonIcon,
+    SidebarProfileImage,
+    SidebarSunIcon,
+    SidebarToggleIcon,
+} from '@/assets';
 
-import Logo from '@icons/logo.svg?react';
-import PLogo from '@icons/p-logo.svg?react';
-import FlagAr from '@icons/egypt-flag.svg?react';
-import FlagEn from '@icons/usa-flag.svg?react';
+import { SidebarLogoIcon as Logo } from '@/assets';
+import { SidebarCollapsedLogoIcon as PLogo } from '@/assets';
+import { SidebarArabicFlagIcon as FlagAr } from '@/assets';
+import { SidebarEnglishFlagIcon as FlagEn } from '@/assets';
 
 import SidebarItem from './SidebarItem';
 import ProfileInformationModal from './profile/ProfileInformationModal';
@@ -16,6 +23,34 @@ import { accountNavigation, mainNavigation } from './sidebar.data';
 
 import type { ProfileData } from '../../../../utils/types/profile.types';
 
+type SidebarIconProps = SVGProps<SVGSVGElement> & {
+    size?: number | string;
+};
+
+const ChevronDown = ({ size = 24, ...props }: SidebarIconProps) => (
+    <SidebarMenuArrowIcon width={size} height={size} {...props} />
+);
+
+const ChevronRight = ({ size = 24, ...props }: SidebarIconProps) => (
+    <SidebarToggleIcon width={size} height={size} {...props} />
+);
+
+const ChevronLeft = ({ size = 24, className = '', ...props }: SidebarIconProps) => (
+    <SidebarToggleIcon
+        width={size}
+        height={size}
+        className={`rotate-180 ${className}`}
+        {...props}
+    />
+);
+
+const Sun = ({ size = 24, ...props }: SidebarIconProps) => (
+    <SidebarSunIcon width={size} height={size} {...props} />
+);
+
+const Moon = ({ size = 24, ...props }: SidebarIconProps) => (
+    <SidebarMoonIcon width={size} height={size} {...props} />
+);
 interface SidebarProps {
     onCollapseChange?: (collapsed: boolean) => void;
     onThemeChange?: (theme: 'light' | 'dark') => void;
@@ -40,6 +75,10 @@ export default function Sidebar({
     const [isDarkMode, setIsDarkMode] = useState(true);
     const [isLanguageOpen, setIsLanguageOpen] = useState(false);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
+    // Dark mode starts enabled
+    useEffect(() => {
+        document.documentElement.classList.add('dark');
+    }, []);
 
     const [profileData, setProfileData] = useState<ProfileData>({
         fullName: 'John Doe',
@@ -249,19 +288,11 @@ export default function Sidebar({
                                   }),
                         }}
                     >
-                        {collapsed ? (
-                            <ChevronRight
-                                size={18}
-                                strokeWidth={2.5}
-                                className={currentLocale === 'ar' ? 'rotate-180' : ''}
-                            />
-                        ) : (
-                            <ChevronLeft
-                                size={18}
-                                strokeWidth={2.5}
-                                className={currentLocale === 'ar' ? 'rotate-180' : ''}
-                            />
-                        )}
+                        <SidebarToggleIcon
+    className={`h-[18px] w-[18px] transition-transform duration-200 ${
+        collapsed !== (currentLocale === 'ar') ? 'scale-x-[-1]' : ''
+    }`}
+/>
                     </button>
 
                     <div
@@ -621,7 +652,7 @@ export default function Sidebar({
                                     font-bold
                                 "
                             >
-                                {getInitials(profileData.fullName)}
+                                <img src={SidebarProfileImage} alt={profileData.fullName} className="h-full w-full object-cover" />
                             </div>
 
                             {!collapsed && (

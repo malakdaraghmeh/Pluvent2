@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Apple, DownloadBilling, Instapay, Paypal, SearchBilling, Visa } from '@/assets';
-import InvoiceModal from '@/Pages/InvoiceModal/invoiceModalPage';
+import InvoiceModal from '@/Pages/billing/components/InvoiceModal';
 import type { PaymentHistoryItem } from '../../../../utils/types/billing.types';
 import { paymentHistoryList } from '../data/paymentHistory';
 
@@ -14,7 +14,6 @@ const PaymentMethodBadge = ({ item }: { item: PaymentHistoryItem }) => {
             return (
                 <div className="flex items-center gap-2 whitespace-nowrap text-[13px] font-medium text-[#12115C]">
                     <Visa className="h-auto shrink-0" />
-
                     <span className="[direction:ltr] [unicode-bidi:isolate]">
                         {item.methodText}
                     </span>
@@ -25,7 +24,6 @@ const PaymentMethodBadge = ({ item }: { item: PaymentHistoryItem }) => {
             return (
                 <div className="flex items-center gap-1.5 whitespace-nowrap text-[13px] font-medium text-[#0088FF]">
                     <Paypal className="h-auto shrink-0" />
-
                     <span className="[direction:ltr] [unicode-bidi:isolate]">
                         {item.methodText}
                     </span>
@@ -36,7 +34,6 @@ const PaymentMethodBadge = ({ item }: { item: PaymentHistoryItem }) => {
             return (
                 <div className="flex items-center gap-1.5 whitespace-nowrap text-[13px] font-medium text-[#111827]">
                     <Apple className="h-auto shrink-0" />
-
                     <span className="[direction:ltr] [unicode-bidi:isolate]">
                         {item.methodText}
                     </span>
@@ -47,7 +44,6 @@ const PaymentMethodBadge = ({ item }: { item: PaymentHistoryItem }) => {
             return (
                 <div className="flex items-center gap-2 whitespace-nowrap text-[13px] font-medium">
                     <Instapay className="h-auto shrink-0" />
-
                     <span className="[direction:ltr] [unicode-bidi:isolate] text-[#4B5563]">
                         {item.methodText}
                     </span>
@@ -72,6 +68,8 @@ export default function PaymentHistoryTable() {
     const [isInvoiceOpen, setIsInvoiceOpen] = useState(false);
 
     const isRtl = i18n.language.startsWith('ar');
+
+    const alignmentClass = isRtl ? 'text-right' : 'text-left';
 
     const getProjectName = (project: string) => {
         if (project === WEBSITE_REDESIGN) {
@@ -121,11 +119,7 @@ export default function PaymentHistoryTable() {
         <>
             <div className="flex w-full min-w-0 flex-col gap-6 rounded-[16px] bg-white p-4 shadow-sm sm:p-6">
                 <div className="flex w-full flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                    <h2
-                        className={`text-[22px] font-semibold text-[#12115C] ${
-                            isRtl ? 'text-right' : 'text-left'
-                        }`}
-                    >
+                    <h2 className={`text-[22px] font-semibold text-[#12115C] ${alignmentClass}`}>
                         {t('title')}
                     </h2>
 
@@ -152,9 +146,7 @@ export default function PaymentHistoryTable() {
                             <select
                                 value={selectedProject}
                                 onChange={event => setSelectedProject(event.target.value)}
-                                className={`h-[38px] w-full rounded-[12px] border border-[#ECEFF4] bg-white px-4 text-[14px] font-semibold text-[#12115C] focus:outline-none ${
-                                    isRtl ? 'text-right' : 'text-left'
-                                }`}
+                                className={`h-[38px] w-full rounded-[12px] border border-[#ECEFF4] bg-white px-4 text-[14px] font-semibold text-[#12115C] focus:outline-none ${alignmentClass}`}
                             >
                                 <option value={ALL_PROJECTS}>{t('allProjects')}</option>
 
@@ -166,31 +158,40 @@ export default function PaymentHistoryTable() {
                     </div>
                 </div>
 
-                <div className="w-full min-w-0 overflow-x-auto rounded-[8px] border border-[#00E5C820] [scrollbar-width:thin] [scrollbar-color:#CBD5E1_transparent] [&::-webkit-scrollbar]:h-[4px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#CBD5E1]">
-                    <table className="w-full min-w-[980px] table-auto border-collapse text-left xl:min-w-full">
+                <div className="w-full min-w-0 overflow-x-auto rounded-[8px] border border-[#00E5C820] [scrollbar-color:#CBD5E1_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar]:h-[4px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#CBD5E1]">
+                    <table className="w-full min-w-[820px] table-fixed lg:min-w-[900px] xl:min-w-full border-collapse xl:min-w-full">
+                        <colgroup>
+                            <col className="w-[18%]" />
+                            <col className="w-[26%]" />
+                            <col className="w-[18%]" />
+                            <col className="w-[18%]" />
+                            <col className="w-[14%]" />
+                            <col className="w-[6%]" />
+                        </colgroup>
+
                         <thead>
                             <tr className="h-[48px] border-b border-[#00E5C820] text-[14px] font-semibold text-[#12115C]">
-                                <th className="min-w-[170px] whitespace-nowrap px-6">
+                                <th className={`whitespace-nowrap px-3 sm:px-4 ${alignmentClass}`}>
                                     {t('invoice')}
                                 </th>
 
-                                <th className="min-w-[230px] whitespace-nowrap px-4">
+                                <th className={`whitespace-nowrap px-3 sm:px-4 ${alignmentClass}`}>
                                     {t('project')}
                                 </th>
 
-                                <th className="min-w-[150px] whitespace-nowrap px-4">
+                                <th className={`whitespace-nowrap px-3 sm:px-4 ${alignmentClass}`}>
                                     {t('amount')}
                                 </th>
 
-                                <th className="min-w-[170px] whitespace-nowrap px-4">
+                                <th className={`whitespace-nowrap px-3 sm:px-4 ${alignmentClass}`}>
                                     {t('method')}
                                 </th>
 
-                                <th className="min-w-[140px] whitespace-nowrap px-4">
+                                <th className={`whitespace-nowrap px-3 sm:px-4 ${alignmentClass}`}>
                                     {t('date')}
                                 </th>
 
-                                <th className="w-[80px] min-w-[80px] px-6" />
+                                <th className="w-[60px] px-2 sm:w-[70px] sm:px-3" />
                             </tr>
                         </thead>
 
@@ -202,27 +203,41 @@ export default function PaymentHistoryTable() {
                                         index % 2 === 0 ? 'bg-[#00E5C805]' : 'bg-white'
                                     }`}
                                 >
-                                    <td className="whitespace-nowrap px-6 py-4 font-semibold text-[#12115C]">
+                                    <td
+                                        className={`whitespace-nowrap px-3 sm:px-3 py-4 sm:px-4 font-semibold text-[#12115C] ${alignmentClass}`}
+                                    >
                                         {row.invoice}
                                     </td>
 
-                                    <td className="whitespace-nowrap px-4 py-4 font-semibold text-[#1F2937]">
+                                    <td
+                                        className={`whitespace-nowrap px-3 sm:px-3 py-4 sm:px-4 font-semibold text-[#1F2937] ${alignmentClass}`}
+                                    >
                                         {getProjectName(row.project)}
                                     </td>
 
-                                    <td className="whitespace-nowrap px-4 py-4 font-bold text-[#12115C]">
+                                    <td
+                                        className={`whitespace-nowrap px-3 sm:px-3 py-4 sm:px-4 font-bold text-[#12115C] ${alignmentClass}`}
+                                    >
                                         {getAmount(row.amount)}
                                     </td>
 
-                                    <td className="whitespace-nowrap px-4 py-4">
-                                        <PaymentMethodBadge item={row} />
+                                    <td className={`whitespace-nowrap px-3 sm:px-3 py-4 sm:px-4 ${alignmentClass}`}>
+                                        <div
+                                            className={`flex ${
+                                                isRtl ? 'justify-end' : 'justify-start'
+                                            }`}
+                                        >
+                                            <PaymentMethodBadge item={row} />
+                                        </div>
                                     </td>
 
-                                    <td className="whitespace-nowrap px-4 py-4 text-[#4B5563]">
+                                    <td
+                                        className={`whitespace-nowrap px-3 sm:px-3 py-4 sm:px-4 text-[#4B5563] ${alignmentClass}`}
+                                    >
                                         {getDate(row.date)}
                                     </td>
 
-                                    <td className="whitespace-nowrap px-6 py-4 text-center">
+                                    <td className="whitespace-nowrap px-3 sm:px-3 py-4 sm:px-4 text-center">
                                         <button
                                             type="button"
                                             title={t('downloadInvoice')}

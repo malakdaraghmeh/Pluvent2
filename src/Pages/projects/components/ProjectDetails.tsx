@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Delivery, StartDate } from '@/assets';
-import clockBg from '@/assets/images/clock-bg.png';
-import cover from '@/assets/images/cover.png';
+import { ProjectClockBgImage as clockBg } from '@/assets';
+import { ProjectCoverImage as cover } from '@/assets';
 import type { ProjectDetailsProps } from '../../../../utils/types/project-details.types';
 
 export default function ProjectDetails({

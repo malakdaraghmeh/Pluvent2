@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { SupportTicketReplyLogo } from '@/assets';
 import ActionButton from '@/components/ui/ActionButton';
 
-import type { ClosedTicketDetailsProps } from '../../../../utils/types/support-tickets.types';
+import type { ClosedTicketDetailsProps } from '../../../../../utils/types/support-tickets.types';
 
 export default function ClosedTicketDetails({ ticket, onReopenTicket }: ClosedTicketDetailsProps) {
     const { t, i18n } = useTranslation('tickets');
@@ -30,7 +30,7 @@ export default function ClosedTicketDetails({ ticket, onReopenTicket }: ClosedTi
                                 })}
                             </h2>
 
-                            <span className="flex h-[30px] min-w-[76px] shrink-0 items-center justify-center rounded-[4px] bg-[#F2F4F7] px-2 text-[14px] font-semibold leading-[18px] tracking-normal text-[#667085]">
+                            <span className="flex h-[30px] min-w-[76px] shrink-0 items-center justify-center rounded-[4px] bg-[#FF3B301A] px-2 text-[14px] font-semibold leading-[18px] tracking-normal text-[#FF3B30]">
                                 {t('status.closed')}
                             </span>
                         </div>

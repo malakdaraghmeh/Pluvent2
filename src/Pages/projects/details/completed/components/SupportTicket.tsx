@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import { Arrow, True } from '@/assets';
-import bgSupport from '@/assets/images/bg-support.png';
-import supportTicket from '@/assets/images/support-ticket.png';
-import warrantyBg from '@/assets/images/warranty-bg.png';
+import { SupportBackgroundImage as bgSupport } from '@/assets';
+import { SupportTicketImage as supportTicket } from '@/assets';
+import { WarrantyBackgroundImage as warrantyBg } from '@/assets';
 import ProjectSupportSection from './ProjectSupportSection';
 
 const SupportTicket = () => {

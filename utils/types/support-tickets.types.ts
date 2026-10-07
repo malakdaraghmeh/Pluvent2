@@ -74,3 +74,12 @@ export type ClosedTicketDetailsProps = {
     ticket: SupportTicket;
     onReopenTicket: () => void;
 };
+
+
+export type TicketType = 'project' | 'general';
+
+export interface TicketTypeModalProps {
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
+    onContinue?: (selectedType: TicketType) => void;
+}

@@ -1,0 +1,22 @@
+{
+    "version":  "0.2",
+    "words":  [
+                  "AskAi",
+                  "evenodd",
+                  "fawry",
+                  "Hassan",
+                  "Hosam",
+                  "i18next",
+                  "InstaPay",
+                  "linecap",
+                  "Maryam",
+                  "Nasir",
+                  "Pulvent"
+              ],
+    "ignorePaths":  [
+                        "node_modules/**",
+                        "dist/**",
+                        "src/assets/**/*.svg",
+                        "src/locales/ar/ar.json"
+                    ]
+}

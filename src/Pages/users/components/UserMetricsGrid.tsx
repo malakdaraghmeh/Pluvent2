@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import type { MetricItem } from '../data/usersMetrics';
+import type { MetricItem } from '../../../../utils/types/users.types';
 
 interface UserMetricsGridProps {
     metrics: MetricItem[];
@@ -56,7 +56,7 @@ export const UserMetricsGrid: React.FC<UserMetricsGridProps> = ({ metrics }) => 
                                 isArabic ? 'items-end text-right' : 'items-start text-left'
                             }`}
                         >
-                            <span className="w-full truncate text-[14px] font-medium leading-[20px] text-[#64748B] lg:text-[15px]">
+                            <span className="min-w-0 whitespace-nowrap text-[12px] font-medium leading-[16px] text-[#64748B] min-[1440px]:text-[12px] min-[1920px]:text-[14px] min-[2500px]:text-[15px]">
                                 {t(`metrics.${item.id}`)}
                             </span>
 
