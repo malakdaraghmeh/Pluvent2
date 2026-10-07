@@ -1,6 +1,5 @@
 ﻿import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
 import i18n from './i18n/i18n';
 import BillingPage from './Pages/billing/BillingPage';
 import ChangeRequestReviewDetails from './Pages/change-request-details/ChangeRequestDetailsPage';
@@ -8,7 +7,6 @@ import CompletedChangeRequestPage from './Pages/change-request-details/completed
 import InProgressPage from './Pages/change-request-details/in-progress/InProgressPage';
 import PendingPaymentPage from './Pages/change-request-details/payment/PendingPaymentPage';
 import WaitingUserInputPage from './Pages/change-request-details/waiting/WaitingUserInputPage';
-import Contact from './Pages/Contact/Contact';
 import DashboardPage from './Pages/dashboard/DashboardPage';
 import FileAndDocumentPage from './Pages/file-and-document/FileAndDocumentPage';
 import MessagesPage from './Pages/messages/MessagesPage';
@@ -23,6 +21,7 @@ import SupportTicketsPage from './Pages/support/SupportTicketsPage';
 import TicketDetails from './Pages/support/TicketDetails/TicketDetailsPage';
 import SupportPlans from './Pages/supportPlans/SupportPlans';
 import UsersPage from './Pages/users/UsersPage';
+import Layout from './Components/Layout/Layout';
 
 function LocaleWrapper() {
     const { locale } = useParams();
@@ -55,7 +54,6 @@ export default function AppRoutes() {
             <Route path="/" element={<Navigate to="/en" replace />} />
             <Route path="/:locale" element={<LocaleWrapper />}>
                 <Route index element={<DashboardPage />} />
-                <Route path="contact" element={<Contact />} />
                 <Route path="projects" element={<ProjectPage />} />
                 <Route path="projects/:id" element={<ProjectDetailsPage />} />
                 <Route path="projects/:id/completed" element={<CompletedProjectPage />} />
