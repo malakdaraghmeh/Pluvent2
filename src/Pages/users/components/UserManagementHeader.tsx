@@ -1,3 +1,4 @@
+import PageHeader from '@/components/ui/PageHeader';
 import { useTranslation } from 'react-i18next';
 import { Add, Arrow } from '@/assets';
 import ActionButton from '@/components/ui/ActionButton';
@@ -9,15 +10,12 @@ export default function UserManagementHeader({ onAddUser }: UserManagementHeader
 
     return (
         <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className={`flex min-w-0 flex-col gap-1 ${isArabic ? 'text-right' : 'text-left'}`}>
-                <h1 className="text-[24px] font-semibold leading-[30px] text-[#12115C] min-[1920px]:text-[28px] min-[1920px]:leading-[34px] min-[2500px]:text-[30px] min-[2500px]:leading-[36px]">
-                    {t('titleUser')}
-                </h1>
-
-                <p className="text-[12px] font-normal leading-[18px] text-[#7E8492] min-[1920px]:text-[14px] min-[1920px]:leading-[20px] min-[2500px]:text-[16px] min-[2500px]:leading-[22px]">
-                    {t('description')}
-                </p>
-            </div>
+            <PageHeader
+                title={t('titleUser')}
+                description={t('description')}
+                titleClassName="min-[1920px]:!text-[28px] min-[1920px]:!leading-[34px] min-[2500px]:!text-[30px] min-[2500px]:!leading-[36px]"
+                descriptionClassName="min-[1920px]:!text-[14px] min-[1920px]:!leading-[20px] min-[2500px]:!text-[16px] min-[2500px]:!leading-[22px]"
+            />
 
             <ActionButton
                 type="button"

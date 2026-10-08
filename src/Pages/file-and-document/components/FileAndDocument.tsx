@@ -1,3 +1,4 @@
+import PageHeader from '@/components/ui/PageHeader';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Filter, Search } from '@/assets';
@@ -24,14 +25,10 @@ export default function FileAndDocument() {
 
     return (
         <main className="flex min-h-screen w-full flex-col gap-5">
-            <div className={textAlign}>
-                <h1 className="text-[24px] font-semibold leading-[30px] text-[#12115C]">
-                    {t('title')}
-                </h1>
-                <p className="mt-1 text-[12px] font-normal leading-[18px] text-[#7E8492]">
-                    {t('subtitle')}
-                </p>
-            </div>
+            <PageHeader
+                title={t('title')}
+                description={t('subtitle')}
+            />
 
             <section className="flex w-full flex-col gap-4 rounded-[24px] border border-[#ECEFF4] bg-white p-4 sm:p-5 md:p-6">
                 <div className="flex w-full items-center gap-[10px]">

@@ -1,3 +1,4 @@
+import PageHeader from '@/components/ui/PageHeader';
 import { useTranslation } from 'react-i18next';
 import { Add, SupportTicketViewArrowIcon } from '@/assets';
 import type { HeaderProps } from '../../../../utils/types/support-tickets.types';
@@ -7,7 +8,6 @@ const Header = ({ onNewTicket }: HeaderProps) => {
     const isArabic = i18n.language.startsWith('ar');
 
     const headerDirection = isArabic ? 'sm:flex-row-reverse' : '';
-    const textAlignment = isArabic ? 'text-right' : 'text-left';
     const buttonDirection = isArabic ? 'flex-row-reverse' : '';
 
     return (
@@ -17,15 +17,12 @@ const Header = ({ onNewTicket }: HeaderProps) => {
                 headerDirection
             }
         >
-            <div className={'min-w-0 ' + textAlignment}>
-                <h1 className="text-[24px] font-semibold leading-[32px] text-[#12115C]">
-                    {t('header.title')}
-                </h1>
-
-                <p className="mt-1 text-[14px] font-normal leading-[20px] text-[#84818A]">
-                    {t('header.subtitle')}
-                </p>
-            </div>
+            <PageHeader
+                title={t('header.title')}
+                description={t('header.subtitle')}
+                titleClassName="!leading-[32px]"
+                descriptionClassName="!text-[14px] !leading-[20px] !text-[#84818A]"
+            />
 
             <button
                 type="button"

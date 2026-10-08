@@ -14,7 +14,8 @@
                   "primereact",
                   "Pulvent",
                   "Scriptable",
-                  "datatable"
+                  "datatable",
+                  "applepay"
               ],
     "ignorePaths":  [
                         "node_modules/**",

@@ -1,3 +1,4 @@
+import PageHeader from '@/components/ui/PageHeader';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ProjectCard from './components/ProjectCard';
@@ -6,8 +7,7 @@ import { projectsData } from './data/projects';
 import type { ProjectFilter } from '../../../utils/types/projects.types';
 
 const ProjectPage = () => {
-    const { t, i18n } = useTranslation('projectsPage');
-    const isArabic = i18n.language.startsWith('ar');
+    const { t } = useTranslation('projectsPage');
 
     const [searchValue, setSearchValue] = useState('');
     const [filter, setFilter] = useState<ProjectFilter>('all');
@@ -32,15 +32,11 @@ const ProjectPage = () => {
 
     return (
         <main className="custom-container flex min-h-screen w-full min-w-0 flex-col gap-5 pb-8">
-            <div className={`flex w-full flex-col gap-1 ${isArabic ? 'text-right' : 'text-left'}`}>
-                <h1 className="text-[24px] font-semibold leading-[30px] text-black">
-                    {t('title')}
-                </h1>
-
-                <p className="break-words text-[12px] font-normal leading-[18px] text-[#7E8492]">
-                    {t('description')}
-                </p>
-            </div>
+            <PageHeader
+                title={t('title')}
+                description={t('description')}
+                titleClassName="!text-black"
+            />
 
             <section className="flex w-full min-w-0 flex-col gap-5 rounded-[24px] bg-white p-4 sm:p-5 lg:gap-8 lg:p-8">
                 <ProjectsToolbar

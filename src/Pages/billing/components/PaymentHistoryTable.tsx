@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Apple, DownloadBilling, Instapay, Paypal, SearchBilling, Visa } from '@/assets';
 import InvoiceModal from '@/Pages/billing/components/InvoiceModal';
@@ -68,8 +68,10 @@ export default function PaymentHistoryTable() {
     const [isInvoiceOpen, setIsInvoiceOpen] = useState(false);
 
     const isRtl = i18n.language.startsWith('ar');
-
     const alignmentClass = isRtl ? 'text-right' : 'text-left';
+
+    const tableHeaderCellClass = `whitespace-nowrap px-3 sm:px-4 ${alignmentClass}`;
+    const tableCellClass = `whitespace-nowrap px-3 py-4 sm:px-4 ${alignmentClass}`;
 
     const getProjectName = (project: string) => {
         if (project === WEBSITE_REDESIGN) {
@@ -80,7 +82,7 @@ export default function PaymentHistoryTable() {
     };
 
     const getAmount = (amount: string) => {
-        const numericAmount = amount.replace(/^EGP\s*/i, '');
+        const numericAmount = amount.replace(/^EGP\s\*/i, '');
 
         return paymentsT('amountValue', {
             amount: numericAmount,
@@ -103,7 +105,6 @@ export default function PaymentHistoryTable() {
 
     const filteredData = paymentHistoryList.filter(item => {
         const normalizedSearch = searchTerm.trim().toLowerCase();
-
         const localizedProject = getProjectName(item.project);
 
         const matchesSearch =
@@ -159,7 +160,17 @@ export default function PaymentHistoryTable() {
                 </div>
 
                 <div className="w-full min-w-0 overflow-x-auto rounded-[8px] border border-[#00E5C820] [scrollbar-color:#CBD5E1_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar]:h-[4px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#CBD5E1]">
-                    <table style={isRtl ? { minWidth: '1180px', tableLayout: 'auto' } : undefined} className="w-full min-w-[820px] table-fixed lg:min-w-[900px] xl:min-w-full border-collapse xl:min-w-full">
+                    <table
+                        style={
+                            isRtl
+                                ? {
+                                      minWidth: '1180px',
+                                      tableLayout: 'auto',
+                                  }
+                                : undefined
+                        }
+                        className="w-full min-w-[820px] table-fixed border-collapse lg:min-w-[900px] xl:min-w-full"
+                    >
                         <colgroup>
                             <col className="w-[18%]" />
                             <col className="w-[26%]" />
@@ -171,25 +182,15 @@ export default function PaymentHistoryTable() {
 
                         <thead>
                             <tr className="h-[48px] border-b border-[#00E5C820] text-[14px] font-semibold text-[#12115C]">
-                                <th className={`whitespace-nowrap px-3 sm:px-4 ${alignmentClass}`}>
-                                    {t('invoice')}
-                                </th>
+                                <th className={tableHeaderCellClass}>{t('invoice')}</th>
 
-                                <th className={`whitespace-nowrap px-3 sm:px-4 ${alignmentClass}`}>
-                                    {t('project')}
-                                </th>
+                                <th className={tableHeaderCellClass}>{t('project')}</th>
 
-                                <th className={`whitespace-nowrap px-3 sm:px-4 ${alignmentClass}`}>
-                                    {t('amount')}
-                                </th>
+                                <th className={tableHeaderCellClass}>{t('amount')}</th>
 
-                                <th className={`whitespace-nowrap px-3 sm:px-4 ${alignmentClass}`}>
-                                    {t('method')}
-                                </th>
+                                <th className={tableHeaderCellClass}>{t('method')}</th>
 
-                                <th className={`whitespace-nowrap px-3 sm:px-4 ${alignmentClass}`}>
-                                    {t('date')}
-                                </th>
+                                <th className={tableHeaderCellClass}>{t('date')}</th>
 
                                 <th className="w-[60px] px-2 sm:w-[70px] sm:px-3" />
                             </tr>
@@ -204,24 +205,22 @@ export default function PaymentHistoryTable() {
                                     }`}
                                 >
                                     <td
-                                        className={`whitespace-nowrap px-3 sm:px-3 py-4 sm:px-4 font-semibold text-[#12115C] ${alignmentClass}`}
+                                        className={`${tableCellClass} font-semibold text-[#12115C]`}
                                     >
                                         {row.invoice}
                                     </td>
 
                                     <td
-                                        className={`whitespace-nowrap px-3 sm:px-3 py-4 sm:px-4 font-semibold text-[#1F2937] ${alignmentClass}`}
+                                        className={`${tableCellClass} font-semibold text-[#1F2937]`}
                                     >
                                         {getProjectName(row.project)}
                                     </td>
 
-                                    <td
-                                        className={`whitespace-nowrap px-3 sm:px-3 py-4 sm:px-4 font-bold text-[#12115C] ${alignmentClass}`}
-                                    >
+                                    <td className={`${tableCellClass} font-bold text-[#12115C]`}>
                                         {getAmount(row.amount)}
                                     </td>
 
-                                    <td className={`whitespace-nowrap px-3 sm:px-3 py-4 sm:px-4 ${alignmentClass}`}>
+                                    <td className={tableCellClass}>
                                         <div
                                             className={`flex ${
                                                 isRtl ? 'justify-end' : 'justify-start'
@@ -231,13 +230,11 @@ export default function PaymentHistoryTable() {
                                         </div>
                                     </td>
 
-                                    <td
-                                        className={`whitespace-nowrap px-3 sm:px-3 py-4 sm:px-4 text-[#4B5563] ${alignmentClass}`}
-                                    >
+                                    <td className={`${tableCellClass} text-[#4B5563]`}>
                                         {getDate(row.date)}
                                     </td>
 
-                                    <td className="whitespace-nowrap px-3 sm:px-3 py-4 sm:px-4 text-center">
+                                    <td className="whitespace-nowrap px-3 py-4 text-center sm:px-4">
                                         <button
                                             type="button"
                                             title={t('downloadInvoice')}
