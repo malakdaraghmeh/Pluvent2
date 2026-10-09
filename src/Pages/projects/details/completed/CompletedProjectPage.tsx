@@ -13,6 +13,7 @@ export default function CompletedProjectPage() {
         id: string;
         locale: string;
     }>();
+
     const { t } = useTranslation('projectDetails');
 
     const project = projectDetailsData.find(item => item.id === Number(id));
@@ -44,10 +45,7 @@ export default function CompletedProjectPage() {
                     <SupportTicket />
 
                     <div className="grid w-full grid-cols-1 items-stretch gap-4 xl:grid-cols-[minmax(0,69fr)_minmax(0,38fr)]">
-                        <FileDocuments
-                            showViewAll={false}
-                            showUpload={false}
-                        />
+                        <FileDocuments showViewAll={false} showUpload={false} />
 
                         <ChangeRequestPayments />
                     </div>

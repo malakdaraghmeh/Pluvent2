@@ -263,21 +263,11 @@ export default function CreateSupportInquiryForm({
                 <div className={`flex w-full ${isArabic ? 'justify-start' : 'justify-end'}`}>
                     <ActionButton
                         type="submit"
-                        leadingIcon={
-                            isArabic ? (
-                                <SupportTicketViewArrowIcon
-                                    aria-hidden="true"
-                                    className="h-4 w-4 shrink-0 rotate-180 3xl:h-[18px] 3xl:w-[18px]"
-                                />
-                            ) : undefined
-                        }
                         trailingIcon={
-                            !isArabic ? (
-                                <SupportTicketViewArrowIcon
-                                    aria-hidden="true"
-                                    className="h-4 w-4 shrink-0 3xl:h-[18px] 3xl:w-[18px]"
-                                />
-                            ) : undefined
+                            <SupportTicketViewArrowIcon
+                                aria-hidden="true"
+                                className="h-4 w-4 shrink-0 3xl:h-[18px] 3xl:w-[18px]"
+                            />
                         }
                         className="!h-[44px] !w-full !rounded-[16px] !px-5 !text-[16px] !font-normal sm:!w-auto sm:!min-w-[150px] 3xl:!h-[50px] 3xl:!min-w-[190px] 3xl:!px-7 3xl:!text-[17px] 4xl:!h-[56px] 4xl:!min-w-[220px] 4xl:!text-[18px]"
                     >

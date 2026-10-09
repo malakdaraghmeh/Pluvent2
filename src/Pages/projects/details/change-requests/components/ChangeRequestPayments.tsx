@@ -15,14 +15,14 @@ const ChangeRequestPayments = () => {
     const isArabic = i18n.language.startsWith('ar');
 
     return (
-        <section className="flex h-full w-full flex-col gap-6 rounded-[24px] bg-white px-5 py-5 shadow-[0px_10px_30px_0px_#0000000D] sm:px-6 sm:py-6 lg:max-w-[380px] 3xl:max-w-[420px] 4xl:max-w-[460px]">
+        <section className="flex h-full w-full flex-col gap-4 rounded-[24px] bg-white px-5 py-5 shadow-[0px_10px_30px_0px_#0000000D] sm:px-6 sm:py-6 lg:max-w-[380px] 3xl:max-w-[420px] 4xl:max-w-[460px]">
             <div
                 className={`flex items-center justify-between gap-4 ${
                     isArabic ? 'flex-row-reverse' : 'flex-row'
                 }`}
             >
                 <h2
-                    className={`text-[22px] font-semibold text-[#12115C] ${
+                    className={`text-[22px] font-semibold leading-[28px] text-[#12115C] ${
                         isArabic ? 'text-right' : 'text-left'
                     }`}
                 >
@@ -32,11 +32,11 @@ const ChangeRequestPayments = () => {
                 <VerifiedBadge />
             </div>
 
-            <div className="flex w-full flex-col gap-3">
+            <div className="flex w-full flex-1 flex-col justify-between">
                 {changeRequestPaymentsData.map(payment => (
                     <div
                         key={payment.id}
-                        className={`flex min-h-[74px] w-full items-center justify-between gap-4 rounded-[16px] border-[0.5px] border-[#B1B4B6] bg-white px-4 py-4 sm:px-6 ${
+                        className={`flex h-[61px] w-full items-center justify-between gap-4 rounded-[16px] border-[0.5px] border-[#B1B4B6] bg-white px-4 sm:px-6 ${
                             isArabic ? 'flex-row-reverse' : 'flex-row'
                         }`}
                     >

@@ -25,10 +25,7 @@ export default function FileAndDocument() {
 
     return (
         <main className="flex min-h-screen w-full flex-col gap-5">
-            <PageHeader
-                title={t('title')}
-                description={t('subtitle')}
-            />
+            <PageHeader title={t('title')} description={t('subtitle')} />
 
             <section className="flex w-full flex-col gap-4 rounded-[24px] border border-[#ECEFF4] bg-white p-4 sm:p-5 md:p-6">
                 <div className="flex w-full items-center gap-[10px]">

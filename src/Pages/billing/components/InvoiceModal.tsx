@@ -1,9 +1,7 @@
 ﻿import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
 import Modal from '@/components/ui/modal';
 import ModalCloseButton from '@/components/ui/ModalCloseButton';
-
 import InvoiceBanner from './invoice/InvoiceBanner';
 import InvoiceFooter from './invoice/InvoiceFooter';
 import InvoiceHeaderLogo from './invoice/InvoiceHeaderLogo';
@@ -30,7 +28,9 @@ const getTargetScale = (viewportWidth: number) => {
 };
 
 const getInvoiceScale = () => {
-    if (typeof window === 'undefined') return 1;
+    if (typeof window === 'undefined') {
+        return 1;
+    }
 
     const availableWidth = window.innerWidth - VIEWPORT_GAP;
     const availableHeight = window.innerHeight - VIEWPORT_GAP;
@@ -42,24 +42,25 @@ const getInvoiceScale = () => {
 
 export default function InvoiceModal({ isOpen, onClose, onDownloadPdf }: InvoiceModalProps) {
     const { i18n } = useTranslation();
-
     const isRtl = i18n.language.startsWith('ar');
 
     const [scale, setScale] = useState(getInvoiceScale);
 
     useEffect(() => {
-        if (!isOpen) return;
+        if (!isOpen) {
+            return;
+        }
 
-        const handleResize = () => {
+        const updateScale = () => {
             setScale(getInvoiceScale());
         };
 
-        handleResize();
+        updateScale();
 
-        window.addEventListener('resize', handleResize);
+        window.addEventListener('resize', updateScale);
 
         return () => {
-            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('resize', updateScale);
         };
     }, [isOpen]);
 
@@ -70,8 +71,9 @@ export default function InvoiceModal({ isOpen, onClose, onDownloadPdf }: Invoice
         <Modal
             isOpen={isOpen}
             onClose={onClose}
+            ariaLabel="Invoice"
             overlayClassName={isRtl ? 'p-3 sm:p-4 lg:pr-[280px]' : 'p-3 sm:p-4 lg:pl-[280px]'}
-            className="!max-h-none !max-w-none overflow-visible bg-transparent p-0 shadow-none"
+            className="!w-auto !max-h-none !max-w-none overflow-visible bg-transparent p-0 shadow-none"
         >
             <div
                 className="relative shrink-0"
@@ -84,6 +86,7 @@ export default function InvoiceModal({ isOpen, onClose, onDownloadPdf }: Invoice
                     className="absolute left-0 top-0 h-[748px] w-[595px] origin-top-left overflow-hidden rounded-[24px] bg-white"
                     style={{
                         transform: `scale(${scale})`,
+                        transformOrigin: 'top left',
                     }}
                 >
                     <ModalCloseButton
@@ -94,7 +97,7 @@ export default function InvoiceModal({ isOpen, onClose, onDownloadPdf }: Invoice
 
                     <InvoiceHeaderLogo />
 
-                    <div className="absolute left-[36px] top-[126px] z-10 flex h-[582.02px] w-[523px] flex-col">
+                    <div className="absolute left-[36px] top-[126px] z-10 flex h-[582px] w-[523px] flex-col gap-[26px]">
                         <div className="flex h-[502px] w-full shrink-0 flex-col gap-6">
                             <InvoiceBanner />
 

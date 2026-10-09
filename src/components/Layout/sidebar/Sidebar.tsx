@@ -136,16 +136,28 @@ export default function Sidebar({
             )}
 
             <aside
-                className={`fixed top-0 z-50 h-[calc(100vh-32px)] w-[280px] p-2 transition-all duration-300 ease-in-out sm:w-[300px] lg:static lg:z-30 lg:m-4 lg:flex lg:h-auto lg:translate-x-0 lg:p-0 ${isArabic ? 'right-0' : 'left-0'} ${ isMobileOpen ? 'translate-x-0' : isArabic ? 'translate-x-full' : '-translate-x-full' } ${collapsed ? 'lg:w-[104px]' : 'lg:w-[280px]'}`}
+                className={`fixed top-0 z-50 h-[calc(100vh-32px)] w-[280px] p-2 transition-all duration-300 ease-in-out sm:w-[300px] lg:static lg:z-30 lg:m-4 lg:flex lg:h-auto lg:translate-x-0 lg:p-0 ${
+                    isArabic ? 'right-0' : 'left-0'
+                } ${
+                    isMobileOpen
+                        ? 'translate-x-0'
+                        : isArabic
+                          ? 'translate-x-full'
+                          : '-translate-x-full'
+                } ${collapsed ? 'lg:w-[104px]' : 'lg:w-[280px]'}`}
             >
                 <div
-                    className={`relative flex h-full w-full flex-col overflow-hidden rounded-[28px] bg-[#17145F] px-4 py-5 text-white transition-all duration-300 lg:flex-1 ${collapsed ? 'lg:items-center lg:px-3' : ''}`}
+                    className={`relative flex h-full w-full flex-col overflow-hidden rounded-[28px] bg-[#17145F] px-4 py-5 text-white transition-all duration-300 lg:flex-1 ${
+                        collapsed ? 'lg:items-center lg:px-3' : ''
+                    }`}
                 >
                     <button
                         type="button"
                         onClick={onMobileClose}
                         aria-label="Close sidebar"
-                        className={`absolute top-5 z-50 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 lg:hidden ${isArabic ? 'left-4' : 'right-4'}`}
+                        className={`absolute top-5 z-50 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 lg:hidden ${
+                            isArabic ? 'left-4' : 'right-4'
+                        }`}
                     >
                         <X size={18} />
                     </button>
@@ -167,17 +179,23 @@ export default function Sidebar({
                         }}
                     >
                         <SidebarToggleIcon
-                            className={`h-[18px] w-[18px] transition-transform duration-200 ${ collapsed !== isArabic ? 'scale-x-[-1]' : '' }`}
+                            className={`h-[18px] w-[18px] transition-transform duration-200 ${
+                                collapsed !== isArabic ? 'scale-x-[-1]' : ''
+                            }`}
                         />
                     </button>
 
                     <div
-                        className={`mb-8 mt-1 w-full shrink-0 transition-all duration-300 ${collapsed ? 'lg:flex lg:justify-center lg:px-0' : 'px-3'}`}
+                        className={`mb-8 mt-1 w-full shrink-0 transition-all duration-300 ${
+                            collapsed ? 'lg:flex lg:justify-center lg:px-0' : 'px-3'
+                        }`}
                     >
                         <Link to={`/${currentLocale}`} onClick={handleNavigation}>
                             {!collapsed ? (
                                 <div
-                                    className={`flex flex-col ${ isArabic ? 'items-end text-right' : 'items-start text-left' }`}
+                                    className={`flex flex-col ${
+                                        isArabic ? 'items-end text-right' : 'items-start text-left'
+                                    }`}
                                 >
                                     <div className="flex">
                                         <Logo />
@@ -194,10 +212,14 @@ export default function Sidebar({
                     </div>
 
                     <div
-                        className={`flex w-full flex-1 flex-col overflow-y-auto overflow-x-hidden [::-webkit-scrollbar]:w-1.5 [::-webkit-scrollbar-button]:hidden [::-webkit-scrollbar-track]:bg-transparent [::-webkit-scrollbar-thumb]:rounded-full [::-webkit-scrollbar-thumb]:bg-white/20 hover:[::-webkit-scrollbar-thumb]:bg-white/40 ${isArabic ? 'pl-1' : 'pr-1'}`}
+                        className={`flex w-full flex-1 flex-col overflow-y-auto overflow-x-hidden [::-webkit-scrollbar]:w-1.5 [::-webkit-scrollbar-button]:hidden [::-webkit-scrollbar-track]:bg-transparent [::-webkit-scrollbar-thumb]:rounded-full [::-webkit-scrollbar-thumb]:bg-white/20 hover:[::-webkit-scrollbar-thumb]:bg-white/40 ${
+                            isArabic ? 'pl-1' : 'pr-1'
+                        }`}
                     >
                         <nav
-                            className={`w-full space-y-2 p-2 ${collapsed ? 'lg:flex lg:flex-col lg:items-center' : ''}`}
+                            className={`w-full space-y-2 p-2 ${
+                                collapsed ? 'lg:flex lg:flex-col lg:items-center' : ''
+                            }`}
                         >
                             {mainNavigation.map(item => (
                                 <div key={item.label} onClick={handleNavigation}>
@@ -213,7 +235,9 @@ export default function Sidebar({
                         </nav>
 
                         <div
-                            className={`my-7 h-0 shrink-0 transition-all duration-300 ${collapsed ? 'lg:mx-auto lg:w-10' : 'w-full'}`}
+                            className={`my-7 h-0 shrink-0 transition-all duration-300 ${
+                                collapsed ? 'lg:mx-auto lg:w-10' : 'w-full'
+                            }`}
                             style={{
                                 borderTop: '1.55px solid',
                                 borderImage:
@@ -224,7 +248,9 @@ export default function Sidebar({
                         <div className="w-full">
                             {!collapsed && (
                                 <p
-                                    className={`mb-3 w-full px-4 text-xs font-medium text-white/50 ${ isArabic ? 'text-right' : 'text-left' }`}
+                                    className={`mb-3 w-full px-4 text-xs font-medium text-white/50 ${
+                                        isArabic ? 'text-right' : 'text-left'
+                                    }`}
                                 >
                                     {t('account')}
                                 </p>
@@ -237,7 +263,9 @@ export default function Sidebar({
                             )}
 
                             <nav
-                                className={`space-y-2 ${collapsed ? 'lg:flex lg:flex-col lg:items-center' : ''}`}
+                                className={`space-y-2 ${
+                                    collapsed ? 'lg:flex lg:flex-col lg:items-center' : ''
+                                }`}
                             >
                                 {accountNavigation.map(item => (
                                     <div key={item.label} onClick={handleNavigation}>
@@ -259,7 +287,9 @@ export default function Sidebar({
                             <button
                                 type="button"
                                 onClick={() => setIsLanguageOpen(prev => !prev)}
-                                className={`flex h-10 w-full items-center justify-between rounded-xl px-3 text-sm text-white transition-colors hover:bg-white/10 ${isArabic ? 'text-right' : 'text-left'}`}
+                                className={`flex h-10 w-full items-center justify-between rounded-xl px-3 text-sm text-white transition-colors hover:bg-white/10 ${
+                                    isArabic ? 'text-right' : 'text-left'
+                                }`}
                             >
                                 <div className="flex items-center gap-3">
                                     {isArabic ? <FlagAr /> : <FlagEn />}
@@ -271,7 +301,9 @@ export default function Sidebar({
 
                                 <ChevronDown
                                     size={17}
-                                    className={`transition-transform duration-200 ${ isLanguageOpen ? 'rotate-180' : '' }`}
+                                    className={`transition-transform duration-200 ${
+                                        isLanguageOpen ? 'rotate-180' : ''
+                                    }`}
                                 />
                             </button>
 
@@ -280,7 +312,11 @@ export default function Sidebar({
                                     <button
                                         type="button"
                                         onClick={() => changeLanguage('ar')}
-                                        className={`flex w-full items-center justify-between px-4 py-2.5 text-right text-sm transition-colors hover:bg-gray-50 ${ isArabic ? 'bg-gray-50 font-bold text-[#24453E]' : 'text-gray-600' }`}
+                                        className={`flex w-full items-center justify-between px-4 py-2.5 text-right text-sm transition-colors hover:bg-gray-50 ${
+                                            isArabic
+                                                ? 'bg-gray-50 font-bold text-[#24453E]'
+                                                : 'text-gray-600'
+                                        }`}
                                     >
                                         <span>العربية</span>
                                         <FlagAr />
@@ -289,7 +325,11 @@ export default function Sidebar({
                                     <button
                                         type="button"
                                         onClick={() => changeLanguage('en')}
-                                        className={`flex w-full items-center justify-between px-4 py-2.5 text-left text-sm transition-colors hover:bg-gray-50 ${ currentLocale === 'en' ? 'bg-gray-50 font-bold text-[#24453E]' : 'text-gray-600' }`}
+                                        className={`flex w-full items-center justify-between px-4 py-2.5 text-left text-sm transition-colors hover:bg-gray-50 ${
+                                            currentLocale === 'en'
+                                                ? 'bg-gray-50 font-bold text-[#24453E]'
+                                                : 'text-gray-600'
+                                        }`}
                                     >
                                         <span>English</span>
                                         <FlagEn />
@@ -308,10 +348,14 @@ export default function Sidebar({
                                 type="button"
                                 onClick={handleToggleTheme}
                                 aria-label={t('toggleTheme')}
-                                className={`relative h-6 w-11 rounded-full transition-colors duration-300 ${ isDarkMode ? 'bg-[#3934C8]' : 'bg-gray-300' }`}
+                                className={`relative h-6 w-11 rounded-full transition-colors duration-300 ${
+                                    isDarkMode ? 'bg-[#3934C8]' : 'bg-gray-300'
+                                }`}
                             >
                                 <span
-                                    className={`absolute top-1 h-4 w-4 rounded-full bg-white shadow transition-transform duration-300 ${ isDarkMode ? 'left-[22px]' : 'left-1' }`}
+                                    className={`absolute top-1 h-4 w-4 rounded-full bg-white shadow transition-transform duration-300 ${
+                                        isDarkMode ? 'left-[22px]' : 'left-1'
+                                    }`}
                                 />
                             </button>
 
@@ -333,7 +377,15 @@ export default function Sidebar({
                         <button
                             type="button"
                             onClick={handleOpenProfile}
-                            className={`flex w-full items-center rounded-xl py-2 transition-colors hover:bg-white/10 ${isArabic ? 'text-right' : 'text-left'} ${collapsed ? 'lg:justify-center' : 'gap-3 px-2'}`}
+                            className={`flex w-full items-center rounded-xl py-2 transition-colors hover:bg-white/10 ${
+                                collapsed
+                                    ? 'lg:justify-center'
+                                    : `gap-3 px-2 ${
+                                          isArabic
+                                              ? 'flex-row-reverse text-right'
+                                              : 'flex-row text-left'
+                                      }`
+                            }`}
                         >
                             <div className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/20 text-sm font-bold">
                                 <img
