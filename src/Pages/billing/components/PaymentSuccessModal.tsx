@@ -19,7 +19,7 @@ const PaymentSuccessModal = ({
             isOpen={isOpen}
             onClose={onClose}
             ariaLabel={t('title')}
-            overlayClassName="lg:ml-[280px]"
+            overlayClassName={isArabic ? 'lg:pr-[280px]' : 'lg:pl-[280px]'}
             className="w-[calc(100%-24px)] max-w-[700px] rounded-[8px] border-[0.5px] border-[#D9D9D9] bg-white sm:w-[calc(100%-32px)] md:h-[504px] md:w-[700px]"
         >
             <div className="flex h-full w-full flex-col px-4 py-6 sm:px-6 sm:py-8 md:px-6 md:py-10">
@@ -56,19 +56,11 @@ const PaymentSuccessModal = ({
                     >
                         {t('back')}
                     </ActionButton>
-
                     <ActionButton
                         type="button"
                         onClick={onViewReceipt}
-                        trailingIcon={
-                            <Arrow
-                                aria-hidden="true"
-                                className={`h-5 w-5 shrink-0 ${isArabic ? 'rotate-180' : ''}`}
-                            />
-                        }
-                        className={`!h-11 !min-h-0 !min-w-0 !flex-1 !justify-center !rounded-[16px] !px-5 !text-[18px] !font-normal !leading-7 ${
-                            isArabic ? '!flex-row-reverse' : ''
-                        }`}
+                        trailingIcon={<Arrow aria-hidden="true" className="h-5 w-5 shrink-0" />}
+                        className="!h-11 !min-h-0 !min-w-0 !flex-1 !justify-center !rounded-[16px] !px-5 !text-[18px] !font-normal !leading-7"
                     >
                         {t('viewReceipt')}
                     </ActionButton>

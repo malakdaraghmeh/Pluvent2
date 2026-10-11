@@ -1,3 +1,4 @@
+import PageHeader from '@/components/ui/PageHeader';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
@@ -40,19 +41,20 @@ export default function CreateSupportInquiryPage() {
     return (
         <>
             <main className="custom-container flex min-h-screen w-full min-w-0 flex-col gap-5 pb-8">
-                <div
-                    className={`flex flex-col gap-1 ${
-                        isArabic ? 'items-end text-right' : 'items-start text-left'
-                    }`}
-                >
-                    <h1 className="text-[24px] font-semibold leading-[30px] text-[#12115C] 3xl:text-[28px] 3xl:leading-[34px] 4xl:text-[32px] 4xl:leading-[38px]">
-                        {isGeneral ? t('createModal.generalTitle') : t('createModal.title')}
-                    </h1>
-
-                    <p className="text-[12px] font-normal leading-[18px] text-[#7E8492] 3xl:text-[14px] 3xl:leading-5 4xl:text-[16px]">
-                        {isGeneral ? t('createModal.generalSubtitle') : t('createModal.subtitle')}
-                    </p>
-                </div>
+                <PageHeader
+                    title={
+                        isGeneral
+                            ? t('createModal.generalTitle')
+                            : t('createModal.title')
+                    }
+                    description={
+                        isGeneral
+                            ? t('createModal.generalSubtitle')
+                            : t('createModal.subtitle')
+                    }
+                    titleClassName="3xl:!text-[28px] 3xl:!leading-[34px] 4xl:!text-[32px] 4xl:!leading-[38px]"
+                    descriptionClassName="3xl:!text-[14px] 3xl:!leading-5 4xl:!text-[16px]"
+                />
 
                 <section className="flex w-full min-w-0 flex-col gap-5 rounded-[24px] bg-white p-4 sm:p-5 lg:p-8 3xl:gap-6 3xl:p-10 4xl:gap-8 4xl:p-12">
                     {isGeneral && (

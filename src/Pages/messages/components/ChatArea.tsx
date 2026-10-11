@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
     MessagesBackIcon,
@@ -18,13 +19,22 @@ export const ChatArea = ({
     className = '',
 }: ChatAreaProps) => {
     const { t, i18n } = useTranslation('chat');
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const isArabic =
-        i18n.language.startsWith('ar');
+    const isArabic = i18n.language.startsWith('ar');
+    const isPrivateChat = activeChat?.id === 'pinned-1';
+
+    const PrivateChatAvatar = ({ className = '' }: { className?: string }) => (
+        <div
+            className={`flex items-center justify-center rounded-full bg-[#12115C] p-2 ${className}`}
+        >
+            <img src={MessagesPulventLogo} alt="Pulvent" className="h-full w-full object-contain" />
+        </div>
+    );
 
     return (
         <div
-            className={`min-w-0 flex-1 flex-col overflow-hidden bg-white shadow-sm max-md:h-screen max-md:w-full max-md:p-4 md:h-[761px] 3xl:h-[900px] 4xl:h-[1080px] md:rounded-[24px] md:border md:border-[#EEF0F5] md:p-5 3xl:p-6 4xl:p-8 ${className}`}
+            className={`min-w-0 flex-1 flex-col overflow-hidden bg-white shadow-sm max-md:h-screen max-md:w-full max-md:p-4 md:h-[761px] md:rounded-[24px] md:border md:border-[#EEF0F5] md:p-5 3xl:h-[900px] 3xl:p-6 4xl:h-[1080px] 4xl:p-8 ${className}`}
         >
             <div className="mb-4 flex items-center gap-3 border-b border-[#F2F3F7] pb-3 md:hidden">
                 <button
@@ -38,11 +48,15 @@ export const ChatArea = ({
 
                 {activeChat && (
                     <div className="flex min-w-0 items-center gap-3">
-                        <img
-                            src={activeChat.avatar || MessagesPulventLogo}
-                            alt={activeChat.name}
-                            className="h-9 w-9 shrink-0 rounded-full object-cover"
-                        />
+                        {isPrivateChat ? (
+                            <PrivateChatAvatar className="h-9 w-9 shrink-0" />
+                        ) : (
+                            <img
+                                src={activeChat.avatar || MessagesPulventLogo}
+                                alt={activeChat.name}
+                                className="h-9 w-9 shrink-0 rounded-full object-cover"
+                            />
+                        )}
 
                         <span className="truncate text-[14px] font-semibold text-[#12115C]">
                             {activeChat.name}
@@ -51,7 +65,7 @@ export const ChatArea = ({
                 )}
             </div>
 
-            <div className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto pe-1 [scrollbar-width:thin] [scrollbar-color:#D9DCEF_transparent] [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#D9DCEF]">
+            <div className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto pe-1 [scrollbar-color:#D9DCEF_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#D9DCEF]">
                 <div className="flex w-full flex-col gap-5 pb-4 3xl:gap-6">
                     {messages.map(message => {
                         const avatar =
@@ -65,13 +79,16 @@ export const ChatArea = ({
                                     message.isMe ? 'justify-end' : 'justify-start'
                                 }`}
                             >
-                                {!message.isMe && (
-                                    <img
-                                        src={avatar}
-                                        alt={message.senderName}
-                                        className="h-[42px] w-[42px] shrink-0 rounded-full object-cover 3xl:h-[46px] 3xl:w-[46px]"
-                                    />
-                                )}
+                                {!message.isMe &&
+                                    (isPrivateChat ? (
+                                        <PrivateChatAvatar className="h-[40px] w-[40px] shrink-0 3xl:h-[46px] 3xl:w-[46px]" />
+                                    ) : (
+                                        <img
+                                            src={avatar}
+                                            alt={message.senderName}
+                                            className="h-[42px] w-[42px] shrink-0 rounded-full object-cover 3xl:h-[46px] 3xl:w-[46px]"
+                                        />
+                                    ))}
 
                                 <div
                                     className={`flex min-w-0 max-w-[82%] flex-col ${
@@ -133,10 +150,13 @@ export const ChatArea = ({
                 <button
                     type="button"
                     aria-label={t('addAttachment')}
+                    onClick={() => fileInputRef.current?.click()}
                     className="flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-full bg-[#EEF4FF] text-[#12115C] 3xl:h-[56px] 3xl:w-[56px]"
                 >
-                    <MessagesPlusIcon className="h-6 w-6 3xl:h-7 3xl:w-7" />
+                    <MessagesPlusIcon className="block h-6 w-6 3xl:h-7 3xl:w-7" />
                 </button>
+
+                <input ref={fileInputRef} type="file" multiple className="hidden" />
 
                 <div className="flex h-[50px] min-w-0 flex-1 items-center rounded-full bg-[#F0FFFC] px-4 3xl:h-[56px] 3xl:px-5">
                     <input
@@ -144,7 +164,7 @@ export const ChatArea = ({
                         value={inputText}
                         onChange={event => onInputChange(event.target.value)}
                         placeholder={t('typeMessagePlaceholder')}
-                        className={`min-w-0 flex-1 bg-transparent text-[14px] text-[#0F1113] outline-none placeholder:text-[#0F1113] 3xl:text-[15px] ${
+                        className={`min-w-0 flex-1 bg-transparent text-[14px] text-[#25263A] outline-none placeholder:text-[#A3A8B7] 3xl:text-[15px] ${
                             isArabic ? 'text-right' : 'text-left'
                         }`}
                     />
@@ -155,7 +175,7 @@ export const ChatArea = ({
                         className="flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-full bg-[#3634C7] 3xl:h-[40px] 3xl:w-[40px]"
                     >
                         <MessagesSendIcon
-                            className={`h-[18px] w-[18px] ${isArabic ? 'rotate-180' : ''}`}
+                            className={`block h-[20px] w-[19px] ${isArabic ? 'rotate-180' : ''}`}
                         />
                     </button>
                 </div>

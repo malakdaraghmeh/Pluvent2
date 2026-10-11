@@ -33,83 +33,76 @@ const Payments = () => {
                 </div>
 
                 <div className="flex w-full flex-col gap-4">
-                    {paymentsData.map(payment => (
-                        <div
-                            key={payment.id}
-                            className={`h-[96px] w-full overflow-hidden rounded-[16px] border bg-white ${
-                                payment.status === 'due'
-                                    ? 'border-[#FF3B30]'
-                                    : 'border-[#B1B4B6]'
-                            }`}
-                        >
+                    {paymentsData.map(payment => {
+                        const isDue = payment.status === 'due';
+
+                        return (
                             <div
-                                className={`flex h-[15px] w-full items-center justify-center text-[9px] font-semibold leading-none text-white ${
-                                    payment.status === 'due'
-                                        ? 'bg-[#FF3B30]'
-                                        : 'bg-[#6B7280]'
+                                key={payment.id}
+                                className={`h-[96px] w-full overflow-hidden rounded-[16px] border bg-white ${
+                                    isDue ? 'border-[#FF3B30]' : 'border-[#B1B4B6]'
                                 }`}
                             >
-                                {payment.status === 'due'
-                                    ? t('dueIn', {
-                                          days: payment.days,
-                                      })
-                                    : t('after', {
-                                          days: payment.days,
-                                      })}
-                            </div>
-
-                            <div className="flex h-[80px] min-w-0 items-center justify-between gap-3 px-6">
-                                <div className={`min-w-0 ${textAlignment}`}>
-                                    <p className="text-[13px] leading-[18px] text-[#9CA3AF]">
-                                        {t('finalPayment')}
-                                    </p>
-
-                                    <p
-                                        className={`mt-1 text-[20px] font-semibold leading-none sm:text-[22px] ${
-                                            payment.status === 'due'
-                                                ? 'text-[#12115C]'
-                                                : 'text-[#5F6573]'
-                                        }`}
-                                    >
-                                        {payment.amount}
-                                    </p>
-                                </div>
-
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        setIsPaymentFlowOpen(true)
-                                    }
-                                    className={`flex shrink-0 items-center gap-2 whitespace-nowrap text-[12px] font-medium transition-opacity hover:opacity-70 ${
-                                        isArabic
-                                            ? 'flex-row-reverse'
-                                            : ''
-                                    } ${
-                                        payment.status === 'due'
-                                            ? 'text-[#2F1ABD]'
-                                            : 'text-[#12115C]'
+                                <div
+                                    className={`flex h-[15px] w-full items-center justify-center text-[9px] font-semibold leading-none text-white ${
+                                        isDue ? 'bg-[#FF3B30]' : 'bg-[#6B7280]'
                                     }`}
                                 >
-                                    <span>{t('payNow')}</span>
+                                    {isDue
+                                        ? t('dueIn', {
+                                              days: payment.days,
+                                          })
+                                        : t('after', {
+                                              days: payment.days,
+                                          })}
+                                </div>
 
-                                    <ArrowIcon
-                                        className={`h-3 w-3 shrink-0 transition-transform ${
-                                            isArabic
-                                                ? 'rotate-180'
-                                                : ''
+                                <div className="flex h-[80px] min-w-0 items-center justify-between gap-3 px-6">
+                                    <div className={`min-w-0 ${textAlignment}`}>
+                                        <p className="text-[13px] leading-[18px] text-[#9CA3AF]">
+                                            {t('finalPayment')}
+                                        </p>
+
+                                        <p
+                                            className={`mt-1 text-[20px] font-semibold leading-none sm:text-[22px] ${
+                                                isDue ? 'text-[#12115C]' : 'text-[#5F6573]'
+                                            }`}
+                                        >
+                                            {payment.amount}
+                                        </p>
+                                    </div>
+
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            if (isDue) {
+                                                setIsPaymentFlowOpen(true);
+                                            }
+                                        }}
+                                        className={`flex shrink-0 items-center gap-2 whitespace-nowrap text-[12px] font-medium ${
+                                            isArabic ? 'flex-row-reverse' : 'flex-row'
+                                        } ${
+                                            isDue
+                                                ? 'cursor-pointer text-[#2F1ABD] transition-opacity hover:opacity-70'
+                                                : 'cursor-default text-[#12115C]'
                                         }`}
-                                    />
-                                </button>
+                                    >
+                                        <span>{t('payNow')}</span>
+
+                                        <ArrowIcon
+                                            className={`h-3 w-3 shrink-0 ${
+                                                isArabic ? 'rotate-180' : ''
+                                            }`}
+                                        />
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </section>
 
-            <PaymentFlow
-                isOpen={isPaymentFlowOpen}
-                onClose={() => setIsPaymentFlowOpen(false)}
-            />
+            <PaymentFlow isOpen={isPaymentFlowOpen} onClose={() => setIsPaymentFlowOpen(false)} />
         </>
     );
 };

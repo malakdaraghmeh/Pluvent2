@@ -1,11 +1,9 @@
+import PageHeader from '@/components/ui/PageHeader';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
 import ProjectCard from './components/ProjectCard';
 import ProjectsToolbar from './components/ProjectsToolbar';
-
 import { projectsData } from './data/projects';
-
 import type { ProjectFilter } from '../../../utils/types/projects.types';
 
 const ProjectPage = () => {
@@ -34,15 +32,11 @@ const ProjectPage = () => {
 
     return (
         <main className="custom-container flex min-h-screen w-full min-w-0 flex-col gap-5 pb-8">
-            <div className="flex flex-col gap-1">
-                <h1 className="text-start text-[24px] font-semibold leading-[30px] text-black">
-                    {t('title')}
-                </h1>
-
-                <p className="break-words text-start text-[12px] font-normal leading-[18px] text-[#7E8492]">
-                    {t('description')}
-                </p>
-            </div>
+            <PageHeader
+                title={t('title')}
+                description={t('description')}
+                titleClassName="!text-black"
+            />
 
             <section className="flex w-full min-w-0 flex-col gap-5 rounded-[24px] bg-white p-4 sm:p-5 lg:gap-8 lg:p-8">
                 <ProjectsToolbar

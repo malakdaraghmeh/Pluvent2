@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next';
-
 import { SupportTicketReplyLogo } from '@/assets';
 import ActionButton from '@/components/ui/ActionButton';
-
 import type { ClosedTicketDetailsProps } from '../../../../../utils/types/support-tickets.types';
 
 export default function ClosedTicketDetails({ ticket, onReopenTicket }: ClosedTicketDetailsProps) {

@@ -1,17 +1,12 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
-import {
-    SupportTicketViewArrowIcon,
-    TicketTypeGeneralIcon as GeneralTicketIcon,
-    TicketTypeProjectIcon as ProjectTicketIcon,
-    TicketTypeIllustration as TicketIllustration,
-} from '@/assets';
-
+import { SupportTicketViewArrowIcon } from '@/assets';
 import ActionButton from '@/components/ui/ActionButton';
 import Modal from '@/components/ui/modal';
 import ModalCloseButton from '@/components/ui/ModalCloseButton';
-
+import { TicketTypeGeneralIcon as GeneralTicketIcon } from '@/assets';
+import { TicketTypeProjectIcon as ProjectTicketIcon } from '@/assets';
+import { TicketTypeIllustration as TicketIllustration } from '@/assets';
 import type { TicketType, TicketTypeModalProps } from '../../../utils/types/support-tickets.types';
 
 export default function TicketTypeModal({ open, onOpenChange, onContinue }: TicketTypeModalProps) {
@@ -75,7 +70,6 @@ export default function TicketTypeModal({ open, onOpenChange, onContinue }: Tick
                 <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 min-[1920px]:mt-8 min-[1920px]:gap-5 min-[2500px]:mt-10 min-[2500px]:gap-6">
                     <button
                         type="button"
-                        aria-pressed={selectedType === 'project'}
                         onClick={() => setSelectedType('project')}
                         className={`flex min-h-[190px] flex-col items-center justify-center rounded-[16px] border px-4 py-5 text-center transition-colors min-[1920px]:min-h-[220px] min-[1920px]:px-6 min-[1920px]:py-7 min-[2500px]:min-h-[260px] min-[2500px]:px-8 min-[2500px]:py-8 ${
                             selectedType === 'project'
@@ -102,7 +96,6 @@ export default function TicketTypeModal({ open, onOpenChange, onContinue }: Tick
 
                     <button
                         type="button"
-                        aria-pressed={selectedType === 'general'}
                         onClick={() => setSelectedType('general')}
                         className={`flex min-h-[190px] flex-col items-center justify-center rounded-[16px] border px-4 py-5 text-center transition-colors min-[1920px]:min-h-[220px] min-[1920px]:px-6 min-[1920px]:py-7 min-[2500px]:min-h-[260px] min-[2500px]:px-8 min-[2500px]:py-8 ${
                             selectedType === 'general'
@@ -135,14 +128,10 @@ export default function TicketTypeModal({ open, onOpenChange, onContinue }: Tick
                     trailingIcon={
                         <SupportTicketViewArrowIcon
                             aria-hidden="true"
-                            className={`h-4 w-4 shrink-0 min-[1920px]:h-5 min-[1920px]:w-5 min-[2500px]:h-6 min-[2500px]:w-6 ${
-                                isArabic ? 'rotate-180' : ''
-                            }`}
+                            className="h-4 w-4 shrink-0 min-[1920px]:h-5 min-[1920px]:w-5 min-[2500px]:h-6 min-[2500px]:w-6"
                         />
                     }
-                    className={`mt-6 !h-[44px] !w-full !justify-center !gap-2 !rounded-[16px] !px-5 !text-[16px] !font-normal min-[1920px]:mt-8 min-[1920px]:!h-[52px] min-[1920px]:!text-[18px] min-[2500px]:mt-10 min-[2500px]:!h-[58px] min-[2500px]:!text-[20px] ${
-                        isArabic ? '!flex-row-reverse' : ''
-                    }`}
+                    className="mt-6 !h-[44px] !w-full !justify-center !gap-2 !rounded-[16px] !px-5 !text-[16px] !font-normal min-[1920px]:mt-8 min-[1920px]:!h-[52px] min-[1920px]:!text-[18px] min-[2500px]:mt-10 min-[2500px]:!h-[58px] min-[2500px]:!text-[20px]"
                 >
                     {t('ticketTypeModal.continue')}
                 </ActionButton>

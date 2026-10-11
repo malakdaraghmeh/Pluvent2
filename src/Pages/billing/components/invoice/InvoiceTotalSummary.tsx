@@ -1,5 +1,4 @@
 ﻿import { useTranslation } from 'react-i18next';
-
 import { DownloadBilling } from '@/assets';
 import type { InvoiceTotalSummaryProps } from '../../../../../utils/types/invoice.types';
 

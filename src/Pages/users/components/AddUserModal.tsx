@@ -1,9 +1,10 @@
-import { useEffect, useMemo } from 'react';
+﻿import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm, type Resolver } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { AddUser, Arrow, DropDown } from '@/assets';
+import { AddUser, Arrow } from '@/assets';
 import ActionButton from '@/components/ui/ActionButton';
+import GeneralSelect from '@/components/ui/GeneralSelect';
 import Modal from '@/components/ui/modal';
 import ModalCloseButton from '@/components/ui/ModalCloseButton';
 import {
@@ -32,6 +33,8 @@ export default function AddUserModal({ isOpen, onClose, onSubmit, userToEdit }: 
         register,
         handleSubmit,
         reset,
+        setValue,
+        watch,
         formState: { errors, isSubmitting },
     } = useForm<AddUserFormData>({
         resolver: zodResolver(schema) as Resolver<AddUserFormData>,
@@ -60,6 +63,8 @@ export default function AddUserModal({ isOpen, onClose, onSubmit, userToEdit }: 
             role: userToEdit?.role ?? '',
         });
     }, [isOpen, userToEdit, reset]);
+
+    const selectedRole = watch('role');
 
     const handleClose = () => {
         reset();
@@ -264,36 +269,28 @@ export default function AddUserModal({ isOpen, onClose, onSubmit, userToEdit }: 
                                 {t('addUserModal.role')}
                             </label>
 
-                            <div className="relative w-full">
-                                <select
-                                    id="user-role"
-                                    {...register('role')}
-                                    className={`${inputClassName} appearance-none ${textAlignment} ${
-                                        isArabic
-                                            ? 'pl-12 pr-[14px] min-[1920px]:pl-14 min-[1920px]:pr-4 min-[2500px]:pl-16 min-[2500px]:pr-[18px]'
-                                            : 'pl-[14px] pr-12 min-[1920px]:pl-4 min-[1920px]:pr-14 min-[2500px]:pl-[18px] min-[2500px]:pr-16'
-                                    }`}
-                                >
-                                    <option value="" disabled>
-                                        {placeholderText}
-                                    </option>
+                            <>
+    <input
+        type="hidden"
+        {...register('role')}
+    />
 
-                                    {USER_ROLES.map(role => (
-                                        <option key={role} value={role}>
-                                            {t(`roles.${role}`)}
-                                        </option>
-                                    ))}
-                                </select>
-
-                                <DropDown
-                                    aria-hidden="true"
-                                    className={`pointer-events-none absolute top-1/2 h-4 w-4 -translate-y-1/2 text-[#12115C] min-[1920px]:h-[18px] min-[1920px]:w-[18px] min-[2500px]:h-5 min-[2500px]:w-5 ${
-                                        isArabic
-                                            ? 'left-4 min-[1920px]:left-5'
-                                            : 'right-4 min-[1920px]:right-5'
-                                    }`}
-                                />
-                            </div>
+    <GeneralSelect
+        id="user-role"
+        value={selectedRole}
+        placeholder={placeholderText}
+        options={USER_ROLES.map(role => ({
+            label: t(`roles.${role}`),
+            value: role,
+        }))}
+        isArabic={isArabic}
+        onChange={value =>
+            setValue('role', value as UserRole, {
+                shouldValidate: true,
+            })
+        }
+    />
+</>
 
                             {errors.role && (
                                 <p className={`${errorClassName} ${textAlignment}`}>
@@ -328,3 +325,5 @@ export default function AddUserModal({ isOpen, onClose, onSubmit, userToEdit }: 
         </Modal>
     );
 }
+
+

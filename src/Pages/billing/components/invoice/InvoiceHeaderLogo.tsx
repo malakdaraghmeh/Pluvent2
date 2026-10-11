@@ -1,5 +1,4 @@
 ﻿import { useTranslation } from 'react-i18next';
-
 import { ChangeRequestPulventLogo } from '@/assets';
 
 export default function InvoiceHeaderLogo() {

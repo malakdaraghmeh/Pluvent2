@@ -60,7 +60,6 @@ const UpcomingPaymentsTable = () => {
         const normalizedSearch = searchTerm.trim().toLowerCase();
 
         const localizedProject = getProjectName(item.project);
-
         const localizedInstallment = getInstallment(item.installment);
 
         const matchesSearch =
@@ -82,21 +81,21 @@ const UpcomingPaymentsTable = () => {
                         {t('title')}
                     </h2>
 
-                    <div className="flex w-full flex-col gap-3 sm:flex-row lg:w-auto">
-                        <div className="relative w-full sm:w-[280px]">
-                            <SearchBilling
-                                className={`absolute top-1/2 -translate-y-1/2 ${
-                                    isArabic ? 'right-3' : 'left-3'
-                                }`}
-                            />
+                    <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center lg:w-auto">
+                        <div
+                            className={`flex h-[38px] w-full items-center gap-2 rounded-[12px] border border-[#ECEFF4] bg-white px-3 sm:w-[280px] ${
+                                isArabic ? 'flex-row-reverse' : 'flex-row'
+                            }`}
+                        >
+                            <SearchBilling className="h-4 w-4 shrink-0 text-[#9CA3AF]" />
 
                             <input
                                 type="text"
                                 value={searchTerm}
                                 onChange={event => setSearchTerm(event.target.value)}
                                 placeholder={t('searchPlaceholder')}
-                                className={`h-[38px] w-full rounded-[12px] border border-[#ECEFF4] bg-white text-[14px] text-[#111827] outline-none placeholder:text-[#9CA3AF] ${
-                                    isArabic ? 'pl-4 pr-9 text-right' : 'pl-9 pr-4 text-left'
+                                className={`min-w-0 flex-1 bg-transparent p-0 text-[14px] leading-none text-[#111827] outline-none placeholder:text-[#9CA3AF] ${
+                                    isArabic ? 'text-right' : 'text-left'
                                 }`}
                             />
                         </div>
@@ -111,7 +110,7 @@ const UpcomingPaymentsTable = () => {
                 </div>
 
                 <div className="w-full min-w-0 overflow-x-auto rounded-[8px] border border-[#00E5C820] bg-white [scrollbar-color:#CBD5E1_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar]:h-[4px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#CBD5E1]">
-                    <table className="w-full min-w-[1180px] table-fixed border-collapse xl:min-w-full">
+                    <table className="w-full min-w-[1180px] table-fixed border-collapse">
                         <colgroup>
                             <col className="w-[19%]" />
                             <col className="w-[18%]" />

@@ -1,23 +1,33 @@
+import { useTranslation } from 'react-i18next';
 import type { FinalAgreementCardProps } from '../../../../utils/types/change-request-details.types';
 
 export default function FinalAgreementCard({ title, items, note }: FinalAgreementCardProps) {
+    const { i18n } = useTranslation();
+    const isArabic = i18n.language.startsWith('ar');
+
     return (
-        <section className="flex w-full flex-col gap-4 rounded-[20px] border border-[#E8EAEF] bg-white p-6 3xl:gap-5 3xl:p-8 4xl:gap-6 4xl:p-10">
-            <h2 className="font-['Sora'] text-[16px] font-semibold leading-none text-[#12115C] 3xl:text-[18px] 4xl:text-[20px]">
+        <section
+            className={`flex w-full flex-col gap-4 rounded-[20px] border border-[#E8EAEF] bg-white p-6 ${
+                isArabic ? 'text-right' : 'text-left'
+            }`}
+        >
+            <h2 className="font-['Sora'] text-[16px] font-semibold leading-none text-[#12115C]">
                 {title}
             </h2>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 3xl:gap-5 4xl:gap-6">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {items.map(item => (
                     <div
                         key={item.label}
-                        className="flex min-h-[80px] flex-col justify-center gap-2 rounded-[12px] bg-[#12115C05] p-4 3xl:min-h-[96px] 3xl:p-5 4xl:min-h-[110px] 4xl:gap-3 4xl:p-6"
+                        className={`flex min-h-[80px] flex-col justify-center gap-2 rounded-[12px] bg-[#12115C05] p-4 ${
+                            isArabic ? 'items-end text-right' : 'items-start text-left'
+                        }`}
                     >
-                        <span className="font-['Sora'] text-[12px] font-normal leading-none text-[#64748B] 3xl:text-[13px] 4xl:text-[14px]">
+                        <span className="font-['Sora'] text-[12px] font-normal leading-none text-[#64748B]">
                             {item.label}
                         </span>
 
-                        <strong className="font-['Sora'] text-[20px] font-semibold leading-none text-[#12115C] 3xl:text-[24px] 4xl:text-[28px]">
+                        <strong className="font-['Sora'] text-[20px] font-semibold leading-none text-[#12115C]">
                             {item.value}
                         </strong>
                     </div>
@@ -25,7 +35,11 @@ export default function FinalAgreementCard({ title, items, note }: FinalAgreemen
             </div>
 
             {note && (
-                <p className="font-['Sora'] text-[11px] font-normal leading-[140%] text-[#64748B] 3xl:text-[12px] 4xl:text-[13px]">
+                <p
+                    className={`font-['Sora'] text-[11px] font-normal leading-[140%] text-[#64748B] ${
+                        isArabic ? 'text-right' : 'text-left'
+                    }`}
+                >
                     {note}
                 </p>
             )}

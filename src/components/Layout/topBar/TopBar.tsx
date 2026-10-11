@@ -108,7 +108,9 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
         /^\/projects\/([^/]+)\/change-requests\/[^/]+(?:\/(?:waiting|payment|in-progress|completed))?$/,
     );
 
-    const currentProjectId = changeRequestProjectMatch?.[1];
+    const projectIdFromSearch = new URLSearchParams(search).get('projectId');
+    const currentProjectId =
+        changeRequestProjectMatch?.[1] || projectIdFromSearch;
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -444,22 +446,12 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
 
                     <BreadcrumbArrow className={breadcrumbArrowClass} />
 
-                    {currentProjectId ? (
-                        <Link
-                            to={`/${currentLocale}/projects/${currentProjectId}`}
-                            className="shrink-0 whitespace-nowrap text-[#868B89] transition-opacity hover:opacity-70"
-                        >
-                            {changeRequestT(
-                                'breadcrumb.projectDetails',
-                            )}
-                        </Link>
-                    ) : (
-                        <span className="shrink-0 whitespace-nowrap text-[#868B89]">
-                            {changeRequestT(
-                                'breadcrumb.projectDetails',
-                            )}
-                        </span>
-                    )}
+                    <Link
+    to={`/${currentLocale}/projects/${currentProjectId || '1'}`}
+    className="shrink-0 cursor-pointer whitespace-nowrap text-[#868B89] transition-opacity hover:opacity-70"
+>
+    {changeRequestT('breadcrumb.projectDetails')}
+</Link>
 
                     <BreadcrumbArrow className={breadcrumbArrowClass} />
 
@@ -582,7 +574,7 @@ export default function TopBar({ onMobileMenu }: TopBarProps) {
                                         : 'text-[#64748B]'
                                 }`}
                             >
-                                <span>العربية</span>
+                                <span>ÃƒÆ’Ã‹Å“Ãƒâ€šÃ‚Â§ÃƒÆ’Ã¢â€žÂ¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ÃƒÆ’Ã‹Å“Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã‹Å“Ãƒâ€šÃ‚Â±ÃƒÆ’Ã‹Å“Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã¢â€žÂ¢Ãƒâ€¦Ã‚Â ÃƒÆ’Ã‹Å“Ãƒâ€šÃ‚Â©</span>
                                 <FlagAr />
                             </button>
 

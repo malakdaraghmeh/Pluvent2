@@ -1,4 +1,4 @@
-{
+﻿{
     "version":  "0.2",
     "words":  [
                   "AskAi",
@@ -11,12 +11,19 @@
                   "linecap",
                   "Maryam",
                   "Nasir",
-                  "Pulvent"
+                  "primereact",
+                  "Pulvent",
+                  "Scriptable",
+                  "datatable",
+                  "applepay"
               ],
     "ignorePaths":  [
                         "node_modules/**",
                         "dist/**",
                         "src/assets/**/*.svg",
                         "src/locales/ar/ar.json"
-                    ]
+                    ],
+    "ignoreRegExpList":  [
+                             "/[\\u0600-\\u06FF]+/g"
+                         ]
 }

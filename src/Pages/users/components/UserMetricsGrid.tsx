@@ -1,17 +1,7 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import type { MetricItem } from '../../../../utils/types/users.types';
+﻿import { useTranslation } from 'react-i18next';
+import type { UserMetricsGridProps } from '../../../../utils/types/users.types';
 
-interface UserMetricsGridProps {
-    metrics: MetricItem[];
-}
-
-const cardStyleMap: Record<
-    string,
-    {
-        badgeBg: string;
-    }
-> = {
+const cardStyleMap: Record<string, { badgeBg: string }> = {
     outstanding: {
         badgeBg: 'bg-[#00E5C810]',
     },
@@ -26,12 +16,12 @@ const cardStyleMap: Record<
     },
 };
 
-export const UserMetricsGrid: React.FC<UserMetricsGridProps> = ({ metrics }) => {
+export default function UserMetricsGrid({ metrics }: UserMetricsGridProps) {
     const { t, i18n } = useTranslation('usersPage');
     const isArabic = i18n.language.startsWith('ar');
 
     return (
-        <div className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {metrics.map(item => {
                 const Icon = item.icon;
                 const styles = cardStyleMap[item.id];
@@ -39,7 +29,7 @@ export const UserMetricsGrid: React.FC<UserMetricsGridProps> = ({ metrics }) => 
                 return (
                     <div
                         key={item.id}
-                        className={`flex w-full min-w-0 items-center gap-[12px] rounded-[20px] border border-[#ECEFF4] bg-white px-[16px] py-[20px] shadow-sm transition-all hover:shadow-md ${
+                        className={`flex w-full min-w-0 items-center gap-3 rounded-[20px] border border-[#ECEFF4] bg-white px-4 py-5 shadow-sm transition-all hover:shadow-md ${
                             isArabic ? 'flex-row-reverse' : 'flex-row'
                         }`}
                     >
@@ -56,11 +46,19 @@ export const UserMetricsGrid: React.FC<UserMetricsGridProps> = ({ metrics }) => 
                                 isArabic ? 'items-end text-right' : 'items-start text-left'
                             }`}
                         >
-                            <span className="min-w-0 whitespace-nowrap text-[12px] font-medium leading-[16px] text-[#64748B] min-[1440px]:text-[12px] min-[1920px]:text-[14px] min-[2500px]:text-[15px]">
+                            <span
+                                className={`w-full whitespace-nowrap text-[12px] font-medium leading-5 text-[#64748B] min-[1400px]:text-[13px] min-[1920px]:text-[14px] min-[2500px]:text-[15px] ${
+                                    isArabic ? 'text-right' : 'text-left'
+                                }`}
+                            >
                                 {t(`metrics.${item.id}`)}
                             </span>
 
-                            <span className="mt-[4px] w-full text-[24px] font-semibold leading-[28px] text-[#0F172A]">
+                            <span
+                                className={`mt-1 w-full text-[24px] font-semibold leading-7 text-[#0F172A] ${
+                                    isArabic ? 'text-right' : 'text-left'
+                                }`}
+                            >
                                 {item.value}
                             </span>
                         </div>
@@ -69,6 +67,4 @@ export const UserMetricsGrid: React.FC<UserMetricsGridProps> = ({ metrics }) => 
             })}
         </div>
     );
-};
-
-export default UserMetricsGrid;
+}

@@ -1,4 +1,4 @@
-﻿import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import i18n from './i18n/i18n';
 import BillingPage from './Pages/billing/BillingPage';

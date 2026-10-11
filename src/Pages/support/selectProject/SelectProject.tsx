@@ -180,7 +180,7 @@ export default function SelectProjectModal({
 
                                     <span className="mx-1 text-[#A0A3AD]">•</span>
 
-                                    {t('supportUnavailable', 'Support Unavailable')}
+                                    {t('supportUnavailable', 'SupportUnavailable')}
                                 </p>
                             </div>
                         </div>

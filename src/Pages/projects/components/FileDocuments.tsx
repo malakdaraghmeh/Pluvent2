@@ -80,36 +80,24 @@ const FileDocuments = ({
                 }`}
             >
                 <Upload
-                    className={
-                        variant === 'all'
-                            ? 'h-10 w-10 shrink-0'
-                            : 'h-10 w-10 shrink-0'
-                    }
+                    className={variant === 'all' ? 'h-10 w-10 shrink-0' : 'h-10 w-10 shrink-0'}
                 />
 
                 <div className={`min-w-0 ${textAlignment}`}>
                     <p
                         className={`${
-                            variant === 'all'
-                                ? 'text-[14px]'
-                                : 'text-[16px]'
-                        } font-semibold leading-5 text-[#12115C] text-center`}
+                            variant === 'all' ? 'text-[14px]' : 'text-[16px]'
+                        } font-semibold leading-5 text-[#12115C]`}
                     >
-                        {variant === 'all'
-                            ? filesT('dropzoneTitle')
-                            : t('dropFiles')}
+                        {variant === 'all' ? filesT('dropzoneTitle') : t('dropFiles')}
                     </p>
 
                     <p
                         className={`mt-1 ${
-                            variant === 'all'
-                                ? 'text-[12px]'
-                                : 'text-[13px]'
+                            variant === 'all' ? 'text-[12px]' : 'text-[13px]'
                         } font-normal leading-[18px] text-[#7E8492]`}
                     >
-                        {variant === 'all'
-                            ? filesT('dropzoneHint')
-                            : t('fileTypes')}
+                        {variant === 'all' ? filesT('dropzoneHint') : t('fileTypes')}
                     </p>
                 </div>
             </button>
@@ -155,11 +143,15 @@ const FileDocuments = ({
                         </div>
 
                         <div className={`min-w-0 flex-1 ${textAlignment}`}>
-                            <p className="truncate text-[14px] font-semibold leading-5 text-[#12115C] sm:text-[15px]">
+                            <p
+                                className={`truncate text-[14px] font-semibold leading-5 text-[#12115C] sm:text-[15px] ${isArabic ? 'text-right' : 'text-left'}`}
+                            >
                                 {file.fileName}
                             </p>
 
-                            <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-normal leading-[18px] text-[#7E8492] sm:text-[12px]">
+                            <p
+                                className={`mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-normal leading-[18px] text-[#7E8492] sm:text-[12px] ${isArabic ? 'justify-end text-right' : 'justify-start text-left'}`}
+                            >
                                 <span>
                                     {t('uploadedBy')} : {file.uploadedBy}
                                 </span>
@@ -196,9 +188,7 @@ const FileDocuments = ({
             {showTitle && (
                 <div
                     className={`flex min-h-[28px] flex-col gap-2 sm:items-center sm:justify-between ${
-                        isArabic
-                            ? 'sm:flex-row-reverse'
-                            : 'sm:flex-row'
+                        isArabic ? 'sm:flex-row-reverse' : 'sm:flex-row'
                     }`}
                 >
                     <h2

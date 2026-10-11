@@ -1,5 +1,4 @@
 ﻿import { useTranslation } from 'react-i18next';
-
 import type { InvoiceItem } from '../../../../../utils/types/invoice.types';
 
 export default function InvoiceItemsTable() {

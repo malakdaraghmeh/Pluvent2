@@ -1,14 +1,14 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
     MessagesCreateGroupArrowIcon,
     MessagesCreateGroupCloseIcon,
     MessagesCreateGroupPlusIcon,
-    MessagesProjectSelectArrowIcon,
     MessagesRadioSelectedIcon,
     MessagesRadioUnselectedIcon,
 } from '@/assets';
 import ActionButton from '@/components/ui/ActionButton';
+import GeneralSelect from '@/components/ui/GeneralSelect';
 import Modal from '@/components/ui/modal';
 import type { CreateGroupModalProps } from '../../../../utils/types/chat.types';
 import { projectsData } from '../../projects/data/projects';
@@ -21,39 +21,14 @@ export function CreateGroupModal({ isOpen, onClose, onCreateGroup }: CreateGroup
     const isArabic = i18n.language.startsWith('ar');
     const textAlignment = isArabic ? 'text-right' : 'text-left';
 
-    const projectDropdownRef = useRef<HTMLDivElement>(null);
-
     const [groupName, setGroupName] = useState('');
     const [selectedProjectId, setSelectedProjectId] = useState('');
     const [selectedMemberIds, setSelectedMemberIds] = useState<string[]>(DEFAULT_SELECTED_MEMBERS);
-    const [isProjectOpen, setIsProjectOpen] = useState(false);
-
-    const selectedProject = projectsData.find(project => String(project.id) === selectedProjectId);
-
-    useEffect(() => {
-        if (!isProjectOpen) return;
-
-        const handleClickOutside = (event: PointerEvent) => {
-            if (
-                projectDropdownRef.current &&
-                !projectDropdownRef.current.contains(event.target as Node)
-            ) {
-                setIsProjectOpen(false);
-            }
-        };
-
-        document.addEventListener('pointerdown', handleClickOutside, true);
-
-        return () => {
-            document.removeEventListener('pointerdown', handleClickOutside, true);
-        };
-    }, [isProjectOpen]);
 
     const resetForm = () => {
         setGroupName('');
         setSelectedProjectId('');
         setSelectedMemberIds(DEFAULT_SELECTED_MEMBERS);
-        setIsProjectOpen(false);
     };
 
     const handleClose = () => {
@@ -92,7 +67,7 @@ export function CreateGroupModal({ isOpen, onClose, onCreateGroup }: CreateGroup
             onClose={handleClose}
             ariaLabel={t('createGroupModal.title')}
             overlayClassName="lg:pl-[320px]"
-            className="create-group-modal !w-[650px] !max-w-[calc(100vw-32px)] overflow-hidden rounded-[20px] p-6 min-[1920px]:!w-[760px] min-[2500px]:!w-[860px] [@media(max-height:780px)]:p-5"
+            className="create-group-modal !w-[650px] !max-w-[calc(100vw-32px)] overflow-visible rounded-[20px] p-6 min-[1920px]:!w-[760px] min-[2500px]:!w-[860px] [@media(max-height:780px)]:p-5"
         >
             <div className="flex flex-col gap-5 [@media(max-height:780px)]:gap-4">
                 <header className="flex shrink-0 items-start justify-between gap-4">
@@ -242,54 +217,17 @@ export function CreateGroupModal({ isOpen, onClose, onCreateGroup }: CreateGroup
                             <span className="text-[#E02B2B]">*</span>
                         </span>
 
-                        <div ref={projectDropdownRef} className="relative mt-2">
-                            <button
-                                type="button"
-                                onClick={() => setIsProjectOpen(current => !current)}
-                                aria-expanded={isProjectOpen}
-                                className={`flex h-[54px] w-full items-center justify-between gap-3 rounded-[12px] bg-[#F4F6FA] px-[14px] text-[14px] text-[#615E8B] ${
-                                    isArabic ? 'flex-row-reverse' : 'flex-row'
-                                } ${textAlignment}`}
-                            >
-                                <span className="min-w-0 flex-1 truncate">
-                                    {selectedProject?.title ??
-                                        t('createGroupModal.projectPlaceholder')}
-                                </span>
-
-                                <MessagesProjectSelectArrowIcon
-                                    className={`h-4 w-4 shrink-0 transition-transform ${
-                                        isProjectOpen ? 'rotate-180' : ''
-                                    }`}
-                                    aria-hidden="true"
-                                />
-                            </button>
-
-                            {isProjectOpen && (
-                                <div className="mt-[10px] max-h-[140px] w-full overflow-y-auto rounded-[12px] border border-[#E8E8E8] bg-white p-1.5 shadow-[0_6px_20px_rgba(18,17,92,0.08)] [scrollbar-color:#B1B4B6_#FCFCFC] [scrollbar-width:thin] [&::-webkit-scrollbar]:w-[6px] [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-[#FCFCFC] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#B1B4B6]">
-                                    {projectsData.map(project => {
-                                        const isSelected = String(project.id) === selectedProjectId;
-
-                                        return (
-                                            <button
-                                                key={project.id}
-                                                type="button"
-                                                onClick={() => {
-                                                    setSelectedProjectId(String(project.id));
-                                                    setIsProjectOpen(false);
-                                                }}
-                                                className={`flex min-h-[42px] w-full items-center rounded-[10px] px-3 text-[14px] ${
-                                                    isSelected
-                                                        ? 'bg-[#EEF2FF] font-semibold text-[#3634C7]'
-                                                        : 'text-[#615E8B] hover:bg-[#F7F8FA]'
-                                                } ${textAlignment}`}
-                                            >
-                                                {project.title}
-                                            </button>
-                                        );
-                                    })}
-                                </div>
-                            )}
-                        </div>
+                        <GeneralSelect
+                            value={selectedProjectId}
+                            placeholder={t('createGroupModal.projectPlaceholder')}
+                            options={projectsData.map(project => ({
+                                label: project.title,
+                                value: String(project.id),
+                            }))}
+                            isArabic={isArabic}
+                            onChange={setSelectedProjectId}
+                            className="mt-2"
+                        />
                     </div>
 
                     <div className="pt-1">
