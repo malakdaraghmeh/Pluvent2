@@ -1,39 +1,33 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { SupportTicketViewArrowIcon } from '@/assets';
+import {
+    SupportTicketViewArrowIcon,
+    TicketTypeGeneralIcon as GeneralTicketIcon,
+    TicketTypeProjectIcon as ProjectTicketIcon,
+    TicketTypeIllustration as TicketIllustration,
+} from '@/assets';
+
 import ActionButton from '@/components/ui/ActionButton';
 import Modal from '@/components/ui/modal';
 import ModalCloseButton from '@/components/ui/ModalCloseButton';
-import { TicketTypeGeneralIcon as GeneralTicketIcon } from '@/assets';
-import { TicketTypeProjectIcon as ProjectTicketIcon } from '@/assets';
-import { TicketTypeIllustration as TicketIllustration } from '@/assets';
 
-import type {
-    TicketType,
-    TicketTypeModalProps,
-} from '../../../utils/types/support-tickets.types';
+import type { TicketType, TicketTypeModalProps } from '../../../utils/types/support-tickets.types';
 
-export default function TicketTypeModal({
-    open,
-    onOpenChange,
-    onContinue,
-}: TicketTypeModalProps) {
+export default function TicketTypeModal({ open, onOpenChange, onContinue }: TicketTypeModalProps) {
     const { t, i18n } = useTranslation('tickets');
+
     const isArabic = i18n.language.startsWith('ar');
 
-    const [selectedType, setSelectedType] =
-        useState<TicketType | null>(null);
+    const [selectedType, setSelectedType] = useState<TicketType | null>(null);
 
-    const projectDescriptionLines = t(
-        'ticketTypeModal.options.project.descriptionLines',
-        { returnObjects: true },
-    ) as string[];
+    const projectDescriptionLines = t('ticketTypeModal.options.project.descriptionLines', {
+        returnObjects: true,
+    }) as string[];
 
-    const generalDescriptionLines = t(
-        'ticketTypeModal.options.general.descriptionLines',
-        { returnObjects: true },
-    ) as string[];
+    const generalDescriptionLines = t('ticketTypeModal.options.general.descriptionLines', {
+        returnObjects: true,
+    }) as string[];
 
     const handleClose = () => {
         setSelectedType(null);
@@ -43,8 +37,10 @@ export default function TicketTypeModal({
     const handleContinue = () => {
         if (!selectedType) return;
 
-        onContinue?.(selectedType);
+        const type = selectedType;
+
         setSelectedType(null);
+        onContinue?.(type);
     };
 
     return (
@@ -60,9 +56,7 @@ export default function TicketTypeModal({
                     ariaLabel={t('ticketTypeModal.close')}
                     onClick={handleClose}
                     className={`absolute top-5 ${
-                        isArabic
-                            ? '!left-5 !right-auto'
-                            : '!right-5 !left-auto'
+                        isArabic ? '!left-5 !right-auto' : '!right-5 !left-auto'
                     }`}
                 />
 
@@ -81,9 +75,8 @@ export default function TicketTypeModal({
                 <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 min-[1920px]:mt-8 min-[1920px]:gap-5 min-[2500px]:mt-10 min-[2500px]:gap-6">
                     <button
                         type="button"
-                        onClick={() =>
-                            setSelectedType('project')
-                        }
+                        aria-pressed={selectedType === 'project'}
+                        onClick={() => setSelectedType('project')}
                         className={`flex min-h-[190px] flex-col items-center justify-center rounded-[16px] border px-4 py-5 text-center transition-colors min-[1920px]:min-h-[220px] min-[1920px]:px-6 min-[1920px]:py-7 min-[2500px]:min-h-[260px] min-[2500px]:px-8 min-[2500px]:py-8 ${
                             selectedType === 'project'
                                 ? 'border-[#39E1D7] bg-[#F6FEFD]'
@@ -95,30 +88,22 @@ export default function TicketTypeModal({
                         </div>
 
                         <h3 className="mt-4 text-[16px] font-semibold leading-6 text-[#12115C] min-[1920px]:text-[18px] min-[2500px]:text-[20px]">
-                            {t(
-                                'ticketTypeModal.options.project.title',
-                            )}
+                            {t('ticketTypeModal.options.project.title')}
                         </h3>
 
                         <p className="mt-2 text-center text-[12px] font-normal leading-[18px] text-[#84818A] min-[1920px]:text-[14px] min-[1920px]:leading-[21px] min-[2500px]:text-[16px] min-[2500px]:leading-6">
-                            {projectDescriptionLines.map(
-                                (line, index) => (
-                                    <span
-                                        key={index}
-                                        className="block sm:whitespace-nowrap"
-                                    >
-                                        {line}
-                                    </span>
-                                ),
-                            )}
+                            {projectDescriptionLines.map((line, index) => (
+                                <span key={index} className="block sm:whitespace-nowrap">
+                                    {line}
+                                </span>
+                            ))}
                         </p>
                     </button>
 
                     <button
                         type="button"
-                        onClick={() =>
-                            setSelectedType('general')
-                        }
+                        aria-pressed={selectedType === 'general'}
+                        onClick={() => setSelectedType('general')}
                         className={`flex min-h-[190px] flex-col items-center justify-center rounded-[16px] border px-4 py-5 text-center transition-colors min-[1920px]:min-h-[220px] min-[1920px]:px-6 min-[1920px]:py-7 min-[2500px]:min-h-[260px] min-[2500px]:px-8 min-[2500px]:py-8 ${
                             selectedType === 'general'
                                 ? 'border-[#39E1D7] bg-[#F6FEFD]'
@@ -130,22 +115,15 @@ export default function TicketTypeModal({
                         </div>
 
                         <h3 className="mt-4 text-[16px] font-semibold leading-6 text-[#12115C] min-[1920px]:text-[18px] min-[2500px]:text-[20px]">
-                            {t(
-                                'ticketTypeModal.options.general.title',
-                            )}
+                            {t('ticketTypeModal.options.general.title')}
                         </h3>
 
                         <p className="mt-2 text-center text-[12px] font-normal leading-[18px] text-[#84818A] min-[1920px]:text-[14px] min-[1920px]:leading-[21px] min-[2500px]:text-[16px] min-[2500px]:leading-6">
-                            {generalDescriptionLines.map(
-                                (line, index) => (
-                                    <span
-                                        key={index}
-                                        className="block sm:whitespace-nowrap"
-                                    >
-                                        {line}
-                                    </span>
-                                ),
-                            )}
+                            {generalDescriptionLines.map((line, index) => (
+                                <span key={index} className="block sm:whitespace-nowrap">
+                                    {line}
+                                </span>
+                            ))}
                         </p>
                     </button>
                 </div>
@@ -153,20 +131,17 @@ export default function TicketTypeModal({
                 <ActionButton
                     type="button"
                     onClick={handleContinue}
+                    disabled={!selectedType}
                     trailingIcon={
                         <SupportTicketViewArrowIcon
                             aria-hidden="true"
                             className={`h-4 w-4 shrink-0 min-[1920px]:h-5 min-[1920px]:w-5 min-[2500px]:h-6 min-[2500px]:w-6 ${
-                                isArabic
-                                    ? 'rotate-180'
-                                    : ''
+                                isArabic ? 'rotate-180' : ''
                             }`}
                         />
                     }
                     className={`mt-6 !h-[44px] !w-full !justify-center !gap-2 !rounded-[16px] !px-5 !text-[16px] !font-normal min-[1920px]:mt-8 min-[1920px]:!h-[52px] min-[1920px]:!text-[18px] min-[2500px]:mt-10 min-[2500px]:!h-[58px] min-[2500px]:!text-[20px] ${
-                        isArabic
-                            ? '!flex-row-reverse'
-                            : ''
+                        isArabic ? '!flex-row-reverse' : ''
                     }`}
                 >
                     {t('ticketTypeModal.continue')}

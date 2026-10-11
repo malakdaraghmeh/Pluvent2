@@ -75,7 +75,7 @@ export default function TicketCard({ ticket }: TicketCardProps) {
                     </div>
 
                     <div
-                        className={`flex shrink-0 flex-col gap-2 ${
+                        className={`flex shrink-0 flex-col gap-2 items-center ${
                             isArabic
                                 ? 'items-start text-left'
                                 : 'items-end text-right'

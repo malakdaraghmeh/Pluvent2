@@ -1,6 +1,7 @@
 import type { MouseEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+
 import {
     ModalCloseIcon,
     SelectProjectBackIcon,
@@ -32,16 +33,13 @@ export default function SelectProjectModal({
     const { locale } = useParams();
 
     const currentLocale = locale || 'en';
-
     const isArabic = i18n.language.startsWith('ar');
-
     const textAlign = isArabic ? 'text-right' : 'text-left';
 
     const handleSupportPlans = (event: MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
 
         onOpenChange(false);
-
         navigate(`/${currentLocale}/support-plans`);
     };
 
@@ -51,7 +49,12 @@ export default function SelectProjectModal({
 
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-4 backdrop-blur-[1px]">
-            <div className="relative w-full max-w-[620px] rounded-[28px] bg-white p-6 shadow-xl sm:p-8">
+            <div
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="select-project-title"
+                className="relative w-full max-w-[620px] rounded-[28px] bg-white p-6 shadow-xl sm:p-8"
+            >
                 <div
                     className={`flex items-center justify-between ${
                         isArabic ? 'flex-row-reverse' : ''
@@ -77,14 +80,17 @@ export default function SelectProjectModal({
                         type="button"
                         onClick={() => onOpenChange(false)}
                         className="flex h-9 w-9 items-center justify-center rounded-[8px] bg-[#12115C] text-white transition-opacity hover:opacity-90"
-                        aria-label="Close"
+                        aria-label={t('close', 'Close')}
                     >
                         <ModalCloseIcon className="h-4 w-4" />
                     </button>
                 </div>
 
                 <div className={`mb-6 mt-6 ${textAlign}`}>
-                    <h2 className="text-[24px] font-bold leading-[30px] text-[#12115C]">
+                    <h2
+                        id="select-project-title"
+                        className="text-[24px] font-bold leading-[30px] text-[#12115C]"
+                    >
                         {t('whichProjectDoYouNeedHelpWith', 'Which project do you need help with?')}
                     </h2>
 

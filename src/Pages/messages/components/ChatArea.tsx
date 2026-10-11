@@ -33,22 +33,13 @@ export const ChatArea = ({
                     aria-label={t('back')}
                     className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#F4F6FA]"
                 >
-                    <MessagesBackIcon
-                        className={`h-5 w-5 ${
-                            isArabic
-                                ? 'rotate-180'
-                                : ''
-                        }`}
-                    />
+                    <MessagesBackIcon className={`h-5 w-5 ${isArabic ? 'rotate-180' : ''}`} />
                 </button>
 
                 {activeChat && (
                     <div className="flex min-w-0 items-center gap-3">
                         <img
-                            src={
-                                activeChat.avatar ||
-                                MessagesPulventLogo
-                            }
+                            src={activeChat.avatar || MessagesPulventLogo}
                             alt={activeChat.name}
                             className="h-9 w-9 shrink-0 rounded-full object-cover"
                         />
@@ -65,17 +56,13 @@ export const ChatArea = ({
                     {messages.map(message => {
                         const avatar =
                             message.senderAvatar ||
-                            (message.isMe
-                                ? MessagesCurrentUserAvatar
-                                : MessagesPulventLogo);
+                            (message.isMe ? MessagesCurrentUserAvatar : MessagesPulventLogo);
 
                         return (
                             <div
                                 key={message.id}
                                 className={`flex w-full items-end gap-2.5 ${
-                                    message.isMe
-                                        ? 'justify-end'
-                                        : 'justify-start'
+                                    message.isMe ? 'justify-end' : 'justify-start'
                                 }`}
                             >
                                 {!message.isMe && (
@@ -88,16 +75,12 @@ export const ChatArea = ({
 
                                 <div
                                     className={`flex min-w-0 max-w-[82%] flex-col ${
-                                        message.isMe
-                                            ? 'items-end'
-                                            : 'items-start'
+                                        message.isMe ? 'items-end' : 'items-start'
                                     }`}
                                 >
                                     <div
                                         className={`mb-[6px] flex items-center gap-2 ${
-                                            message.isMe
-                                                ? 'justify-end'
-                                                : 'justify-start'
+                                            message.isMe ? 'justify-end' : 'justify-start'
                                         }`}
                                     >
                                         <span className="text-[14px] font-semibold text-[#12115C] 3xl:text-[15px]">
@@ -114,14 +97,12 @@ export const ChatArea = ({
                                             message.isMe
                                                 ? 'bg-[#12115C] text-white'
                                                 : 'bg-[#F2F0FC] text-[#25263A]'
-                                        } ${
-                                            isArabic
-                                                ? 'text-right'
-                                                : 'text-left'
-                                        }`}
+                                        } ${isArabic ? 'text-right' : 'text-left'}`}
                                     >
                                         <p className="max-w-full overflow-hidden text-ellipsis whitespace-normal md:whitespace-nowrap">
-                                            {message.text === 'sampleMessage' ? t('sampleMessage') : message.text}
+                                            {message.text === 'sampleMessage'
+                                                ? t('sampleMessage')
+                                                : message.text}
                                         </p>
 
                                         {message.isMe ? (
@@ -147,7 +128,7 @@ export const ChatArea = ({
 
             <form
                 onSubmit={onSendMessage}
-                className="mt-4 flex w-full shrink-0 items-center gap-3 3xl:mt-5 3xl:gap-4"
+                className="mt-4 flex w-full shrink-0 items-center gap-3 rounded-full border border-[#0000000D] p-2 shadow-[0px_2px_15px_0px_#0000000D] 3xl:mt-5 3xl:gap-4"
             >
                 <button
                     type="button"
@@ -161,18 +142,10 @@ export const ChatArea = ({
                     <input
                         type="text"
                         value={inputText}
-                        onChange={event =>
-                            onInputChange(
-                                event.target.value,
-                            )
-                        }
-                        placeholder={t(
-                            'typeMessagePlaceholder',
-                        )}
-                        className={`min-w-0 flex-1 bg-transparent text-[14px] text-[#25263A] outline-none placeholder:text-[#A3A8B7] 3xl:text-[15px] ${
-                            isArabic
-                                ? 'text-right'
-                                : 'text-left'
+                        onChange={event => onInputChange(event.target.value)}
+                        placeholder={t('typeMessagePlaceholder')}
+                        className={`min-w-0 flex-1 bg-transparent text-[14px] text-[#0F1113] outline-none placeholder:text-[#0F1113] 3xl:text-[15px] ${
+                            isArabic ? 'text-right' : 'text-left'
                         }`}
                     />
 
@@ -182,11 +155,7 @@ export const ChatArea = ({
                         className="flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-full bg-[#3634C7] 3xl:h-[40px] 3xl:w-[40px]"
                     >
                         <MessagesSendIcon
-                            className={`h-[18px] w-[18px] ${
-                                isArabic
-                                    ? 'rotate-180'
-                                    : ''
-                            }`}
+                            className={`h-[18px] w-[18px] ${isArabic ? 'rotate-180' : ''}`}
                         />
                     </button>
                 </div>

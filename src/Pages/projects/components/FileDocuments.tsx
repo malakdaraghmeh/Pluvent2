@@ -93,7 +93,7 @@ const FileDocuments = ({
                             variant === 'all'
                                 ? 'text-[14px]'
                                 : 'text-[16px]'
-                        } font-semibold leading-5 text-[#12115C]`}
+                        } font-semibold leading-5 text-[#12115C] text-center`}
                     >
                         {variant === 'all'
                             ? filesT('dropzoneTitle')
@@ -144,9 +144,7 @@ const FileDocuments = ({
                     <div className="flex w-full min-w-0 items-center gap-3">
                         <div
                             className={`flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-[8px] ${
-                                file.type === 'pulvent'
-                                    ? 'bg-[#00E5C810]'
-                                    : 'bg-[#2F1ABD10]'
+                                file.type === 'pulvent' ? 'bg-[#00E5C810]' : 'bg-[#2F1ABD10]'
                             }`}
                         >
                             {file.type === 'pulvent' ? (
@@ -165,13 +163,9 @@ const FileDocuments = ({
                                 <span>
                                     {t('uploadedBy')} : {file.uploadedBy}
                                 </span>
-
-                                <span>&bull;</span>
-
+                                <span className="block h-3 w-px bg-[#00E5C880]" />{' '}
                                 <span>{file.size}</span>
-
                                 <span>&bull;</span>
-
                                 <span>{formatDate(file.date)}</span>
                             </p>
                         </div>
@@ -179,7 +173,7 @@ const FileDocuments = ({
 
                     <button
                         type="button"
-                        className="shrink-0 self-end text-[14px] font-semibold text-[#12115C] transition-opacity hover:opacity-70 sm:self-auto sm:text-[16px]"
+                        className="shrink-0 self-end text-[14px] font-semibold text-[#3634C7] transition-opacity hover:opacity-70 sm:self-auto sm:text-[16px]"
                     >
                         {t('download')}
                     </button>

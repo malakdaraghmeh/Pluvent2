@@ -713,7 +713,7 @@
         },
         "card": {
             "ticketNumber": "Ticket #{{id}}",
-            "uploadedBy": "Uploaded by {{name}}",
+            "uploadedBy": "Uploaded By: {{name}}",
             "viewTicket": "View Ticket",
             "postedAt": "Posted at {{time}}",
             "description": "Support ticket details and reported issue."

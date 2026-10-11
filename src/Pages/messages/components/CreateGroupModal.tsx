@@ -113,7 +113,7 @@ export function CreateGroupModal({ isOpen, onClose, onCreateGroup }: CreateGroup
                         className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[6px] bg-[#12115C]"
                     >
                         <MessagesCreateGroupCloseIcon
-                            className="h-full w-full"
+                         
                             aria-hidden="true"
                         />
                     </button>

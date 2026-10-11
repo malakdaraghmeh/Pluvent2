@@ -42,7 +42,7 @@ const Header = ({ onNewTicket }: HeaderProps) => {
             >
                 <Add
                     aria-hidden="true"
-                    className="h-5 w-5 shrink-0"
+                    className="h-3 w-3 shrink-0"
                 />
 
                 <span className="shrink-0 whitespace-nowrap">
