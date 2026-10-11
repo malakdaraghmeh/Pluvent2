@@ -70,8 +70,8 @@ export default function PaymentHistoryTable() {
     const isRtl = i18n.language.startsWith('ar');
     const alignmentClass = isRtl ? 'text-right' : 'text-left';
 
-    const tableHeaderCellClass = `whitespace-nowrap px-3 sm:px-4 ${alignmentClass}`;
-    const tableCellClass = `whitespace-nowrap px-3 py-4 sm:px-4 ${alignmentClass}`;
+    const tableHeaderCellClass = `whitespace-nowrap px-4 sm:px-5 xl:px-6 ${alignmentClass}`;
+    const tableCellClass = `whitespace-nowrap px-4 py-4 sm:px-5 xl:px-6 ${alignmentClass}`;
 
     const getProjectName = (project: string) => {
         if (project === WEBSITE_REDESIGN) {
@@ -82,7 +82,7 @@ export default function PaymentHistoryTable() {
     };
 
     const getAmount = (amount: string) => {
-        const numericAmount = amount.replace(/^EGP\s\*/i, '');
+        const numericAmount = amount.replace(/^EGP\s*/i, '');
 
         return paymentsT('amountValue', {
             amount: numericAmount,
@@ -169,14 +169,14 @@ export default function PaymentHistoryTable() {
                                   }
                                 : undefined
                         }
-                        className="w-full min-w-[820px] table-fixed border-collapse lg:min-w-[900px] xl:min-w-full"
+                        className="w-full min-w-[980px] table-fixed border-collapse xl:min-w-full"
                     >
                         <colgroup>
                             <col className="w-[18%]" />
-                            <col className="w-[26%]" />
+                            <col className="w-[27%]" />
                             <col className="w-[18%]" />
                             <col className="w-[18%]" />
-                            <col className="w-[14%]" />
+                            <col className="w-[13%]" />
                             <col className="w-[6%]" />
                         </colgroup>
 
@@ -192,7 +192,7 @@ export default function PaymentHistoryTable() {
 
                                 <th className={tableHeaderCellClass}>{t('date')}</th>
 
-                                <th className="w-[60px] px-2 sm:w-[70px] sm:px-3" />
+                                <th className="w-[60px] px-3 sm:w-[70px] sm:px-4" />
                             </tr>
                         </thead>
 

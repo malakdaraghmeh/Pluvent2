@@ -37,6 +37,7 @@ const StatCard = ({ value, icon }: DashboardStat) => {
     const isArabic = i18n.language.startsWith('ar');
     const Icon = iconMap[icon];
     const styles = styleMap[icon];
+    const isUpcoming = icon === 'upcoming';
 
     return (
         <article
@@ -45,13 +46,15 @@ const StatCard = ({ value, icon }: DashboardStat) => {
             }`}
         >
             <div
-                className={`flex w-full min-w-0 items-start justify-between gap-3 ${
-                    isArabic ? 'flex-row-reverse' : 'flex-row'
-                }`}
+                className={`flex w-full min-w-0 items-start justify-between ${
+                    isUpcoming ? 'gap-1' : 'gap-3'
+                } ${isArabic ? 'flex-row-reverse' : 'flex-row'}`}
             >
                 <h3
-                    className={`min-w-0 flex-1 text-[15px] font-semibold leading-[20px] text-[#08040B] min-[1400px]:text-[16px] 3xl:text-[17px] ${
-                        icon === 'upcoming' ? 'whitespace-nowrap' : 'break-words'
+                    className={`font-semibold leading-[20px] text-[#08040B] ${
+                        isUpcoming
+                            ? 'shrink-0 whitespace-nowrap text-[13px] min-[1400px]:text-[14px] 3xl:text-[17px]'
+                            : 'min-w-0 flex-1 break-words text-[15px] min-[1400px]:text-[16px] 3xl:text-[17px]'
                     } ${isArabic ? 'text-right' : 'text-left'}`}
                 >
                     {t(`${icon}.title`)}
@@ -72,7 +75,7 @@ const StatCard = ({ value, icon }: DashboardStat) => {
                 {value}
             </p>
 
-            {icon === 'upcoming' ? (
+            {isUpcoming ? (
                 <div
                     className={`mt-1 flex w-full min-w-0 flex-wrap items-center gap-x-1 text-[11px] leading-[16px] min-[1400px]:text-[12px] 3xl:text-[13px] ${
                         isArabic ? 'justify-end text-right' : 'justify-start text-left'
