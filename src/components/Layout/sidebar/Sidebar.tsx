@@ -241,7 +241,7 @@ export default function Sidebar({
                             style={{
                                 borderTop: '1.55px solid',
                                 borderImage:
-                                    'linear-gradient(270deg, rgba(255,255,255,0) 0%, #39E1D7 49.58%, rgba(255,255,255,0) 100%) 1',
+                                    'linear-gradient(270deg, rgba(255,255,255,0) 0%, #FFFFFF 49.58%, rgba(255,255,255,0) 100%) 1',
                             }}
                         />
 

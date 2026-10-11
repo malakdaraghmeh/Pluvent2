@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowIcon } from '@/assets';
@@ -46,10 +46,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         ? `/${locale}/projects/${project.id}/completed`
         : `/${locale}/projects/${project.id}`;
 
-    const dateLabel =
-        project.dateLabel === 'Due'
-            ? t('dateLabel.due')
-            : t('dateLabel.expired');
+    const dateLabel = project.dateLabel === 'Due' ? t('dateLabel.due') : t('dateLabel.expired');
 
     const statusLabel =
         project.statusLabel === 'Project Status'
@@ -65,6 +62,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
     const actionContent = (
         <>
             <span>{actionText}</span>
+
             <ArrowIcon
                 className={`h-4 w-4 shrink-0 transition-transform ${
                     isArabic ? 'rotate-180' : ''
@@ -79,11 +77,13 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                 className="flex w-full min-w-0 flex-col gap-5 rounded-[24px] border bg-white p-4 shadow-[0_4px_20px_#0000000D] sm:p-5 lg:h-[213px] lg:flex-row lg:items-center lg:gap-5 lg:p-6"
                 style={{ borderColor }}
             >
-                <ProgressDonutChart
-                    progress={project.progress}
-                    overallLabel={t('overallProject.overall')}
-                    projectLabel={t('overallProject.project')}
-                />
+                <div className="flex w-full justify-center lg:w-auto lg:justify-start">
+                    <ProgressDonutChart
+                        progress={project.progress}
+                        overallLabel={t('overallProject.overall')}
+                        projectLabel={t('overallProject.project')}
+                    />
+                </div>
 
                 <div className="flex w-full min-w-0 flex-1 flex-col justify-center">
                     <div className="flex w-full min-w-0 items-start justify-between gap-3">
@@ -98,9 +98,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                                     : 'bg-[#007AFF0D] text-[#007AFF]'
                             }`}
                         >
-                            {isCompleted
-                                ? t('status.completed')
-                                : t('status.inProgress')}
+                            {isCompleted ? t('status.completed') : t('status.inProgress')}
                         </span>
                     </div>
 
@@ -117,6 +115,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                             <span className={isCompleted ? 'text-[#2ECC71]' : 'text-[#0F172A]'}>
                                 {project.paidAmount}
                             </span>
+
                             <span className="text-[#0F172A]"> / {project.totalAmount}</span>
                         </bdi>
                     </div>
@@ -155,10 +154,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                                 {actionContent}
                             </button>
                         ) : (
-                            <Link
-                                to={actionHref}
-                                className={actionClassName}
-                            >
+                            <Link to={actionHref} className={actionClassName}>
                                 {actionContent}
                             </Link>
                         )}
@@ -166,10 +162,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                 </div>
             </article>
 
-            <PaymentFlow
-                isOpen={isPaymentFlowOpen}
-                onClose={() => setIsPaymentFlowOpen(false)}
-            />
+            <PaymentFlow isOpen={isPaymentFlowOpen} onClose={() => setIsPaymentFlowOpen(false)} />
         </>
     );
 };
